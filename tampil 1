@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website Resmi RW 00</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
+    }
+    header {
+      background-color: #0f766e;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #115e59;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+    .section {
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .section h2 {
+      margin-top: 0;
+      color: #0f766e;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+    .info-box {
+      background-color: #ecfeff;
+      padding: 15px;
+      border-radius: 6px;
+    }
+    footer {
+      background-color: #0f766e;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Website Resmi RW 0013</h1>
+    <p>Kelurahan Utan Kayu Selatan | Kecamatan Matraman</p>
+  </header>
+
+  <nav>
+    <a href="#beranda">Beranda</a>
+    <a href="#profil">Profil RW</a>
+    <a href="#layanan">Layanan</a>
+    <a href="#informasi">Informasi</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
+
+  <div class="container">
+
+    <section id="beranda" class="section">
+      <h2>Selamat Datang</h2>
+      <p>Website ini merupakan media informasi resmi RW 0013 sebagai sarana komunikasi, transparansi, dan pelayanan kepada warga.</p>
+    </section>
+
+    <section id="profil" class="section">
+      <h2>Profil RW</h2>
+      <div class="info-grid">
+        <div class="info-box">
+          <strong>Ketua RW</strong><br />
+          Nama Ketua RW
+        </div>
+        <div class="info-box">
+          <strong>Jumlah RT</strong><br />
+          17 RT
+        </div>
+        <div class="info-box">
+          <strong>Jumlah KK</strong><br />
+          000 KK
+        </div>
+      </div>
+    </section>
+
+    <section id="layanan" class="section">
+      <h2>Layanan Warga</h2>
+      <ul>
+        <li>Surat Pengantar</li>
+        <li>Informasi Administrasi Kependudukan</li>
+        <li>Pengumuman Kegiatan Warga</li>
+        <li>Pengaduan & Aspirasi</li>
+      </ul>
+    </section>
+
+    <section id="informasi" class="section">
+      <h2>Informasi & Pengumuman</h2>
+      <p><strong>•</strong> Kerja bakti rutin setiap hari Minggu.</p>
+      <p><strong>•</strong> Jadwal posyandu dan kegiatan PKK.</p>
+      <p><strong>•</strong> Informasi keamanan lingkungan.</p>
+    </section>
+
+    <section id="kontak" class="section">
+      <h2>Kontak</h2>
+      <p>Alamat: Jl. Moncokerto Raya I No. 46</p>
+      <p>Telepon / WhatsApp: 0821-2416-3753</p>
+      <p>Email: sekretariat.uks@gmail.com</p>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>© 2025 RW 00 - Kelurahan Utan Kayu Selatan Kecamatan Matraman Jakarta Timur. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
