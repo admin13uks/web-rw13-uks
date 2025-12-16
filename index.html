@@ -11,6 +11,7 @@
       font-family: Arial, sans-serif;
       background: #000;
       color: #fff;
+      overflow: hidden; /* cegah scroll */
     }
 
     /* NAVBAR */
@@ -48,7 +49,7 @@
     .slider {
       position: relative;
       width: 100%;
-      height: 100vh;
+      height: 100vh; /* penuh layar */
       overflow: hidden;
     }
 
@@ -89,35 +90,38 @@
     }
 
     .title-box img {
-      width: 120px;
+      width: 150px;   /* logo diperbesar */
       height: auto;
-      margin-top: -40px; /* logo dinaikkan ke atas */
+      margin-top: -30px; /* logo dinaikkan */
     }
 
     .subtext {
-      font-size: 2.5rem; /* teks diperbesar */
+      font-size: 3rem; /* teks lebih besar */
       font-weight: bold;
-      color: #fff;
-      text-shadow: 2px 2px 6px #000;
+      color: #ffd700; /* eye-catching warna emas */
+      text-shadow: 3px 3px 10px #000;
       margin-top: 15px;
     }
 
     /* MARQUEE */
     .marquee {
-      width: 90%;
-      margin: 20px auto;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
       overflow: hidden;
       white-space: nowrap;
       border-top: 1px solid rgba(255, 255, 255, 0.5);
       border-bottom: 1px solid rgba(255, 255, 255, 0.5);
       padding: 12px 0;
+      background: rgba(0,0,0,0.3);
     }
 
     .marquee span {
       display: inline-block;
       padding-left: 100%;
       animation: marquee 18s linear infinite;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
+      color: #fff;
     }
 
     @keyframes marquee {
@@ -127,8 +131,8 @@
 
     /* RESPONSIVE */
     @media(max-width:768px){
-      .subtext { font-size: 1.5rem; }
-      .title-box img { width: 80px; margin-top: -20px; }
+      .subtext { font-size: 2rem; }
+      .title-box img { width: 100px; margin-top: -20px; }
       nav ul { gap: 15px; }
     }
   </style>
@@ -162,13 +166,13 @@
         <p class="subtext">Selamat datang di layanan WebSite RW 13</p>
       </div>
     </div>
-  </div>
 
-  <!-- MARQUEE -->
-  <div class="marquee">
-    <span>
-      Website Resmi RW 13 • Informasi Warga • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •
-    </span>
+    <!-- MARQUEE -->
+    <div class="marquee">
+      <span>
+        Website Resmi RW 13 • Informasi Warga • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •
+      </span>
+    </div>
   </div>
 
   <script>
