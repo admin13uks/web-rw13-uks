@@ -89,34 +89,17 @@
     }
 
     .title-box img {
-      width: 100px;
+      width: 120px;
       height: auto;
+      margin-top: -40px; /* logo dinaikkan ke atas */
     }
 
-    .overlay h1 {
-      font-size: 3rem;
-      text-shadow: 2px 2px 12px #000;
-    }
-
-    /* WELCOME SECTION */
-    .welcome-section {
-      text-align: center;
-      padding: 40px 20px;
-      background-color: #111;
-    }
-
-    .welcome-section .logo {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    .welcome-section h2 {
-      font-size: 1.8em;
-      margin: 0;
+    .subtext {
+      font-size: 2.5rem; /* teks diperbesar */
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 6px #000;
+      margin-top: 15px;
     }
 
     /* MARQUEE */
@@ -144,8 +127,8 @@
 
     /* RESPONSIVE */
     @media(max-width:768px){
-      .overlay h1 { font-size: 2rem; }
-      .title-box img { width: 60px; }
+      .subtext { font-size: 1.5rem; }
+      .title-box img { width: 80px; margin-top: -20px; }
       nav ul { gap: 15px; }
     }
   </style>
@@ -165,49 +148,29 @@
     </ul>
   </nav>
 
-<div class="slider">
-  <div class="slides" id="slides">
-    <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%201.jpeg">
-    <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%202.jpeg">
-    <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%203.jpeg">
+  <!-- SLIDER -->
+  <div class="slider">
+    <div class="slides" id="slides">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%201.jpeg">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%202.jpeg">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%203.jpeg">
+    </div>
+
+    <div class="overlay">
+      <div class="title-box">
+        <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo RW 13">
+        <p class="subtext">Selamat datang di layanan WebSite RW 13</p>
+      </div>
+    </div>
   </div>
 
- <!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RW 13</title>
-
-<style>
-.subtext {
-  font-size: 2.5rem; /* ubah angka sesuai besar yang kamu mau */
-  font-weight: bold;
-  color: #fff;
-  text-shadow: 2px 2px 6px #000; /* biar tetap jelas di atas foto */
-  margin-top: 15px;
-}
-</style>
-</head>
-<body>
-
-<div class="overlay">
-  <div class="title-box">
-    <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo RW 13">
-    <p class="subtext">Selamat datang di layanan WebSite RW 13</p>
-  </div>
-</div>
-
-</body>
-</html>
-
-   <!-- MARQUEE -->
+  <!-- MARQUEE -->
   <div class="marquee">
     <span>
       Website Resmi RW 13 • Informasi Warga • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •
     </span>
   </div>
-  
+
   <script>
     const slides = document.getElementById("slides");
     const total = slides.children.length;
