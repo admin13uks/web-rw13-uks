@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RW 13</title>
 
-
+<style>
 body{
   margin:0;
   font-family: Arial, sans-serif;
@@ -32,6 +32,7 @@ body{
   flex-shrink:0;
 }
 
+/* Overlay */
 .overlay{
   position:absolute;
   top:0;
@@ -48,12 +49,22 @@ body{
   padding:20px;
 }
 
+/* LOGO */
+.logo{
+  width:140px;
+  max-width:40%;
+  margin-bottom:15px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.7));
+}
+
+/* Judul */
 .overlay h1{
   font-size:3rem;
   margin-bottom:20px;
   text-shadow:2px 2px 12px #000;
 }
 
+/* Teks berjalan */
 .marquee{
   width:90%;
   overflow:hidden;
@@ -78,20 +89,26 @@ body{
 @media(max-width:768px){
   .overlay h1{ font-size:2rem; }
   .marquee span{ font-size:1rem; }
+  .logo{ width:110px; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="slides" id="slides">
-  <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%201.jpeg" alt="Slide 1">
-  <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%202.jpeg" alt="Slide 2">
-  <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%203.jpeg" alt="Slide 3">
-</div>
+<div class="slider">
+  <div class="slides" id="slides">
+    <img src="slide1.jpg">
+    <img src="slide2.jpg">
+    <img src="slide3.jpg">
+  </div>
 
   <div class="overlay">
+    <!-- LOGO RW -->
+    <img src="logo-rw13.png" alt="Logo RW 13" class="logo">
+
     <h1>SELAMAT DATANG DI RW 13</h1>
+
     <div class="marquee">
       <span>
         Website Resmi RW 13 • Informasi Warga • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •
@@ -113,5 +130,3 @@ setInterval(()=>{
 
 </body>
 </html>
-
-
