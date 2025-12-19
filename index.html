@@ -1,173 +1,170 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RW 13</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RW 13</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: #fff;
-      overflow: hidden; /* cegah scroll */
-    }
+<style>
+/* RESET */
+* {
+  box-sizing: border-box;
+}
 
-    /* NAVBAR */
-    nav {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      z-index: 10;
-      display: flex;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 10px 0;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      padding: 0;
-      margin: 0;
-      flex-wrap: wrap; /* biar tidak pecah di HP */
-    }
+/* NAVBAR */
+nav {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  background: rgba(0,0,0,0.6);
+  padding: 10px 0;
+}
 
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 0.9rem;
-    }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
 
-    nav ul li a:hover {
-      color: #ffd700;
-    }
-    
-    /* SLIDER */
-    .slider {
-      position: relative;
-      width: 100%;
-      height: 100vh; /* penuh layar */
-      overflow: hidden;
-    }
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
 
-    .slides {
-      display: flex;
-      height: 100%;
-      transition: transform 1s ease-in-out;
-    }
+nav ul li a:hover {
+  color: #ffd700;
+}
 
-  .slides img {
+/* SLIDER */
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  height: 100%;
+  transition: transform 1s ease-in-out;
+}
+
+.slides img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top; /* ⬅ INI KUNCINYA */
+  object-position: center top;
   flex-shrink: 0;
 }
 
-    /* OVERLAY */
+/* OVERLAY */
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0,0,0,0.45);
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 16px;
-  z-index: 10; /* LEBIH RENDAH DARI MARQUEE */
+  z-index: 10;
 }
 
-    .title-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
+.title-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
 
-    .title-box img {
-      width: 18vw;   /* logo fleksibel sesuai lebar layar */
-      max-width: 150px;
-      height: auto;
-      margin-top: -20px; /* logo dinaikkan */
-    }
+.title-box img {
+  width: 18vw;
+  max-width: 150px;
+  height: auto;
+}
 
+/* TEKS UTAMA */
 .subtext {
-  font-size: clamp(22px, 5vw, 42px);
+  font-size: clamp(28px, 5vw, 46px);
   font-weight: 800;
   color: #ffd700;
   text-shadow: 3px 3px 10px #000;
   line-height: 1.25;
   max-width: 90vw;
-  margin: 12px auto 0;
-  text-align: center;
+  margin: 0 auto;
 }
 
-  /* KUNCI PRESISI HP */
-  max-width: 90vw;
-  margin: 10px auto 0 auto;
-  text-align: center;
+.line2 {
+  display: block;
+  font-size: 0.9em;
 }
 
-    /* MARQUEE */
- .marquee {
+/* MARQUEE */
+.marquee {
   position: absolute;
   bottom: 0;
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   padding: 10px 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 20; /* 🔑 INI KUNCI UTAMA */
-}
-    
-.marquee span {
-  display: inline-block;
-  white-space: nowrap;
-  animation: marquee 18s linear infinite;
-  font-size: 1.1rem;
-  color: #fff;
-  padding-left: 100%;
+  background: rgba(0,0,0,0.55);
+  border-top: 1px solid rgba(255,255,255,0.4);
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  z-index: 20;
 }
 
- @keyframes marquee {
+.marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 20s linear infinite;
+  font-size: 1.05rem;
+}
+
+@keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-100%); }
 }
 
-    /* RESPONSIVE */
-    @media(max-width:768px){
-      .title-box img { width: 25vw; max-width: 120px; margin-top: -15px; }
-      .subtext { font-size: 6vw; }
-      nav ul { gap: 10px; }
-      .marquee span { font-size: 1rem; }
-    }
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .title-box img {
+    max-width: 120px;
+  }
+  .subtext {
+    font-size: clamp(24px, 6vw, 36px);
+  }
+}
 
-   @media (max-width: 480px) {
+@media (max-width: 480px) {
   .title-box {
     transform: translateY(-30px);
   }
 
   .title-box img {
     width: 80px;
-    margin-bottom: 10px;
   }
-}
 
   .subtext {
-    font-size: 18px;
-    line-height: 1.25;
-    max-width: 90vw;
+    font-size: 22px;
   }
 
   .line2 {
-     display: block;
-  font-size: 0.9em;
+    font-size: 20px;
   }
 
   nav ul li a {
@@ -175,63 +172,63 @@
   }
 
   .marquee span {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 }
-  </style>
+</style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <ul>
-      <li><a href="#">Beranda</a></li>
-      <li><a href="#">Struktur</a></li>
-      <li><a href="#">Profil</a></li>
-      <li><a href="#">Informasi</a></li>
-      <li><a href="#">Kegiatan</a></li>
-      <li><a href="#">Layanan</a></li>
-      <li><a href="#">Kontak</a></li>
-    </ul>
-  </nav>
+<!-- NAVBAR -->
+<nav>
+  <ul>
+    <li><a href="#">Beranda</a></li>
+    <li><a href="#">Struktur</a></li>
+    <li><a href="#">Profil</a></li>
+    <li><a href="#">Informasi</a></li>
+    <li><a href="#">Kegiatan</a></li>
+    <li><a href="#">Layanan</a></li>
+    <li><a href="#">Kontak</a></li>
+  </ul>
+</nav>
 
-  <!-- SLIDER -->
-  <div class="slider">
-    <div class="slides" id="slides">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%201.jpeg">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%202.jpeg">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%204.jpeg">
-    </div>
+<!-- SLIDER -->
+<div class="slider">
+  <div class="slides" id="slides">
+    <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%201.jpeg">
+    <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%202.jpeg">
+    <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%204.jpeg">
+  </div>
 
-    <div class="overlay">
-      <div class="title-box">
-        <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo RW 13">
-        <p class="subtext">
-  Selamat Datang di Layanan<br>
-  <span class="line2">WebSite RW 13 UKS</span>
-</p>
-      </div>
-    </div>
-
-    <!-- MARQUEE -->
-    <div class="marquee">
-      <span>
-        Website Resmi RW 13 Kel. Utan Kayu Selatan Kec. Matraman Kota Administrasi Jakarta Timur • Informasi Warga • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •
-      </span>
+  <div class="overlay">
+    <div class="title-box">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo RW 13">
+      <p class="subtext">
+        Selamat Datang di Layanan
+        <span class="line2">WebSite RW 13 UKS</span>
+      </p>
     </div>
   </div>
 
-  <script>
-    const slides = document.getElementById("slides");
-    const total = slides.children.length;
-    let index = 0;
+  <!-- RUNNING TEXT -->
+  <div class="marquee">
+    <span>
+      Website Resmi RW 13 Kel. Utan Kayu Selatan Kec. Matraman Kota Administrasi Jakarta Timur • Informasi Warga • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •
+    </span>
+  </div>
+</div>
 
-    setInterval(() => {
-      index = (index + 1) % total;
-      slides.style.transform = `translateX(-${index * 100}%)`;
-    }, 3000);
-  </script>
+<script>
+const slides = document.getElementById("slides");
+const total = slides.children.length;
+let index = 0;
+
+setInterval(() => {
+  index = (index + 1) % total;
+  slides.style.transform = `translateX(-${index * 100}%)`;
+}, 3000);
+</script>
 
 </body>
 </html>
