@@ -6,7 +6,6 @@
 <title>RW 13</title>
 
 <style>
-/* RESET */
 * {
   box-sizing: border-box;
 }
@@ -34,7 +33,7 @@ nav {
 nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 18px;
   padding: 0;
   margin: 0;
   flex-wrap: wrap;
@@ -45,10 +44,6 @@ nav ul li a {
   text-decoration: none;
   font-weight: bold;
   font-size: 0.9rem;
-}
-
-nav ul li a:hover {
-  color: #ffd700;
 }
 
 /* SLIDER */
@@ -95,18 +90,16 @@ nav ul li a:hover {
 .title-box img {
   width: 18vw;
   max-width: 150px;
-  height: auto;
 }
 
 /* TEKS UTAMA */
 .subtext {
-  font-size: clamp(28px, 5vw, 46px);
+  font-size: clamp(30px, 5vw, 46px);
   font-weight: 800;
   color: #ffd700;
   text-shadow: 3px 3px 10px #000;
-  line-height: 1.25;
+  line-height: 1.2;
   max-width: 90vw;
-  margin: 0 auto;
 }
 
 .line2 {
@@ -114,39 +107,36 @@ nav ul li a:hover {
   font-size: 0.9em;
 }
 
-/* MARQUEE */
+/* RUNNING TEXT */
 .marquee {
   position: absolute;
   bottom: 0;
   width: 100%;
   overflow: hidden;
-  white-space: nowrap;
-  padding: 10px 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.6);
   border-top: 1px solid rgba(255,255,255,0.4);
   border-bottom: 1px solid rgba(255,255,255,0.4);
+  padding: 10px 0;
   z-index: 20;
 }
 
 .marquee span {
   display: inline-block;
-  padding-left: 100%;
-  animation: marquee 20s linear infinite;
-  font-size: 1.05rem;
+  white-space: nowrap;
+  font-size: 1rem;
+  animation: marquee 25s linear infinite;
 }
 
+/* ⬅️ LANGSUNG TERLIHAT */
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+  0%   { transform: translateX(10%); }
+  100% { transform: translateX(-110%); }
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .title-box img {
-    max-width: 120px;
-  }
   .subtext {
-    font-size: clamp(24px, 6vw, 36px);
+    font-size: clamp(24px, 6vw, 34px);
   }
 }
 
@@ -167,10 +157,6 @@ nav ul li a:hover {
     font-size: 20px;
   }
 
-  nav ul li a {
-    font-size: 0.8rem;
-  }
-
   .marquee span {
     font-size: 0.95rem;
   }
@@ -180,7 +166,6 @@ nav ul li a:hover {
 
 <body>
 
-<!-- NAVBAR -->
 <nav>
   <ul>
     <li><a href="#">Beranda</a></li>
@@ -192,7 +177,6 @@ nav ul li a:hover {
   </ul>
 </nav>
 
-<!-- SLIDER -->
 <div class="slider">
   <div class="slides" id="slides">
     <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%201.jpeg">
@@ -202,7 +186,7 @@ nav ul li a:hover {
 
   <div class="overlay">
     <div class="title-box">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo RW 13">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
       <p class="subtext">
         Selamat Datang di Layanan
         <span class="line2">WebSite RW 13 UKS</span>
@@ -210,7 +194,6 @@ nav ul li a:hover {
     </div>
   </div>
 
-  <!-- RUNNING TEXT -->
   <div class="marquee">
     <span>
       Website Resmi RW 13 Kel. Utan Kayu Selatan Kec. Matraman Kota Administrasi Jakarta Timur • Informasi Warga • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •
@@ -220,11 +203,10 @@ nav ul li a:hover {
 
 <script>
 const slides = document.getElementById("slides");
-const total = slides.children.length;
 let index = 0;
 
 setInterval(() => {
-  index = (index + 1) % total;
+  index = (index + 1) % slides.children.length;
   slides.style.transform = `translateX(-${index * 100}%)`;
 }, 3000);
 </script>
