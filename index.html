@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RW 13</title>
+<title>Website RW 13 UKS</title>
 
 <style>
+/* RESET */
 * {
   box-sizing: border-box;
 }
@@ -18,35 +19,65 @@ body {
   overflow: hidden;
 }
 
-/* NAVBAR */
+/* ================= NAVBAR ================= */
 nav {
   position: absolute;
   top: 0;
   width: 100%;
-  z-index: 30;
+  z-index: 50;
+  background: rgba(0,0,0,0.7);
+}
+
+/* MENU BAR */
+.nav-top {
   display: flex;
   justify-content: center;
-  background: rgba(0,0,0,0.6);
-  padding: 10px 0;
+  padding: 8px 0;
 }
 
-nav ul {
+.nav-top ul {
   list-style: none;
   display: flex;
-  gap: 18px;
-  padding: 0;
+  gap: 14px;
   margin: 0;
-  flex-wrap: wrap;
+  padding: 0;
+  white-space: nowrap;
 }
 
-nav ul li a {
+.nav-top ul li a {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
-/* SLIDER */
+.nav-top ul li a:hover {
+  color: #ffd700;
+}
+
+/* RUNNING TEXT */
+.nav-marquee {
+  width: 100%;
+  overflow: hidden;
+  background: rgba(0,0,0,0.55);
+  border-top: 1px solid rgba(255,255,255,0.3);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding: 6px 0;
+}
+
+.nav-marquee span {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  animation: marquee 25s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(10%); }
+  to   { transform: translateX(-110%); }
+}
+
+/* ================= SLIDER ================= */
 .slider {
   position: relative;
   width: 100%;
@@ -68,7 +99,7 @@ nav ul li a {
   flex-shrink: 0;
 }
 
-/* OVERLAY */
+/* ================= OVERLAY ================= */
 .overlay {
   position: absolute;
   inset: 0;
@@ -88,18 +119,19 @@ nav ul li a {
 }
 
 .title-box img {
-  width: 18vw;
+  width: 90px;
   max-width: 150px;
 }
 
 /* TEKS UTAMA */
 .subtext {
-  font-size: clamp(30px, 5vw, 46px);
+  font-size: clamp(26px, 5vw, 44px);
   font-weight: 800;
   color: #ffd700;
   text-shadow: 3px 3px 10px #000;
-  line-height: 1.2;
-  max-width: 90vw;
+  line-height: 1.25;
+  max-width: 92vw;
+  margin: 0 auto;
 }
 
 .line2 {
@@ -107,46 +139,14 @@ nav ul li a {
   font-size: 0.9em;
 }
 
-/* RUNNING TEXT */
-.marquee {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  overflow: hidden;
-  background: rgba(0,0,0,0.6);
-  border-top: 1px solid rgba(255,255,255,0.4);
-  border-bottom: 1px solid rgba(255,255,255,0.4);
-  padding: 10px 0;
-  z-index: 20;
-}
-
-.marquee span {
-  display: inline-block;
-  white-space: nowrap;
-  font-size: 1rem;
-  animation: marquee 25s linear infinite;
-}
-
-/* ⬅️ LANGSUNG TERLIHAT */
-@keyframes marquee {
-  0%   { transform: translateX(10%); }
-  100% { transform: translateX(-110%); }
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .subtext {
-    font-size: clamp(24px, 6vw, 34px);
-  }
-}
-
+/* ================= RESPONSIVE ================= */
 @media (max-width: 480px) {
   .title-box {
-    transform: translateY(-30px);
+    transform: translateY(-25px);
   }
 
   .title-box img {
-    width: 80px;
+    width: 72px;
   }
 
   .subtext {
@@ -157,8 +157,12 @@ nav ul li a {
     font-size: 20px;
   }
 
-  .marquee span {
-    font-size: 0.95rem;
+  .nav-top ul li a {
+    font-size: 0.7rem;
+  }
+
+  .nav-marquee span {
+    font-size: 0.8rem;
   }
 }
 </style>
@@ -166,17 +170,28 @@ nav ul li a {
 
 <body>
 
+<!-- ================= NAVBAR ================= -->
 <nav>
-  <ul>
-    <li><a href="#">Beranda</a></li>
-    <li><a href="#">Struktur</a></li>
-    <li><a href="#">Informasi</a></li>
-    <li><a href="#">Kegiatan</a></li>
-    <li><a href="#">Layanan</a></li>
-    <li><a href="#">Kontak</a></li>
-  </ul>
+  <div class="nav-top">
+    <ul>
+      <li><a href="#">Beranda</a></li>
+      <li><a href="#">Struktur</a></li>
+      <li><a href="#">Informasi</a></li>
+      <li><a href="#">Kegiatan</a></li>
+      <li><a href="#">Layanan</a></li>
+      <li><a href="#">Kontak</a></li>
+    </ul>
+  </div>
+
+  <div class="nav-marquee">
+    <span>
+      Website Resmi RW 13 Kel. Utan Kayu Selatan Kec. Matraman Kota Administrasi Jakarta Timur •
+      Informasi Warga • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •
+    </span>
+  </div>
 </nav>
 
+<!-- ================= SLIDER ================= -->
 <div class="slider">
   <div class="slides" id="slides">
     <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%201.jpeg">
@@ -186,29 +201,25 @@ nav ul li a {
 
   <div class="overlay">
     <div class="title-box">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo RW 13">
       <p class="subtext">
         Selamat Datang di Layanan
-        <span class="line2">WebSite RW 13 UKS</span>
+        <span class="line2">Website RW 13 UKS</span>
       </p>
     </div>
   </div>
-
-  <div class="marquee">
-    <span>
-      Website Resmi RW 13 Kel. Utan Kayu Selatan Kec. Matraman Kota Administrasi Jakarta Timur • Informasi Warga • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •
-    </span>
-  </div>
 </div>
 
+<!-- ================= SLIDER SCRIPT ================= -->
 <script>
 const slides = document.getElementById("slides");
+const total = slides.children.length;
 let index = 0;
 
 setInterval(() => {
-  index = (index + 1) % slides.children.length;
+  index = (index + 1) % total;
   slides.style.transform = `translateX(-${index * 100}%)`;
-}, 3000);
+}, 3500);
 </script>
 
 </body>
