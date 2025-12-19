@@ -131,13 +131,15 @@ nav ul li ul li a {
 
 /* ===== OVERLAY ===== */
 .overlay {
-  position: absolute;
+   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.45);
+
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding-top: 120px; /* 🔑 JARAK DARI MENU */
+  justify-content: center;   /* ⬅️ TENGAH KIRI-KANAN */
+  align-items: flex-start;   /* ⬅️ ATAS-BAWAH DIATUR MANUAL */
+
+  padding-top: 120px;        /* ⬅️ NAIK TURUN LOGO (INI KUNCI) */
   z-index: 10;
 }
 
@@ -184,8 +186,10 @@ nav ul li ul li a {
     font-size: 0.85rem;
   }
 
-  .overlay {
-    padding-top: 100px;
+ .overlay {
+  padding-top: 100px; /* naik */
+  /* atau */
+  padding-top: 140px; /* turun */
   }
 
   .title-box img {
