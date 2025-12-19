@@ -6,7 +6,7 @@
 <title>RW 13</title>
 
 <style>
-/* RESET */
+/* ===== RESET ===== */
 * {
   box-sizing: border-box;
 }
@@ -36,7 +36,7 @@ nav ul {
   gap: 18px;
   padding: 10px;
   margin: 0;
-  white-space: nowrap; /* 1 BARIS */
+  white-space: nowrap;
 }
 
 nav ul li {
@@ -57,14 +57,14 @@ nav ul li a:hover {
 /* ===== DROPDOWN ===== */
 nav ul li ul {
   position: absolute;
-  top: 35px;
+  top: 32px;
   left: 0;
   background: rgba(0,0,0,0.85);
   list-style: none;
-  padding: 8px 0;
+  padding: 6px 0;
   margin: 0;
   display: none;
-  min-width: 140px;
+  min-width: 160px;
 }
 
 nav ul li:hover ul {
@@ -77,10 +77,10 @@ nav ul li ul li a {
   font-size: 0.85rem;
 }
 
-/* ===== RUNNING TEXT (DI BAWAH NAVBAR) ===== */
+/* ===== RUNNING TEXT ===== */
 .marquee {
   position: fixed;
-  top: 50px;
+  top: 48px;
   width: 100%;
   overflow: hidden;
   background: rgba(0,0,0,0.6);
@@ -92,16 +92,15 @@ nav ul li ul li a {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 20s linear infinite;
+  animation: marquee 22s linear infinite;
 }
 
 .marquee-track span {
   white-space: nowrap;
-  padding-right: 1000px;
+  padding-right: 120px;
   font-size: 0.95rem;
 }
 
-/* ANIMASI BENAR */
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -112,7 +111,7 @@ nav ul li ul li a {
   position: relative;
   width: 100%;
   height: 100vh;
-  margin-top: 88px; /* NAVBAR + MARQUEE */
+  margin-top: 86px; /* navbar + marquee */
   overflow: hidden;
 }
 
@@ -136,34 +135,34 @@ nav ul li ul li a {
   inset: 0;
   background: rgba(0,0,0,0.45);
   display: flex;
-  justify-content: flex-start;   /* ⬅️ PENTING */
-  align-items: flex-start;       /* ⬅️ PENTING */
-  text-align: center;
-  padding-top: 150px;            /* ⬅️ ± 4cm dari menu */
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 120px; /* 🔑 JARAK DARI MENU */
   z-index: 10;
 }
 
 .title-box {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  margin-top: 5px; /* ⬅️ ATUR JARAK LOGO DARI MENU DI PC*/
 }
 
 .title-box img {
-  width: 30vw;          /* UBAH ANGKA INI SESUAI KEINGINAN UNTUK UKURAN BESAR KECIL LOGO DI pc*/
+  width: 22vw;      /* UBAH DI SINI */
   max-width: 150px;
-  margin-top: 0px; /* ⬅️ NAIKKAN LOGO */
   height: auto;
 }
 
+/* ===== TEKS ===== */
 .subtext {
   font-size: clamp(24px, 5vw, 42px);
   font-weight: 800;
   color: #ffd700;
   text-shadow: 3px 3px 10px #000;
   line-height: 1.25;
+  text-align: center;
 }
 
 .line2 {
@@ -177,18 +176,20 @@ nav ul li ul li a {
     gap: 12px;
   }
 
-  .title-box img {
-    width: 96px;   /* UBAH ANGKA INI SESUAI KEINGINAN UNTUK LOGO DI HP*/
-    height: auto;
-  }
-}
-  
   nav ul li a {
     font-size: 0.8rem;
   }
 
   .marquee-track span {
     font-size: 0.85rem;
+  }
+
+  .overlay {
+    padding-top: 100px;
+  }
+
+  .title-box img {
+    width: 96px;
   }
 
   .subtext {
@@ -222,12 +223,8 @@ nav ul li ul li a {
 <!-- RUNNING TEXT -->
 <div class="marquee">
   <div class="marquee-track">
-    <span>
-      Website Resmi RW 13 Kel. Utan Kayu Selatan Kec. Matraman Kota Administrasi Jakarta Timur • Informasi Warga • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •
-    </span>
-    <span>
-      Website Resmi RW 13 Kel. Utan Kayu Selatan Kec. Matraman Kota Administrasi Jakarta Timur • Informasi Warga • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •
-    </span>
+    <span>Website Resmi RW 13 Kel. Utan Kayu Selatan Kec. Matraman Kota Administrasi Jakarta Timur • Informasi Warga • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+    <span>Website Resmi RW 13 Kel. Utan Kayu Selatan Kec. Matraman Kota Administrasi Jakarta Timur • Informasi Warga • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
   </div>
 </div>
 
@@ -241,7 +238,7 @@ nav ul li ul li a {
 
   <div class="overlay">
     <div class="title-box">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo RW 13">
       <p class="subtext">
         Selamat Datang di Layanan
         <span class="line2">WebSite RW 13 UKS</span>
@@ -254,4 +251,11 @@ nav ul li ul li a {
 const slides = document.getElementById("slides");
 let index = 0;
 
-setInterval(
+setInterval(() => {
+  index = (index + 1) % slides.children.length;
+  slides.style.transform = `translateX(-${index * 100}%)`;
+}, 3500);
+</script>
+
+</body>
+</html>
