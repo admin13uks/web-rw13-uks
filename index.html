@@ -41,6 +41,92 @@ header {
   justify-content: space-between;
 }
 
+  /* Container utama menu */
+.dropdown-full {
+  position: static; /* Membuat mega menu melebar sesuai layar */
+}
+
+/* Panel Putih Lebar (Mega Menu) */
+.mega-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+  padding: 40px 0;
+  z-index: 999;
+  border-top: 1px solid #f0f0f0;
+  animation: fadeIn 0.3s ease;
+}
+
+.mega-menu-inner {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+/* Tampilan Kartu Menu */
+.menu-card {
+  text-align: center;
+  text-decoration: none;
+  width: 250px;
+  transition: 0.3s;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Kotak Ikon Oranye seperti di Gambar */
+.icon-box {
+  width: 60px;
+  height: 60px;
+  background: #ff6b00; /* Warna Oranye Terang */
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  color: white;
+  box-shadow: 0 8px 15px rgba(255, 107, 0, 0.2);
+}
+
+.icon-box svg {
+  width: 30px;
+  height: 30px;
+}
+
+.menu-card h3 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.menu-card p {
+  font-size: 13px;
+  color: #888;
+}
+
+/* Tampilkan saat hover */
+.dropdown-full:hover .mega-menu {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Penyesuaian Header Inner agar Mega Menu berfungsi */
+.header-inner {
+  position: relative;
+}
+
   /* Gaya untuk Menu Dropdown */
 .dropdown {
   position: relative;
