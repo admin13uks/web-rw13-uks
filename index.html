@@ -11,12 +11,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
+/* ================= BODY ================= */
 body {
-  background: radial-gradient(circle at top, #1b1b1b, #000);
-  color: #fff;
+  background: linear-gradient(135deg, #f5f9ff, #eef7f1);
+  color: #222;
   overflow-x: hidden;
 }
 
@@ -25,8 +26,9 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #fff;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
   z-index: 100;
 }
 
@@ -39,6 +41,7 @@ header {
   justify-content: space-between;
 }
 
+/* LOGO */
 .logo {
   display: flex;
   align-items: center;
@@ -55,26 +58,18 @@ header {
   line-height: 1.2;
 }
 
-  .logo-title {
+.logo-title {
   font-size: 15px;
   font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 0.3px;
+  color: #111;
 }
 
 .logo-subtitle {
   font-size: 12px;
-  color: rgba(255,255,255,0.75);
-}
-.logo-text strong {
-  font-size: 15px;
+  color: #555;
 }
 
-.logo-text span {
-  font-size: 12px;
-  opacity: 0.8;
-}
-
+/* MENU */
 nav ul {
   list-style: none;
   display: flex;
@@ -83,13 +78,13 @@ nav ul {
 
 nav a {
   text-decoration: none;
-  color: #fff;
+  color: #333;
   font-size: 14px;
-  transition: 0.3s;
+  font-weight: 500;
 }
 
 nav a:hover {
-  color: #ffd000;
+  color: #2fa56a;
 }
 
 /* ================= HERO ================= */
@@ -97,6 +92,7 @@ nav a:hover {
   min-height: 100vh;
   padding-top: 140px;
   text-align: center;
+  position: relative;
 }
 
 /* Background estetik */
@@ -110,31 +106,22 @@ nav a:hover {
   z-index: -1;
 }
 
-  
+/* ================= TEXT ================= */
 .typing {
   font-size: 36px;
-  font-weight: bold;
-  color: #ffd000;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid #ffd000;
-  width: fit-content;
-  margin: auto;
-  animation: blink 0.7s infinite;
-}
-
-@keyframes blink {
-  50% { border-color: transparent; }
+  font-weight: 700;
+  color: #ff9800;
+  min-height: 46px;
 }
 
 .float-text {
   font-size: 36px;
-  font-weight: bold;
-  color: #ffd000;
+  font-weight: 700;
+  color: #ff9800;
   opacity: 0;
   transform: translateY(40px);
-  animation: floatIn 1s ease forwards;
-  animation-delay: 3s;
+  animation: floatIn 1.2s ease forwards;
+  animation-delay: 2.8s;
 }
 
 @keyframes floatIn {
@@ -144,41 +131,44 @@ nav a:hover {
   }
 }
 
+/* DESKRIPSI */
 .desc {
-  margin-top: 30px;
+  margin-top: 24px;
 }
 
 .desc-line1 {
   font-size: 16px;
+  font-weight: 600;
+  color: #333;
   margin-bottom: 6px;
 }
 
 .desc-line2 {
   font-size: 14px;
-  opacity: 0.8;
+  color: #555;
 }
 
-/* ================= MARQUEE ================= */
+/* ================= RUNNING TEXT ================= */
 .marquee-full {
-  position: relative;
   width: 100vw;
   margin-top: 40px;
   overflow: hidden;
-  background: rgba(255,255,255,0.05);
-  border-top: 1px solid rgba(255,255,255,0.15);
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.6);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 22s linear infinite;
+  gap: 120px;
+  animation: marquee 25s linear infinite;
 }
 
 .marquee-track span {
-  padding-right: 120px;
-  font-size: 14px;
   white-space: nowrap;
+  font-size: 14px;
+  color: #333;
 }
 
 @keyframes marquee {
@@ -226,6 +216,7 @@ nav a:hover {
   }
 
   .marquee-track {
+    gap: 80px;
     animation-duration: 18s;
   }
 
@@ -238,15 +229,13 @@ nav a:hover {
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
   <div class="header-inner">
     <div class="logo">
-      <!-- GANTI LOGO DI SINI -->
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
+      <img src="assets/logo-rw.png" alt="Logo RW">
       <div class="logo-text">
-        <strong>Sekretariat RW 013</strong>
-        <span>Utan Kayu Selatan - Matraman</span>
+        <div class="logo-title">Sekretariat RW 013</div>
+        <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
       </div>
     </div>
 
@@ -263,7 +252,6 @@ nav a:hover {
   </div>
 </header>
 
-<!-- ================= HERO ================= -->
 <section class="hero">
   <div class="typing" id="typing"></div>
   <div class="float-text">Website RW 13 UKS</div>
@@ -275,29 +263,28 @@ nav a:hover {
     </div>
   </div>
 
-  <!-- ================= MARQUEE ================= -->
   <div class="marquee-full">
     <div class="marquee-track">
-      <span>Website Resmi RW 013 Utan Kayu Selatan • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-      <span>Website Resmi RW 013 Utan Kayu Selatan • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
     </div>
   </div>
 </section>
 
 <script>
-/* ================= TYPING EFFECT ================= */
 const text = "Selamat Datang di Layanan";
-let index = 0;
-const typingEl = document.getElementById("typing");
+let i = 0;
+const typing = document.getElementById("typing");
 
 function typeEffect() {
-  if (index < text.length) {
-    typingEl.innerHTML += text.charAt(index);
-    index++;
+  if (i < text.length) {
+    typing.innerHTML += text.charAt(i);
+    i++;
     setTimeout(typeEffect, 80);
   }
 }
-
 typeEffect();
 </script>
 
