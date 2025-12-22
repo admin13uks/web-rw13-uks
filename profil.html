@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profil RW 013 - Struktur Organisasi</title>
+  <title>Profil RW 013 - Struktur & Bidang Kerja</title>
 
   <style>
     /* ================= RESET & BASE ================= */
@@ -11,15 +11,15 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
     }
 
     body {
-      /* Gradasi halus sesuai permintaan (135deg,#f6f9fc,#eaf7f0) */
       background: linear-gradient(135deg, #f6f9fc, #eaf7f0);
       min-height: 100vh;
       color: #333;
       overflow-x: hidden;
+      scroll-behavior: smooth; /* Animasi scroll halus saat klik menu */
     }
 
     /* ================= HEADER (Sama dengan Beranda) ================= */
@@ -27,9 +27,9 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
       z-index: 1000;
     }
 
@@ -40,171 +40,129 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .logo { display: flex; align-items: center; gap: 10px; }
     .logo img { width: 42px; }
-
+    .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
     .logo-title { font-size: 15px; font-weight: 700; color: #111; }
     .logo-subtitle { font-size: 12px; color: #555; }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 22px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #444;
-      font-size: 14px;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
+    /* ================= NAVIGASI MEGA MENU ================= */
+    nav ul { list-style: none; display: flex; gap: 22px; align-items: center; }
+    nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 500; transition: 0.3s; }
     nav a:hover { color: #2fa56a; }
 
-/* Gaya untuk Menu Dropdown */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+    .dropdown-full { position: static; }
+    .mega-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: white;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      padding: 40px 0;
+      z-index: 999;
+      border-top: 1px solid #f0f0f0;
+      animation: fadeIn 0.3s ease;
+    }
 
-.dropdown-content {
-  display: none; /* Sembunyi secara default */
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.95);
-  min-width: 180px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  z-index: 1000;
-  top: 100%;
-  left: 0;
-  padding: 8px 0;
-  backdrop-filter: blur(5px);
-}
+    .mega-menu-inner {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+    }
 
-.dropdown-content a {
-  color: #333;
-  padding: 10px 16px;
-  text-decoration: none;
-  display: block;
-  font-size: 13px;
-  text-align: left;
-}
+    .menu-card { text-align: center; text-decoration: none; width: 220px; transition: 0.3s; }
+    .menu-card:hover { transform: translateY(-8px); }
 
-.dropdown-content a:hover {
-  background-color: #f6f9fc;
-  color: #2fa56a;
-}
+    .icon-box {
+      width: 65px; height: 65px; background: #ff6b00; border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 15px; color: white; box-shadow: 0 8px 20px rgba(255, 107, 0, 0.25);
+    }
 
-/* Memunculkan menu saat kursor di atas menu Profil */
-.dropdown:hover .dropdown-content {
-  display: block;
-  animation: slideDown 0.3s ease;
-}
+    .icon-box svg { width: 32px; height: 32px; }
+    .menu-card h3 { font-size: 16px; color: #111; margin-bottom: 6px; font-weight: 700; }
+    .menu-card p { font-size: 13px; color: #777; line-height: 1.4; }
 
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-    
+    .dropdown-full:hover .mega-menu { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* ================= CONTENT SECTION ================= */
     .container {
       max-width: 1100px;
-      margin: 120px auto 60px;
+      margin: 140px auto 60px;
       padding: 0 20px;
       text-align: center;
     }
 
-    .page-title {
-      font-size: 28px;
-      font-weight: 700;
-      color: #2fa56a;
-      margin-bottom: 10px;
-    }
+    .section-divider { margin: 80px 0; border: none; height: 1px; background: rgba(0,0,0,0.05); }
 
-    .page-subtitle {
-      font-size: 15px;
-      color: #666;
-      margin-bottom: 50px;
-    }
+    .page-title { font-size: 32px; font-weight: 800; color: #2fa56a; margin-bottom: 10px; }
+    .page-subtitle { font-size: 16px; color: #666; margin-bottom: 50px; }
 
-    /* ================= 3D ORG CHART GRID ================= */
+    /* ================= STRUKTUR ORGANISASI GRID ================= */
     .org-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 25px;
-      justify-content: center;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.9);
       padding: 30px 20px;
       border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.03); /* Soft 3D Shadow */
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      cursor: default;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+      transition: all 0.4s ease;
     }
 
-    .card:hover {
-      transform: translateY(-12px) scale(1.02);
-      background: #ffffff;
-      box-shadow: 0 20px 40px rgba(47, 165, 106, 0.1);
-      border-color: #2fa56a;
+    .card:hover { transform: translateY(-10px); border-color: #2fa56a; background: #fff; box-shadow: 0 15px 35px rgba(47,165,106,0.1); }
+    .card h3 { font-size: 17px; color: #111; margin-bottom: 8px; }
+    .card p { font-size: 12px; color: #2fa56a; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+
+    .card-top { grid-column: 1 / -1; max-width: 400px; margin: 0 auto 10px; border: 2px solid #2fa56a; }
+    .card-mid { background: #fff; }
+
+    /* ================= BIDANG KERJA SECTION ================= */
+    .bidang-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      text-align: left;
     }
 
-    .card h3 {
-      font-size: 16px;
-      color: #111;
-      margin-bottom: 8px;
-    }
-
-    .card p {
-      font-size: 13px;
-      color: #2fa56a;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    /* Special Highlight for Leaders */
-    .card-top {
-      grid-column: 1 / -1;
-      max-width: 350px;
-      margin: 0 auto 10px;
+    .bidang-item {
       background: white;
-      border: 1.5px solid #2fa56a;
+      padding: 30px;
+      border-radius: 20px;
+      border-left: 5px solid #ff6b00;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.02);
     }
 
-    .card-mid {
-      grid-column: span 1;
-    }
-
-    .full-width {
-      grid-column: 1 / -1;
-      background: rgba(47, 165, 106, 0.05);
-    }
+    .bidang-item h4 { color: #ff6b00; margin-bottom: 15px; font-size: 18px; display: flex; align-items: center; gap: 10px; }
+    .bidang-item ul { list-style: none; }
+    .bidang-item ul li { font-size: 14px; color: #555; margin-bottom: 8px; padding-left: 20px; position: relative; }
+    .bidang-item ul li::before { content: "•"; position: absolute; left: 0; color: #2fa56a; font-weight: bold; }
 
     /* ================= FOOTER ================= */
-    footer {
-      text-align: center;
-      padding: 40px;
-      font-size: 13px;
-      color: #888;
-    }
+    footer { text-align: center; padding: 60px; font-size: 13px; color: #888; border-top: 1px solid rgba(0,0,0,0.05); }
 
     /* Responsive */
     @media (max-width: 768px) {
-      .header-inner { flex-direction: column; gap: 10px; }
-      nav ul { gap: 10px; flex-wrap: wrap; justify-content: center; }
-      .container { margin-top: 160px; }
+      .header-inner { flex-direction: column; gap: 15px; }
+      nav ul { gap: 12px; flex-wrap: wrap; justify-content: center; }
+      .mega-menu-inner { flex-direction: column; gap: 20px; padding: 20px; }
+      .container { margin-top: 180px; }
     }
   </style>
 </head>
@@ -222,38 +180,27 @@
     <nav>
       <ul>
         <li><a href="index.html">Beranda</a></li>
-         <li class="dropdown-full">
-      <a href="profil.html" class="dropbtn">Profil ▾</a>
-      <div class="mega-menu">
-        <div class="mega-menu-inner">
-          
-          <a href="profil.html#struktur" class="menu-card">
-            <div class="icon-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-              </svg>
+        <li class="dropdown-full">
+          <a href="profil.html" style="color: #2fa56a; font-weight: 700;">Profil ▾</a>
+          <div class="mega-menu">
+            <div class="mega-menu-inner">
+              <a href="#struktur" class="menu-card">
+                <div class="icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <h3>Struktur Organisasi</h3>
+                <p>Susunan pengurus RW 013</p>
+              </a>
+              <a href="#bidang" class="menu-card">
+                <div class="icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                </div>
+                <h3>Bidang Kerja</h3>
+                <p>Tugas pokok dan fungsi</p>
+              </a>
             </div>
-            <h3>Struktur Organisasi</h3>
-            <p>Susunan pengurus RW 013</p>
-          </a>
-
-          <a href="profil.html#bidang" class="menu-card">
-            <div class="icon-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-              </svg>
-            </div>
-            <h3>Bidang Kerja</h3>
-            <p>Informasi tugas dan bidang unit</p>
-          </a>
-
-        </div>
-      </div>
-    </li>
+          </div>
+        </li>
         <li><a href="#">Informasi</a></li>
         <li><a href="#">Layanan</a></li>
         <li><a href="#">Kegiatan</a></li>
@@ -263,68 +210,85 @@
   </div>
 </header>
 
-<div class="container">
+<div class="container" id="struktur">
   <h1 class="page-title">Struktur Organisasi</h1>
-  <p class="page-subtitle">Susunan Pengurus RW 013 Utan Kayu Selatan Periode 2024 - 2029</p>
+  <p class="page-subtitle">Kepengurusan RW 013 Utan Kayu Selatan Periode 2024 - 2029</p>
 
   <div class="org-grid">
     <div class="card card-top">
-      <p>Ketua RW</p>
-      <h3>H. Nama Ketua RW</h3>
+      <p>Ketua RW 013</p>
+      <h3>H. Nama Ketua RW Anda</h3>
     </div>
 
-    <div class="card card-top" style="border-color: #ff9800;">
+    <div class="card card-top" style="border-color: #ff9800; margin-top: 10px;">
       <p style="color: #ff9800;">Wakil Ketua RW</p>
       <h3>Nama Wakil Ketua</h3>
     </div>
 
     <div class="card card-mid">
-      <p>Sekretaris 1</p>
+      <p>Sekretaris I</p>
       <h3>Nama Sekretaris 1</h3>
     </div>
     <div class="card card-mid">
-      <p>Sekretaris 2</p>
+      <p>Sekretaris II</p>
       <h3>Nama Sekretaris 2</h3>
     </div>
     <div class="card card-mid">
-      <p>Bendahara 1</p>
+      <p>Bendahara I</p>
       <h3>Nama Bendahara 1</h3>
     </div>
     <div class="card card-mid">
-      <p>Bendahara 2</p>
+      <p>Bendahara II</p>
       <h3>Nama Bendahara 2</h3>
     </div>
 
-    <div class="card">
-      <p>Sie Pemuda Olahraga</p>
-      <h3>Nama Pengurus</h3>
-    </div>
-    <div class="card">
-      <p>Sie Lingkungan Hidup</p>
-      <h3>Nama Pengurus</h3>
-    </div>
-    <div class="card">
-      <p>Sie Kesejahteraan Sosial</p>
-      <h3>Nama Pengurus</h3>
-    </div>
-    <div class="card">
-      <p>Sie Kerohanian</p>
-      <h3>Nama Pengurus</h3>
-    </div>
-    <div class="card">
-      <p>Pelayanan Masyarakat</p>
-      <h3>Nama Pengurus</h3>
-    </div>
+    <div class="card"><p>Seksi Pemuda & Olahraga</p><h3>Nama Pengurus</h3></div>
+    <div class="card"><p>Seksi Lingkungan Hidup</p><h3>Nama Pengurus</h3></div>
+    <div class="card"><p>Seksi Kesejahteraan Sosial</p><h3>Nama Pengurus</h3></div>
+    <div class="card"><p>Seksi Kerohanian</p><h3>Nama Pengurus</h3></div>
+    <div class="card"><p>Seksi Keamanan & Ketertiban</p><h3>Nama Pengurus</h3></div>
+    <div class="card"><p>Pemberdayaan Perempuan (PKK)</p><h3>Nama Ketua PKK</h3></div>
+  </div>
 
-    <div class="card full-width">
-      <p>Koordinator Bidang</p>
-      <h3>Keamanan, Kebersihan, Sosial, Pemuda, dan lainnya</h3>
+  <hr class="section-divider">
+
+  <div id="bidang">
+    <h1 class="page-title">Bidang Kerja</h1>
+    <p class="page-subtitle">Tugas Pokok dan Fungsi (Tupoksi) Pengurus RW 013</p>
+
+    <div class="bidang-container">
+      <div class="bidang-item">
+        <h4>Seksi Lingkungan Hidup</h4>
+        <ul>
+          <li>Mengoordinasikan pengelolaan kebersihan lingkungan.</li>
+          <li>Menggerakkan program penghijauan dan kerja bakti rutin.</li>
+          <li>Mengelola sistem pembuangan sampah warga.</li>
+        </ul>
+      </div>
+
+      <div class="bidang-item">
+        <h4>Seksi Keamanan & Kamtib</h4>
+        <ul>
+          <li>Menyelenggarakan sistem keamanan lingkungan (Siskamling).</li>
+          <li>Melakukan koordinasi dengan Babinsa dan Bhabinkamtibmas.</li>
+          <li>Menjaga ketertiban umum di wilayah RW 013.</li>
+        </ul>
+      </div>
+
+      <div class="bidang-item">
+        <h4>Seksi Sosial & Kesejahteraan</h4>
+        <ul>
+          <li>Mengelola bantuan sosial bagi warga yang membutuhkan.</li>
+          <li>Pendataan warga untuk program bantuan pemerintah.</li>
+          <li>Pelayanan kedukaan dan santunan warga.</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
 
 <footer>
-  &copy; 2024 Sekretariat RW 013 Utan Kayu Selatan. All Rights Reserved.
+  &copy; 2024-2025 Sekretariat RW 013 Utan Kayu Selatan. Seluruh Hak Cipta Dilindungi.
 </footer>
 
 </body>
