@@ -71,29 +71,37 @@ nav ul li ul li a {
 /* ================= RUNNING TEXT ================= */
 .marquee {
   position: fixed;
-  top: 44px;
+  top: 48px;
   width: 100%;
-  background: rgba(0,0,0,0.65);
   overflow: hidden;
-  z-index: 90;
+  background: rgba(0,0,0,0.6);
+  border-top: 1px solid rgba(255,255,255,0.3);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  z-index: 40;
+  white-space: nowrap;
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 22s linear infinite;
+  animation: marquee 25s linear infinite;
 }
 
 .marquee-track span {
-  white-space: nowrap;
-  padding-right: 120px;
-  font-size: 0.9rem;
+  padding-right: 120px; /* 🔑 jarak antar loop */
+  font-size: 0.95rem;
 }
 
+/* 🔥 FIX UTAMA DI SINI */
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
+
 
 /* ================= FULLPAGE SYSTEM ================= */
 .fullpage {
@@ -359,11 +367,10 @@ nav ul li ul li a {
 <!-- ================= SLIDE 2 ================= -->
 <section class="fullpage beranda">
   <div class="beranda-inner">
-    <h2>Selamat Datang di RW 13 UKS</h2>
-    <p class="beranda-text">
-  <span class="line-1">Media informasi dan pelayanan warga RW 013</span>
-  <span class="line-2">Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur</span>
-</p>
+    <div class="beranda-text">
+  <div class="line-1">Media informasi dan pelayanan warga RW 013</div>
+  <div class="line-2">Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur</div>
+</div>
     <div class="layanan-grid">
       <div class="card"><h3>📄 Surat Pengantar</h3><p>Pelayanan surat RT/RW.</p></div>
       <div class="card"><h3>🏠 Domisili</h3><p>Keterangan domisili warga.</p></div>
