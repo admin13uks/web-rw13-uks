@@ -177,6 +177,9 @@ nav ul li ul li a {
 }
 
 .beranda-inner p {
+  white-space: nowrap;     /* paksa 1 baris */
+  overflow: hidden;        /* sembunyikan sisa teks */
+  text-overflow: ellipsis; /* tampilkan ... jika kepanjangan */
   max-width: 800px;
   margin: 20px auto 50px;
   color: #ddd;
