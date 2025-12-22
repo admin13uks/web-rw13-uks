@@ -84,9 +84,45 @@ nav a:hover { color: #2fa56a; }
 @keyframes floatIn { to { opacity: 1; transform: translateY(0); } }
 
 .desc { margin-top: 24px; }
-.marquee-full { width: 100vw; margin-top: 50px; overflow: hidden; background: rgba(255,255,255,0.6); padding: 10px 0; border-y: 1px solid rgba(0,0,0,0.05); }
-.marquee-track { display: flex; width: max-content; gap: 120px; animation: marquee 30s linear infinite; }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-full {
+  width: 100%;
+  overflow: hidden; /* Menyembunyikan teks yang keluar layar */
+  background: rgba(255, 255, 255, 0.8);
+  padding: 15px 0;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  white-space: nowrap; /* Memastikan teks tetap satu baris */
+  display: flex;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: running-text 20s linear infinite; /* Atur kecepatan di sini (20s) */
+}
+
+.marquee-content {
+  display: inline-block;
+  padding-right: 50px; /* Jarak antar teks yang berurutan */
+  font-size: 16px;
+  font-weight: 600;
+  color: #2fa56a;
+}
+
+/* Animasi Seamless */
+@keyframes running-text {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Geser tepat setengah dari total lebar dua teks */
+  }
+}
+
+/* Berhenti saat kursor di atas teks (opsional) */
+.marquee-full:hover .marquee-track {
+  animation-play-state: paused;
+}
 
 @media (max-width: 768px) {
   .header-inner { flex-direction: column; gap: 15px; }
@@ -146,11 +182,15 @@ nav a:hover { color: #2fa56a; }
     <div style="font-size: 14px; color: #555;">Kelurahan Utan Kayu Selatan, Jakarta Timur</div>
   </div>
   <div class="marquee-full">
-    <div class="marquee-track">
-      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-    </div>
+  <div class="marquee-track">
+    <span class="marquee-content">
+      Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •&nbsp;
+    </span>
+    <span class="marquee-content">
+      Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •&nbsp;
+    </span>
   </div>
+</div>
 </section>
 
 <script>
