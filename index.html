@@ -11,12 +11,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
+/* ================= BODY ================= */
 body {
-  background: radial-gradient(circle at top, #1b1b1b, #000);
-  color: #fff;
+  background: linear-gradient(135deg, #f6f9fc, #eaf7f0);
+  color: #222;
   overflow-x: hidden;
 }
 
@@ -25,9 +26,10 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(0,0,0,0.85);
-  border-bottom: 1px solid rgba(255,255,255,0.15);
-  z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  z-index: 1000;
 }
 
 .header-inner {
@@ -37,124 +39,178 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative; /* Penting untuk mega menu */
 }
 
+/* LOGO */
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.logo img {
-  width: 42px;
-}
+.logo img { width: 42px; }
 
 .logo-text {
+  display: flex;
+  flex-direction: column;
   line-height: 1.2;
 }
 
-.logo-text strong {
-  font-size: 15px;
-}
+.logo-title { font-size: 15px; font-weight: 700; color: #111; }
+.logo-subtitle { font-size: 12px; color: #555; }
 
-.logo-text span {
-  font-size: 12px;
-  opacity: 0.8;
-}
-
+/* ================= NAVIGASI ================= */
 nav ul {
   list-style: none;
   display: flex;
   gap: 22px;
+  align-items: center;
 }
 
 nav a {
   text-decoration: none;
-  color: #fff;
+  color: #333;
   font-size: 14px;
+  font-weight: 500;
   transition: 0.3s;
 }
 
-nav a:hover {
-  color: #ffd000;
+nav a:hover { color: #2fa56a; }
+
+/* MEGA MENU LOGIC */
+.dropdown-full {
+  position: static; /* Membuat mega menu melebar sesuai lebar header */
+}
+
+.mega-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  padding: 40px 0;
+  z-index: 999;
+  border-top: 1px solid #f0f0f0;
+  animation: fadeIn 0.3s ease;
+}
+
+.mega-menu-inner {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+
+/* Kartu Menu Oranye */
+.menu-card {
+  text-align: center;
+  text-decoration: none;
+  width: 220px;
+  transition: 0.3s;
+}
+
+.menu-card:hover { transform: translateY(-8px); }
+
+.icon-box {
+  width: 65px;
+  height: 65px;
+  background: #ff6b00; /* Warna Oranye */
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  color: white;
+  box-shadow: 0 8px 20px rgba(255, 107, 0, 0.25);
+}
+
+.icon-box svg { width: 32px; height: 32px; }
+
+.menu-card h3 {
+  font-size: 16px;
+  color: #111;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.menu-card p {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.4;
+}
+
+/* Hover Trigger */
+.dropdown-full:hover .mega-menu { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ================= HERO ================= */
 .hero {
   min-height: 100vh;
-  padding-top: 140px;
+  padding-top: 160px;
   text-align: center;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(47,165,106,.12), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(255,200,120,.15), transparent 40%);
+  z-index: -1;
 }
 
 .typing {
   font-size: 36px;
-  font-weight: bold;
-  color: #ffd000;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid #ffd000;
-  width: fit-content;
-  margin: auto;
-  animation: blink 0.7s infinite;
-}
-
-@keyframes blink {
-  50% { border-color: transparent; }
+  font-weight: 700;
+  color: #ff9800;
+  min-height: 46px;
 }
 
 .float-text {
   font-size: 36px;
-  font-weight: bold;
-  color: #ffd000;
+  font-weight: 700;
+  color: #ff9800;
   opacity: 0;
   transform: translateY(40px);
-  animation: floatIn 1s ease forwards;
-  animation-delay: 3s;
+  animation: floatIn 1.2s ease forwards;
+  animation-delay: 2.8s;
 }
 
-@keyframes floatIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+@keyframes floatIn { to { opacity: 1; transform: translateY(0); } }
 
-.desc {
-  margin-top: 30px;
-}
+.desc { margin-top: 24px; }
+.desc-line1 { font-size: 16px; font-weight: 600; color: #333; margin-bottom: 6px; }
+.desc-line2 { font-size: 14px; color: #555; }
 
-.desc-line1 {
-  font-size: 16px;
-  margin-bottom: 6px;
-}
-
-.desc-line2 {
-  font-size: 14px;
-  opacity: 0.8;
-}
-
-/* ================= MARQUEE ================= */
+/* ================= RUNNING TEXT ================= */
 .marquee-full {
-  position: relative;
   width: 100vw;
-  margin-top: 40px;
+  margin-top: 50px;
   overflow: hidden;
-  background: rgba(255,255,255,0.05);
-  border-top: 1px solid rgba(255,255,255,0.15);
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.6);
+  border-top: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 10px 0;
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 22s linear infinite;
+  gap: 120px;
+  animation: marquee 30s linear infinite;
 }
 
-.marquee-track span {
-  padding-right: 120px;
-  font-size: 14px;
-  white-space: nowrap;
-}
+.marquee-track span { white-space: nowrap; font-size: 14px; color: #444; font-weight: 500; }
 
 @keyframes marquee {
   from { transform: translateX(0); }
@@ -163,71 +219,64 @@ nav a:hover {
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-  nav ul {
-    gap: 14px;
-  }
-
-  .typing,
-  .float-text {
-    font-size: 26px;
-  }
-}
-
-@media (max-width: 600px) {
-
-  .header-inner {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .typing,
-  .float-text {
-    font-size: 22px;
-  }
-
-  .desc-line1 {
-    font-size: 14px;
-  }
-
-  .desc-line2 {
-    font-size: 12.5px;
-    padding: 0 12px;
-  }
-
-  .marquee-track {
-    animation-duration: 18s;
-  }
-
-  .marquee-track span {
-    font-size: 13px;
-  }
+  .header-inner { flex-direction: column; gap: 15px; }
+  nav ul { gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .typing, .float-text { font-size: 26px; }
+  .mega-menu-inner { flex-direction: column; gap: 30px; }
+  .mega-menu { position: fixed; height: 100vh; overflow-y: auto; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
   <div class="header-inner">
     <div class="logo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Logo_Pemerintah_DKI_Jakarta.png">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo">
       <div class="logo-text">
-        <strong>Sekretariat RW 013</strong><br>
-        <span>Utan Kayu Selatan – Matraman</span>
+        <div class="logo-title">Sekretariat RW 013</div>
+        <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
       </div>
     </div>
 
     <nav>
       <ul>
-        <li><a href="#">Beranda</a></li>
-        <li><a href="#">Profil</a></li>
+        <li><a href="index.html">Beranda</a></li>
+        
+        <li class="dropdown-full">
+          <a href="profil.html" class="dropbtn">Profil ▾</a>
+          <div class="mega-menu">
+            <div class="mega-menu-inner">
+              
+              <a href="profil.html#struktur" class="menu-card">
+                <div class="icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <h3>Struktur Organisasi</h3>
+                <p>Susunan pengurus RW 013 periode terbaru.</p>
+              </a>
+
+              <a href="profil.html#bidang" class="menu-card">
+                <div class="icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </div>
+                <h3>Bidang Kerja</h3>
+                <p>Uraian tugas dan fungsi tiap bidang.</p>
+              </a>
+
+            </div>
+          </div>
+        </li>
+
         <li><a href="#">Informasi</a></li>
         <li><a href="#">Layanan</a></li>
         <li><a href="#">Kegiatan</a></li>
@@ -237,7 +286,6 @@ nav a:hover {
   </div>
 </header>
 
-<!-- ================= HERO ================= -->
 <section class="hero">
   <div class="typing" id="typing"></div>
   <div class="float-text">Website RW 13 UKS</div>
@@ -249,29 +297,26 @@ nav a:hover {
     </div>
   </div>
 
-  <!-- ================= MARQUEE ================= -->
   <div class="marquee-full">
     <div class="marquee-track">
-      <span>Website Resmi RW 013 Utan Kayu Selatan • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-      <span>Website Resmi RW 013 Utan Kayu Selatan • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
     </div>
   </div>
 </section>
 
 <script>
-/* ================= TYPING EFFECT ================= */
 const text = "Selamat Datang di Layanan";
-let index = 0;
-const typingEl = document.getElementById("typing");
+let i = 0;
+const typing = document.getElementById("typing");
 
 function typeEffect() {
-  if (index < text.length) {
-    typingEl.innerHTML += text.charAt(index);
-    index++;
+  if (i < text.length) {
+    typing.innerHTML += text.charAt(i);
+    i++;
     setTimeout(typeEffect, 80);
   }
 }
-
 typeEffect();
 </script>
 
