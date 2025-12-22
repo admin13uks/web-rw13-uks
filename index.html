@@ -78,28 +78,23 @@ nav ul li ul li a {
   border-top: 1px solid rgba(255,255,255,0.3);
   border-bottom: 1px solid rgba(255,255,255,0.3);
   z-index: 40;
-  white-space: nowrap;
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
+  gap: 120px;                 /* 🔑 jarak konsisten */
   animation: marquee 25s linear infinite;
 }
 
 .marquee-track span {
-  padding-right: 120px; /* 🔑 jarak antar loop */
+  white-space: nowrap;
   font-size: 0.95rem;
 }
 
-/* 🔥 FIX UTAMA DI SINI */
 @keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 
@@ -195,7 +190,7 @@ nav ul li ul li a {
 }
 
   .beranda-text {
-  margin-top: 30px;        /* 🔽 TURUN KE BAWAH */
+  margin-top: -50px;        /*  NAIK KE ATAS  */
   text-align: center;
   max-width: 900px;
   line-height: 1.6;
@@ -206,10 +201,10 @@ nav ul li ul li a {
 }
 
 .line-1 {
-  font-size: clamp(20px, 3vw, 28px); /* BESAR TULISAN */
-  font-weight: 600;
+  font-size: clamp(22px, 3vw, 230px); /* BESAR TULISAN */
+  font-weight: 700;
   color: #ffd700;
-  margin-bottom: 4px;     /* jarak ke baris bawah */
+  margin-bottom: 6px;     /* jarak ke baris bawah */
 }
 
 .line-2 {
@@ -344,8 +339,11 @@ font-size: clamp(20px, 3vw, 28px);
   <div class="marquee-track">
     <span>Website Resmi RW 13 Kel. Utan Kayu Selatan • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
     <span>Website Resmi RW 13 Kel. Utan Kayu Selatan • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+    <span>Website Resmi RW 13 Kel. Utan Kayu Selatan • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+    <span>Website Resmi RW 13 Kel. Utan Kayu Selatan • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
   </div>
 </div>
+
 
 <!-- ================= SLIDE 1 ================= -->
 <section class="fullpage">
