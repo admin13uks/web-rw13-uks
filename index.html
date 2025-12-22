@@ -3,420 +3,261 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RW 13 UKS</title>
+<title>RW 013 UKS</title>
 
 <style>
 /* ================= RESET ================= */
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-
-body {
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #000;
-  color: #fff;
-  overflow-x: hidden;
-  scroll-snap-type: y mandatory;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* ================= NAVBAR ================= */
-nav {
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #222;
+  background: linear-gradient(135deg,#f6f9fc,#eaf7f0);
+}
+
+/* ================= HEADER ================= */
+header {
   position: fixed;
   top: 0;
   width: 100%;
+  background: #fff;
   z-index: 100;
-  background: rgba(0,0,0,0.8);
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
 }
 
+.header-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 42px;
+}
+
+.logo-text {
+  line-height: 1.2;
+}
+
+.logo-text strong {
+  font-size: 16px;
+  display: block;
+}
+
+.logo-text span {
+  font-size: 13px;
+  color: #666;
+}
+
+/* MENU */
 nav ul {
   list-style: none;
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 10px;
-  margin: 0;
+  gap: 24px;
 }
 
-nav ul li { position: relative; }
-
-nav ul li a {
-  color: #fff;
+nav a {
   text-decoration: none;
-  font-weight: bold;
-  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
 }
 
-nav ul li a:hover { color: #ffd700; }
+nav a:hover {
+  color: #2fa56a;
+}
 
-/* ================= DROPDOWN ================= */
-nav ul li ul {
+/* ================= HERO ================= */
+.hero {
+  min-height: 100vh;
+  padding-top: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+/* Background estetik */
+.hero::before {
+  content: "";
   position: absolute;
-  top: 32px;
-  left: 0;
-  background: rgba(0,0,0,0.9);
-  list-style: none;
-  padding: 6px 0;
-  display: none;
-  min-width: 160px;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(47,165,106,.15), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(255,200,120,.18), transparent 40%);
+  z-index: -1;
 }
 
-nav ul li:hover ul { display: block; }
+/* ================= HERO TEXT ================= */
+.hero-box {
+  max-width: 800px;
+  padding: 20px;
+}
 
-nav ul li ul li a {
-  display: block;
-  padding: 8px 14px;
-  font-size: 0.85rem;
+.badge {
+  display: inline-block;
+  background: #e7f7ef;
+  color: #2fa56a;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+/* Typing */
+.typing {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ff9800;
+  min-height: 46px;
+}
+
+/* Float in */
+.float-text {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ff9800;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: floatIn 1.2s ease forwards;
+  animation-delay: 2.8s; /* sinkron typing */
+}
+
+/* Deskripsi */
+.desc {
+  margin-top: 18px;
+  font-size: 16px;
+  color: #555;
 }
 
 /* ================= RUNNING TEXT ================= */
 .marquee {
-  position: fixed;
-  top: 48px;
-  width: 100%;
+  margin-top: 40px;
   overflow: hidden;
-  background: rgba(0,0,0,0.6);
-  border-top: 1px solid rgba(255,255,255,0.3);
-  border-bottom: 1px solid rgba(255,255,255,0.3);
-  z-index: 40;
+  white-space: nowrap;
 }
 
 .marquee-track {
   display: flex;
+  gap: 120px;
   width: max-content;
-  gap: 120px;                 /* 🔑 jarak konsisten */
   animation: marquee 25s linear infinite;
 }
 
-.marquee-track span {
-  white-space: nowrap;
-  font-size: 0.95rem;
+.marquee span {
+  font-size: 14px;
+  color: #444;
 }
 
+/* ================= ANIMATION ================= */
 @keyframes marquee {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to { transform: translateX(-50%); }
 }
 
-
-/* ================= FULLPAGE SYSTEM ================= */
-.fullpage {
-  height: 100vh;
-  scroll-snap-align: start;
-  position: relative;
+@keyframes floatIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.offset {
-  padding-top: 86px;
-  height: calc(100vh - 86px);
-}
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  nav ul {
+    gap: 14px;
+  }
 
-/* ================= SLIDE 1 : HERO ================= */
-.slider {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.slides {
-  display: flex;
-  height: 100%;
-  transition: transform 1s ease;
-}
-
-.slides img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.title-box {
-  text-align: center;
-}
-
-.title-box img {
-  width: 140px;
-  margin-bottom: 16px;
-}
-
-.subtext {
-  font-size: clamp(26px, 5vw, 44px);
-  font-weight: 800;
-  color: #ffd700;
-  text-shadow: 3px 3px 10px #000;
-}
-
-.line2 {
-  display: block;
-  font-size: 0.9em;
-}
-
-/* ================= SLIDE 2 : BERANDA ================= */
-.beranda {
-  background: #111;
-  display: flex;
-  align-items: center;
-}
-
-.beranda-inner {
-  max-width: 1100px;
-  margin: auto;
-  text-align: center;
-}
-
-.beranda-inner h2 {
-  color: #ffd700;
-  font-size: 34px;
-}
-
-.beranda-inner p {
-  white-space: nowrap;     /* paksa 1 baris */
-  overflow: hidden;        /* sembunyikan sisa teks */
-  text-overflow: ellipsis; /* tampilkan ... jika kepanjangan */
-  max-width: 800px;
-  margin: 20px auto 50px;
-  color: #ddd;
-  line-height: 1.7;
-}
-
-  .beranda-text {
-  margin-top: -50px;        /*  NAIK KE ATAS  */
-  text-align: center;
-  max-width: 900px;
-  line-height: 1.6;
-}
-
-.beranda-text span {
-  display: block; /* ini kunci: jadi 2 baris */
-}
-
-.line-1 {
-  font-size: clamp(22px, 3vw, 230px); /* BESAR TULISAN */
-  font-weight: 700;
-  color: #ffd700;
-  margin-bottom: 6px;     /* jarak ke baris bawah */
-}
-
-.line-2 {
-font-size: clamp(20px, 3vw, 28px);
-  color: #ffd700;
-  line-height: 1.5;
-}
-
-
-.layanan-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  gap: 24px;
-}
-
-.card {
-  background: #000;
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 12px;
-  padding: 26px;
-  transition: .3s;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  border-color: #ffd700;
-}
-
-.card h3 {
-  color: #ffd700;
-  margin-bottom: 10px;
-}
-
-/* ================= SLIDE 3 : STRUKTUR ================= */
-.struktur {
-  background: linear-gradient(#000,#111);
-  display: flex;
-  align-items: center;
-}
-
-.struktur-inner {
-  max-width: 1000px;
-  margin: auto;
-  text-align: center;
-}
-
-.struktur-inner h2 {
-  color: #ffd700;
-  font-size: 34px;
-  margin-bottom: 40px;
-}
-
-.struktur-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-  gap: 26px;
-}
-
-.struktur-card {
-  background: #000;
-  border-radius: 12px;
-  padding: 20px;
-  border: 1px solid rgba(255,255,255,0.15);
-}
-
-.struktur-card h4 {
-  color: #ffd700;
-  margin-bottom: 6px;
-}
-
-/* ================= SLIDE 4 : KEGIATAN ================= */
-.kegiatan {
-  background: #111;
-  display: flex;
-  align-items: center;
-}
-
-.kegiatan-inner {
-  max-width: 1100px;
-  margin: auto;
-  text-align: center;
-}
-
-.kegiatan-inner h2 {
-  color: #ffd700;
-  font-size: 34px;
-  margin-bottom: 30px;
-}
-
-.kegiatan-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-  gap: 20px;
-}
-
-.kegiatan-item {
-  background: #000;
-  height: 180px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #aaa;
-  border: 1px solid rgba(255,255,255,0.15);
+  .typing,
+  .float-text {
+    font-size: 26px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<nav>
-<ul>
-  <li><a href="#">Beranda</a></li>
-  <li><a href="#">Struktur</a></li>
-  <li><a href="#">Informasi</a></li>
-  <li><a href="#">Kegiatan</a></li>
-  <li>
-    <a href="#">Layanan ▾</a>
-    <ul>
-      <li><a href="#">Surat Pengantar</a></li>
-      <li><a href="#">Domisili</a></li>
-      <li><a href="#">Pengaduan</a></li>
-    </ul>
-  </li>
-  <li><a href="#">Kontak</a></li>
-</ul>
-</nav>
-
-<!-- RUNNING TEXT -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span>Website Resmi RW 13 Kel. Utan Kayu Selatan • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-    <span>Website Resmi RW 13 Kel. Utan Kayu Selatan • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-    <span>Website Resmi RW 13 Kel. Utan Kayu Selatan • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-    <span>Website Resmi RW 13 Kel. Utan Kayu Selatan • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-  </div>
-</div>
-
-
-<!-- ================= SLIDE 1 ================= -->
-<section class="fullpage">
-  <div class="slider offset">
-    <div class="slides" id="slides">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%201.jpeg">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%202.jpeg">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%204.jpeg">
-    </div>
-
-    <div class="overlay">
-      <div class="title-box">
-        <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
-        <div class="subtext">
-          Selamat Datang di Layanan
-          <span class="line2">Website RW 13 UKS</span>
-        </div>
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <!-- GANTI LOGO DI SINI -->
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
+      <div class="logo-text">
+        <strong>Sekretariat RW 013</strong>
+        <span>Utan Kayu Selatan - Matraman</span>
       </div>
     </div>
+
+    <nav>
+      <ul>
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Profil</a></li>
+        <li><a href="#">Informasi</a></li>
+        <li><a href="#">Layanan</a></li>
+        <li><a href="#">Kegiatan</a></li>
+        <li><a href="#">Kontak Kami</a></li>
+      </ul>
+    </nav>
   </div>
-</section>
+</header>
 
-<!-- ================= SLIDE 2 ================= -->
-<section class="fullpage beranda">
-  <div class="beranda-inner">
-    <div class="beranda-text">
-  <div class="line-1">Media informasi dan pelayanan warga RW 013</div>
-  <div class="line-2">Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur</div>
-</div>
-    <div class="layanan-grid">
-      <div class="card"><h3>📄 Surat Pengantar</h3><p>Pelayanan surat RT/RW.</p></div>
-      <div class="card"><h3>🏠 Domisili</h3><p>Keterangan domisili warga.</p></div>
-      <div class="card"><h3>📢 Informasi</h3><p>Pengumuman resmi.</p></div>
-      <div class="card"><h3>📞 Pengaduan</h3><p>Aspirasi warga.</p></div>
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-box">
+
+    <div class="badge">✨ Selamat Datang di Layanan</div>
+
+    <div class="typing" id="typing"></div>
+    <div class="float-text">Website RW 13 UKS</div>
+
+    <p class="desc">
+      Media informasi dan pelayanan warga RW 013 Kelurahan Utan Kayu Selatan,
+      Kecamatan Matraman, Jakarta Timur.
+    </p>
+
+    <!-- RUNNING TEXT -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>Website Resmi RW 13 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+        <span>Website Resmi RW 13 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+        <span>Website Resmi RW 13 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+        <span>Website Resmi RW 13 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+      </div>
     </div>
-  </div>
-</section>
 
-<!-- ================= SLIDE 3 ================= -->
-<section class="fullpage struktur">
-  <div class="struktur-inner">
-    <h2>Struktur Organisasi RW 013</h2>
-
-    <div class="struktur-grid">
-      <div class="struktur-card"><h4>Ketua RW</h4><p>Nama Ketua RW</p></div>
-      <div class="struktur-card"><h4>Sekretaris</h4><p>Nama Sekretaris</p></div>
-      <div class="struktur-card"><h4>Bendahara</h4><p>Nama Bendahara</p></div>
-      <div class="struktur-card"><h4>Ketua RT</h4><p>RT 01 – RT 10</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SLIDE 4 ================= -->
-<section class="fullpage kegiatan">
-  <div class="kegiatan-inner">
-    <h2>Kegiatan RW 13</h2>
-
-    <div class="kegiatan-grid">
-      <div class="kegiatan-item">Kegiatan 1</div>
-      <div class="kegiatan-item">Kegiatan 2</div>
-      <div class="kegiatan-item">Kegiatan 3</div>
-    </div>
   </div>
 </section>
 
 <script>
-const slides = document.getElementById("slides");
-let index = 0;
+/* ================= TYPING EFFECT ================= */
+const text = "Selamat Datang di Layanan";
+let i = 0;
+const typing = document.getElementById("typing");
 
-setInterval(() => {
-  index = (index + 1) % slides.children.length;
-  slides.style.transform = `translateX(-${index * 100}%)`;
-}, 3500);
+function typeEffect() {
+  if (i < text.length) {
+    typing.innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 80);
+  }
+}
+typeEffect();
 </script>
 
 </body>
