@@ -6,10 +6,9 @@
 <title>RW 13 UKS</title>
 
 <style>
-/* ===== RESET ===== */
-* {
-  box-sizing: border-box;
-}
+/* ================= RESET ================= */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -17,32 +16,28 @@ body {
   background: #000;
   color: #fff;
   overflow-x: hidden;
-  overflow-y: auto;
+  scroll-snap-type: y mandatory;
 }
 
-/* ===== NAVBAR ===== */
+/* ================= NAVBAR ================= */
 nav {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 50;
-  background: rgba(0,0,0,0.75);
+  z-index: 100;
+  background: rgba(0,0,0,0.8);
 }
 
 nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 18px;
+  gap: 20px;
   padding: 10px;
   margin: 0;
-  white-space: nowrap;
 }
 
-nav ul li {
-  position: relative;
-}
+nav ul li { position: relative; }
 
 nav ul li a {
   color: #fff;
@@ -51,26 +46,21 @@ nav ul li a {
   font-size: 0.9rem;
 }
 
-nav ul li a:hover {
-  color: #ffd700;
-}
+nav ul li a:hover { color: #ffd700; }
 
-/* ===== DROPDOWN ===== */
+/* ================= DROPDOWN ================= */
 nav ul li ul {
   position: absolute;
   top: 32px;
   left: 0;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.9);
   list-style: none;
   padding: 6px 0;
-  margin: 0;
   display: none;
   min-width: 160px;
 }
 
-nav ul li:hover ul {
-  display: block;
-}
+nav ul li:hover ul { display: block; }
 
 nav ul li ul li a {
   display: block;
@@ -78,16 +68,14 @@ nav ul li ul li a {
   font-size: 0.85rem;
 }
 
-/* ===== RUNNING TEXT ===== */
+/* ================= RUNNING TEXT ================= */
 .marquee {
   position: fixed;
-  top: 48px;
+  top: 44px;
   width: 100%;
+  background: rgba(0,0,0,0.65);
   overflow: hidden;
-  background: rgba(0,0,0,0.6);
-  border-top: 1px solid rgba(255,255,255,0.3);
-  border-bottom: 1px solid rgba(255,255,255,0.3);
-  z-index: 40;
+  z-index: 90;
 }
 
 .marquee-track {
@@ -99,68 +87,70 @@ nav ul li ul li a {
 .marquee-track span {
   white-space: nowrap;
   padding-right: 120px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 @keyframes marquee {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to { transform: translateX(-50%); }
 }
 
-/* ===== SLIDER ===== */
+/* ================= FULLPAGE SYSTEM ================= */
+.fullpage {
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+}
+
+.offset {
+  padding-top: 86px;
+  height: calc(100vh - 86px);
+}
+
+/* ================= SLIDE 1 : HERO ================= */
 .slider {
   position: relative;
   width: 100%;
-  height: 100vh;
-  margin-top: 86px;
+  height: 100%;
   overflow: hidden;
 }
 
 .slides {
   display: flex;
   height: 100%;
-  transition: transform 1s ease-in-out;
+  transition: transform 1s ease;
 }
 
 .slides img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
   flex-shrink: 0;
 }
 
-/* ===== OVERLAY ===== */
 .overlay {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.45);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 120px;
-  z-index: 10;
+  align-items: center;
 }
 
 .title-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
+  text-align: center;
 }
 
 .title-box img {
-  width: 22vw;
-  max-width: 150px;
+  width: 140px;
+  margin-bottom: 16px;
 }
 
-/* ===== TEKS ===== */
 .subtext {
-  font-size: clamp(24px, 5vw, 42px);
+  font-size: clamp(26px, 5vw, 44px);
   font-weight: 800;
   color: #ffd700;
   text-shadow: 3px 3px 10px #000;
-  text-align: center;
 }
 
 .line2 {
@@ -168,84 +158,126 @@ nav ul li ul li a {
   font-size: 0.9em;
 }
 
-/* ===== BERANDA SECTION ===== */
-.beranda-section {
+/* ================= SLIDE 2 : BERANDA ================= */
+.beranda {
   background: #111;
-  padding: 80px 20px;
+  display: flex;
+  align-items: center;
 }
 
-.beranda-container {
+.beranda-inner {
   max-width: 1100px;
   margin: auto;
   text-align: center;
 }
 
-.beranda-title {
-  font-size: 32px;
-  font-weight: bold;
+.beranda-inner h2 {
   color: #ffd700;
-  margin-bottom: 20px;
+  font-size: 34px;
 }
 
-.beranda-desc {
-  font-size: 16px;
-  color: #ddd;
+.beranda-inner p {
   max-width: 800px;
-  margin: 0 auto 50px;
+  margin: 20px auto 50px;
+  color: #ddd;
   line-height: 1.7;
 }
 
-/* ===== CARD LAYANAN ===== */
 .layanan-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
   gap: 24px;
 }
 
-.layanan-card {
+.card {
   background: #000;
   border: 1px solid rgba(255,255,255,0.15);
   border-radius: 12px;
-  padding: 26px 18px;
-  transition: 0.3s;
+  padding: 26px;
+  transition: .3s;
 }
 
-.layanan-card:hover {
+.card:hover {
   transform: translateY(-6px);
   border-color: #ffd700;
 }
 
-.layanan-card h3 {
+.card h3 {
   color: #ffd700;
   margin-bottom: 10px;
 }
 
-.layanan-card p {
-  font-size: 14px;
-  color: #ccc;
+/* ================= SLIDE 3 : STRUKTUR ================= */
+.struktur {
+  background: linear-gradient(#000,#111);
+  display: flex;
+  align-items: center;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 480px) {
-  nav ul {
-    gap: 12px;
-  }
+.struktur-inner {
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
 
-  nav ul li a {
-    font-size: 0.8rem;
-  }
+.struktur-inner h2 {
+  color: #ffd700;
+  font-size: 34px;
+  margin-bottom: 40px;
+}
 
-  .marquee-track span {
-    font-size: 0.85rem;
-  }
+.struktur-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 26px;
+}
 
-  .title-box img {
-    width: 96px;
-  }
+.struktur-card {
+  background: #000;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
 
-  .beranda-title {
-    font-size: 24px;
-  }
+.struktur-card h4 {
+  color: #ffd700;
+  margin-bottom: 6px;
+}
+
+/* ================= SLIDE 4 : KEGIATAN ================= */
+.kegiatan {
+  background: #111;
+  display: flex;
+  align-items: center;
+}
+
+.kegiatan-inner {
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+}
+
+.kegiatan-inner h2 {
+  color: #ffd700;
+  font-size: 34px;
+  margin-bottom: 30px;
+}
+
+.kegiatan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: 20px;
+}
+
+.kegiatan-item {
+  background: #000;
+  height: 180px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  border: 1px solid rgba(255,255,255,0.15);
 }
 </style>
 </head>
@@ -254,76 +286,90 @@ nav ul li ul li a {
 
 <!-- NAVBAR -->
 <nav>
-  <ul>
-    <li><a href="#">Beranda</a></li>
-    <li><a href="#">Struktur</a></li>
-    <li><a href="#">Informasi</a></li>
-    <li><a href="#">Kegiatan</a></li>
-    <li>
-      <a href="#">Layanan ▾</a>
-      <ul>
-        <li><a href="#">Surat Pengantar</a></li>
-        <li><a href="#">Domisili</a></li>
-        <li><a href="#">Pengaduan</a></li>
-      </ul>
-    </li>
-    <li><a href="#">Kontak</a></li>
-  </ul>
+<ul>
+  <li><a href="#">Beranda</a></li>
+  <li><a href="#">Struktur</a></li>
+  <li><a href="#">Informasi</a></li>
+  <li><a href="#">Kegiatan</a></li>
+  <li>
+    <a href="#">Layanan ▾</a>
+    <ul>
+      <li><a href="#">Surat Pengantar</a></li>
+      <li><a href="#">Domisili</a></li>
+      <li><a href="#">Pengaduan</a></li>
+    </ul>
+  </li>
+  <li><a href="#">Kontak</a></li>
+</ul>
 </nav>
 
 <!-- RUNNING TEXT -->
 <div class="marquee">
   <div class="marquee-track">
-    <span>Website Resmi RW 13 Kel. Utan Kayu Selatan Kec. Matraman Kota Administrasi Jakarta Timur • Informasi Warga • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-    <span>Website Resmi RW 13 Kel. Utan Kayu Selatan Kec. Matraman Kota Administrasi Jakarta Timur • Informasi Warga • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+    <span>Website Resmi RW 13 Kel. Utan Kayu Selatan • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+    <span>Website Resmi RW 13 Kel. Utan Kayu Selatan • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
   </div>
 </div>
 
-<!-- SLIDER -->
-<div class="slider">
-  <div class="slides" id="slides">
-    <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%201.jpeg">
-    <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%202.jpeg">
-    <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%204.jpeg">
-  </div>
+<!-- ================= SLIDE 1 ================= -->
+<section class="fullpage">
+  <div class="slider offset">
+    <div class="slides" id="slides">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%201.jpeg">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%202.jpeg">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/slide%204.jpeg">
+    </div>
 
-  <div class="overlay">
-    <div class="title-box">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
-      <p class="subtext">
-        Selamat Datang di Layanan
-        <span class="line2">WebSite RW 13 UKS</span>
-      </p>
+    <div class="overlay">
+      <div class="title-box">
+        <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
+        <div class="subtext">
+          Selamat Datang di Layanan
+          <span class="line2">Website RW 13 UKS</span>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- SLIDE BAWAH -->
-<section class="beranda-section">
-  <div class="beranda-container">
-    <h2 class="beranda-title">Selamat Datang di RW 13 UKS</h2>
-    <p class="beranda-desc">
-      Website ini merupakan media informasi dan pelayanan warga RW 013
-      Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur.
-    </p>
+<!-- ================= SLIDE 2 ================= -->
+<section class="fullpage beranda">
+  <div class="beranda-inner">
+    <h2>Selamat Datang di RW 13 UKS</h2>
+    <p>Media informasi dan pelayanan warga RW 013 Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur.</p>
 
     <div class="layanan-grid">
-      <div class="layanan-card">
-        <h3>📄 Surat Pengantar</h3>
-        <p>Pelayanan surat pengantar RT/RW.</p>
-      </div>
-      <div class="layanan-card">
-        <h3>🏠 Domisili</h3>
-        <p>Keterangan domisili warga RW 13.</p>
-      </div>
-      <div class="layanan-card">
-        <h3>📢 Informasi</h3>
-        <p>Pengumuman resmi dan agenda warga.</p>
-      </div>
-      <div class="layanan-card">
-        <h3>📞 Pengaduan</h3>
-        <p>Saluran aspirasi dan pengaduan warga.</p>
-      </div>
+      <div class="card"><h3>📄 Surat Pengantar</h3><p>Pelayanan surat RT/RW.</p></div>
+      <div class="card"><h3>🏠 Domisili</h3><p>Keterangan domisili warga.</p></div>
+      <div class="card"><h3>📢 Informasi</h3><p>Pengumuman resmi.</p></div>
+      <div class="card"><h3>📞 Pengaduan</h3><p>Aspirasi warga.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SLIDE 3 ================= -->
+<section class="fullpage struktur">
+  <div class="struktur-inner">
+    <h2>Struktur Organisasi RW 013</h2>
+
+    <div class="struktur-grid">
+      <div class="struktur-card"><h4>Ketua RW</h4><p>Nama Ketua RW</p></div>
+      <div class="struktur-card"><h4>Sekretaris</h4><p>Nama Sekretaris</p></div>
+      <div class="struktur-card"><h4>Bendahara</h4><p>Nama Bendahara</p></div>
+      <div class="struktur-card"><h4>Ketua RT</h4><p>RT 01 – RT 10</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SLIDE 4 ================= -->
+<section class="fullpage kegiatan">
+  <div class="kegiatan-inner">
+    <h2>Kegiatan RW 13</h2>
+
+    <div class="kegiatan-grid">
+      <div class="kegiatan-item">Kegiatan 1</div>
+      <div class="kegiatan-item">Kegiatan 2</div>
+      <div class="kegiatan-item">Kegiatan 3</div>
     </div>
   </div>
 </section>
