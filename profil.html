@@ -7,8 +7,8 @@
 
 <style>
 /* ================= RESET & BASE ================= */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Arial, sans-serif; }
-body { background: linear-gradient(135deg, #f6f9fc, #eaf7f0); scroll-behavior: smooth; overflow-x: hidden; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Roboto, Arial, sans-serif; }
+body { background: linear-gradient(135deg, #f6f9fc, #eaf7f0); scroll-behavior: smooth; overflow-x: hidden; color: #333; }
 
 /* ================= HEADER & NAV ================= */
 header { position: fixed; top: 0; width: 100%; background: white; border-bottom: 1px solid #eee; z-index: 1000; }
@@ -17,28 +17,40 @@ header { position: fixed; top: 0; width: 100%; background: white; border-bottom:
 .logo img { width: 42px; }
 
 nav ul { list-style: none; display: flex; gap: 22px; align-items: center; }
-nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 500; cursor: pointer; transition: 0.3s; }
+nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.3s; }
 nav a:hover { color: #2fa56a; }
 
-/* ================= MEGA MENU ================= */
+/* ================= MEGA MENU (DROPDOWN) ================= */
 .dropdown-full { position: static; }
-.mega-menu { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); padding: 40px 0; z-index: 999; border-top: 1px solid #f0f0f0; }
-.mega-menu.active { display: block; animation: fadeIn 0.3s ease; }
-.mega-menu-inner { max-width: 1000px; margin: auto; display: flex; justify-content: center; gap: 60px; }
-.menu-card { text-align: center; text-decoration: none; width: 220px; transition: 0.3s; }
-.menu-card:hover { transform: translateY(-5px); }
-.icon-box-menu { width: 60px; height: 60px; background: #ff6b00; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: white; }
+.mega-menu { 
+    display: none; 
+    position: absolute; 
+    top: 100%; 
+    left: 0; 
+    width: 100%; 
+    background: white; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+    padding: 30px 0; 
+    z-index: 999; 
+    border-top: 1px solid #f0f0f0; 
+}
+.mega-menu.active { display: block; animation: fadeIn 0.3s ease forwards; }
+.mega-menu-inner { max-width: 800px; margin: auto; display: flex; justify-content: center; gap: 40px; }
+.menu-card { text-align: center; text-decoration: none; width: 200px; transition: 0.3s; padding: 15px; border-radius: 12px; }
+.menu-card:hover { background: #f9f9f9; transform: translateY(-5px); }
+.icon-box-menu { width: 50px; height: 50px; background: #ff6b00; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: white; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ================= STRUKTUR ORGANISASI (TREE) ================= */
 .org-container { max-width: 1200px; margin: 120px auto 60px; padding: 0 20px; text-align: center; }
-.page-title { font-size: 32px; color: #2fa56a; margin-bottom: 50px; font-weight: 700; }
+.page-title { font-size: 32px; color: #2fa56a; margin-bottom: 50px; font-weight: 700; position: relative; display: inline-block; }
+.page-title::after { content: ''; width: 60px; height: 4px; background: #ff6b00; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-radius: 2px; }
 
 .tree ul { padding-top: 20px; position: relative; transition: all 0.5s; display: flex; justify-content: center; }
-.tree li { float: left; text-align: center; list-style-type: none; position: relative; padding: 20px 5px 0 5px; transition: all 0.5s; }
+.tree li { text-align: center; list-style-type: none; position: relative; padding: 20px 10px 0 10px; transition: all 0.5s; }
 
-/* Garis-garis penghubung */
+/* Garis Horizontal Desktop */
 .tree li::before, .tree li::after { content: ''; position: absolute; top: 0; right: 50%; border-top: 2px solid #ccc; width: 50%; height: 20px; }
 .tree li::after { right: auto; left: 50%; border-left: 2px solid #ccc; }
 .tree li:only-child::after, .tree li:only-child::before { display: none; }
@@ -48,28 +60,56 @@ nav a:hover { color: #2fa56a; }
 .tree li:first-child::after { border-radius: 5px 0 0 0; }
 .tree ul ul::before { content: ''; position: absolute; top: 0; left: 50%; border-left: 2px solid #ccc; width: 0; height: 20px; }
 
-/* Card Style dalam Tree */
-.tree .card { background: white; border: 1px solid #ddd; padding: 15px; border-radius: 12px; display: inline-block; min-width: 160px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative; z-index: 10; transition: 0.3s; }
-.tree .card:hover { transform: translateY(-5px); border-color: #2fa56a; box-shadow: 0 8px 15px rgba(47, 165, 106, 0.2); }
-.tree .card.chairman { border: 2px solid #ff6b00; }
-.tree .card.vice-chairman { border: 2px solid #ff9800; }
-.tree .role { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #2fa56a; margin-bottom: 5px; letter-spacing: 0.5px; }
+/* Desain Kartu Jabatan */
+.tree .card { 
+    background: white; 
+    border: 1px solid #ddd; 
+    padding: 15px; 
+    border-radius: 10px; 
+    display: inline-block; 
+    min-width: 150px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+    position: relative; 
+    z-index: 10; 
+}
+.tree .card.chairman { border: 2.5px solid #ff6b00; }
+.tree .card.vice-chairman { border: 2.5px solid #ff9800; }
+.tree .role { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #2fa56a; margin-bottom: 4px; }
 .tree .chairman .role, .tree .vice-chairman .role { color: #ff6b00; }
-.tree .name { font-size: 14px; font-weight: 700; color: #222; }
+.tree .name { font-size: 14px; font-weight: 700; color: #111; }
 
 /* ================= BIDANG KERJA ================= */
 .bidang-section { max-width: 1100px; margin: 100px auto; padding: 0 20px; }
-.bidang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px; }
-.bidang-item { background: white; padding: 30px; border-radius: 15px; border-left: 5px solid #ff6b00; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; }
-.bidang-item:hover { transform: scale(1.02); }
-.bidang-item h4 { color: #ff6b00; margin-bottom: 15px; font-size: 18px; border-bottom: 1px solid #fff3e6; padding-bottom: 10px; }
-.bidang-item ul { padding-left: 18px; color: #555; font-size: 14px; line-height: 1.8; }
+.bidang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
+.bidang-item { background: white; padding: 25px; border-radius: 15px; border-top: 4px solid #ff6b00; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.bidang-item h4 { color: #ff6b00; margin-bottom: 12px; font-size: 17px; }
+.bidang-item ul { padding-left: 15px; color: #555; font-size: 13.5px; line-height: 1.6; }
+.bidang-item ul li { margin-bottom: 8px; }
 
+/* ================= MOBILE RESPONSIVE (HP) ================= */
 @media (max-width: 768px) {
-    .tree ul { flex-direction: column; align-items: center; }
-    .tree li { padding: 20px 0; }
-    .tree li::before, .tree li::after { display: none; }
-    .tree ul ul::before { display: none; }
+    .header-inner { padding: 10px 15px; }
+    .page-title { font-size: 24px; }
+    
+    /* Ubah Tree jadi Vertikal di HP */
+    .tree ul { flex-direction: column; align-items: center; padding-top: 0; }
+    .tree li { padding: 25px 0 0 0; width: 100%; }
+    .tree li::before, .tree li::after { display: none !important; } /* Matikan garis horizontal */
+    
+    /* Garis vertikal antar level di HP */
+    .tree ul ul::before {
+        content: '';
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        border-left: 2px solid #ccc;
+        height: 40px;
+    }
+    
+    .tree .card { width: 85%; max-width: 250px; }
+    
+    .mega-menu-inner { flex-direction: column; gap: 10px; padding: 10px; }
+    .menu-card { width: 100%; padding: 10px; }
 }
 </style>
 </head>
@@ -90,13 +130,13 @@ nav a:hover { color: #2fa56a; }
             <div class="mega-menu-inner">
               <a href="#struktur" class="menu-card">
                 <div class="icon-box-menu">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
                 </div>
                 <h3>Struktur Organisasi</h3>
               </a>
               <a href="#bidang" class="menu-card">
                 <div class="icon-box-menu">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
                 </div>
                 <h3>Bidang Kerja</h3>
               </a>
@@ -174,7 +214,7 @@ nav a:hover { color: #2fa56a; }
         <h4>Sie Lingkungan Hidup</h4>
         <ul>
           <li>Mengelola kebersihan dan keasrian wilayah</li>
-          <li>Program penghijauan RW</li>
+          <li>Program penghijauan RW 013</li>
           <li>Koordinasi pengelolaan sampah warga</li>
         </ul>
       </div>
@@ -182,16 +222,16 @@ nav a:hover { color: #2fa56a; }
       <div class="bidang-item">
         <h4>Sie Sosial & Kemasyarakatan</h4>
         <ul>
-          <li>Pendataan warga kurang mampu</li>
-          <li>Pengelolaan dana santunan kematian/sakit</li>
-          <li>Koordinasi bantuan sosial bencana</li>
+          <li>Pendataan warga dan administrasi sosial</li>
+          <li>Pengelolaan dana santunan warga</li>
+          <li>Koordinasi bantuan sosial</li>
         </ul>
       </div>
 
       <div class="bidang-item">
         <h4>Sie Pemuda & Olahraga</h4>
         <ul>
-          <li>Pembinaan Karang Taruna unit RW</li>
+          <li>Pembinaan Karang Taruna RW 013</li>
           <li>Pengembangan kegiatan olahraga warga</li>
           <li>Penyelenggaraan event peringatan HUT RI</li>
         </ul>
@@ -201,7 +241,7 @@ nav a:hover { color: #2fa56a; }
         <h4>Sie Kerohanian</h4>
         <ul>
           <li>Pembinaan keagamaan warga</li>
-          <li>Koordinasi peringatan hari besar keagamaan</li>
+          <li>Koordinasi hari besar keagamaan</li>
           <li>Kegiatan sosial keagamaan</li>
         </ul>
       </div>
@@ -213,37 +253,37 @@ nav a:hover { color: #2fa56a; }
   const profileBtn = document.getElementById('profileBtn');
   const megaMenu = document.getElementById('megaMenu');
 
-  // Toggle menu saat tombol diklik
+  // Logic Klik Tombol Profil
   profileBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     megaMenu.classList.toggle('active');
   });
 
-  // Klik di luar untuk menutup menu
+  // Klik di luar menu untuk menutup
   document.addEventListener('click', (e) => {
-    if (!megaMenu.contains(e.target) && e.target !== profileBtn) {
+    if (!megaMenu.contains(e.target)) {
       megaMenu.classList.remove('active');
     }
   });
 
-  // Menutup menu saat link di dalamnya diklik
+  // Klik link di dalam menu langsung menutup menu
   megaMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       megaMenu.classList.remove('active');
     });
   });
 
-  // Smooth scroll offset untuk header fixed
+  // Smooth Scroll Otomatis
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            window.scrollTo({
-                top: target.offsetTop - 100,
-                behavior: 'smooth'
-            });
-        }
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 100, // Offset agar tidak tertutup header
+          behavior: 'smooth'
+        });
+      }
     });
   });
 </script>
