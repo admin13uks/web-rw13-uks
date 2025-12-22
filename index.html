@@ -41,6 +41,51 @@ header {
   justify-content: space-between;
 }
 
+  /* Gaya untuk Menu Dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none; /* Sembunyi secara default */
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.95);
+  min-width: 180px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  z-index: 1000;
+  top: 100%;
+  left: 0;
+  padding: 8px 0;
+  backdrop-filter: blur(5px);
+}
+
+.dropdown-content a {
+  color: #333;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 13px;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #f6f9fc;
+  color: #2fa56a;
+}
+
+/* Memunculkan menu saat kursor di atas menu Profil */
+.dropdown:hover .dropdown-content {
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+  
 /* LOGO */
 .logo {
   display: flex;
