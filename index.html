@@ -186,6 +186,27 @@ nav ul li ul li a {
   line-height: 1.7;
 }
 
+  .beranda-text {
+  text-align: center;
+  line-height: 1.6;
+}
+
+.beranda-text span {
+  display: block; /* ini kunci: jadi 2 baris */
+}
+
+.line-1 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ddd;
+}
+
+.line-2 {
+  font-size: 15px;
+  color: #aaa;
+}
+
+
 .layanan-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
@@ -339,8 +360,10 @@ nav ul li ul li a {
 <section class="fullpage beranda">
   <div class="beranda-inner">
     <h2>Selamat Datang di RW 13 UKS</h2>
-    <p>Media informasi dan pelayanan warga RW 013 Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur.</p>
-
+    <p class="beranda-text">
+  <span class="line-1">Media informasi dan pelayanan warga RW 013</span>
+  <span class="line-2">Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur</span>
+</p>
     <div class="layanan-grid">
       <div class="card"><h3>📄 Surat Pengantar</h3><p>Pelayanan surat RT/RW.</p></div>
       <div class="card"><h3>🏠 Domisili</h3><p>Keterangan domisili warga.</p></div>
