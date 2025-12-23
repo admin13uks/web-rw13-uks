@@ -20,21 +20,14 @@ nav ul { list-style: none; display: flex; gap: 22px; align-items: center; }
 nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.3s; }
 nav a:hover { color: #2fa56a; }
 
-/* ================= MEGA MENU (DROPDOWN) - UPDATED ================= */
-.dropdown-full { position: relative; } /* Berubah dari static ke relative */
-
-#profileBtn {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 10px 0;
-}
-
+/* ================= MEGA MENU (DROPDOWN) ================= */
+.dropdown-full { position: relative; }
+#profileBtn { display: flex; align-items: center; gap: 5px; padding: 10px 0; }
 .mega-menu { 
     display: none; 
     position: absolute; 
     top: 100%; 
-    right: 0; /* Menu muncul sejajar ke kanan tombol */
+    right: 0; 
     width: 450px; 
     background: white; 
     box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
@@ -43,26 +36,10 @@ nav a:hover { color: #2fa56a; }
     border-top: 3px solid #2fa56a;
     border-radius: 0 0 12px 12px;
 }
-
-/* Efek Hover: Muncul saat kursor diarahkan */
-.dropdown-full:hover .mega-menu { 
-    display: block; 
-    animation: fadeIn 0.3s ease forwards; 
-}
-
-/* Class active untuk trigger via klik (Mobile/JS) */
+.dropdown-full:hover .mega-menu { display: block; animation: fadeIn 0.3s ease forwards; }
 .mega-menu.active { display: block; }
-
 .mega-menu-inner { display: flex; justify-content: space-between; gap: 15px; }
-.menu-card { 
-    text-align: center; 
-    text-decoration: none; 
-    flex: 1; 
-    transition: 0.3s; 
-    padding: 15px; 
-    border-radius: 12px; 
-    border: 1px solid #f0f0f0;
-}
+.menu-card { text-align: center; text-decoration: none; flex: 1; transition: 0.3s; padding: 15px; border-radius: 12px; border: 1px solid #f0f0f0; }
 .menu-card h3 { font-size: 14px; color: #333; }
 .menu-card:hover { background: #f9f9f9; transform: translateY(-5px); border-color: #2fa56a; }
 .icon-box-menu { width: 45px; height: 45px; background: #ff6b00; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: white; }
@@ -89,19 +66,21 @@ nav a:hover { color: #2fa56a; }
 .tree .card { 
     background: white; 
     border: 1px solid #ddd; 
-    padding: 15px; 
+    padding: 10px; 
     border-radius: 10px; 
     display: inline-block; 
-    min-width: 150px; 
+    min-width: 140px; 
     box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
     position: relative; 
     z-index: 10; 
 }
 .tree .card.chairman { border: 2.5px solid #ff6b00; }
 .tree .card.vice-chairman { border: 2.5px solid #ff9800; }
-.tree .role { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #2fa56a; margin-bottom: 4px; }
+.tree .card.sie-box { border: 1.5px solid #2fa56a; background: #f0fdf4; } /* Warna khusus Sie */
+
+.tree .role { font-size: 9px; font-weight: 800; text-transform: uppercase; color: #2fa56a; margin-bottom: 2px; }
 .tree .chairman .role, .tree .vice-chairman .role { color: #ff6b00; }
-.tree .name { font-size: 14px; font-weight: 700; color: #111; }
+.tree .name { font-size: 13px; font-weight: 700; color: #111; }
 
 /* ================= BIDANG KERJA ================= */
 .bidang-section { max-width: 1100px; margin: 100px auto; padding: 0 20px; }
@@ -179,7 +158,18 @@ nav a:hover { color: #2fa56a; }
                             <li><div class="card"><p class="role">Sekretaris II</p><h3 class="name">Atep Mulyana</h3></div></li>
                             <li><div class="card"><p class="role">Bendahara I</p><h3 class="name">Rubiyan Sofyan</h3></div></li>
                             <li><div class="card"><p class="role">Bendahara II</p><h3 class="name">Ekowati</h3></div></li>
-                            <li><div class="card"><p class="role">Pelmas</p><h3 class="name">Rudi Gunawan</h3></div></li>
+                            <li>
+                                <div class="card">
+                                    <p class="role">Pelmas</p>
+                                    <h3 class="name">Rudi Gunawan</h3>
+                                </div>
+                                <ul>
+                                    <li><div class="card sie-box"><p class="role">Sie</p><h3 class="name">Lingkungan Hidup</h3></div></li>
+                                    <li><div class="card sie-box"><p class="role">Sie</p><h3 class="name">Pemuda & Olahraga</h3></div></li>
+                                    <li><div class="card sie-box"><p class="role">Sie</p><h3 class="name">Kerohanian</h3></div></li>
+                                    <li><div class="card sie-box"><p class="role">Sie</p><h3 class="name">Sosial & Kemasyarakatan</h3></div></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -231,42 +221,30 @@ nav a:hover { color: #2fa56a; }
   const megaMenu = document.getElementById('megaMenu');
   const dropdownParent = document.querySelector('.dropdown-full');
 
-  // Logic Klik Tombol Profil (Penting untuk HP)
   profileBtn.addEventListener('click', (e) => {
-    e.preventDefault(); // Mencegah loncat ke link
+    e.preventDefault();
     e.stopPropagation();
     megaMenu.classList.toggle('active');
   });
 
-  // Klik di luar menu untuk menutup
   document.addEventListener('click', (e) => {
     if (!dropdownParent.contains(e.target)) {
       megaMenu.classList.remove('active');
     }
   });
 
-  // Smooth Scroll Presisi
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
       if (href === "#") return;
-
       e.preventDefault();
       const target = document.querySelector(href);
-      
       if (target) {
-        // Tutup menu setelah diklik
         megaMenu.classList.remove('active');
-        
-        // Offset 100px agar judul tidak tertutup header
         const headerOffset = 100;
         const elementPosition = target.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
       }
     });
   });
