@@ -90,6 +90,25 @@ nav a:hover { color: #2fa56a; }
   to { opacity: 1; transform: translateY(0); }
 }
 
+  function changeLayanan(type, element) {
+    // Hapus class active dari semua item
+    document.querySelectorAll('.layanan-item').forEach(item => {
+        item.classList.remove('active');
+        const indicator = item.querySelector('.active-indicator');
+        if(indicator) indicator.remove();
+    });
+
+    // Tambah class active dan indikator ke yang diklik
+    element.classList.add('active');
+    const newIndicator = document.createElement('div');
+    newIndicator.className = 'active-indicator';
+    element.appendChild(newIndicator);
+
+    // Ubah konten kartu tengah
+    const title = element.querySelector('h3').innerText;
+    document.getElementById('cardTitle').innerText = title;
+}
+
 /* ================= HERO & RUNNING TEXT ================= */
 .hero { min-height: 100vh; padding-top: 160px; text-align: center; position: relative; }
 .typing { font-size: 36px; font-weight: 700; color: #ff9800; min-height: 46px; }
@@ -224,47 +243,82 @@ function typeEffect() {
     setTimeout(typeEffect, 80);
   }
 }
+
+  function changeLayanan(type, element) {
+    // Hapus class active dari semua item
+    document.querySelectorAll('.layanan-item').forEach(item => {
+        item.classList.remove('active');
+        const indicator = item.querySelector('.active-indicator');
+        if(indicator) indicator.remove();
+    });
+
+    // Tambah class active dan indikator ke yang diklik
+    element.classList.add('active');
+    const newIndicator = document.createElement('div');
+    newIndicator.className = 'active-indicator';
+    element.appendChild(newIndicator);
+
+    // Ubah konten kartu tengah
+    const title = element.querySelector('h3').innerText;
+    document.getElementById('cardTitle').innerText = title;
+}
 typeEffect();
 </script>
 
 <!-- ================= LAYANAN ================= -->
-<section class="layanan-section">
-  <h2 class="layanan-title">Layanan Kami</h2>
-  <p class="layanan-desc">Beragam layanan untuk warga RW 013.</p>
+<section class="layanan-container">
+    <h2 class="layanan-title">Layanan Kami</h2>
+    <p class="layanan-subtitle">Beragam layanan Sekretariat RW 013, dari administrasi kependudukan, informasi publik, hingga pengelolaan lingkungan untuk RW 013 yang lebih baik.</p>
 
-  <div class="layanan-wrapper">
-    <div class="layanan-list">
-      <div class="layanan-item"><h4>e-Waste</h4><p>Sampah elektronik</p></div>
-      <div class="layanan-item"><h4>Laboratorium</h4><p>Uji lingkungan</p></div>
-    </div>
+    <div class="layanan-content">
+        <div class="layanan-list">
+            <div class="layanan-item active" onclick="changeLayanan('e-waste', this)">
+                <div class="active-indicator"></div>
+                <h3>Surat Pengantar</h3>
+                <p>Layanan pembuatan surat pengantar RT/RW.</p>
+            </div>
+            <div class="layanan-item" onclick="changeLayanan('lab', this)">
+                <h3>Informasi Warga</h3>
+                <p>Update informasi terkini seputar lingkungan.</p>
+            </div>
+            <div class="layanan-item" onclick="changeLayanan('toilet', this)">
+                <h3>Aspirasi & Keluhan</h3>
+                <p>Wadah pelaporan masalah fasilitas umum.</p>
+            </div>
+            <div class="layanan-item" onclick="changeLayanan('izin', this)">
+                <h3>Legalitas Domisili</h3>
+                <p>Bantuan administrasi surat keterangan domisili.</p>
+            </div>
+        </div>
 
-    <div class="layanan-highlight">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/layanan-informasi.png">
-      <div class="highlight-text">
-        <small>Telusuri</small>
-        <h3>Informasi Publik</h3>
-      </div>
-      <div class="arrow">→</div>
-    </div>
+        <div class="layanan-card" id="mainCard">
+            <div class="card-overlay">
+                <span class="card-tag">PELAYANAN</span>
+                <h2 id="cardTitle">Surat Pengantar</h2>
+                <div class="card-action">
+                    <span>Telusuri</span>
+                    <div class="arrow-btn">→</div>
+                </div>
+            </div>
+        </div>
 
-    <div class="layanan-list">
-      <div class="layanan-item active"><h4>Informasi Publik</h4></div>
-      <div class="layanan-item"><h4>Bank Sampah</h4></div>
+        <div class="layanan-list">
+            <div class="layanan-item" onclick="changeLayanan('bulky', this)">
+                <h3>Keamanan Lingkungan</h3>
+                <p>Layanan koordinasi keamanan 24 jam.</p>
+            </div>
+            <div class="layanan-item" onclick="changeLayanan('info', this)">
+                <h3>Permohonan Informasi</h3>
+                <p>Saluran transparansi data kegiatan RW.</p>
+            </div>
+            <div class="layanan-item" onclick="changeLayanan('bank', this)">
+                <h3>Bank Sampah</h3>
+                <p>Platform digital data aktivitas Bank Sampah.</p>
+            </div>
+            <div class="layanan-item" onclick="changeLayanan('wb', this)">
+                <h3>Whistleblowing System</h3>
+                <p>Sarana pelaporan pelanggaran lingkungan.</p>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
-
-<script>
-const btnProfil = document.getElementById('menuProfil');
-const megaMenu = document.getElementById('megaMenu');
-
-btnProfil.onclick = (e) => {
-  e.preventDefault();
-  megaMenu.classList.toggle('show');
-};
-
-document.onclick = () => megaMenu.classList.remove('show');
-</script>
-
-</body>
-</html>
