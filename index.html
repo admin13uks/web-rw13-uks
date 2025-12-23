@@ -64,64 +64,43 @@ nav a {
 nav a:hover { color: #2fa56a; }
 
 /* ================= PROFIL DROPDOWN ================= */
-.dropdown-full {
-  position: relative;
-}
-
+/* MEGA MENU LOGIC */
+.dropdown-full { position: static; }
 .mega-menu {
-  display: none;
+  display: none; /* Default sembunyi */
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100vw;
-  background: #fff;
+  width: 100%;
+  background: white;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
   padding: 40px 0;
-  box-shadow: 0 20px 40px rgba(0,0,0,.15);
   z-index: 999;
+  border-top: 1px solid #f0f0f0;
+  animation: fadeIn 0.3s ease;
 }
 
+/* Muncul saat hover (Desktop) atau saat class .show ditambahkan (Mobile/Click) */
 .dropdown-full:hover .mega-menu,
-.mega-menu.show {
-  display: block;
+.mega-menu.show { 
+  display: block; 
 }
 
-.mega-menu-inner {
-  max-width: 1000px;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-}
-
-.menu-card {
-  text-align: center;
-  width: 220px;
-  text-decoration: none;
-  transition: .3s;
-}
-.menu-card:hover { transform: translateY(-6px); }
-
+.mega-menu-inner { max-width: 1000px; margin: auto; display: flex; justify-content: center; gap: 60px; }
+.menu-card { text-align: center; text-decoration: none; width: 220px; transition: 0.3s; }
+.menu-card:hover { transform: translateY(-8px); }
 .icon-box {
-  width: 70px;
-  height: 70px;
-  background: #ff7a00;
-  color: #fff;
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  margin: 0 auto 14px;
+  width: 65px; height: 65px; background: #ff6b00; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;
+  color: white; box-shadow: 0 8px 20px rgba(255, 107, 0, 0.25);
 }
+.icon-box svg { width: 32px; height: 32px; }
+.menu-card h3 { font-size: 16px; color: #111; margin-bottom: 6px; font-weight: 700; }
+.menu-card p { font-size: 13px; color: #777; line-height: 1.4; }
 
-.menu-card h3 {
-  font-size: 16px;
-  color: #111;
-  margin-bottom: 6px;
-}
-.menu-card p {
-  font-size: 13px;
-  color: #777;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ================= HERO ================= */
