@@ -38,8 +38,8 @@ nav a:hover { color: #2fa56a; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ================= STRUKTUR ORGANISASI (TREE) ================= */
-.org-wrapper { width: 100%; overflow-x: auto; padding-bottom: 30px; margin-top: 100px; }
-.org-container { min-width: 1000px; margin: auto; padding: 20px; text-align: center; }
+.org-wrapper { width: 100%; overflow-x: auto; padding-bottom: 50px; margin-top: 100px; -webkit-overflow-scrolling: touch; }
+.org-container { min-width: 1200px; margin: auto; padding: 20px; text-align: center; }
 .page-title { font-size: 32px; color: #2fa56a; margin-bottom: 50px; font-weight: 700; position: relative; display: inline-block; }
 .page-title::after { content: ''; width: 60px; height: 4px; background: #ff6b00; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-radius: 2px; }
 
@@ -60,9 +60,10 @@ nav a:hover { color: #2fa56a; }
     position: relative; z-index: 10; transition: 0.3s;
 }
 .tree .card:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
-.tree .card.chairman { border: 2px solid #ff6b00; background: linear-gradient(to bottom, #fff, #fff9f5); }
-.tree .card.vice-chairman { border: 2px solid #ff9800; }
-.tree .card.sie-box { border: 1.5px solid #2fa56a; background: #f0fdf4; min-width: 130px; }
+.tree .card.chairman { border: 2.5px solid #ff6b00; background: linear-gradient(to bottom, #fff, #fff9f5); }
+.tree .card.vice-chairman { border: 2.5px solid #ff9800; }
+.tree .card.sie-box { border: 1.5px solid #2fa56a; background: #f0fdf4; min-width: 140px; }
+.tree .card.support-box { border: 2px dashed #1a73e8; background: #eef6ff; }
 
 .tree .role { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #2fa56a; margin-bottom: 4px; }
 .tree .chairman .role, .tree .vice-chairman .role { color: #ff6b00; }
@@ -70,7 +71,7 @@ nav a:hover { color: #2fa56a; }
 
 /* ================= BIDANG KERJA ================= */
 .bidang-section { max-width: 1100px; margin: 60px auto 100px; padding: 0 20px; }
-.bidang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px; }
+.bidang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
 .bidang-item { 
     background: white; padding: 30px; border-radius: 20px; border-top: 5px solid #2fa56a; 
     box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: 0.3s;
@@ -78,16 +79,13 @@ nav a:hover { color: #2fa56a; }
 .bidang-item:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(47, 165, 106, 0.15); }
 .bidang-item h4 { color: #2fa56a; margin-bottom: 15px; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
 .bidang-item h4::before { content: ''; width: 8px; height: 8px; background: #ff6b00; border-radius: 50%; }
-.bidang-item ul { padding-left: 10px; color: #555; font-size: 14px; line-height: 1.7; list-style: none; }
-.bidang-item ul li { margin-bottom: 10px; position: relative; padding-left: 20px; }
-.bidang-item ul li::before { content: '✓'; position: absolute; left: 0; color: #ff6b00; font-weight: bold; }
+.bidang-item ul { padding-left: 5px; color: #555; font-size: 14.5px; line-height: 1.8; list-style: none; }
+.bidang-item ul li { margin-bottom: 10px; position: relative; padding-left: 25px; }
+.bidang-item ul li::before { content: '➔'; position: absolute; left: 0; color: #2fa56a; font-weight: bold; font-size: 12px; }
 
-/* ================= MOBILE RESPONSIVE ================= */
 @media (max-width: 768px) {
-    .header-inner { padding: 10px 15px; flex-direction: column; gap: 10px; }
-    nav ul { gap: 12px; font-size: 12px; }
-    .mega-menu { width: 95vw; }
-    .page-title { font-size: 24px; }
+    .header-inner { flex-direction: column; gap: 10px; }
+    nav ul { gap: 12px; font-size: 12px; flex-wrap: wrap; justify-content: center; }
 }
 </style>
 </head>
@@ -160,8 +158,16 @@ nav a:hover { color: #2fa56a; }
                                         <li><div class="card sie-box"><p class="role">Bid. Lingkungan Hidup</p><h3 class="name">Moh. Ferdiyansyah</h3></div></li>
                                         <li><div class="card sie-box"><p class="role">Bid. Pemuda & Olahraga</p><h3 class="name">Adi Nugroho</h3></div></li>
                                         <li><div class="card sie-box"><p class="role">Bid. Kerohanian</p><h3 class="name">H. Jarot Setiawan</h3></div></li>
-                                        <li><div class="card sie-box"><p class="role">Bid. SosMas</p><h3 class="name">Mukti Septiantoro</h3></div></li>
-                                        <li><div class="card sie-box"><p class="role">Bid. Umum</p><h3 class="name">Sutjipto</h3></div></li>
+                                        <li><div class="card sie-box"><p class="role">Bid. SosMas</p><h3 class="name">Mukti Septiantoro</h3></div>
+                                            <ul>
+                                                <li>
+                                                    <div class="card support-box">
+                                                        <p class="role" style="color: #1a73e8;">Tim Teknis & Operasional</p>
+                                                        <h3 class="name">Sutjipto</h3>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -174,70 +180,64 @@ nav a:hover { color: #2fa56a; }
 </div>
 
 <section id="bidang" class="bidang-section">
-    <h1 class="page-title" style="text-align: center; display: block; margin-bottom: 60px;">Tupoksi Bidang Kerja</h1>
+    <h1 class="page-title" style="text-align: center; display: block; margin-bottom: 60px;">Uraian Bidang Kerja</h1>
     <div class="bidang-grid">
-      <div class="bidang-item" style="border-top-color: #1a73e8;">
-        <h4 style="color: #1a73e8;">Bidang Umum</h4>
+      <div class="bidang-item" style="border-top-color: #1a73e8; background: linear-gradient(to bottom right, #ffffff, #f0f7ff);">
+        <h4 style="color: #1a73e8;">Tim Teknis & Operasional</h4>
         <ul>
-          <li>Koordinasi rutin dengan pihak Kelurahan dan Instansi terkait</li>
-          <li>Pelayanan darurat untuk keperluan administrasi warga</li>
-          <li>Mendukung operasional teknis seluruh pengurus RW 013</li>
+          <li>Koordinasi rutin dengan pihak Kelurahan dan Instansi terkait.</li>
+          <li>Pelayanan darurat untuk keperluan administrasi warga.</li>
+          <li>Mendukung operasional teknis seluruh pengurus RW 013.</li>
         </ul>
       </div>
 
       <div class="bidang-item">
         <h4>Bid. Lingkungan Hidup</h4>
         <ul>
-          <li>Mengelola kebersihan dan keasrian wilayah RW 013</li>
-          <li>Program penghijauan dan taman lingkungan</li>
-          <li>Koordinasi pengelolaan sampah warga</li>
+          <li>Mengelola kebersihan dan keasrian seluruh wilayah RW 013.</li>
+          <li>Program penghijauan, pembibitan, dan perawatan taman.</li>
         </ul>
       </div>
 
       <div class="bidang-item">
         <h4>Bid. Sosial & Kemasyarakatan</h4>
         <ul>
-          <li>Pendataan warga dan administrasi sosial</li>
-          <li>Pengelolaan dana santunan dan bantuan sosial</li>
-          <li>Koordinasi kegiatan kerja bakti warga</li>
+          <li>Pendataan warga dan pengelolaan administrasi sosial.</li>
+          <li>Penyaluran dana santunan dan bantuan sosial pemerintah.</li>
         </ul>
       </div>
 
       <div class="bidang-item">
         <h4>Bid. Pemuda & Olahraga</h4>
         <ul>
-          <li>Pembinaan Karang Taruna RW 013</li>
-          <li>Pengembangan kegiatan olahraga warga</li>
-          <li>Penyelenggaraan event peringatan HUT RI</li>
+          <li>Pembinaan dan pendampingan Karang Taruna RW 013.</li>
+          <li>Pengembangan sarana dan kegiatan olahraga warga.</li>
         </ul>
       </div>
 
       <div class="bidang-item">
         <h4>Bid. Kerohanian</h4>
         <ul>
-          <li>Pembinaan keagamaan warga</li>
-          <li>Koordinasi hari besar keagamaan</li>
-          <li>Kegiatan sosial keagamaan dan pengajian</li>
+          <li>Pembinaan mental dan spiritual seluruh warga.</li>
+          <li>Koordinasi perayaan dan ibadah hari besar keagamaan.</li>
         </ul>
       </div>
     </div>
 </section>
 
 <script>
+  // Script untuk mega menu dan scroll tetap sama
   const profileBtn = document.getElementById('profileBtn');
   const megaMenu = document.getElementById('megaMenu');
   const dropdownParent = document.querySelector('.dropdown-full');
 
   profileBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    e.preventDefault(); e.stopPropagation();
     megaMenu.classList.toggle('active');
   });
 
   document.addEventListener('click', (e) => {
-    if (!dropdownParent.contains(e.target)) {
-      megaMenu.classList.remove('active');
-    }
+    if (!dropdownParent.contains(e.target)) megaMenu.classList.remove('active');
   });
 
   document.querySelectorAll('.menu-card').forEach(anchor => {
