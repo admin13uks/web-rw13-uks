@@ -6,7 +6,7 @@
 <title>Website RW 013 UKS</title>
 
 <style>
-/* ================= RESET & BASE ================= */
+/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
@@ -20,7 +20,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ================= HEADER & NAV ================= */
+/* ================= HEADER ================= */
 header {
   position: fixed;
   top: 0;
@@ -38,109 +38,214 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
 }
 
-.logo { display: flex; align-items: center; gap: 10px; }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .logo img { width: 42px; }
-.logo-text { display: flex; flex-direction: column; line-height: 1.2; }
-.logo-title { font-size: 15px; font-weight: 700; color: #111; }
+.logo-title { font-size: 15px; font-weight: 700; }
 .logo-subtitle { font-size: 12px; color: #555; }
 
-nav ul { list-style: none; display: flex; gap: 22px; align-items: center; }
-nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 500; transition: 0.3s; cursor: pointer; }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 22px;
+}
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+}
 nav a:hover { color: #2fa56a; }
 
-/* MEGA MENU LOGIC */
-.dropdown-full { position: static; }
-.mega-menu {
-  display: none; /* Default sembunyi */
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: white;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-  padding: 40px 0;
-  z-index: 999;
-  border-top: 1px solid #f0f0f0;
-  animation: fadeIn 0.3s ease;
+/* ================= HERO ================= */
+.hero {
+  min-height: 100vh;
+  padding-top: 160px;
+  text-align: center;
 }
 
-/* Muncul saat hover (Desktop) atau saat class .show ditambahkan (Mobile/Click) */
-.dropdown-full:hover .mega-menu,
-.mega-menu.show { 
-  display: block; 
+.typing {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ff9800;
+  min-height: 46px;
 }
 
-.mega-menu-inner { max-width: 1000px; margin: auto; display: flex; justify-content: center; gap: 60px; }
-.menu-card { text-align: center; text-decoration: none; width: 220px; transition: 0.3s; }
-.menu-card:hover { transform: translateY(-8px); }
-.icon-box {
-  width: 65px; height: 65px; background: #ff6b00; border-radius: 18px;
-  display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;
-  color: white; box-shadow: 0 8px 20px rgba(255, 107, 0, 0.25);
+.float-text {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ff9800;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: floatIn 1.2s ease forwards;
+  animation-delay: 2.8s;
 }
-.icon-box svg { width: 32px; height: 32px; }
-.menu-card h3 { font-size: 16px; color: #111; margin-bottom: 6px; font-weight: 700; }
-.menu-card p { font-size: 13px; color: #777; line-height: 1.4; }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+@keyframes floatIn {
   to { opacity: 1; transform: translateY(0); }
 }
 
-  function changeLayanan(type, element) {
-    // Hapus class active dari semua item
-    document.querySelectorAll('.layanan-item').forEach(item => {
-        item.classList.remove('active');
-        const indicator = item.querySelector('.active-indicator');
-        if(indicator) indicator.remove();
-    });
-
-    // Tambah class active dan indikator ke yang diklik
-    element.classList.add('active');
-    const newIndicator = document.createElement('div');
-    newIndicator.className = 'active-indicator';
-    element.appendChild(newIndicator);
-
-    // Ubah konten kartu tengah
-    const title = element.querySelector('h3').innerText;
-    document.getElementById('cardTitle').innerText = title;
+.desc {
+  margin: 24px 0 50px;
 }
-
-/* ================= HERO & RUNNING TEXT ================= */
-.hero { min-height: 100vh; padding-top: 160px; text-align: center; position: relative; }
-.typing { font-size: 36px; font-weight: 700; color: #ff9800; min-height: 46px; }
-.float-text {
-  font-size: 36px; font-weight: 700; color: #ff9800; opacity: 0;
-  transform: translateY(40px); animation: floatIn 1.2s ease forwards; animation-delay: 2.8s;
-}
-@keyframes floatIn { to { opacity: 1; transform: translateY(0); } }
-
-.desc { margin: 24px 0 50px; }
-.desc-line1 { font-size: 16px; font-weight: 600; color: #333; margin-bottom: 6px; }
+.desc-line1 { font-size: 16px; font-weight: 600; }
 .desc-line2 { font-size: 14px; color: #555; }
 
+/* ================= MARQUEE ================= */
 .marquee-full {
-  width: 100%; overflow: hidden; background: rgba(255,255,255,0.7);
-  border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05);
-  padding: 12px 0; user-select: none;
+  width: 100%;
+  overflow: hidden;
+  background: rgba(255,255,255,0.7);
+  border-top: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 12px 0;
 }
-.marquee-track { display: flex; width: max-content; animation: marquee-infinite 40s linear infinite; }
-.marquee-track span { white-space: nowrap; font-size: 14px; color: #444; font-weight: 500; padding-right: 50px; }
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+.marquee-track span {
+  white-space: nowrap;
+  padding-right: 50px;
+  font-size: 14px;
+}
 
-@keyframes marquee-infinite {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-33.33%); }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-33.33%); }
+}
+
+/* ================= LAYANAN ================= */
+.layanan-container {
+  padding: 100px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.layanan-title {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.layanan-subtitle {
+  text-align: center;
+  font-size: 15px;
+  color: #555;
+  max-width: 760px;
+  margin: 10px auto 60px;
+}
+
+.layanan-content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.layanan-list {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.layanan-item {
+  cursor: pointer;
+  padding-left: 20px;
+  position: relative;
+}
+
+.layanan-item h3 {
+  font-size: 18px;
+  color: #999;
+  transition: .3s;
+}
+
+.layanan-item p {
+  font-size: 14px;
+  color: #aaa;
+  margin-top: 6px;
+  transition: .3s;
+}
+
+.layanan-item.active h3,
+.layanan-item:hover h3 {
+  color: #000;
+}
+.layanan-item.active p,
+.layanan-item:hover p {
+  color: #555;
+}
+
+.active-indicator {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 4px;
+  height: 40px;
+  background: #ff7a00;
+  border-radius: 4px;
+}
+
+/* CARD TENGAH */
+.layanan-card {
+  height: 420px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #4b00ff, #6a00ff);
+  color: white;
+  display: flex;
+  align-items: flex-end;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+}
+
+.card-overlay {
+  padding: 30px;
+}
+
+.card-tag {
+  font-size: 12px;
+  color: #ffb400;
+  font-weight: 700;
+}
+
+.card-overlay h2 {
+  font-size: 28px;
+  margin: 10px 0 30px;
+}
+
+.card-action {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.arrow-btn {
+  width: 42px;
+  height: 42px;
+  background: #ff7a00;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-  .header-inner { flex-direction: column; gap: 15px; }
-  nav ul { gap: 12px; flex-wrap: wrap; justify-content: center; }
-  .typing, .float-text { font-size: 26px; }
-  .mega-menu-inner { flex-direction: column; align-items: center; gap: 20px; }
+@media (max-width: 900px) {
+  .layanan-content {
+    grid-template-columns: 1fr;
+  }
+  .layanan-card {
+    order: -1;
+    height: 360px;
+    margin-bottom: 40px;
+  }
+  .active-indicator { display: none; }
 }
 </style>
 </head>
@@ -150,50 +255,19 @@ nav a:hover { color: #2fa56a; }
 <header>
   <div class="header-inner">
     <div class="logo">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo">
-      <div class="logo-text">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
+      <div>
         <div class="logo-title">Sekretariat RW 013</div>
-        <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
+        <div class="logo-subtitle">Utan Kayu Selatan</div>
       </div>
     </div>
-
     <nav>
       <ul>
-        <li><a href="index.html">Beranda</a></li>
-        <li class="dropdown-full">
-          <a href="javascript:void(0)" class="dropbtn" id="menuProfil">Profil ▾</a>
-          <div class="mega-menu" id="megaMenu">
-            <div class="mega-menu-inner">
-              <a href="profil.html#struktur" class="menu-card">
-                <div class="icon-box">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                  </svg>
-                </div>
-                <h3>Struktur Organisasi</h3>
-                <p>Susunan pengurus RW 013 periode terbaru.</p>
-              </a>
-
-              <a href="profil.html#bidang" class="menu-card">
-                <div class="icon-box">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                  </svg>
-                </div>
-                <h3>Bidang Kerja</h3>
-                <p>Uraian tugas dan fungsi tiap bidang.</p>
-              </a>
-            </div>
-          </div>
-        </li>
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Profil</a></li>
         <li><a href="#">Informasi</a></li>
         <li><a href="#">Layanan</a></li>
-        <li><a href="#">Kegiatan</a></li>
-        <li><a href="#">Kontak Kami</a></li>
+        <li><a href="#">Kontak</a></li>
       </ul>
     </nav>
   </div>
@@ -201,37 +275,66 @@ nav a:hover { color: #2fa56a; }
 
 <section class="hero">
   <div class="typing" id="typing"></div>
-  <div class="float-text">Website RW 13 UKS</div>
+  <div class="float-text">Website RW 013 UKS</div>
   <div class="desc">
-    <div class="desc-line1">Media informasi dan pelayanan warga RW 013</div>
-    <div class="desc-line2">Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur</div>
+    <div class="desc-line1">Media Informasi & Pelayanan Warga</div>
+    <div class="desc-line2">Kelurahan Utan Kayu Selatan</div>
   </div>
+
   <div class="marquee-full">
     <div class="marquee-track">
-      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan •</span>
+    </div>
+  </div>
+</section>
+
+<section class="layanan-container">
+  <h2 class="layanan-title">Layanan Kami</h2>
+  <p class="layanan-subtitle">
+    Beragam layanan Sekretariat RW 013 untuk mendukung administrasi, informasi, dan lingkungan.
+  </p>
+
+  <div class="layanan-content">
+    <div class="layanan-list">
+      <div class="layanan-item active" onclick="changeLayanan(this)">
+        <div class="active-indicator"></div>
+        <h3>Surat Pengantar</h3>
+        <p>Pembuatan surat RT/RW.</p>
+      </div>
+      <div class="layanan-item" onclick="changeLayanan(this)">
+        <h3>Informasi Warga</h3>
+        <p>Informasi terkini lingkungan.</p>
+      </div>
+    </div>
+
+    <div class="layanan-card">
+      <div class="card-overlay">
+        <span class="card-tag">PELAYANAN</span>
+        <h2 id="cardTitle">Surat Pengantar</h2>
+        <div class="card-action">
+          <span>Telusuri</span>
+          <div class="arrow-btn">→</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layanan-list">
+      <div class="layanan-item" onclick="changeLayanan(this)">
+        <h3>Keamanan Lingkungan</h3>
+        <p>Koordinasi keamanan.</p>
+      </div>
+      <div class="layanan-item" onclick="changeLayanan(this)">
+        <h3>Bank Sampah</h3>
+        <p>Data aktivitas bank sampah.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <script>
-/* JS UNTUK DROPDOWN */
-const btnProfil = document.getElementById('menuProfil');
-const megaMenu = document.getElementById('megaMenu');
-
-// Handle klik pada tombol profil
-btnProfil.addEventListener('click', function(e) {
-  e.stopPropagation(); // Mencegah event "klik luar" langsung menutup menu
-  megaMenu.classList.toggle('show');
-});
-
-// Tutup menu jika pengguna mengklik di area mana saja selain menu
-document.addEventListener('click', function() {
-  megaMenu.classList.remove('show');
-});
-
-/* JS UNTUK TYPING EFFECT */
+/* Typing Effect */
 const text = "Selamat Datang di Layanan";
 let i = 0;
 const typing = document.getElementById("typing");
@@ -243,82 +346,22 @@ function typeEffect() {
     setTimeout(typeEffect, 80);
   }
 }
-
-  function changeLayanan(type, element) {
-    // Hapus class active dari semua item
-    document.querySelectorAll('.layanan-item').forEach(item => {
-        item.classList.remove('active');
-        const indicator = item.querySelector('.active-indicator');
-        if(indicator) indicator.remove();
-    });
-
-    // Tambah class active dan indikator ke yang diklik
-    element.classList.add('active');
-    const newIndicator = document.createElement('div');
-    newIndicator.className = 'active-indicator';
-    element.appendChild(newIndicator);
-
-    // Ubah konten kartu tengah
-    const title = element.querySelector('h3').innerText;
-    document.getElementById('cardTitle').innerText = title;
-}
 typeEffect();
+
+/* Layanan Click */
+function changeLayanan(el) {
+  document.querySelectorAll('.layanan-item').forEach(i => {
+    i.classList.remove('active');
+    const ind = i.querySelector('.active-indicator');
+    if (ind) ind.remove();
+  });
+  el.classList.add('active');
+  const indicator = document.createElement('div');
+  indicator.className = 'active-indicator';
+  el.appendChild(indicator);
+  document.getElementById('cardTitle').innerText = el.querySelector('h3').innerText;
+}
 </script>
 
-<!-- ================= LAYANAN ================= -->
-<section class="layanan-container">
-    <h2 class="layanan-title">Layanan Kami</h2>
-    <p class="layanan-subtitle">Beragam layanan Sekretariat RW 013, dari administrasi kependudukan, informasi publik, hingga pengelolaan lingkungan untuk RW 013 yang lebih baik.</p>
-
-    <div class="layanan-content">
-        <div class="layanan-list">
-            <div class="layanan-item active" onclick="changeLayanan('e-waste', this)">
-                <div class="active-indicator"></div>
-                <h3>Surat Pengantar</h3>
-                <p>Layanan pembuatan surat pengantar RT/RW.</p>
-            </div>
-            <div class="layanan-item" onclick="changeLayanan('lab', this)">
-                <h3>Informasi Warga</h3>
-                <p>Update informasi terkini seputar lingkungan.</p>
-            </div>
-            <div class="layanan-item" onclick="changeLayanan('toilet', this)">
-                <h3>Aspirasi & Keluhan</h3>
-                <p>Wadah pelaporan masalah fasilitas umum.</p>
-            </div>
-            <div class="layanan-item" onclick="changeLayanan('izin', this)">
-                <h3>Legalitas Domisili</h3>
-                <p>Bantuan administrasi surat keterangan domisili.</p>
-            </div>
-        </div>
-
-        <div class="layanan-card" id="mainCard">
-            <div class="card-overlay">
-                <span class="card-tag">PELAYANAN</span>
-                <h2 id="cardTitle">Surat Pengantar</h2>
-                <div class="card-action">
-                    <span>Telusuri</span>
-                    <div class="arrow-btn">→</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="layanan-list">
-            <div class="layanan-item" onclick="changeLayanan('bulky', this)">
-                <h3>Keamanan Lingkungan</h3>
-                <p>Layanan koordinasi keamanan 24 jam.</p>
-            </div>
-            <div class="layanan-item" onclick="changeLayanan('info', this)">
-                <h3>Permohonan Informasi</h3>
-                <p>Saluran transparansi data kegiatan RW.</p>
-            </div>
-            <div class="layanan-item" onclick="changeLayanan('bank', this)">
-                <h3>Bank Sampah</h3>
-                <p>Platform digital data aktivitas Bank Sampah.</p>
-            </div>
-            <div class="layanan-item" onclick="changeLayanan('wb', this)">
-                <h3>Whistleblowing System</h3>
-                <p>Sarana pelaporan pelanggaran lingkungan.</p>
-            </div>
-        </div>
-    </div>
-</section>
+</body>
+</html>
