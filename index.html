@@ -3,230 +3,285 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Website Resmi RW 013</title>
+<title>Website RW 013 UKS</title>
 
 <style>
-/* RESET */
+/* ================= RESET & BASE ================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
-/* BACKGROUND UTAMA */
 body {
-  background: linear-gradient(180deg, #f4f8ff, #ffffff);
-  color: #1f2937;
+  background: linear-gradient(135deg, #f6f9fc, #eaf7f0);
+  color: #222;
+  overflow-x: hidden;
 }
 
-/* ================= HEADER ================= */
+/* ================= HEADER & NAV ================= */
 header {
-  background: #ffffff;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
   z-index: 1000;
 }
 
 .header-inner {
   max-width: 1200px;
   margin: auto;
-  padding: 14px 20px;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
-.logo-area {
+.logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
-.logo-area img {
-  width: 48px;
-  height: auto;
+.logo img {
+  width: 42px;
 }
 
 .logo-text {
-  font-weight: 700;
-  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
 }
 
-/* MENU */
+.logo-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+}
+
+.logo-subtitle {
+  font-size: 12px;
+  color: #555;
+}
+
 nav ul {
   list-style: none;
   display: flex;
   gap: 22px;
+  align-items: center;
 }
 
 nav a {
   text-decoration: none;
-  font-weight: 600;
-  color: #374151;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 nav a:hover {
-  color: #2563eb;
+  color: #2fa56a;
+}
+
+/* ================= MEGA MENU ================= */
+.dropdown-full {
+  position: static;
+}
+
+.mega-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  padding: 40px 0;
+  z-index: 999;
+  border-top: 1px solid #f0f0f0;
+  animation: fadeIn 0.3s ease;
+}
+
+.dropdown-full:hover .mega-menu,
+.mega-menu.show {
+  display: block;
+}
+
+.mega-menu-inner {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+
+.menu-card {
+  text-align: center;
+  text-decoration: none;
+  width: 220px;
+  transition: 0.3s;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px);
+}
+
+.icon-box {
+  width: 65px;
+  height: 65px;
+  background: #ff6b00;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  color: white;
+  box-shadow: 0 8px 20px rgba(255, 107, 0, 0.25);
+}
+
+.icon-box svg {
+  width: 32px;
+  height: 32px;
+}
+
+.menu-card h3 {
+  font-size: 16px;
+  color: #111;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.menu-card p {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.4;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ================= HERO ================= */
 .hero {
+  min-height: 100vh;
+  padding-top: 180px;
   text-align: center;
-  padding: 70px 20px 40px;
+  position: relative;
 }
 
-.hero h1 {
+.typing {
   font-size: 36px;
-  font-weight: 800;
+  font-weight: 700;
+  color: #ff9800;
+  min-height: 46px;
 }
 
-.hero p {
-  margin-top: 10px;
-  font-size: 15px;
-  color: #4b5563;
+.float-text {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ff9800;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: floatIn 1.2s ease forwards;
+  animation-delay: 2.8s;
 }
 
-/* ================= RUNNING TEXT ================= */
+@keyframes floatIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.desc {
+  margin: 24px 0 32px;
+}
+
+.desc-line1 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.desc-line2 {
+  font-size: 14px;
+  color: #555;
+}
+
+/* ================= RUNNING TEXT (FIX TOTAL) ================= */
 .marquee-full {
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   overflow: hidden;
-  background: #2563eb;
-  color: #fff;
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+  padding: 12px 0;
+  user-select: none;
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: scroll 20s linear infinite;
-  gap: 100px;
+  animation: marquee-infinite 28s linear infinite;
 }
 
 .marquee-track span {
   white-space: nowrap;
-  padding: 10px 0;
   font-size: 14px;
+  color: #ffffff;
   font-weight: 500;
+  padding-right: 80px;
 }
 
-@keyframes scroll {
+@keyframes marquee-infinite {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 
-/* ================= INFO SEKRETARIAT ================= */
-.info-rw {
-  text-align: center;
-  padding: 30px 20px;
-}
-
-.info-rw h2 {
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.info-rw p {
-  margin-top: 6px;
-  font-size: 14px;
-  color: #4b5563;
-}
-
-/* ================= LAYANAN ================= */
-.layanan {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
-
-.layanan h2 {
-  text-align: center;
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-.layanan p.sub {
-  text-align: center;
-  color: #6b7280;
-  margin-bottom: 40px;
-}
-
-.layanan-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr 1fr;
-  gap: 30px;
-  align-items: center;
-}
-
-.layanan-list h3 {
-  font-size: 18px;
-  margin-bottom: 4px;
-}
-
-.layanan-list p {
-  font-size: 14px;
-  color: #6b7280;
-  margin-bottom: 22px;
-}
-
-.layanan-card {
-  background: linear-gradient(180deg, #4f46e5, #1e3a8a);
-  border-radius: 16px;
-  color: #fff;
-  padding: 30px;
-  text-align: center;
-}
-
-.layanan-card h3 {
-  margin-top: 20px;
-  font-size: 20px;
-}
-
-/* ================= FOOTER ================= */
-footer {
-  background: #f1f5f9;
-  text-align: center;
-  padding: 20px;
-  font-size: 13px;
-  color: #475569;
-}
-
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-  nav ul {
-    gap: 14px;
+  .header-inner {
+    flex-direction: column;
+    gap: 15px;
   }
 
-  .layanan-grid {
-    grid-template-columns: 1fr;
+  nav ul {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .typing,
+  .float-text {
+    font-size: 26px;
+  }
+
+  .mega-menu-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
   }
 }
 
 @media (max-width: 600px) {
-  .header-inner {
-    flex-direction: column;
-    gap: 10px;
+  .hero {
+    padding-top: 160px;
   }
 
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+  .desc-line1 {
+    font-size: 14px;
   }
 
-  .hero h1 {
-    font-size: 26px;
-  }
-
-  .hero p {
-    font-size: 13px;
-    padding: 0 12px;
-  }
-
-  .marquee-track {
-    gap: 80px;
-    animation-duration: 18s;
+  .desc-line2 {
+    font-size: 12.5px;
+    padding: 0 14px;
+    line-height: 1.5;
   }
 
   .marquee-track span {
@@ -240,72 +295,89 @@ footer {
 
 <header>
   <div class="header-inner">
-    <div class="logo-area">
-      <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/assets/logo.png" alt="Logo RW 013">
-      <div class="logo-text">RW 013</div>
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo RW 013">
+      <div class="logo-text">
+        <div class="logo-title">Sekretariat RW 013</div>
+        <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
+      </div>
     </div>
 
     <nav>
       <ul>
-        <li><a href="#">Beranda</a></li>
-        <li><a href="#">Struktur</a></li>
-        <li><a href="#">Info</a></li>
+        <li><a href="index.html">Beranda</a></li>
+        <li class="dropdown-full">
+          <a href="javascript:void(0)" id="menuProfil">Profil ▾</a>
+          <div class="mega-menu" id="megaMenu">
+            <div class="mega-menu-inner">
+              <a href="#" class="menu-card">
+                <div class="icon-box">👥</div>
+                <h3>Struktur Organisasi</h3>
+                <p>Susunan pengurus RW 013</p>
+              </a>
+              <a href="#" class="menu-card">
+                <div class="icon-box">🏢</div>
+                <h3>Bidang Kerja</h3>
+                <p>Tugas dan fungsi tiap bidang</p>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li><a href="#">Informasi</a></li>
+        <li><a href="#">Layanan</a></li>
         <li><a href="#">Kegiatan</a></li>
-        <li><a href="#">Kontak</a></li>
+        <li><a href="#">Kontak Kami</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <section class="hero">
-  <h1>Selamat Datang di RW 013</h1>
-  <p>Media informasi dan pelayanan warga RW 013</p>
-  <p>Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur</p>
-</section>
+  <div class="typing" id="typing"></div>
+  <div class="float-text">Website RW 13 UKS</div>
 
-<div class="marquee-full">
-  <div class="marquee-track">
-    <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-    <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+  <div class="desc">
+    <div class="desc-line1">Media informasi dan pelayanan warga RW 013</div>
+    <div class="desc-line2">Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur</div>
   </div>
-</div>
 
-<section class="info-rw">
-  <h2>Sekretariat RW 013</h2>
-  <p>Utan Kayu Selatan – Matraman</p>
-</section>
-
-<section class="layanan">
-  <h2>Layanan Kami</h2>
-  <p class="sub">Beragam layanan untuk mendukung kebutuhan warga RW 013</p>
-
-  <div class="layanan-grid">
-    <div class="layanan-list">
-      <h3>Administrasi Warga</h3>
-      <p>Pengurusan surat dan data kependudukan.</p>
-
-      <h3>Informasi Kegiatan</h3>
-      <p>Agenda dan kegiatan lingkungan.</p>
-    </div>
-
-    <div class="layanan-card">
-      <h3>Pelayanan RW</h3>
-      <p>Melayani warga dengan cepat dan transparan</p>
-    </div>
-
-    <div class="layanan-list">
-      <h3>Pengaduan Warga</h3>
-      <p>Sarana aspirasi dan pengaduan.</p>
-
-      <h3>Keamanan Lingkungan</h3>
-      <p>Koordinasi keamanan warga.</p>
+  <div class="marquee-full">
+    <div class="marquee-track">
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
     </div>
   </div>
 </section>
 
-<footer>
-  © 2025 RW 013 Utan Kayu Selatan – Jakarta Timur
-</footer>
+<script>
+/* DROPDOWN */
+const btnProfil = document.getElementById('menuProfil');
+const megaMenu = document.getElementById('megaMenu');
+
+btnProfil.addEventListener('click', function(e) {
+  e.stopPropagation();
+  megaMenu.classList.toggle('show');
+});
+
+document.addEventListener('click', function() {
+  megaMenu.classList.remove('show');
+});
+
+/* TYPING EFFECT */
+const text = "Selamat Datang di Layanan";
+let i = 0;
+const typing = document.getElementById("typing");
+
+function typeEffect() {
+  if (i < text.length) {
+    typing.innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 80);
+  }
+}
+typeEffect();
+</script>
 
 </body>
 </html>
