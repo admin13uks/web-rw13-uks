@@ -227,5 +227,90 @@ function typeEffect() {
 typeEffect();
 </script>
 
+<section id="bidang" class="bidang-section">
+    <h1 class="page-title" style="text-align: center; display: block; margin-bottom: 60px;">Tupoksi Bidang Kerja</h1>
+    <div class="bidang-grid">
+      <div class="bidang-item" style="border-top-color: #1a73e8;">
+        <h4 style="color: #1a73e8;">Bidang Umum</h4>
+        <ul>
+          <li>Koordinasi rutin dengan pihak Kelurahan dan Instansi terkait</li>
+          <li>Pelayanan darurat untuk keperluan administrasi warga</li>
+          <li>Mendukung operasional teknis seluruh pengurus RW 013</li>
+        </ul>
+      </div>
+
+      <div class="bidang-item">
+        <h4>Bid. Lingkungan Hidup</h4>
+        <ul>
+          <li>Mengelola kebersihan dan keasrian wilayah RW 013</li>
+          <li>Program penghijauan dan taman lingkungan</li>
+          <li>Koordinasi pengelolaan sampah warga</li>
+        </ul>
+      </div>
+
+      <div class="bidang-item">
+        <h4>Bid. Sosial & Kemasyarakatan</h4>
+        <ul>
+          <li>Pendataan warga dan administrasi sosial</li>
+          <li>Pengelolaan dana santunan dan bantuan sosial</li>
+          <li>Koordinasi kegiatan kerja bakti warga</li>
+        </ul>
+      </div>
+
+      <div class="bidang-item">
+        <h4>Bid. Pemuda & Olahraga</h4>
+        <ul>
+          <li>Pembinaan Karang Taruna RW 013</li>
+          <li>Pengembangan kegiatan olahraga warga</li>
+          <li>Penyelenggaraan event peringatan HUT RI</li>
+        </ul>
+      </div>
+
+      <div class="bidang-item">
+        <h4>Bid. Kerohanian</h4>
+        <ul>
+          <li>Pembinaan keagamaan warga</li>
+          <li>Koordinasi hari besar keagamaan</li>
+          <li>Kegiatan sosial keagamaan dan pengajian</li>
+        </ul>
+      </div>
+    </div>
+</section>
+
+<script>
+  const profileBtn = document.getElementById('profileBtn');
+  const megaMenu = document.getElementById('megaMenu');
+  const dropdownParent = document.querySelector('.dropdown-full');
+
+  profileBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    megaMenu.classList.toggle('active');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dropdownParent.contains(e.target)) {
+      megaMenu.classList.remove('active');
+    }
+  });
+
+  document.querySelectorAll('.menu-card').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href.startsWith("#")) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          megaMenu.classList.remove('active');
+          const headerOffset = 100;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
