@@ -6,7 +6,7 @@
 <title>Website RW 013 UKS</title>
 
 <style>
-/* ================= RESET ================= */
+/* ================= RESET & BASE ================= */
 * {
   margin: 0;
   padding: 0;
@@ -14,14 +14,13 @@
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
-/* ================= BODY ================= */
 body {
   background: linear-gradient(135deg, #f6f9fc, #eaf7f0);
   color: #222;
   overflow-x: hidden;
 }
 
-/* ================= HEADER ================= */
+/* ================= HEADER & NAV ================= */
 header {
   position: fixed;
   top: 0;
@@ -39,52 +38,23 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative; /* Penting untuk mega menu */
+  position: relative;
 }
 
-/* LOGO */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
+.logo { display: flex; align-items: center; gap: 10px; }
 .logo img { width: 42px; }
-
-.logo-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-
+.logo-text { display: flex; flex-direction: column; line-height: 1.2; }
 .logo-title { font-size: 15px; font-weight: 700; color: #111; }
 .logo-subtitle { font-size: 12px; color: #555; }
 
-/* ================= NAVIGASI ================= */
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 22px;
-  align-items: center;
-}
-
-nav a {
-  text-decoration: none;
-  color: #333;
-  font-size: 14px;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
+nav ul { list-style: none; display: flex; gap: 22px; align-items: center; }
+nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 500; transition: 0.3s; cursor: pointer; }
 nav a:hover { color: #2fa56a; }
 
 /* MEGA MENU LOGIC */
-.dropdown-full {
-  position: static; /* Membuat mega menu melebar sesuai lebar header */
-}
-
+.dropdown-full { position: static; }
 .mega-menu {
-  display: none;
+  display: none; /* Default sembunyi */
   position: absolute;
   top: 100%;
   left: 0;
@@ -97,124 +67,53 @@ nav a:hover { color: #2fa56a; }
   animation: fadeIn 0.3s ease;
 }
 
-.mega-menu-inner {
-  max-width: 1000px;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  gap: 60px;
+/* Muncul saat hover (Desktop) atau saat class .show ditambahkan (Mobile/Click) */
+.dropdown-full:hover .mega-menu,
+.mega-menu.show { 
+  display: block; 
 }
 
-/* Kartu Menu Oranye */
-.menu-card {
-  text-align: center;
-  text-decoration: none;
-  width: 220px;
-  transition: 0.3s;
-}
-
+.mega-menu-inner { max-width: 1000px; margin: auto; display: flex; justify-content: center; gap: 60px; }
+.menu-card { text-align: center; text-decoration: none; width: 220px; transition: 0.3s; }
 .menu-card:hover { transform: translateY(-8px); }
-
 .icon-box {
-  width: 65px;
-  height: 65px;
-  background: #ff6b00; /* Warna Oranye */
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 15px;
-  color: white;
-  box-shadow: 0 8px 20px rgba(255, 107, 0, 0.25);
+  width: 65px; height: 65px; background: #ff6b00; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;
+  color: white; box-shadow: 0 8px 20px rgba(255, 107, 0, 0.25);
 }
-
 .icon-box svg { width: 32px; height: 32px; }
-
-.menu-card h3 {
-  font-size: 16px;
-  color: #111;
-  margin-bottom: 6px;
-  font-weight: 700;
-}
-
-.menu-card p {
-  font-size: 13px;
-  color: #777;
-  line-height: 1.4;
-}
-
-/* Hover Trigger */
-.dropdown-full:hover .mega-menu { display: block; }
+.menu-card h3 { font-size: 16px; color: #111; margin-bottom: 6px; font-weight: 700; }
+.menu-card p { font-size: 13px; color: #777; line-height: 1.4; }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ================= HERO ================= */
-.hero {
-  min-height: 100vh;
-  padding-top: 160px;
-  text-align: center;
-  position: relative;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(47,165,106,.12), transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(255,200,120,.15), transparent 40%);
-  z-index: -1;
-}
-
-.typing {
-  font-size: 36px;
-  font-weight: 700;
-  color: #ff9800;
-  min-height: 46px;
-}
-
+/* ================= HERO & RUNNING TEXT ================= */
+.hero { min-height: 100vh; padding-top: 160px; text-align: center; position: relative; }
+.typing { font-size: 36px; font-weight: 700; color: #ff9800; min-height: 46px; }
 .float-text {
-  font-size: 36px;
-  font-weight: 700;
-  color: #ff9800;
-  opacity: 0;
-  transform: translateY(40px);
-  animation: floatIn 1.2s ease forwards;
-  animation-delay: 2.8s;
+  font-size: 36px; font-weight: 700; color: #ff9800; opacity: 0;
+  transform: translateY(40px); animation: floatIn 1.2s ease forwards; animation-delay: 2.8s;
 }
-
 @keyframes floatIn { to { opacity: 1; transform: translateY(0); } }
 
-.desc { margin-top: 24px; }
+.desc { margin: 24px 0 50px; }
 .desc-line1 { font-size: 16px; font-weight: 600; color: #333; margin-bottom: 6px; }
 .desc-line2 { font-size: 14px; color: #555; }
 
-/* ================= RUNNING TEXT ================= */
 .marquee-full {
-  width: 100vw;
-  margin-top: 50px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.6);
-  border-top: 1px solid rgba(0,0,0,0.05);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  padding: 10px 0;
+  width: 100%; overflow: hidden; background: rgba(255,255,255,0.7);
+  border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 12px 0; user-select: none;
 }
+.marquee-track { display: flex; width: max-content; animation: marquee-infinite 40s linear infinite; }
+.marquee-track span { white-space: nowrap; font-size: 14px; color: #444; font-weight: 500; padding-right: 50px; }
 
-.marquee-track {
-  display: flex;
-  width: max-content;
-  gap: 120px;
-  animation: marquee 30s linear infinite;
-}
-
-.marquee-track span { white-space: nowrap; font-size: 14px; color: #444; font-weight: 500; }
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+@keyframes marquee-infinite {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
 }
 
 /* ================= RESPONSIVE ================= */
@@ -222,8 +121,7 @@ nav a:hover { color: #2fa56a; }
   .header-inner { flex-direction: column; gap: 15px; }
   nav ul { gap: 12px; flex-wrap: wrap; justify-content: center; }
   .typing, .float-text { font-size: 26px; }
-  .mega-menu-inner { flex-direction: column; gap: 30px; }
-  .mega-menu { position: fixed; height: 100vh; overflow-y: auto; }
+  .mega-menu-inner { flex-direction: column; align-items: center; gap: 20px; }
 }
 </style>
 </head>
@@ -243,12 +141,10 @@ nav a:hover { color: #2fa56a; }
     <nav>
       <ul>
         <li><a href="index.html">Beranda</a></li>
-        
         <li class="dropdown-full">
-          <a href="profil.html" class="dropbtn">Profil ▾</a>
-          <div class="mega-menu">
+          <a href="javascript:void(0)" class="dropbtn" id="menuProfil">Profil ▾</a>
+          <div class="mega-menu" id="megaMenu">
             <div class="mega-menu-inner">
-              
               <a href="profil.html#struktur" class="menu-card">
                 <div class="icon-box">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -272,11 +168,9 @@ nav a:hover { color: #2fa56a; }
                 <h3>Bidang Kerja</h3>
                 <p>Uraian tugas dan fungsi tiap bidang.</p>
               </a>
-
             </div>
           </div>
         </li>
-
         <li><a href="#">Informasi</a></li>
         <li><a href="#">Layanan</a></li>
         <li><a href="#">Kegiatan</a></li>
@@ -289,16 +183,13 @@ nav a:hover { color: #2fa56a; }
 <section class="hero">
   <div class="typing" id="typing"></div>
   <div class="float-text">Website RW 13 UKS</div>
-
   <div class="desc">
     <div class="desc-line1">Media informasi dan pelayanan warga RW 013</div>
-    <div class="desc-line2">
-      Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur
-    </div>
+    <div class="desc-line2">Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur</div>
   </div>
-
   <div class="marquee-full">
     <div class="marquee-track">
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
       <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
       <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
     </div>
@@ -306,6 +197,22 @@ nav a:hover { color: #2fa56a; }
 </section>
 
 <script>
+/* JS UNTUK DROPDOWN */
+const btnProfil = document.getElementById('menuProfil');
+const megaMenu = document.getElementById('megaMenu');
+
+// Handle klik pada tombol profil
+btnProfil.addEventListener('click', function(e) {
+  e.stopPropagation(); // Mencegah event "klik luar" langsung menutup menu
+  megaMenu.classList.toggle('show');
+});
+
+// Tutup menu jika pengguna mengklik di area mana saja selain menu
+document.addEventListener('click', function() {
+  megaMenu.classList.remove('show');
+});
+
+/* JS UNTUK TYPING EFFECT */
 const text = "Selamat Datang di Layanan";
 let i = 0;
 const typing = document.getElementById("typing");
