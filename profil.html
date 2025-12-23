@@ -27,7 +27,8 @@ nav a:hover { color: #2fa56a; }
     display: none; 
     position: absolute; 
     top: 100%; 
-    right: 0; 
+    left: 50%; 
+    transform: translateX(-50%); 
     width: 450px; 
     background: white; 
     box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
@@ -36,8 +37,9 @@ nav a:hover { color: #2fa56a; }
     border-top: 3px solid #2fa56a;
     border-radius: 0 0 12px 12px;
 }
-.dropdown-full:hover .mega-menu { display: block; animation: fadeIn 0.3s ease forwards; }
-.mega-menu.active { display: block; }
+/* Memunculkan menu saat hover atau class active */
+.dropdown-full:hover .mega-menu, .mega-menu.active { display: block; animation: fadeIn 0.3s ease forwards; }
+
 .mega-menu-inner { display: flex; justify-content: space-between; gap: 15px; }
 .menu-card { text-align: center; text-decoration: none; flex: 1; transition: 0.3s; padding: 15px; border-radius: 12px; border: 1px solid #f0f0f0; }
 .menu-card h3 { font-size: 14px; color: #333; }
@@ -76,7 +78,7 @@ nav a:hover { color: #2fa56a; }
 }
 .tree .card.chairman { border: 2.5px solid #ff6b00; }
 .tree .card.vice-chairman { border: 2.5px solid #ff9800; }
-.tree .card.sie-box { border: 1.5px solid #2fa56a; background: #f0fdf4; } /* Warna khusus Sie */
+.tree .card.sie-box { border: 1.5px solid #2fa56a; background: #f0fdf4; }
 
 .tree .role { font-size: 9px; font-weight: 800; text-transform: uppercase; color: #2fa56a; margin-bottom: 2px; }
 .tree .chairman .role, .tree .vice-chairman .role { color: #ff6b00; }
@@ -92,8 +94,9 @@ nav a:hover { color: #2fa56a; }
 
 /* ================= MOBILE RESPONSIVE ================= */
 @media (max-width: 768px) {
-    .header-inner { padding: 10px 15px; }
-    .mega-menu { width: 90vw; left: 50%; transform: translateX(-50%); position: fixed; top: 60px; }
+    .header-inner { flex-direction: column; gap: 10px; }
+    nav ul { gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .mega-menu { width: 90vw; position: fixed; top: 80px; }
     .tree ul { flex-direction: column; align-items: center; padding-top: 0; }
     .tree li { padding: 25px 0 0 0; width: 100%; }
     .tree li::before, .tree li::after { display: none !important; } 
@@ -114,7 +117,7 @@ nav a:hover { color: #2fa56a; }
       <ul>
         <li><a href="index.html">Beranda</a></li>
         <li class="dropdown-full">
-          <a href="#" id="profileBtn">Profil <small>▾</small></a>
+          <a href="javascript:void(0)" id="profileBtn">Profil <small>▾</small></a>
           <div class="mega-menu" id="megaMenu">
             <div class="mega-menu-inner">
               <a href="#struktur" class="menu-card">
@@ -132,7 +135,10 @@ nav a:hover { color: #2fa56a; }
             </div>
           </div>
         </li>
-        <li><a href="index.html">Kontak</a></li>
+        <li><a href="#">Informasi</a></li>
+        <li><a href="#">Layanan</a></li>
+        <li><a href="#">Kegiatan</a></li>
+        <li><a href="#">Kontak Kami</a></li>
       </ul>
     </nav>
   </div>
@@ -221,30 +227,34 @@ nav a:hover { color: #2fa56a; }
   const megaMenu = document.getElementById('megaMenu');
   const dropdownParent = document.querySelector('.dropdown-full');
 
+  // Klik Profil untuk buka/tutup menu
   profileBtn.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
     megaMenu.classList.toggle('active');
   });
 
+  // Klik di luar menu untuk menutup
   document.addEventListener('click', (e) => {
     if (!dropdownParent.contains(e.target)) {
       megaMenu.classList.remove('active');
     }
   });
 
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  // Smooth Scroll untuk menu di dalam Mega Menu
+  document.querySelectorAll('.menu-card').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
-      if (href === "#") return;
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        megaMenu.classList.remove('active');
-        const headerOffset = 100;
-        const elementPosition = target.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      if (href.startsWith("#")) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          megaMenu.classList.remove('active');
+          const headerOffset = 100;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
       }
     });
   });
