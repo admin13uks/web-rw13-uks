@@ -275,10 +275,11 @@ nav a:hover { color: #2fa56a; }
 }
 
 /* ================= RESPONSIVE ================= */
-@media (max-width: 900px) {
-  .layanan-content { grid-template-columns: 1fr; }
-  .layanan-card { order: -1; height: 360px; margin-bottom: 40px; }
-  .active-indicator { display: none; }
+@media (max-width: 768px) {
+  .header-inner { flex-direction: column; gap: 15px; }
+  nav ul { gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .typing, .float-text { font-size: 26px; }
+  .mega-menu-inner { flex-direction: column; align-items: center; gap: 20px; }
 }
 </style>
 </head>
@@ -288,38 +289,50 @@ nav a:hover { color: #2fa56a; }
 <header>
   <div class="header-inner">
     <div class="logo">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
-      <div>
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo">
+      <div class="logo-text">
         <div class="logo-title">Sekretariat RW 013</div>
-        <div class="logo-subtitle">Utan Kayu Selatan</div>
+        <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
       </div>
     </div>
 
     <nav>
       <ul>
         <li><a href="index.html">Beranda</a></li>
-
         <li class="dropdown-full">
-          <a href="javascript:void(0)" id="menuProfil">Profil ▾</a>
+          <a href="javascript:void(0)" class="dropbtn" id="menuProfil">Profil ▾</a>
           <div class="mega-menu" id="megaMenu">
             <div class="mega-menu-inner">
               <a href="profil.html#struktur" class="menu-card">
-                <div class="icon-box">🏛️</div>
+                <div class="icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
                 <h3>Struktur Organisasi</h3>
-                <p>Susunan pengurus RW</p>
+                <p>Susunan pengurus RW 013 periode terbaru.</p>
               </a>
+
               <a href="profil.html#bidang" class="menu-card">
-                <div class="icon-box">📋</div>
+                <div class="icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </div>
                 <h3>Bidang Kerja</h3>
-                <p>Tugas & fungsi</p>
+                <p>Uraian tugas dan fungsi tiap bidang.</p>
               </a>
             </div>
           </div>
         </li>
-
         <li><a href="#">Informasi</a></li>
-        <li><a href="#layanan">Layanan</a></li>
-        <li><a href="#">Kontak</a></li>
+        <li><a href="#">Layanan</a></li>
+        <li><a href="#">Kegiatan</a></li>
+        <li><a href="#">Kontak Kami</a></li>
       </ul>
     </nav>
   </div>
@@ -327,16 +340,14 @@ nav a:hover { color: #2fa56a; }
 
 <section class="hero">
   <div class="typing" id="typing"></div>
-  <div class="float-text">Website RW 013 UKS</div>
-
+  <div class="float-text">Website RW 13 UKS</div>
   <div class="desc">
-    <div class="desc-line1">Media Informasi & Pelayanan Warga</div>
-    <div class="desc-line2">Kelurahan Utan Kayu Selatan</div>
+    <div class="desc-line1">Media informasi dan pelayanan warga RW 013</div>
+    <div class="desc-line2">Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur</div>
   </div>
-
   <div class="marquee-full">
     <div class="marquee-track">
-      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span> 
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
       <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
       <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
     </div>
