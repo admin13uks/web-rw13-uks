@@ -20,7 +20,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ================= HEADER ================= */
+/* ================= HEADER & NAV ================= */
 header {
   position: fixed;
   top: 0;
@@ -38,189 +38,90 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
-/* ================= LOGO ================= */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
+.logo { display: flex; align-items: center; gap: 10px; }
 .logo img { width: 42px; }
-
-.logo-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-
-.logo-title { font-size: 15px; font-weight: 700; }
+.logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+.logo-title { font-size: 15px; font-weight: 700; color: #111; }
 .logo-subtitle { font-size: 12px; color: #555; }
 
-/* ================= NAV DESKTOP ================= */
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 22px;
-  align-items: center;
-}
-
-nav a {
-  text-decoration: none;
-  color: #333;
-  font-size: 14px;
-  font-weight: 500;
-}
-
+nav ul { list-style: none; display: flex; gap: 22px; align-items: center; }
+nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 500; transition: 0.3s; cursor: pointer; }
 nav a:hover { color: #2fa56a; }
 
-/* ================= HAMBURGER ================= */
-.hamburger {
-  display: none;
-  font-size: 26px;
-  cursor: pointer;
-}
-
-/* ================= MEGA MENU ================= */
-.dropdown-full { position: relative; }
-
+/* MEGA MENU LOGIC */
+.dropdown-full { position: static; }
 .mega-menu {
-  display: none;
+  display: none; /* Default sembunyi */
   position: absolute;
-  top: 140%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff;
-  padding: 25px;
-  border-radius: 14px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-  width: 500px;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  padding: 40px 0;
+  z-index: 999;
+  border-top: 1px solid #f0f0f0;
+  animation: fadeIn 0.3s ease;
 }
 
-.mega-menu.show { display: block; }
-
-.mega-menu-inner {
-  display: flex;
-  gap: 30px;
-  justify-content: center;
+/* Muncul saat hover (Desktop) atau saat class .show ditambahkan (Mobile/Click) */
+.dropdown-full:hover .mega-menu,
+.mega-menu.show { 
+  display: block; 
 }
 
-.menu-card {
-  text-decoration: none;
-  color: #111;
-  text-align: center;
-  width: 200px;
-}
-
+.mega-menu-inner { max-width: 1000px; margin: auto; display: flex; justify-content: center; gap: 60px; }
+.menu-card { text-align: center; text-decoration: none; width: 220px; transition: 0.3s; }
+.menu-card:hover { transform: translateY(-8px); }
 .icon-box {
-  width: 60px;
-  height: 60px;
-  background: #ff6b00;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 10px;
-  color: #fff;
-  font-size: 26px;
+  width: 65px; height: 65px; background: #ff6b00; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;
+  color: white; box-shadow: 0 8px 20px rgba(255, 107, 0, 0.25);
+}
+.icon-box svg { width: 32px; height: 32px; }
+.menu-card h3 { font-size: 16px; color: #111; margin-bottom: 6px; font-weight: 700; }
+.menu-card p { font-size: 13px; color: #777; line-height: 1.4; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.menu-card h3 { font-size: 15px; }
-.menu-card p { font-size: 13px; color: #666; }
-
-/* ================= HERO ================= */
-.hero {
-  min-height: 100vh;
-  padding-top: 160px;
-  text-align: center;
-}
-
-.typing {
-  font-size: 36px;
-  font-weight: 700;
-  color: #ff9800;
-}
-
+/* ================= HERO & RUNNING TEXT ================= */
+.hero { min-height: 100vh; padding-top: 160px; text-align: center; position: relative; }
+.typing { font-size: 36px; font-weight: 700; color: #ff9800; min-height: 46px; }
 .float-text {
-  font-size: 32px;
-  font-weight: 700;
-  color: #ff9800;
-  margin-top: 10px;
+  font-size: 36px; font-weight: 700; color: #ff9800; opacity: 0;
+  transform: translateY(40px); animation: floatIn 1.2s ease forwards; animation-delay: 2.8s;
 }
+@keyframes floatIn { to { opacity: 1; transform: translateY(0); } }
 
-.desc { margin-top: 25px; }
-.desc-line1 { font-weight: 600; }
+.desc { margin: 24px 0 50px; }
+.desc-line1 { font-size: 16px; font-weight: 600; color: #333; margin-bottom: 6px; }
 .desc-line2 { font-size: 14px; color: #555; }
 
-/* ================= RUNNING TEXT ================= */
 .marquee-full {
-  margin-top: 40px;
-  background: rgba(255,255,255,0.7);
-  padding: 12px 0;
-  overflow: hidden;
+  width: 100%; overflow: hidden; background: rgba(255,255,255,0.7);
+  border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 12px 0; user-select: none;
+}
+.marquee-track { display: flex; width: max-content; animation: marquee-infinite 40s linear infinite; }
+.marquee-track span { white-space: nowrap; font-size: 14px; color: #444; font-weight: 500; padding-right: 50px; }
+
+@keyframes marquee-infinite {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
 }
 
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 30s linear infinite;
-}
-
-.marquee-track span {
-  white-space: nowrap;
-  padding-right: 50px;
-}
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* ================= RESPONSIVE HP ================= */
+/* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-
-  .hamburger { display: block; }
-
-  nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: white;
-    display: none;
-    border-top: 1px solid #eee;
-  }
-
-  nav.active { display: block; }
-
-  nav ul {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  nav li {
-    border-bottom: 1px solid #eee;
-    width: 100%;
-    text-align: center;
-  }
-
-  nav a {
-    display: block;
-    padding: 14px;
-  }
-
-  .mega-menu {
-    position: static;
-    transform: none;
-    width: 100%;
-    box-shadow: none;
-    padding: 15px;
-  }
-
-  .mega-menu-inner {
-    flex-direction: column;
-  }
+  .header-inner { flex-direction: column; gap: 15px; }
+  nav ul { gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .typing, .float-text { font-size: 26px; }
+  .mega-menu-inner { flex-direction: column; align-items: center; gap: 20px; }
 }
 </style>
 </head>
@@ -229,88 +130,101 @@ nav a:hover { color: #2fa56a; }
 
 <header>
   <div class="header-inner">
-
     <div class="logo">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo">
       <div class="logo-text">
         <div class="logo-title">Sekretariat RW 013</div>
         <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
       </div>
     </div>
 
-    <div class="hamburger" id="hamburger">☰</div>
-
-    <nav id="navMenu">
+    <nav>
       <ul>
-        <li><a href="#">Beranda</a></li>
-
+        <li><a href="index.html">Beranda</a></li>
         <li class="dropdown-full">
-          <a href="javascript:void(0)" id="menuProfil">Profil ▾</a>
+          <a href="javascript:void(0)" class="dropbtn" id="menuProfil">Profil ▾</a>
           <div class="mega-menu" id="megaMenu">
             <div class="mega-menu-inner">
-              <a href="#" class="menu-card">
-                <div class="icon-box">👥</div>
-                <h3>Struktur</h3>
-                <p>Pengurus RW</p>
+              <a href="profil.html#struktur" class="menu-card">
+                <div class="icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <h3>Struktur Organisasi</h3>
+                <p>Susunan pengurus RW 013 periode terbaru.</p>
               </a>
-              <a href="#" class="menu-card">
-                <div class="icon-box">📋</div>
-                <h3>Bidang</h3>
-                <p>Tugas & fungsi</p>
+
+              <a href="profil.html#bidang" class="menu-card">
+                <div class="icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </div>
+                <h3>Bidang Kerja</h3>
+                <p>Uraian tugas dan fungsi tiap bidang.</p>
               </a>
             </div>
           </div>
         </li>
-
         <li><a href="#">Informasi</a></li>
         <li><a href="#">Layanan</a></li>
         <li><a href="#">Kegiatan</a></li>
-        <li><a href="#">Kontak</a></li>
+        <li><a href="#">Kontak Kami</a></li>
       </ul>
     </nav>
-
   </div>
 </header>
 
 <section class="hero">
   <div class="typing" id="typing"></div>
-  <div class="float-text">Website RW 013 UKS</div>
-
+  <div class="float-text">Website RW 13 UKS</div>
   <div class="desc">
-    <div class="desc-line1">Media Informasi & Pelayanan Warga</div>
-    <div class="desc-line2">Kel. Utan Kayu Selatan – Matraman</div>
+    <div class="desc-line1">Media informasi dan pelayanan warga RW 013</div>
+    <div class="desc-line2">Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur</div>
   </div>
-
   <div class="marquee-full">
     <div class="marquee-track">
-      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan •</span>
-      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
     </div>
   </div>
 </section>
 
 <script>
-/* HAMBURGER */
-document.getElementById("hamburger").onclick = () => {
-  document.getElementById("navMenu").classList.toggle("active");
-};
+/* JS UNTUK DROPDOWN */
+const btnProfil = document.getElementById('menuProfil');
+const megaMenu = document.getElementById('megaMenu');
 
-/* MEGA MENU */
-document.getElementById("menuProfil").onclick = (e) => {
-  e.stopPropagation();
-  document.getElementById("megaMenu").classList.toggle("show");
-};
+// Handle klik pada tombol profil
+btnProfil.addEventListener('click', function(e) {
+  e.stopPropagation(); // Mencegah event "klik luar" langsung menutup menu
+  megaMenu.classList.toggle('show');
+});
 
-/* TYPING */
+// Tutup menu jika pengguna mengklik di area mana saja selain menu
+document.addEventListener('click', function() {
+  megaMenu.classList.remove('show');
+});
+
+/* JS UNTUK TYPING EFFECT */
 const text = "Selamat Datang di Layanan";
 let i = 0;
 const typing = document.getElementById("typing");
-(function type(){
-  if(i < text.length){
-    typing.innerHTML += text.charAt(i++);
-    setTimeout(type, 80);
+
+function typeEffect() {
+  if (i < text.length) {
+    typing.innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 80);
   }
-})();
+}
+typeEffect();
 </script>
 
 </body>
