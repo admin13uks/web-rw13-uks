@@ -20,25 +20,52 @@ nav ul { list-style: none; display: flex; gap: 22px; align-items: center; }
 nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.3s; }
 nav a:hover { color: #2fa56a; }
 
-/* ================= MEGA MENU (DROPDOWN) ================= */
-.dropdown-full { position: static; }
+/* ================= MEGA MENU (DROPDOWN) - UPDATED ================= */
+.dropdown-full { position: relative; } /* Berubah dari static ke relative */
+
+#profileBtn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 0;
+}
+
 .mega-menu { 
     display: none; 
     position: absolute; 
     top: 100%; 
-    left: 0; 
-    width: 100%; 
+    right: 0; /* Menu muncul sejajar ke kanan tombol */
+    width: 450px; 
     background: white; 
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
-    padding: 30px 0; 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+    padding: 20px; 
     z-index: 999; 
-    border-top: 1px solid #f0f0f0; 
+    border-top: 3px solid #2fa56a;
+    border-radius: 0 0 12px 12px;
 }
-.mega-menu.active { display: block; animation: fadeIn 0.3s ease forwards; }
-.mega-menu-inner { max-width: 800px; margin: auto; display: flex; justify-content: center; gap: 40px; }
-.menu-card { text-align: center; text-decoration: none; width: 200px; transition: 0.3s; padding: 15px; border-radius: 12px; }
-.menu-card:hover { background: #f9f9f9; transform: translateY(-5px); }
-.icon-box-menu { width: 50px; height: 50px; background: #ff6b00; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: white; }
+
+/* Efek Hover: Muncul saat kursor diarahkan */
+.dropdown-full:hover .mega-menu { 
+    display: block; 
+    animation: fadeIn 0.3s ease forwards; 
+}
+
+/* Class active untuk trigger via klik (Mobile/JS) */
+.mega-menu.active { display: block; }
+
+.mega-menu-inner { display: flex; justify-content: space-between; gap: 15px; }
+.menu-card { 
+    text-align: center; 
+    text-decoration: none; 
+    flex: 1; 
+    transition: 0.3s; 
+    padding: 15px; 
+    border-radius: 12px; 
+    border: 1px solid #f0f0f0;
+}
+.menu-card h3 { font-size: 14px; color: #333; }
+.menu-card:hover { background: #f9f9f9; transform: translateY(-5px); border-color: #2fa56a; }
+.icon-box-menu { width: 45px; height: 45px; background: #ff6b00; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: white; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -50,7 +77,6 @@ nav a:hover { color: #2fa56a; }
 .tree ul { padding-top: 20px; position: relative; transition: all 0.5s; display: flex; justify-content: center; }
 .tree li { text-align: center; list-style-type: none; position: relative; padding: 20px 10px 0 10px; transition: all 0.5s; }
 
-/* Garis Horizontal Desktop */
 .tree li::before, .tree li::after { content: ''; position: absolute; top: 0; right: 50%; border-top: 2px solid #ccc; width: 50%; height: 20px; }
 .tree li::after { right: auto; left: 50%; border-left: 2px solid #ccc; }
 .tree li:only-child::after, .tree li:only-child::before { display: none; }
@@ -60,7 +86,6 @@ nav a:hover { color: #2fa56a; }
 .tree li:first-child::after { border-radius: 5px 0 0 0; }
 .tree ul ul::before { content: ''; position: absolute; top: 0; left: 50%; border-left: 2px solid #ccc; width: 0; height: 20px; }
 
-/* Desain Kartu Jabatan */
 .tree .card { 
     background: white; 
     border: 1px solid #ddd; 
@@ -86,30 +111,15 @@ nav a:hover { color: #2fa56a; }
 .bidang-item ul { padding-left: 15px; color: #555; font-size: 13.5px; line-height: 1.6; }
 .bidang-item ul li { margin-bottom: 8px; }
 
-/* ================= MOBILE RESPONSIVE (HP) ================= */
+/* ================= MOBILE RESPONSIVE ================= */
 @media (max-width: 768px) {
     .header-inner { padding: 10px 15px; }
-    .page-title { font-size: 24px; }
-    
-    /* Ubah Tree jadi Vertikal di HP */
+    .mega-menu { width: 90vw; left: 50%; transform: translateX(-50%); position: fixed; top: 60px; }
     .tree ul { flex-direction: column; align-items: center; padding-top: 0; }
     .tree li { padding: 25px 0 0 0; width: 100%; }
-    .tree li::before, .tree li::after { display: none !important; } /* Matikan garis horizontal */
-    
-    /* Garis vertikal antar level di HP */
-    .tree ul ul::before {
-        content: '';
-        position: absolute;
-        top: -15px;
-        left: 50%;
-        border-left: 2px solid #ccc;
-        height: 40px;
-    }
-    
+    .tree li::before, .tree li::after { display: none !important; } 
+    .tree ul ul::before { content: ''; position: absolute; top: -15px; left: 50%; border-left: 2px solid #ccc; height: 40px; }
     .tree .card { width: 85%; max-width: 250px; }
-    
-    .mega-menu-inner { flex-direction: column; gap: 10px; padding: 10px; }
-    .menu-card { width: 100%; padding: 10px; }
 }
 </style>
 </head>
@@ -125,7 +135,7 @@ nav a:hover { color: #2fa56a; }
       <ul>
         <li><a href="index.html">Beranda</a></li>
         <li class="dropdown-full">
-          <a id="profileBtn">Profil ▾</a>
+          <a href="#" id="profileBtn">Profil <small>▾</small></a>
           <div class="mega-menu" id="megaMenu">
             <div class="mega-menu-inner">
               <a href="#struktur" class="menu-card">
@@ -151,7 +161,6 @@ nav a:hover { color: #2fa56a; }
 
 <div class="org-container" id="struktur">
     <h1 class="page-title">Struktur Organisasi RW 013</h1>
-    
     <div class="tree">
         <ul>
             <li>
@@ -159,45 +168,18 @@ nav a:hover { color: #2fa56a; }
                     <p class="role">Ketua RW</p>
                     <h3 class="name">H. Okki Makmuri</h3>
                 </div>
-                
                 <ul>
                     <li>
                         <div class="card vice-chairman">
                             <p class="role">Wakil Ketua RW</p>
                             <h3 class="name">Ruslan</h3>
                         </div>
-                        
                         <ul>
-                            <li>
-                                <div class="card">
-                                    <p class="role">Sekretaris I</p>
-                                    <h3 class="name">Dedi Yudanto</h3>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="card">
-                                    <p class="role">Sekretaris II</p>
-                                    <h3 class="name">Atep Mulyana</h3>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="card">
-                                    <p class="role">Bendahara I</p>
-                                    <h3 class="name">Rubiyan Sofyan</h3>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="card">
-                                    <p class="role">Bendahara II</p>
-                                    <h3 class="name">Ekowati</h3>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="card">
-                                    <p class="role">Pelmas</p>
-                                    <h3 class="name">Rudi Gunawan</h3>
-                                </div>
-                            </li>
+                            <li><div class="card"><p class="role">Sekretaris I</p><h3 class="name">Dedi Yudanto</h3></div></li>
+                            <li><div class="card"><p class="role">Sekretaris II</p><h3 class="name">Atep Mulyana</h3></div></li>
+                            <li><div class="card"><p class="role">Bendahara I</p><h3 class="name">Rubiyan Sofyan</h3></div></li>
+                            <li><div class="card"><p class="role">Bendahara II</p><h3 class="name">Ekowati</h3></div></li>
+                            <li><div class="card"><p class="role">Pelmas</p><h3 class="name">Rudi Gunawan</h3></div></li>
                         </ul>
                     </li>
                 </ul>
@@ -207,9 +189,8 @@ nav a:hover { color: #2fa56a; }
 </div>
 
 <section id="bidang" class="bidang-section">
-    <h1 class="page-title" style="text-align: center;">Bidang Kerja</h1>
+    <h1 class="page-title" style="text-align: center; display: block;">Bidang Kerja</h1>
     <div class="bidang-grid">
-      
       <div class="bidang-item">
         <h4>Sie Lingkungan Hidup</h4>
         <ul>
@@ -218,7 +199,6 @@ nav a:hover { color: #2fa56a; }
           <li>Koordinasi pengelolaan sampah warga</li>
         </ul>
       </div>
-
       <div class="bidang-item">
         <h4>Sie Sosial & Kemasyarakatan</h4>
         <ul>
@@ -227,7 +207,6 @@ nav a:hover { color: #2fa56a; }
           <li>Koordinasi bantuan sosial</li>
         </ul>
       </div>
-
       <div class="bidang-item">
         <h4>Sie Pemuda & Olahraga</h4>
         <ul>
@@ -236,7 +215,6 @@ nav a:hover { color: #2fa56a; }
           <li>Penyelenggaraan event peringatan HUT RI</li>
         </ul>
       </div>
-
       <div class="bidang-item">
         <h4>Sie Kerohanian</h4>
         <ul>
@@ -245,42 +223,48 @@ nav a:hover { color: #2fa56a; }
           <li>Kegiatan sosial keagamaan</li>
         </ul>
       </div>
-
     </div>
 </section>
 
 <script>
   const profileBtn = document.getElementById('profileBtn');
   const megaMenu = document.getElementById('megaMenu');
+  const dropdownParent = document.querySelector('.dropdown-full');
 
-  // Logic Klik Tombol Profil
+  // Logic Klik Tombol Profil (Penting untuk HP)
   profileBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // Mencegah loncat ke link
     e.stopPropagation();
     megaMenu.classList.toggle('active');
   });
 
   // Klik di luar menu untuk menutup
   document.addEventListener('click', (e) => {
-    if (!megaMenu.contains(e.target)) {
+    if (!dropdownParent.contains(e.target)) {
       megaMenu.classList.remove('active');
     }
   });
 
-  // Klik link di dalam menu langsung menutup menu
-  megaMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      megaMenu.classList.remove('active');
-    });
-  });
-
-  // Smooth Scroll Otomatis
+  // Smooth Scroll Presisi
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href === "#") return;
+
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
+      const target = document.querySelector(href);
+      
       if (target) {
+        // Tutup menu setelah diklik
+        megaMenu.classList.remove('active');
+        
+        // Offset 100px agar judul tidak tertutup header
+        const headerOffset = 100;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
         window.scrollTo({
-          top: target.offsetTop - 100, // Offset agar tidak tertutup header
+          top: offsetPosition,
           behavior: 'smooth'
         });
       }
