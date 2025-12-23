@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Website RW 013 UKS</title>
+<title>Website RW 013 Utan Kayu Selatan</title>
 
 <style>
 /* ================= RESET ================= */
@@ -53,6 +53,7 @@ nav ul {
   list-style: none;
   display: flex;
   gap: 22px;
+  align-items: center;
 }
 nav a {
   text-decoration: none;
@@ -61,6 +62,67 @@ nav a {
   font-weight: 500;
 }
 nav a:hover { color: #2fa56a; }
+
+/* ================= PROFIL DROPDOWN ================= */
+.dropdown-full {
+  position: relative;
+}
+
+.mega-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100vw;
+  background: #fff;
+  padding: 40px 0;
+  box-shadow: 0 20px 40px rgba(0,0,0,.15);
+  z-index: 999;
+}
+
+.dropdown-full:hover .mega-menu,
+.mega-menu.show {
+  display: block;
+}
+
+.mega-menu-inner {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+
+.menu-card {
+  text-align: center;
+  width: 220px;
+  text-decoration: none;
+  transition: .3s;
+}
+.menu-card:hover { transform: translateY(-6px); }
+
+.icon-box {
+  width: 70px;
+  height: 70px;
+  background: #ff7a00;
+  color: #fff;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 14px;
+}
+
+.menu-card h3 {
+  font-size: 16px;
+  color: #111;
+  margin-bottom: 6px;
+}
+.menu-card p {
+  font-size: 13px;
+  color: #777;
+}
 
 /* ================= HERO ================= */
 .hero {
@@ -83,7 +145,7 @@ nav a:hover { color: #2fa56a; }
   opacity: 0;
   transform: translateY(40px);
   animation: floatIn 1.2s ease forwards;
-  animation-delay: 2.8s;
+  animation-delay: 2.6s;
 }
 
 @keyframes floatIn {
@@ -115,7 +177,6 @@ nav a:hover { color: #2fa56a; }
   padding-right: 50px;
   font-size: 14px;
 }
-
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-33.33%); }
@@ -160,28 +221,19 @@ nav a:hover { color: #2fa56a; }
   padding-left: 20px;
   position: relative;
 }
-
 .layanan-item h3 {
   font-size: 18px;
   color: #999;
-  transition: .3s;
 }
-
 .layanan-item p {
   font-size: 14px;
   color: #aaa;
   margin-top: 6px;
-  transition: .3s;
 }
-
 .layanan-item.active h3,
-.layanan-item:hover h3 {
-  color: #000;
-}
+.layanan-item:hover h3 { color: #000; }
 .layanan-item.active p,
-.layanan-item:hover p {
-  color: #555;
-}
+.layanan-item:hover p { color: #555; }
 
 .active-indicator {
   position: absolute;
@@ -193,7 +245,6 @@ nav a:hover { color: #2fa56a; }
   border-radius: 4px;
 }
 
-/* CARD TENGAH */
 .layanan-card {
   height: 420px;
   border-radius: 24px;
@@ -201,30 +252,18 @@ nav a:hover { color: #2fa56a; }
   color: white;
   display: flex;
   align-items: flex-end;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+  box-shadow: 0 30px 60px rgba(0,0,0,.25);
 }
 
-.card-overlay {
-  padding: 30px;
-}
-
-.card-tag {
-  font-size: 12px;
-  color: #ffb400;
-  font-weight: 700;
-}
-
-.card-overlay h2 {
-  font-size: 28px;
-  margin: 10px 0 30px;
-}
+.card-overlay { padding: 30px; }
+.card-tag { font-size: 12px; color: #ffb400; font-weight: 700; }
+.card-overlay h2 { font-size: 28px; margin: 10px 0 30px; }
 
 .card-action {
   display: flex;
   align-items: center;
   gap: 14px;
 }
-
 .arrow-btn {
   width: 42px;
   height: 42px;
@@ -237,14 +276,8 @@ nav a:hover { color: #2fa56a; }
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 900px) {
-  .layanan-content {
-    grid-template-columns: 1fr;
-  }
-  .layanan-card {
-    order: -1;
-    height: 360px;
-    margin-bottom: 40px;
-  }
+  .layanan-content { grid-template-columns: 1fr; }
+  .layanan-card { order: -1; height: 360px; margin-bottom: 40px; }
   .active-indicator { display: none; }
 }
 </style>
@@ -261,12 +294,31 @@ nav a:hover { color: #2fa56a; }
         <div class="logo-subtitle">Utan Kayu Selatan</div>
       </div>
     </div>
+
     <nav>
       <ul>
-        <li><a href="#">Beranda</a></li>
-        <li><a href="#">Profil</a></li>
+        <li><a href="index.html">Beranda</a></li>
+
+        <li class="dropdown-full">
+          <a href="javascript:void(0)" id="menuProfil">Profil ▾</a>
+          <div class="mega-menu" id="megaMenu">
+            <div class="mega-menu-inner">
+              <a href="profil.html#struktur" class="menu-card">
+                <div class="icon-box">🏛️</div>
+                <h3>Struktur Organisasi</h3>
+                <p>Susunan pengurus RW</p>
+              </a>
+              <a href="profil.html#bidang" class="menu-card">
+                <div class="icon-box">📋</div>
+                <h3>Bidang Kerja</h3>
+                <p>Tugas & fungsi</p>
+              </a>
+            </div>
+          </div>
+        </li>
+
         <li><a href="#">Informasi</a></li>
-        <li><a href="#">Layanan</a></li>
+        <li><a href="#layanan">Layanan</a></li>
         <li><a href="#">Kontak</a></li>
       </ul>
     </nav>
@@ -276,6 +328,7 @@ nav a:hover { color: #2fa56a; }
 <section class="hero">
   <div class="typing" id="typing"></div>
   <div class="float-text">Website RW 013 UKS</div>
+
   <div class="desc">
     <div class="desc-line1">Media Informasi & Pelayanan Warga</div>
     <div class="desc-line2">Kelurahan Utan Kayu Selatan</div>
@@ -283,17 +336,17 @@ nav a:hover { color: #2fa56a; }
 
   <div class="marquee-full">
     <div class="marquee-track">
-      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan •</span>
-      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan •</span>
-      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span> 
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
     </div>
   </div>
 </section>
 
-<section class="layanan-container">
+<section class="layanan-container" id="layanan">
   <h2 class="layanan-title">Layanan Kami</h2>
   <p class="layanan-subtitle">
-    Beragam layanan Sekretariat RW 013 untuk mendukung administrasi, informasi, dan lingkungan.
+    Beragam layanan untuk mendukung administrasi dan lingkungan RW 013
   </p>
 
   <div class="layanan-content">
@@ -301,11 +354,11 @@ nav a:hover { color: #2fa56a; }
       <div class="layanan-item active" onclick="changeLayanan(this)">
         <div class="active-indicator"></div>
         <h3>Surat Pengantar</h3>
-        <p>Pembuatan surat RT/RW.</p>
+        <p>Administrasi RT/RW</p>
       </div>
       <div class="layanan-item" onclick="changeLayanan(this)">
         <h3>Informasi Warga</h3>
-        <p>Informasi terkini lingkungan.</p>
+        <p>Pengumuman & agenda</p>
       </div>
     </div>
 
@@ -322,12 +375,12 @@ nav a:hover { color: #2fa56a; }
 
     <div class="layanan-list">
       <div class="layanan-item" onclick="changeLayanan(this)">
-        <h3>Keamanan Lingkungan</h3>
-        <p>Koordinasi keamanan.</p>
+        <h3>Keamanan</h3>
+        <p>Koordinasi lingkungan</p>
       </div>
       <div class="layanan-item" onclick="changeLayanan(this)">
         <h3>Bank Sampah</h3>
-        <p>Data aktivitas bank sampah.</p>
+        <p>Lingkungan & kebersihan</p>
       </div>
     </div>
   </div>
@@ -335,7 +388,7 @@ nav a:hover { color: #2fa56a; }
 
 <script>
 /* Typing Effect */
-const text = "Selamat Datang di Layanan";
+const text = "Selamat Datang di";
 let i = 0;
 const typing = document.getElementById("typing");
 
@@ -348,7 +401,7 @@ function typeEffect() {
 }
 typeEffect();
 
-/* Layanan Click */
+/* Layanan */
 function changeLayanan(el) {
   document.querySelectorAll('.layanan-item').forEach(i => {
     i.classList.remove('active');
@@ -359,8 +412,22 @@ function changeLayanan(el) {
   const indicator = document.createElement('div');
   indicator.className = 'active-indicator';
   el.appendChild(indicator);
-  document.getElementById('cardTitle').innerText = el.querySelector('h3').innerText;
+  document.getElementById('cardTitle').innerText =
+    el.querySelector('h3').innerText;
 }
+
+/* Profil Dropdown Click */
+const btnProfil = document.getElementById("menuProfil");
+const megaMenu = document.getElementById("megaMenu");
+
+btnProfil.addEventListener("click", function(e) {
+  e.stopPropagation();
+  megaMenu.classList.toggle("show");
+});
+
+document.addEventListener("click", function() {
+  megaMenu.classList.remove("show");
+});
 </script>
 
 </body>
