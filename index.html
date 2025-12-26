@@ -6,7 +6,47 @@
 <title>Website RW 013 UKS</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-<style>
+<style>/* ===== LAYANAN MOBILE ===== */
+@media (max-width: 992px) {
+  .layanan-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .layanan-card {
+    order: -1;
+    height: 320px;
+  }
+
+  .layanan-list {
+    gap: 18px;
+  }
+
+  .layanan-item {
+    padding-left: 14px;
+  }
+
+  .layanan-item h3 {
+    font-size: 17px;
+  }
+
+  .layanan-item p {
+    font-size: 13px;
+  }
+
+  .active-indicator {
+    height: 30px;
+  }
+}
+
+/* ===== MICRO INTERACTION ===== */
+.layanan-item {
+  transition: transform 0.3s ease;
+}
+.layanan-item:hover {
+  transform: translateX(6px);
+}
+  
 /* ================= RESET (KODE ASLI) ================= */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Arial, sans-serif; }
 
@@ -191,6 +231,69 @@ nav a:hover { color: #2fa56a; }
       <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
       <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
     </div>
+  </div>
+</section>
+
+  <section class="layanan-container" id="layanan">
+  <h2 class="layanan-title">Layanan Kami</h2>
+  <p class="layanan-subtitle">
+    Beragam layanan untuk mendukung administrasi dan lingkungan RW 013
+  </p>
+
+  <div class="layanan-content">
+
+    <!-- KIRI -->
+    <div class="layanan-list">
+      <div class="layanan-item active" onclick="changeLayanan(this)">
+        <div class="active-indicator"></div>
+        <h3>Administrasi & Pelayanan Warga</h3>
+        <p>Surat pengantar & legalisasi</p>
+        <p>Pendataan warga</p>
+      </div>
+
+      <div class="layanan-item" onclick="changeLayanan(this)">
+        <h3>Sosial & Kemasyarakatan</h3>
+        <p>Bantuan sosial & santunan</p>
+        <p>Penyuluhan warga</p>
+      </div>
+
+      <div class="layanan-item" onclick="changeLayanan(this)">
+        <h3>Keamanan & Ketertiban</h3>
+        <p>Siskamling & ronda malam</p>
+        <p>Koordinasi keamanan</p>
+      </div>
+    </div>
+
+    <!-- TENGAH -->
+    <div class="layanan-card">
+      <div class="card-overlay">
+        <span class="card-tag">PELAYANAN</span>
+        <h2 id="cardTitle">Administrasi Warga</h2>
+        <div class="card-action">
+          <span>Telusuri</span>
+          <div class="arrow-btn">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KANAN -->
+    <div class="layanan-list">
+      <div class="layanan-item" onclick="changeLayanan(this)">
+        <h3>Bank Sampah</h3>
+        <p>Pengelolaan & edukasi lingkungan</p>
+      </div>
+
+      <div class="layanan-item" onclick="changeLayanan(this)">
+        <h3>Peringatan Hari Besar</h3>
+        <p>Kegiatan nasional & lomba warga</p>
+      </div>
+
+      <div class="layanan-item" onclick="changeLayanan(this)">
+        <h3>Posyandu Balita & Lansia</h3>
+        <p>Kesehatan balita & lansia</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
