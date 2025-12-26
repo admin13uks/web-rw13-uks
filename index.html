@@ -4,76 +4,119 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sekretariat RW 013 Utan Kayu Selatan</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Arial}
-body{background:#f6f9fc;color:#222}
+/* ===== RESET & BASE ===== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI", Roboto, Helvetica, Arial, sans-serif}
+body{background:#f0f4f8;color:#222;overflow-x:hidden}
 
 /* ===== HEADER ===== */
 header{
- position:fixed;top:0;width:100%;background:#fff;
- border-bottom:1px solid #eee;z-index:1000
+ position:fixed;top:0;width:100%;background:rgba(255,255,255,0.95);
+ backdrop-filter: blur(10px); border-bottom:1px solid #eee;z-index:1000
 }
 .header-inner{
- max-width:1200px;margin:auto;
- padding:12px 20px;
+ max-width:1200px;margin:auto;padding:12px 20px;
  display:flex;justify-content:space-between;align-items:center
 }
 .logo{display:flex;gap:10px;align-items:center}
-.logo img{width:42px}
-.logo-title{font-weight:700;font-size:15px}
-.logo-sub{font-size:12px;color:#666}
+.logo img{width:40px; height:auto}
+.logo-title{font-weight:700;font-size:15px; color:#1a5f7a}
+.logo-sub{font-size:11px;color:#666; text-transform: uppercase; letter-spacing: 1px}
 
-nav ul{list-style:none;display:flex;gap:22px;align-items:center}
-nav a{text-decoration:none;color:#333;font-size:14px}
+nav ul{list-style:none;display:flex;gap:20px;align-items:center}
+nav a{text-decoration:none;color:#333;font-size:14px; font-weight: 500; transition: 0.3s}
+nav a:hover{color:#ff7a00}
 
-/* ===== MEGA MENU ===== */
-.dropdown-full{position:static}
-.mega-menu{
- display:none;position:absolute;left:0;top:100%;
- width:100%;background:#fff;
- padding:40px 0;box-shadow:0 20px 40px rgba(0,0,0,.1)
-}
-.dropdown-full:hover .mega-menu,
-.mega-menu.show{display:block}
-
-.mega-inner{
- max-width:1000px;margin:auto;
- display:flex;gap:60px;justify-content:center
-}
-.menu-card{text-align:center;width:220px;text-decoration:none;color:#111}
-.menu-card:hover{transform:translateY(-6px)}
-.icon-box{
- width:64px;height:64px;border-radius:18px;
- background:#ff7a00;color:#fff;
- display:flex;align-items:center;justify-content:center;
- margin:0 auto 14px
+/* Hide Nav on Mobile - Simple implementation */
+@media (max-width: 768px) {
+  nav { display: none; }
+  .header-inner { justify-content: center; }
 }
 
-/* ===== HERO ===== */
-.hero{padding-top:160px;text-align:center}
-.typing,.float-text{
- font-size:36px;font-weight:800;color:#ff9800
-}
-.float-text{opacity:0;animation:fadeUp 1s ease forwards 2.5s}
-@keyframes fadeUp{to{opacity:1;transform:none}}
-.desc{margin:20px 0 40px}
+/* ===== HERO SECTION ===== */
+.hero{padding:140px 20px 60px; text-align:center; background: #fff}
+.typing{font-size:28px; font-weight:800; color:#444; min-height: 40px}
+.float-text{font-size:42px; font-weight:900; color:#ff9800; margin-top:10px}
+.desc{margin:15px 0 30px; color: #666; font-size: 18px}
 
-/* ===== MARQUEE FIXED ===== */
-.marquee{
- overflow:hidden;background:#fff;border-top:1px solid #eee;border-bottom:1px solid #eee
+/* ===== MARQUEE ===== */
+.marquee{overflow:hidden; background:#1a5f7a; color: white; padding: 10px 0}
+.marquee-track{display:flex; width:200%; animation:marquee 25s linear infinite}
+.marquee span{width:50%; white-space:nowrap; font-size:14px; font-weight: 500}
+@keyframes marquee{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ===== SECTION 2: REALTIME DASHBOARD (GAMBAR 2) ===== */
+.info-section{max-width:1200px; margin:40px auto; padding:0 20px}
+.info-header{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:25px; flex-wrap: wrap; gap: 15px}
+.info-header h2 {font-size: 24px; max-width: 500px; line-height: 1.3}
+.info-header span.realtime {color: #e11d48; font-style: italic; font-weight: 800}
+.date-badge{background:#fff; padding:8px 15px; border-radius:12px; font-size:14px; font-weight:600; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border: 1px solid #ddd}
+
+.dashboard-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:20px}
+.stat-card{border-radius:20px; padding:25px; color:white; position:relative; overflow:hidden; transition: 0.3s}
+.stat-card:hover {transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.15)}
+.stat-card i.bg-icon {position:absolute; right:-10px; top:-10px; font-size: 80px; opacity: 0.2}
+
+.c-orange{background: linear-gradient(135deg, #f97316, #ea580c)}
+.c-yellow{background: linear-gradient(135deg, #facc15, #eab308)}
+.c-green{background: linear-gradient(135deg, #22c55e, #16a34a)}
+.c-blue{background: linear-gradient(135deg, #38bdf8, #0ea5e9)}
+
+.stat-card p {font-size: 15px; font-weight: 600; margin-bottom: 15px; line-height: 1.2}
+.stat-card h1 {font-size: 40px; margin-bottom: 5px}
+.stat-card .location {font-size: 11px; background: rgba(0,0,0,0.1); padding: 5px 8px; border-radius: 6px; display: inline-block}
+
+/* ===== SECTION 1: SAVE OUR FUTURE (GAMBAR 1) ===== */
+.earth-section{max-width:1200px; margin:60px auto; padding:0 20px}
+.earth-banner{
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 30px; padding: 50px; color: white;
+  display: flex; justify-content: space-between; align-items: center;
+  position: relative; overflow: hidden; gap: 30px;
 }
-.marquee-track{
- display:flex;width:200%;
- animation:marquee 30s linear infinite
+.earth-content{flex: 2; z-index: 2}
+.earth-content h1 {font-size: 45px; font-weight: 900; line-height: 1; margin-bottom: 15px}
+.earth-content h1 span {color: #fef08a}
+.earth-content p {max-width: 400px; margin-bottom: 30px; opacity: 0.9}
+
+.visitor-stats{display: flex; gap: 15px; flex-wrap: wrap}
+.v-box {
+  background: rgba(255,255,255,0.15); backdrop-filter: blur(5px);
+  padding: 15px; border-radius: 15px; min-width: 100px; text-align: center;
+  border: 1px solid rgba(255,255,255,0.2);
 }
-.marquee span{
- width:50%;white-space:nowrap;
- padding:12px 0;font-size:14px
+.v-box h3 {font-size: 24px}
+.v-box p {font-size: 11px; margin: 0; opacity: 1}
+
+.earth-contact{
+  flex: 1; background: rgba(255,255,255,0.1); 
+  padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px); z-index: 2; min-width: 280px;
 }
-@keyframes marquee{
- from{transform:translateX(0)}
- to{transform:translateX(-50%)}
+.contact-item {display: flex; align-items: center; gap: 15px; margin-bottom: 15px}
+.contact-item i {width: 35px; height: 35px; background: #facc15; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #333}
+.contact-item div p {font-size: 12px; margin: 0}
+
+.monas-img {
+  position: absolute; left: 50%; bottom: -20px; transform: translateX(-50%);
+  height: 110%; opacity: 0.3; z-index: 1; pointer-events: none;
+}
+
+/* ===== FOOTER ===== */
+.footer{background:#ff9800; color:#fff; padding:60px 20px 20px}
+.footer-grid{max-width:1200px; margin:auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:40px}
+.footer h3 {margin-bottom: 20px; font-size: 18px; border-left: 4px solid #fff; padding-left: 10px}
+.footer-bottom {text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 13px}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .earth-banner {flex-direction: column; padding: 30px 20px}
+  .earth-content h1 {font-size: 32px}
+  .info-header h2 {font-size: 20px}
+  .monas-img {height: 60%; left: 80%}
+  .visitor-stats {justify-content: center}
 }
 </style>
 </head>
@@ -83,36 +126,18 @@ nav a{text-decoration:none;color:#333;font-size:14px}
 <header>
 <div class="header-inner">
   <div class="logo">
-    <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
+    <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo">
     <div>
       <div class="logo-title">Sekretariat RW 013</div>
       <div class="logo-sub">Utan Kayu Selatan</div>
     </div>
   </div>
-
   <nav>
     <ul>
       <li><a href="#">Beranda</a></li>
-      <li class="dropdown-full">
-        <a href="#">Profil ▾</a>
-        <div class="mega-menu">
-          <div class="mega-inner">
-            <a href="#" class="menu-card">
-              <div class="icon-box">🏛</div>
-              <h4>Struktur Organisasi</h4>
-              <p>Pengurus RW</p>
-            </a>
-            <a href="#" class="menu-card">
-              <div class="icon-box">📋</div>
-              <h4>Bidang Kerja</h4>
-              <p>Tugas & Fungsi</p>
-            </a>
-          </div>
-        </div>
-      </li>
+      <li><a href="#">Profil</a></li>
       <li><a href="#">Layanan</a></li>
       <li><a href="#">Informasi</a></li>
-      <li><a href="#">Kegiatan</a></li>
       <li><a href="#">Kontak</a></li>
     </ul>
   </nav>
@@ -121,57 +146,125 @@ nav a{text-decoration:none;color:#333;font-size:14px}
 
 <section class="hero">
   <div class="typing" id="typing"></div>
-  <div class="float-text">Website RW 013 UKS</div>
-  <div class="desc">
-    Media Informasi & Pelayanan Warga
-  </div>
+  <div class="float-text">RW 013 UKS</div>
+  <div class="desc">Media Informasi & Pelayanan Warga Digital</div>
 </section>
 
 <div class="marquee">
   <div class="marquee-track">
-    <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan •</span>
-    <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan •</span>
+    <span>• Website Resmi RW 013 Utan Kayu Selatan • Informasi Terkini • Pelayanan Warga • Kegiatan Posyandu • Bank Sampah • Keamanan Lingkungan •</span>
+    <span>• Website Resmi RW 013 Utan Kayu Selatan • Informasi Terkini • Pelayanan Warga • Kegiatan Posyandu • Bank Sampah • Keamanan Lingkungan •</span>
   </div>
 </div>
 
-  <style>
-.info-section{
- max-width:1200px;margin:80px auto;padding:0 20px
-}
-.info-top{display:flex;justify-content:space-between;gap:40px}
-.info-top h2{font-size:32px}
-.badge{background:#fff3cd;padding:8px 14px;border-radius:20px}
-
-.cards{
- display:grid;grid-template-columns:repeat(4,1fr);
- gap:20px;margin-top:40px
-}
-.card{
- border-radius:18px;color:#fff;padding:24px;
- box-shadow:0 20px 40px rgba(0,0,0,.2)
-}
-.orange{background:#f97316}
-.yellow{background:#facc15}
-.green{background:#22c55e}
-.blue{background:#38bdf8}
-.card h1{font-size:48px;margin-top:20px}
-</style>
-
 <section class="info-section">
- <div class="info-top">
-  <h2>Informasi Lingkungan dan <span style="color:red">Realtime</span></h2>
-  <div class="badge">📅 Jumat, 26 Desember 2025</div>
- </div>
+  <div class="info-header">
+    <h2>Informasi Lingkungan dan Kebersihan <span class="realtime">Realtime</span></h2>
+    <div class="date-badge">📅 Jumat, 26 Desember 2025</div>
+  </div>
 
-  <div class="marquee-full">
-    <div class="marquee-track">
-      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+  <div class="dashboard-grid">
+    <div class="stat-card c-orange">
+      <i class="fa-solid fa-trash-can bg-icon"></i>
+      <p>Jumlah Sampah Masuk<br>TPST Bantar Gebang</p>
+      <h1>3153 <span style="font-size:18px">Ton</span></h1>
+    </div>
+
+    <div class="stat-card c-yellow">
+      <i class="fa-solid fa-truck-moving bg-icon"></i>
+      <p>Jumlah Truk Masuk<br>TPST Bantar Gebang</p>
+      <h1>529 <span style="font-size:18px">Unit</span></h1>
+    </div>
+
+    <div class="stat-card c-green">
+      <i class="fa-solid fa-wind bg-icon"></i>
+      <p>Kualitas Udara<br>Terbaik</p>
+      <h1>3 <span style="font-size:18px">ISPU</span></h1>
+      <div class="location">Lokasi: Ciracas</div>
+    </div>
+
+    <div class="stat-card c-blue">
+      <i class="fa-solid fa-smog bg-icon"></i>
+      <p>Kualitas Udara<br>Terburuk</p>
+      <h1>83 <span style="font-size:18px">ISPU</span></h1>
+      <div class="location">Lokasi: Jakarta Barat</div>
     </div>
   </div>
 </section>
 
- <script>
+<section class="earth-section">
+  <div class="earth-banner">
+    <img src="https://www.shutterstock.com/image-vector/monas-national-monument-jakarta-indonesia-600nw-2172740263.jpg" class="monas-img" style="mix-blend-mode: multiply; filter: grayscale(100%) brightness(200%);">
+    
+    <div class="earth-content">
+      <h1>SAVE OUR <br><span>FUTURE</span></h1>
+      <p>Bersama membangun wilayah RW 013 yang hijau, bersih, dan berkelanjutan untuk generasi mendatang.</p>
+      
+      <div class="visitor-stats">
+        <div class="v-box">
+          <h3>1</h3>
+          <p>Active User</p>
+        </div>
+        <div class="v-box">
+          <h3>42</h3>
+          <p>Daily Visitor</p>
+        </div>
+        <div class="v-box">
+          <h3>1,198</h3>
+          <p>Monthly Visitor</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="earth-contact">
+      <h3 style="margin-bottom: 20px; font-weight: 800;">Kontak Kami</h3>
+      <div class="contact-item">
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+          <p><b>Alamat</b></p>
+          <p>Sekretariat RW 013, Utan Kayu Selatan</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fa-solid fa-phone"></i>
+        <div>
+          <p><b>Telepon</b></p>
+          <p>(021) 8092744</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fa-solid fa-envelope"></i>
+        <div>
+          <p><b>Email</b></p>
+          <p>rw013@jakarta.go.id</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+ <div class="footer-grid">
+  <div>
+    <h3>Tentang Kami</h3>
+    <p>Sekretariat RW 013 Utan Kayu Selatan berkomitmen memberikan pelayanan terbaik bagi warga dan menjaga kerukunan serta kebersihan lingkungan.</p>
+  </div>
+  <div>
+    <h3>Layanan Warga</h3>
+    <p>• Administrasi Surat Pengantar<br>• Pengelolaan Bank Sampah<br>• Kegiatan Posyandu & Lansia<br>• Keamanan 24 Jam</p>
+  </div>
+  <div>
+    <h3>Navigasi Cepat</h3>
+    <p>Beranda • Struktur Organisasi • Berita Kegiatan • Kontak Darurat</p>
+  </div>
+ </div>
+ <div class="footer-bottom">
+   &copy; 2025 Dinas Lingkungan Hidup & RW 013 Utan Kayu Selatan. All Rights Reserved.
+ </div>
+</footer>
+
+<script>
+// Typing Effect
 const text = "Selamat Datang di Layanan";
 let i = 0;
 const typing = document.getElementById("typing");
@@ -180,79 +273,10 @@ function typeEffect() {
   if (i < text.length) {
     typing.innerHTML += text.charAt(i);
     i++;
-    setTimeout(typeEffect, 80);
+    setTimeout(typeEffect, 100);
   }
 }
-typeEffect();
-</script>
-
-
-
-  <style>
-.earth{
- background:linear-gradient(135deg,#16a34a,#22c55e);
- color:#fff;border-radius:30px;
- margin:80px 20px;padding:60px
-}
-.earth-grid{
- display:grid;grid-template-columns:2fr 1fr;gap:40px
-}
-.stats{display:flex;gap:20px;margin-top:30px}
-.stat{
- background:rgba(255,255,255,.15);
- padding:20px;border-radius:18px;text-align:center
-}
-
-.footer{
- background:#f59e0b;color:#fff;padding:40px 20px
-}
-.footer-grid{
- max-width:1200px;margin:auto;
- display:grid;grid-template-columns:1fr 2fr;gap:40px
-}
-</style>
-
-<section class="earth">
- <div class="earth-grid">
-  <div>
-    <h1>SAVE OUR <span style="color:#fde047">EARTH</span></h1>
-    <p>Bersama membangun Jakarta hijau dan berkelanjutan</p>
-    <div class="stats">
-      <div class="stat"><h2>3</h2>Active User</div>
-      <div class="stat"><h2>41</h2>Daily Visitor</div>
-      <div class="stat"><h2>1,198</h2>Monthly Visitor</div>
-    </div>
-  </div>
-
-  <div>
-    <h3>Kontak Kami</h3>
-    <p>📍 Utan Kayu Selatan</p>
-    <p>📞 (021) 8092744</p>
-    <p>✉️ rw013@jakarta.go.id</p>
-  </div>
- </div>
-</section>
-
-<footer class="footer">
- <div class="footer-grid">
-  <div>
-    <h3>Tentang Kami</h3>
-    Struktur Organisasi
-  </div>
-  <div>
-    <h3>Layanan</h3>
-    Administrasi • Bank Sampah • Posyandu • Keamanan
-  </div>
- </div>
-</footer>
-
-<script>
-const text="Selamat Datang di";
-let i=0;
-const t=document.getElementById("typing");
-(function type(){
- if(i<text.length){t.innerHTML+=text[i++];setTimeout(type,80);}
-})();
+window.onload = typeEffect;
 </script>
 
 </body>
