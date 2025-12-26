@@ -3,36 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sekretariat RW 013 Utan Kayu Selatan</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<title>Website RW 013 UKS</title>
 
 <style>
-/* ===== RESET & BASE ===== */
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI", Roboto, Arial, sans-serif}
-body{background:#f0f4f8;color:#222;overflow-x:hidden}
-
-/* ===== HEADER & NAVIGATION ===== */
-header{
- position:fixed;top:0;width:100%;background:rgba(255,255,255,0.98);
- border-bottom:1px solid #eee;z-index:1000
+/* ================= RESET (KODE ASLI) ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
-.header-inner{
- max-width:1200px;margin:auto;padding:12px 20px;
- display:flex;justify-content:space-between;align-items:center;
- position: relative;
+
+/* ================= BODY (KODE ASLI) ================= */
+body {
+  background: linear-gradient(135deg, #f6f9fc, #eaf7f0);
+  color: #222;
+  overflow-x: hidden;
 }
-.logo{display:flex;gap:10px;align-items:center}
-.logo img{width:40px; height:auto}
-.logo-title{font-weight:700;font-size:15px; color:#1a5f7a}
-.logo-sub{font-size:11px;color:#666; text-transform: uppercase; letter-spacing: 1px}
 
-nav ul{list-style:none;display:flex;gap:25px;align-items:center}
-nav a{text-decoration:none;color:#333;font-size:14px; font-weight: 500; transition: 0.3s}
-nav a:hover{color:#ff6b00}
+/* ================= HEADER (KODE ASLI) ================= */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  z-index: 1000;
+}
 
-/* ===== MEGA MENU (KODE ANDA KEMBALI DI SINI) ===== */
+.header-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo img { width: 42px; }
+.logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+.logo-title { font-size: 15px; font-weight: 700; color: #111; }
+.logo-subtitle { font-size: 12px; color: #555; }
+
+/* ================= NAVIGASI & MEGA MENU (KODE ASLI) ================= */
+nav ul { list-style: none; display: flex; gap: 22px; align-items: center; }
+nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 500; transition: 0.3s; }
+nav a:hover { color: #2fa56a; }
+
 .dropdown-full { position: static; }
-
 .mega-menu {
   display: none;
   position: absolute;
@@ -46,7 +67,6 @@ nav a:hover{color:#ff6b00}
   border-top: 1px solid #f0f0f0;
   animation: fadeIn 0.3s ease;
 }
-
 .mega-menu-inner {
   max-width: 1000px;
   margin: auto;
@@ -54,32 +74,19 @@ nav a:hover{color:#ff6b00}
   justify-content: center;
   gap: 60px;
 }
-
-.menu-card {
-  text-align: center;
-  text-decoration: none;
-  width: 220px;
-  transition: 0.3s;
-}
-
+.menu-card { text-align: center; text-decoration: none; width: 220px; transition: 0.3s; }
 .menu-card:hover { transform: translateY(-8px); }
-
 .icon-box {
-  width: 65px;
-  height: 65px;
-  background: #ff6b00; /* Warna Oranye Sesuai Request */
+  width: 65px; height: 65px;
+  background: #ff6b00;
   border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 15px;
-  color: white;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 15px; color: white;
   box-shadow: 0 8px 20px rgba(255, 107, 0, 0.25);
 }
-
+.icon-box svg { width: 32px; height: 32px; }
 .menu-card h3 { font-size: 16px; color: #111; margin-bottom: 6px; font-weight: 700; }
 .menu-card p { font-size: 13px; color: #777; line-height: 1.4; }
-
 .dropdown-full:hover .mega-menu { display: block; }
 
 @keyframes fadeIn {
@@ -87,50 +94,124 @@ nav a:hover{color:#ff6b00}
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== HERO SECTION ===== */
-.hero{padding:160px 20px 60px; text-align:center; background: #fff}
-.typing{font-size:28px; font-weight:800; color:#444; min-height: 40px}
-.float-text{font-size:42px; font-weight:900; color:#ff9800; margin-top:10px}
-
-/* ===== DASHBOARD REALTIME (GAMBAR 2) ===== */
-.info-section{max-width:1200px; margin:40px auto; padding:0 20px}
-.info-header{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:25px; flex-wrap: wrap; gap: 15px}
-.info-header h2 {font-size: 24px; max-width: 500px}
-.date-badge{background:#fff3cd; padding:8px 15px; border-radius:12px; font-size:14px; font-weight:600; border: 1px solid #ffe69c}
-
-.dashboard-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:20px}
-.stat-card{border-radius:20px; padding:25px; color:white; position:relative; overflow:hidden;}
-.c-orange{background: #f97316}
-.c-yellow{background: #facc15}
-.c-green{background: #22c55e}
-.c-blue{background: #38bdf8}
-
-/* ===== SAVE OUR FUTURE (GAMBAR 1) ===== */
-.earth-section{max-width:1200px; margin:60px auto; padding:0 20px}
-.earth-banner{
-  background: #0ea85e; border-radius: 25px; padding: 50px; color: white;
-  display: flex; justify-content: space-between; align-items: center;
-  position: relative; overflow: hidden; gap: 30px;
+/* ================= HERO (KODE ASLI) ================= */
+.hero {
+  min-height: 80vh; /* Diubah sedikit agar slide bawah terlihat */
+  padding-top: 160px;
+  text-align: center;
+  position: relative;
 }
-.earth-content{flex: 2; z-index: 2}
-.earth-content h1 {font-size: 45px; font-weight: 900; margin-bottom: 15px}
-.visitor-stats{display: flex; gap: 15px; margin-top: 30px}
-.v-box {
-  background: rgba(255,255,255,0.2); padding: 15px; border-radius: 12px; 
-  min-width: 100px; text-align: center; border: 1px solid rgba(255,255,255,0.3);
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(47,165,106,.12), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(255,200,120,.15), transparent 40%);
+  z-index: -1;
+}
+.typing { font-size: 36px; font-weight: 700; color: #ff9800; min-height: 46px; }
+.float-text {
+  font-size: 36px; font-weight: 700; color: #ff9800; opacity: 0;
+  transform: translateY(40px);
+  animation: floatIn 1.2s ease forwards; animation-delay: 2.8s;
+}
+@keyframes floatIn { to { opacity: 1; transform: translateY(0); } }
+.desc { margin-top: 24px; margin-bottom: 40px; }
+.desc-line1 { font-size: 16px; font-weight: 600; color: #333; margin-bottom: 6px; }
+.desc-line2 { font-size: 14px; color: #555; }
+
+/* ================= MARQUEE (KODE ASLI) ================= */
+.marquee-full {
+  width: 100%;
+  overflow: hidden;
+  background: rgba(255,255,255,0.6);
+  border-top: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 10px 0;
+}
+.marquee-track { display: flex; width: max-content; gap: 120px; animation: marquee 30s linear infinite; }
+.marquee-track span { white-space: nowrap; font-size: 14px; color: #444; font-weight: 500; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ================= TAMBAHAN: INFO LINGKUNGAN (GAMBAR 1) ================= */
+.info-section {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
 }
 
-.earth-contact{
-  flex: 1; background: rgba(255,255,255,0.1); 
-  padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);
-  backdrop-filter: blur(10px); z-index: 2;
+.info-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
 }
 
-/* ===== RESPONSIVE ===== */
+.info-title h2 { font-size: 28px; font-weight: 700; color: #111; }
+.info-title span { color: #ff3b30; font-style: italic; }
+
+.info-date {
+  background: #fff8e1;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #b8860b;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card-stat {
+  padding: 24px;
+  border-radius: 20px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.card-stat h4 { font-size: 14px; font-weight: 500; line-height: 1.4; margin-bottom: 20px; opacity: 0.9; }
+.card-stat .value { font-size: 42px; font-weight: 800; display: block; }
+.card-stat .unit { font-size: 16px; font-weight: 400; opacity: 0.8; }
+.card-stat .location { font-size: 11px; background: rgba(0,0,0,0.1); padding: 4px 8px; border-radius: 6px; margin-top: 10px; display: inline-block; }
+
+/* Warna Kartu */
+.bg-orange { background: linear-gradient(135deg, #f97316, #ea580c); }
+.bg-yellow { background: linear-gradient(135deg, #facc15, #eab308); }
+.bg-green { background: linear-gradient(135deg, #22c55e, #16a34a); }
+.bg-blue { background: linear-gradient(135deg, #38bdf8, #0ea5e9); }
+
+/* Ikon Latar Belakang Kartu */
+.card-stat::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  width: 80px;
+  height: 80px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+}
+
+/* ================= RESPONSIVE (KODE ASLI + UPDATE) ================= */
+@media (max-width: 1024px) {
+  .info-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 768px) {
-  nav { display: none; } /* Sembunyikan nav di mobile agar rapi */
-  .earth-banner { flex-direction: column; padding: 30px; }
-  .visitor-stats { flex-wrap: wrap; justify-content: center; }
+  .header-inner { flex-direction: column; gap: 15px; }
+  nav ul { gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .typing, .float-text { font-size: 26px; }
+  .info-grid { grid-template-columns: 1fr; }
+  .info-top { flex-direction: column; gap: 15px; }
+  .mega-menu-inner { flex-direction: column; gap: 30px; }
+  .mega-menu { position: fixed; height: 100vh; overflow-y: auto; }
 }
 </style>
 </head>
@@ -138,111 +219,122 @@ nav a:hover{color:#ff6b00}
 <body>
 
 <header>
-<div class="header-inner">
-  <div class="logo">
-    <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
-    <div>
-      <div class="logo-title">Sekretariat RW 013</div>
-      <div class="logo-sub">Utan Kayu Selatan</div>
+  <div class="header-inner">
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo">
+      <div class="logo-text">
+        <div class="logo-title">Sekretariat RW 013</div>
+        <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
+      </div>
     </div>
-  </div>
 
-  <nav>
-    <ul>
-      <li><a href="#">Beranda</a></li>
-      <li class="dropdown-full">
-        <a href="#">Profil <i class="fa-solid fa-chevron-down" style="font-size: 10px"></i></a>
-        <div class="mega-menu">
-          <div class="mega-menu-inner">
-            <a href="#" class="menu-card">
-              <div class="icon-box"><i class="fa-solid fa-sitemap"></i></div>
-              <h3>Struktur Organisasi</h3>
-              <p>Susunan pengurus RW 013 masa bakti terbaru.</p>
-            </a>
-            <a href="#" class="menu-card">
-              <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
-              <h3>Bidang Kerja</h3>
-              <p>Tugas dan fungsi pokok tiap bidang kerja.</p>
-            </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li class="dropdown-full">
+          <a href="profil.html" class="dropbtn">Profil ▾</a>
+          <div class="mega-menu">
+            <div class="mega-menu-inner">
+              <a href="profil.html#struktur" class="menu-card">
+                <div class="icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <h3>Struktur Organisasi</h3>
+                <p>Susunan pengurus RW 013 periode terbaru.</p>
+              </a>
+              <a href="profil.html#bidang" class="menu-card">
+                <div class="icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </div>
+                <h3>Bidang Kerja</h3>
+                <p>Uraian tugas dan fungsi tiap bidang.</p>
+              </a>
+            </div>
           </div>
-        </div>
-      </li>
-      <li><a href="#">Layanan</a></li>
-      <li><a href="#">Informasi</a></li>
-      <li><a href="#">Kontak</a></li>
-    </ul>
-  </nav>
-</div>
+        </li>
+        <li><a href="#">Informasi</a></li>
+        <li><a href="#">Layanan</a></li>
+        <li><a href="#">Kegiatan</a></li>
+        <li><a href="#">Kontak Kami</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <section class="hero">
   <div class="typing" id="typing"></div>
-  <div class="float-text">RW 013 UKS</div>
-  <p style="margin-top:20px; color:#666">Media Informasi & Pelayanan Warga Digital</p>
+  <div class="float-text">Website RW 13 UKS</div>
+
+  <div class="desc">
+    <div class="desc-line1">Media informasi dan pelayanan warga RW 013</div>
+    <div class="desc-line2">Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur</div>
+  </div>
+
+  <div class="marquee-full">
+    <div class="marquee-track">
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+    </div>
+  </div>
 </section>
 
 <section class="info-section">
-  <div class="info-header">
-    <h2>Informasi Lingkungan dan Kebersihan <span style="color:red; font-style:italic; font-weight:800">Realtime</span></h2>
-    <div class="date-badge">📅 Jumat, 26 Desember 2025</div>
-  </div>
-
-  <div class="dashboard-grid">
-    <div class="stat-card c-orange">
-      <p>Jumlah Sampah Masuk TPST</p>
-      <h1>3153 <small style="font-size:15px">Ton</small></h1>
+  <div class="info-top">
+    <div class="info-title">
+      <h2>Informasi Lingkungan dan <br>Kebersihan <span>Realtime</span></h2>
     </div>
-    <div class="stat-card c-yellow">
-      <p>Jumlah Truk Masuk TPST</p>
-      <h1>529 <small style="font-size:15px">Unit</small></h1>
-    </div>
-    <div class="stat-card c-green">
-      <p>Kualitas Udara Terbaik</p>
-      <h1>3 <small style="font-size:15px">ISPU</small></h1>
-      <small>Lokasi: Ciracas</small>
-    </div>
-    <div class="stat-card c-blue">
-      <p>Kualitas Udara Terburuk</p>
-      <h1>83 <small style="font-size:15px">ISPU</small></h1>
-      <small>Lokasi: Jakarta Barat</small>
+    <div class="info-date">
+      📅 Jumat, 26 Desember 2025
     </div>
   </div>
-</section>
 
-<section class="earth-section">
-  <div class="earth-banner">
-    <div class="earth-content">
-      <h1>SAVE OUR <br><span style="color:#fef08a">FUTURE</span></h1>
-      <p>Bersama membangun Jakarta yang hijau dan berkelanjutan untuk generasi mendatang.</p>
-      
-      <div class="visitor-stats">
-        <div class="v-box"><h3>1</h3><p>Active User</p></div>
-        <div class="v-box"><h3>42</h3><p>Daily Visitor</p></div>
-        <div class="v-box"><h3>1,198</h3><p>Monthly Visitor</p></div>
-      </div>
+  <div class="info-grid">
+    <div class="card-stat bg-orange">
+      <h4>Jumlah Sampah Masuk <br>TPST Bantar Gebang</h4>
+      <span class="value">3259 <span class="unit">Ton</span></span>
     </div>
 
-    <div class="earth-contact">
-      <h3 style="margin-bottom: 15px">Kontak Kami</h3>
-      <p>📍 Utan Kayu Selatan, Jakarta</p>
-      <p>📞 (021) 8092744</p>
-      <p>✉️ rw013@jakarta.go.id</p>
+    <div class="card-stat bg-yellow">
+      <h4>Jumlah Truk Masuk <br>TPST Bantar Gebang</h4>
+      <span class="value">547 <span class="unit">Unit</span></span>
+    </div>
+
+    <div class="card-stat bg-green">
+      <h4>Kualitas Udara <br>Terbaik</h4>
+      <span class="value">3 <span class="unit">ISPU</span></span>
+      <div class="location">Lokasi: DKI64 Padepokan Restu Bumi Ciracas</div>
+    </div>
+
+    <div class="card-stat bg-blue">
+      <h4>Kualitas Udara <br>Terburuk</h4>
+      <span class="value">83 <span class="unit">ISPU</span></span>
+      <div class="location">Lokasi: DKI92 SMPN 88 Jakarta (ROOFTOP)</div>
     </div>
   </div>
 </section>
 
 <script>
-// Efek Mengetik
+// KODE ASLI
 const text = "Selamat Datang di Layanan";
 let i = 0;
+const typing = document.getElementById("typing");
+
 function typeEffect() {
   if (i < text.length) {
-    document.getElementById("typing").innerHTML += text.charAt(i);
+    typing.innerHTML += text.charAt(i);
     i++;
-    setTimeout(typeEffect, 100);
+    setTimeout(typeEffect, 80);
   }
 }
-window.onload = typeEffect;
+typeEffect();
 </script>
 
 </body>
