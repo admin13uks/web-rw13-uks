@@ -63,22 +63,31 @@ nav a:hover { color: #2fa56a; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ================= HERO (KODE ASLI) ================= */
-.hero { min-height: 80vh; padding-top: 160px; text-align: center; position: relative; }
+/* ================= HERO & RUNNING TEXT ================= */
+.hero { min-height: 100vh; padding-top: 160px; text-align: center; position: relative; }
 .typing { font-size: 36px; font-weight: 700; color: #ff9800; min-height: 46px; }
-.float-text { font-size: 36px; font-weight: 700; color: #ff9800; opacity: 0; animation: floatIn 1.2s ease forwards 2.8s; }
-@keyframes floatIn { to { opacity: 1; transform: translateY(0); } }
-.desc { margin: 24px 0 40px; }
-
-/* ================= RUNNING TEXT (ANTI-TERPUTUS) ================= */
-.marquee-container {
-  width: 100%; overflow: hidden; background: white;
-  border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 12px 0;
+.float-text {
+  font-size: 36px; font-weight: 700; color: #ff9800; opacity: 0;
+  transform: translateY(40px); animation: floatIn 1.2s ease forwards; animation-delay: 2.8s;
 }
-.marquee-content { display: flex; width: max-content; animation: scroll 30s linear infinite; }
-.marquee-content span { white-space: nowrap; padding-right: 50px; font-size: 14px; font-weight: 500; color: #444; }
+@keyframes floatIn { to { opacity: 1; transform: translateY(0); } }
 
-@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.desc { margin: 24px 0 50px; }
+.desc-line1 { font-size: 16px; font-weight: 600; color: #333; margin-bottom: 6px; }
+.desc-line2 { font-size: 14px; color: #555; }
+
+.marquee-full {
+  width: 100%; overflow: hidden; background: rgba(255,255,255,0.7);
+  border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 12px 0; user-select: none;
+}
+.marquee-track { display: flex; width: max-content; animation: marquee-infinite 40s linear infinite; }
+.marquee-track span { white-space: nowrap; font-size: 14px; color: #444; font-weight: 500; padding-right: 50px; }
+
+@keyframes marquee-infinite {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}
 
 /* ================= INFO REALTIME (GAMBAR 2 & 3) ================= */
 .info-section { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
