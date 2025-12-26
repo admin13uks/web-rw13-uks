@@ -163,13 +163,29 @@ nav a{text-decoration:none;color:#333;font-size:14px}
   <div class="badge">📅 Jumat, 26 Desember 2025</div>
  </div>
 
- <div class="cards">
-  <div class="card orange"><p>Jumlah Sampah</p><h1>3080</h1><small>Ton</small></div>
-  <div class="card yellow"><p>Jumlah Truk</p><h1>513</h1><small>Unit</small></div>
-  <div class="card green"><p>Udara Terbaik</p><h1>3</h1><small>ISPU</small></div>
-  <div class="card blue"><p>Udara Terburuk</p><h1>83</h1><small>ISPU</small></div>
- </div>
+  <div class="marquee-full">
+    <div class="marquee-track">
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+    </div>
+  </div>
 </section>
+
+ <script>
+const text = "Selamat Datang di Layanan";
+let i = 0;
+const typing = document.getElementById("typing");
+
+function typeEffect() {
+  if (i < text.length) {
+    typing.innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 80);
+  }
+}
+typeEffect();
+</script>
+
 
 
   <style>
