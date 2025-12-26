@@ -6,7 +6,89 @@
 <title>Website RW 013 UKS</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-<style>/* ===== LAYANAN MOBILE ===== */
+<style>/* ===== tampilan slide 2 ===== */ 
+  .layanan-container {
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+.layanan-title { font-size: 32px; font-weight: 800; color: #1e3a8a; margin-bottom: 10px; }
+.layanan-subtitle { color: #666; margin-bottom: 50px; }
+
+.layanan-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.layanan-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+/* Item List Style */
+.layanan-item {
+  padding: 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+  border: 1px solid transparent;
+}
+.layanan-item:hover { background: #f0f7ff; }
+.layanan-item.active {
+  background: #fff;
+  border-color: #e0e7ff;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+.active-indicator {
+  position: absolute;
+  left: 0;
+  top: 25%;
+  height: 50%;
+  width: 4px;
+  background: #f97316;
+  border-radius: 0 4px 4px 0;
+}
+.layanan-item h3 { font-size: 18px; color: #111; margin-bottom: 5px; }
+.layanan-item p { font-size: 13px; color: #777; }
+
+/* Center Card Style */
+.layanan-card {
+  width: 400px;
+  height: 450px;
+  background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://source.unsplash.com/400x450/?city,jakarta');
+  background-size: cover;
+  background-position: center;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: flex-end;
+  text-align: left;
+}
+.card-overlay { padding: 40px; color: white; width: 100%; }
+.card-tag { font-size: 11px; font-weight: 700; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; margin-bottom: 15px; display: inline-block; }
+.card-overlay h2 { font-size: 28px; margin-bottom: 10px; }
+.card-action { display: flex; align-items: center; gap: 10px; font-weight: 600; cursor: pointer; }
+.arrow-btn {
+  width: 35px; height: 35px; background: #f97316; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+
+@media (max-width: 992px) {
+  .layanan-content { flex-direction: column; }
+  .layanan-card { width: 100%; height: 300px; order: -1; }
+}
+</style>
+  
+  <style>/* ===== LAYANAN MOBILE ===== */ 
 @media (max-width: 992px) {
   .layanan-content {
     grid-template-columns: 1fr;
@@ -241,27 +323,27 @@ nav a:hover { color: #2fa56a; }
   </p>
 
   <div class="layanan-content">
-
     <div class="layanan-list">
-      <div class="layanan-item active" onclick="changeLayanan(this)">
+      <div class="layanan-item active" onclick="changeLayanan(this, 'Administrasi Warga', 'Surat pengantar & legalisasi')">
         <div class="active-indicator"></div>
         <h3>Administrasi Warga</h3>
         <p>Surat pengantar & legalisasi</p>
       </div>
-      <div class="layanan-item" onclick="changeLayanan(this)">
+      <div class="layanan-item" onclick="changeLayanan(this, 'Sosial & Kemasyarakatan', 'Bantuan & santunan warga')">
         <h3>Sosial & Kemasyarakatan</h3>
         <p>Bantuan & santunan warga</p>
       </div>
-      <div class="layanan-item" onclick="changeLayanan(this)">
+      <div class="layanan-item" onclick="changeLayanan(this, 'Keamanan & Ketertiban', 'Siskamling & koordinasi')">
         <h3>Keamanan & Ketertiban</h3>
         <p>Siskamling & koordinasi</p>
       </div>
     </div>
 
-    <div class="layanan-card">
+    <div class="layanan-card" id="mainCard">
       <div class="card-overlay">
         <span class="card-tag">PELAYANAN</span>
         <h2 id="cardTitle">Administrasi Warga</h2>
+        <p id="cardDesc" style="font-size: 13px; opacity: 0.9; margin-bottom: 20px;">Surat pengantar & legalisasi</p>
         <div class="card-action">
           <span>Telusuri</span>
           <div class="arrow-btn">→</div>
@@ -270,20 +352,19 @@ nav a:hover { color: #2fa56a; }
     </div>
 
     <div class="layanan-list">
-      <div class="layanan-item" onclick="changeLayanan(this)">
+      <div class="layanan-item" onclick="changeLayanan(this, 'Bank Sampah', 'Lingkungan & kebersihan')">
         <h3>Bank Sampah</h3>
         <p>Lingkungan & kebersihan</p>
       </div>
-      <div class="layanan-item" onclick="changeLayanan(this)">
+      <div class="layanan-item" onclick="changeLayanan(this, 'Hari Besar Nasional', 'Kegiatan kebersamaan')">
         <h3>Hari Besar Nasional</h3>
         <p>Kegiatan kebersamaan</p>
       </div>
-      <div class="layanan-item" onclick="changeLayanan(this)">
+      <div class="layanan-item" onclick="changeLayanan(this, 'Posyandu', 'Balita & lansia')">
         <h3>Posyandu</h3>
         <p>Balita & lansia</p>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -300,6 +381,26 @@ const typing = document.getElementById("typing");
 })();
 
 /* Layanan Click */
+  function changeLayanan(element, title, desc) {
+  // Hapus class active dari semua item
+  const items = document.querySelectorAll('.layanan-item');
+  items.forEach(item => {
+    item.classList.remove('active');
+    const indicator = item.querySelector('.active-indicator');
+    if (indicator) indicator.remove();
+  });
+
+  // Tambahkan class active ke yang diklik
+  element.classList.add('active');
+  const newIndicator = document.createElement('div');
+  newIndicator.className = 'active-indicator';
+  element.prepend(newIndicator);
+
+  // Update teks di kartu tengah
+  document.getElementById('cardTitle').innerText = title;
+  document.getElementById('cardDesc').innerText = desc;
+}
+</script>
 function changeLayanan(el){
   document.querySelectorAll('.layanan-item').forEach(item=>{
     item.classList.remove('active');
