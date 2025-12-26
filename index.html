@@ -234,37 +234,30 @@ nav a:hover { color: #2fa56a; }
   </div>
 </section>
 
-  <section class="layanan-container" id="layanan">
+<section class="layanan-container" id="layanan">
   <h2 class="layanan-title">Layanan Kami</h2>
   <p class="layanan-subtitle">
-    Beragam layanan untuk mendukung administrasi dan lingkungan RW 013
+    Beragam layanan untuk mendukung administrasi dan kegiatan warga RW 013
   </p>
 
   <div class="layanan-content">
 
-    <!-- KIRI -->
     <div class="layanan-list">
       <div class="layanan-item active" onclick="changeLayanan(this)">
         <div class="active-indicator"></div>
-        <h3>Administrasi & Pelayanan Warga</h3>
+        <h3>Administrasi Warga</h3>
         <p>Surat pengantar & legalisasi</p>
-        <p>Pendataan warga</p>
       </div>
-
       <div class="layanan-item" onclick="changeLayanan(this)">
         <h3>Sosial & Kemasyarakatan</h3>
-        <p>Bantuan sosial & santunan</p>
-        <p>Penyuluhan warga</p>
+        <p>Bantuan & santunan warga</p>
       </div>
-
       <div class="layanan-item" onclick="changeLayanan(this)">
         <h3>Keamanan & Ketertiban</h3>
-        <p>Siskamling & ronda malam</p>
-        <p>Koordinasi keamanan</p>
+        <p>Siskamling & koordinasi</p>
       </div>
     </div>
 
-    <!-- TENGAH -->
     <div class="layanan-card">
       <div class="card-overlay">
         <span class="card-tag">PELAYANAN</span>
@@ -276,25 +269,49 @@ nav a:hover { color: #2fa56a; }
       </div>
     </div>
 
-    <!-- KANAN -->
     <div class="layanan-list">
       <div class="layanan-item" onclick="changeLayanan(this)">
         <h3>Bank Sampah</h3>
-        <p>Pengelolaan & edukasi lingkungan</p>
+        <p>Lingkungan & kebersihan</p>
       </div>
-
       <div class="layanan-item" onclick="changeLayanan(this)">
-        <h3>Peringatan Hari Besar</h3>
-        <p>Kegiatan nasional & lomba warga</p>
+        <h3>Hari Besar Nasional</h3>
+        <p>Kegiatan kebersamaan</p>
       </div>
-
       <div class="layanan-item" onclick="changeLayanan(this)">
-        <h3>Posyandu Balita & Lansia</h3>
-        <p>Kesehatan balita & lansia</p>
+        <h3>Posyandu</h3>
+        <p>Balita & lansia</p>
       </div>
     </div>
 
   </div>
+</section>
+
+<script>
+/* Typing */
+const text = "Selamat Datang di";
+let i = 0;
+const typing = document.getElementById("typing");
+(function typeEffect(){
+  if(i < text.length){
+    typing.innerHTML += text.charAt(i++);
+    setTimeout(typeEffect, 80);
+  }
+})();
+
+/* Layanan Click */
+function changeLayanan(el){
+  document.querySelectorAll('.layanan-item').forEach(item=>{
+    item.classList.remove('active');
+    const ind = item.querySelector('.active-indicator');
+    if(ind) ind.remove();
+  });
+  el.classList.add('active');
+  el.insertAdjacentHTML('beforeend','<div class="active-indicator"></div>');
+  document.getElementById('cardTitle').innerText =
+    el.querySelector('h3').innerText;
+}
+</script>
 </section>
 
 <section class="info-section">
