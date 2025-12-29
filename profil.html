@@ -9,6 +9,27 @@
 /* ================= RESET & BASE ================= */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Roboto, Arial, sans-serif; }
 body { background: linear-gradient(135deg, #f0f4f8, #e2ece9); scroll-behavior: smooth; overflow-x: hidden; color: #333; }
+/* Gaya Khusus untuk Teknis & Support */
+.tree .card.support-box {
+    border: 2px dashed #2fa56a; 
+    background: #f9f9f9;
+    min-width: 160px;
+    margin-top: 15px;
+}
+
+/* Menyesuaikan garis agar terlihat lebih panjang ke arah bawah */
+.tree ul ul ul ul::before {
+    height: 30px;
+}
+
+/* Memastikan teks tetap terbaca */
+.tree .support-box .name {
+    color: #2c3e50;
+    font-size: 12px;
+}
+
+/* Penutup style Anda */
+</style>
 
 /* ================= HEADER & NAV ================= */
 header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; z-index: 1000; }
@@ -67,6 +88,28 @@ nav a:hover { color: #2fa56a; }
 .tree .role { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #2fa56a; margin-bottom: 4px; }
 .tree .chairman .role, .tree .vice-chairman .role { color: #ff6b00; }
 .tree .name { font-size: 13px; font-weight: 700; color: #111; }
+
+    /* ================= TAMBAHAN: TEKNIS & SUPPORT ================= */
+.tree .card.support-box {
+    border: 2px dashed #2fa56a; 
+    background: #f9f9f9;
+    min-width: 160px;
+    margin-top: 15px;
+}
+
+/* Menyesuaikan garis agar terlihat lebih panjang ke arah bawah */
+.tree ul ul ul ul::before {
+    height: 30px;
+}
+
+.tree .support-box .role {
+    color: #666 !important; /* Warna abu-abu agar terlihat sebagai tim pendukung */
+}
+
+.tree .support-box .name {
+    color: #2c3e50;
+    font-size: 12px;
+}
 
 /* ================= BIDANG KERJA ================= */
 .bidang-section { max-width: 1100px; margin: 60px auto 100px; padding: 0 20px; }
@@ -163,7 +206,21 @@ nav a:hover { color: #2fa56a; }
                                     <ul>
                                         <li><div class="card sie-box"><p class="role">Bid. Lingkungan Hidup</p><h3 class="name">Moh. Ferdiyansyah</h3></div></li>
                                         <li><div class="card sie-box"><p class="role">Bid. Pemuda & Olahraga</p><h3 class="name">Adi Nugroho</h3></div></li>
-                                        <li><div class="card sie-box"><p class="role">Bid. Kerohanian</p><h3 class="name">H. Jarot Setiawan</h3></div></li>
+                                        <li>
+                                            <div class="card sie-box">
+                                                <p class="role">Bid. Kerohanian</p>
+                                                <h3 class="name">H. Jarot Setiawan</h3>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <div class="card support-box">
+                                                        <p class="role" style="color: #666;">Teknis & Support</p>
+                                                        <h3 class="name">Tim Operasional</h3>
+                                                        <small style="font-size: 9px; display: block; color: #888; margin-top: 4px;">Kebersihan & Support Kegiatan</small>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
                                         <li><div class="card sie-box"><p class="role">Bid. SosMas</p><h3 class="name">Mukti Septiantoro</h3></div></li>
                                         <li><div class="card sie-box"><p class="role">Bid. Umum</p><h3 class="name">Sutjipto</h3></div></li>
                                     </ul>
@@ -224,6 +281,15 @@ nav a:hover { color: #2fa56a; }
           <li>Kegiatan sosial keagamaan dan pengajian</li>
         </ul>
       </div>
+
+        <div class="bidang-item" style="border-top-color: #666;">
+    <h4 style="color: #666;">Teknis & Support</h4>
+    <ul>
+  </div>
+        <li>Menjaga kebersihan operasional di lingkungan RW</li>
+        <li>Memberikan dukungan teknis dan logistik pada setiap kegiatan</li>
+        <li>Membantu persiapan sarana dan prasarana umum</li>
+    </ul>
     </div>
 </section>
 
