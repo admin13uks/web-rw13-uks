@@ -7,337 +7,255 @@
 
 <style>
 /* ================= RESET & BASE ================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Roboto, Arial, sans-serif; }
+body { background: linear-gradient(135deg, #f0f4f8, #e2ece9); scroll-behavior: smooth; overflow-x: hidden; color: #333; }
 
-body {
-  background: linear-gradient(135deg, #f0f4f8, #e2ece9);
-  color: #333;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-  padding-top: 120px; /* PENTING: kompensasi header fixed */
-}
-
-/* ================= HEADER ================= */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #eee;
-  z-index: 1000;
-}
-
-.header-inner {
-  max-width: 1200px;
-  margin: auto;
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: inherit;
-}
-
+/* ================= HEADER & NAV ================= */
+header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; z-index: 1000; }
+.header-inner { max-width: 1200px; margin: auto; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; position: relative; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
 .logo img { width: 42px; }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 22px;
-  align-items: center;
-}
-
-nav a {
-  text-decoration: none;
-  color: #333;
-  font-size: 14px;
-  font-weight: 600;
-}
-
+nav ul { list-style: none; display: flex; gap: 22px; align-items: center; }
+nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.3s; }
 nav a:hover { color: #2fa56a; }
 
 /* ================= MEGA MENU ================= */
 .dropdown-full { position: relative; }
-
-.mega-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 420px;
-  background: white;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-  padding: 20px;
-  border-top: 3px solid #2fa56a;
-  border-radius: 0 0 12px 12px;
+#profileBtn { display: flex; align-items: center; gap: 5px; padding: 10px 0; }
+.mega-menu { 
+    display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); 
+    width: 450px; background: white; box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+    padding: 20px; z-index: 999; border-top: 3px solid #2fa56a; border-radius: 0 0 12px 12px;
 }
+.dropdown-full:hover .mega-menu, .mega-menu.active { display: block; animation: fadeIn 0.3s ease forwards; }
+.mega-menu-inner { display: flex; justify-content: space-between; gap: 15px; }
+.menu-card { text-align: center; text-decoration: none; flex: 1; transition: 0.3s; padding: 15px; border-radius: 12px; border: 1px solid #f0f0f0; }
+.menu-card h3 { font-size: 14px; color: #333; }
+.menu-card:hover { background: #f9f9f9; transform: translateY(-5px); border-color: #2fa56a; }
+.icon-box-menu { width: 45px; height: 45px; background: #ff6b00; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: white; }
 
-.mega-menu.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-.mega-menu-inner {
-  display: flex;
-  gap: 15px;
+/* ================= STRUKTUR ORGANISASI (TREE) ================= */
+.org-wrapper { width: 100%; overflow-x: auto; padding-bottom: 30px; margin-top: 100px; }
+.org-container { min-width: 1000px; margin: auto; padding: 20px; text-align: center; }
+.page-title { font-size: 32px; color: #2fa56a; margin-bottom: 50px; font-weight: 700; position: relative; display: inline-block; }
+.page-title::after { content: ''; width: 60px; height: 4px; background: #ff6b00; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-radius: 2px; }
+
+.tree ul { padding-top: 20px; position: relative; transition: all 0.5s; display: flex; justify-content: center; }
+.tree li { text-align: center; list-style-type: none; position: relative; padding: 20px 5px 0 5px; transition: all 0.5s; }
+.tree li::before, .tree li::after { content: ''; position: absolute; top: 0; right: 50%; border-top: 2px solid #ccc; width: 50%; height: 20px; }
+.tree li::after { right: auto; left: 50%; border-left: 2px solid #ccc; }
+.tree li:only-child::after, .tree li:only-child::before { display: none; }
+.tree li:only-child { padding-top: 0; }
+.tree li:first-child::before, .tree li:last-child::after { border: 0 none; }
+.tree li:last-child::before { border-right: 2px solid #ccc; border-radius: 0 5px 0 0; }
+.tree li:first-child::after { border-radius: 5px 0 0 0; }
+.tree ul ul::before { content: ''; position: absolute; top: 0; left: 50%; border-left: 2px solid #ccc; width: 0; height: 20px; }
+
+.tree .card { 
+    background: white; border: 1px solid #ddd; padding: 12px; border-radius: 12px; 
+    display: inline-block; min-width: 150px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+    position: relative; z-index: 10; transition: 0.3s;
 }
+.tree .card:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+.tree .card.chairman { border: 2px solid #ff6b00; background: linear-gradient(to bottom, #fff, #fff9f5); }
+.tree .card.vice-chairman { border: 2px solid #ff9800; }
+.tree .card.sie-box { border: 1.5px solid #2fa56a; background: #f0fdf4; min-width: 130px; }
 
-.menu-card {
-  flex: 1;
-  text-align: center;
-  text-decoration: none;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  padding: 15px;
-  color: #333;
-}
-
-.menu-card:hover {
-  background: #f9f9f9;
-  border-color: #2fa56a;
-}
-
-.icon-box-menu {
-  width: 45px;
-  height: 45px;
-  background: #ff6b00;
-  color: white;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 10px;
-}
-
-/* ================= JUDUL HALAMAN ================= */
-.page-title {
-  font-size: 32px;
-  color: #2fa56a;
-  margin-bottom: 50px;
-  font-weight: 700;
-  text-align: center;
-  position: relative;
-}
-
-.page-title::after {
-  content: '';
-  width: 60px;
-  height: 4px;
-  background: #ff6b00;
-  display: block;
-  margin: 10px auto 0;
-  border-radius: 2px;
-}
-
-/* ================= STRUKTUR ORGANISASI ================= */
-.org-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  padding: 40px 0 60px;
-}
-
-.org-container {
-  min-width: 1000px;
-  margin: auto;
-  padding: 0 20px;
-}
-
-.tree ul {
-  padding-top: 20px;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.tree li {
-  list-style: none;
-  text-align: center;
-  position: relative;
-  padding: 20px 5px 0;
-}
-
-.tree li::before,
-.tree li::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 20px;
-  border-top: 2px solid #ccc;
-}
-
-.tree li::before { right: 50%; }
-.tree li::after {
-  left: 50%;
-  border-left: 2px solid #ccc;
-}
-
-.tree li:only-child::before,
-.tree li:only-child::after { display: none; }
-
-.tree ul ul::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  height: 20px;
-  border-left: 2px solid #ccc;
-}
-
-/* ================= CARD ================= */
-.tree .card {
-  background: white;
-  border: 1px solid #ddd;
-  padding: 12px;
-  border-radius: 12px;
-  min-width: 150px;
-  display: inline-block;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-.tree .chairman { border: 2px solid #ff6b00; }
-.tree .vice-chairman { border: 2px solid #ff9800; }
-.tree .sie-box { border: 1.5px solid #2fa56a; background: #f0fdf4; }
-
-.role {
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #2fa56a;
-}
-
-.name {
-  font-size: 13px;
-  font-weight: 700;
-  margin-top: 4px;
-}
+.tree .role { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #2fa56a; margin-bottom: 4px; }
+.tree .chairman .role, .tree .vice-chairman .role { color: #ff6b00; }
+.tree .name { font-size: 13px; font-weight: 700; color: #111; }
 
 /* ================= BIDANG KERJA ================= */
-.bidang-section {
-  max-width: 1100px;
-  margin: 60px auto 100px;
-  padding: 0 20px;
+.bidang-section { max-width: 1100px; margin: 60px auto 100px; padding: 0 20px; }
+.bidang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px; }
+.bidang-item { 
+    background: white; padding: 30px; border-radius: 20px; border-top: 5px solid #2fa56a; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: 0.3s;
 }
+.bidang-item:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(47, 165, 106, 0.15); }
+.bidang-item h4 { color: #2fa56a; margin-bottom: 15px; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.bidang-item h4::before { content: ''; width: 8px; height: 8px; background: #ff6b00; border-radius: 50%; }
+.bidang-item ul { padding-left: 10px; color: #555; font-size: 14px; line-height: 1.7; list-style: none; }
+.bidang-item ul li { margin-bottom: 10px; position: relative; padding-left: 20px; }
+.bidang-item ul li::before { content: '✓'; position: absolute; left: 0; color: #ff6b00; font-weight: bold; }
 
-.bidang-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-  gap: 25px;
-}
-
-.bidang-item {
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  border-top: 5px solid #2fa56a;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-}
-
-.bidang-item h4 {
-  color: #2fa56a;
-  margin-bottom: 15px;
-}
-
-.bidang-item ul {
-  list-style: none;
-  font-size: 14px;
-}
-
-.bidang-item li {
-  margin-bottom: 10px;
-}
-
-.bidang-item li::before {
-  content: "✓ ";
-  color: #ff6b00;
-  font-weight: bold;
-}
-
-/* ================= RESPONSIVE ================= */
+/* ================= MOBILE RESPONSIVE ================= */
 @media (max-width: 768px) {
-  nav ul { gap: 12px; }
-  .page-title { font-size: 24px; }
-  .mega-menu { width: 90vw; }
+    .header-inner { padding: 10px 15px; flex-direction: column; gap: 10px; }
+    nav ul { gap: 12px; font-size: 12px; }
+    .mega-menu { width: 95vw; }
+    .page-title { font-size: 24px; }
 }
 </style>
 </head>
-
 <body>
 
 <header>
   <div class="header-inner">
-    <a href="#" class="logo">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
-      <strong>Sekretariat RW 013</strong>
+    <a href="index.html" class="logo">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo">
+      <div class="logo-text"><strong>Sekretariat RW 013</strong></div>
     </a>
     <nav>
       <ul>
-        <li><a href="#">Beranda</a></li>
+        <li><a href="index.html">Beranda</a></li>
         <li class="dropdown-full">
-          <a href="#" id="profileBtn">Profil ▾</a>
+          <a href="javascript:void(0)" id="profileBtn">Profil <small>▾</small></a>
           <div class="mega-menu" id="megaMenu">
             <div class="mega-menu-inner">
               <a href="#struktur" class="menu-card">
-                <div class="icon-box-menu">👥</div>
-                Struktur Organisasi
+                <div class="icon-box-menu">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                </div>
+                <h3>Struktur Organisasi</h3>
               </a>
               <a href="#bidang" class="menu-card">
-                <div class="icon-box-menu">📋</div>
-                Bidang Kerja
+                <div class="icon-box-menu">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                </div>
+                <h3>Bidang Kerja</h3>
               </a>
             </div>
           </div>
         </li>
+        <li><a href="#">Informasi</a></li>
+        <li><a href="#">Layanan</a></li>
+        <li><a href="#">Kegiatan</a></li>
+        <li><a href="#">Kontak Kami</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
-<!-- STRUKTUR -->
-<section id="struktur" class="org-wrapper">
-  <div class="org-container">
-    <h1 class="page-title">Struktur Organisasi RW 013</h1>
-    <!-- TREE ANDA (tidak diubah) -->
-    <!-- Aman & tampil -->
-  </div>
-</section>
-
-<!-- BIDANG -->
-<section id="bidang" class="bidang-section">
-  <h1 class="page-title">Tupoksi Bidang Kerja</h1>
-  <div class="bidang-grid">
-    <div class="bidang-item">
-      <h4>Bidang Umum</h4>
-      <ul>
-        <li>Koordinasi administrasi RW</li>
-        <li>Pelayanan warga</li>
-        <li>Dukungan operasional</li>
-      </ul>
+<div class="org-wrapper">
+    <div class="org-container" id="struktur">
+        <h1 class="page-title">Struktur Organisasi RW 013</h1>
+        <div class="tree">
+            <ul>
+                <li>
+                    <div class="card chairman">
+                        <p class="role">Ketua RW</p>
+                        <h3 class="name">H. Okki Makmuri</h3>
+                    </div>
+                    <ul>
+                        <li>
+                            <div class="card vice-chairman">
+                                <p class="role">Wakil Ketua RW</p>
+                                <h3 class="name">Ruslan</h3>
+                            </div>
+                            <ul>
+                                <li><div class="card"><p class="role">Sekretaris I</p><h3 class="name">Dedi Yudanto</h3></div></li>
+                                <li><div class="card"><p class="role">Sekretaris II</p><h3 class="name">Atep Mulyana</h3></div></li>
+                                <li><div class="card"><p class="role">Bendahara I</p><h3 class="name">Rubiyan Sofyan</h3></div></li>
+                                <li><div class="card"><p class="role">Bendahara II</p><h3 class="name">Ekowati</h3></div></li>
+                                <li>
+                                    <div class="card">
+                                        <p class="role">Pelmas</p>
+                                        <h3 class="name">Rudi Gunawan</h3>
+                                    </div>
+                                    <ul>
+                                        <li><div class="card sie-box"><p class="role">Bid. Lingkungan Hidup</p><h3 class="name">Moh. Ferdiyansyah</h3></div></li>
+                                        <li><div class="card sie-box"><p class="role">Bid. Pemuda & Olahraga</p><h3 class="name">Adi Nugroho</h3></div></li>
+                                        <li><div class="card sie-box"><p class="role">Bid. Kerohanian</p><h3 class="name">H. Jarot Setiawan</h3></div></li>
+                                        <li><div class="card sie-box"><p class="role">Bid. SosMas</p><h3 class="name">Mukti Septiantoro</h3></div></li>
+                                        <li><div class="card sie-box"><p class="role">Bid. Umum</p><h3 class="name">Sutjipto</h3></div></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
+</div>
+
+<section id="bidang" class="bidang-section">
+    <h1 class="page-title" style="text-align: center; display: block; margin-bottom: 60px;">Tupoksi Bidang Kerja</h1>
+    <div class="bidang-grid">
+      <div class="bidang-item" style="border-top-color: #1a73e8;">
+        <h4 style="color: #1a73e8;">Bidang Umum</h4>
+        <ul>
+          <li>Koordinasi rutin dengan pihak Kelurahan dan Instansi terkait</li>
+          <li>Pelayanan darurat untuk keperluan administrasi warga</li>
+          <li>Mendukung operasional teknis seluruh pengurus RW 013</li>
+        </ul>
+      </div>
+
+      <div class="bidang-item">
+        <h4>Bid. Lingkungan Hidup</h4>
+        <ul>
+          <li>Mengelola kebersihan dan keasrian wilayah RW 013</li>
+          <li>Program penghijauan dan taman lingkungan</li>
+          <li>Koordinasi pengelolaan sampah warga</li>
+        </ul>
+      </div>
+
+      <div class="bidang-item">
+        <h4>Bid. Sosial & Kemasyarakatan</h4>
+        <ul>
+          <li>Pendataan warga dan administrasi sosial</li>
+          <li>Pengelolaan dana santunan dan bantuan sosial</li>
+          <li>Koordinasi kegiatan kerja bakti warga</li>
+        </ul>
+      </div>
+
+      <div class="bidang-item">
+        <h4>Bid. Pemuda & Olahraga</h4>
+        <ul>
+          <li>Pembinaan Karang Taruna RW 013</li>
+          <li>Pengembangan kegiatan olahraga warga</li>
+          <li>Penyelenggaraan event peringatan HUT RI</li>
+        </ul>
+      </div>
+
+      <div class="bidang-item">
+        <h4>Bid. Kerohanian</h4>
+        <ul>
+          <li>Pembinaan keagamaan warga</li>
+          <li>Koordinasi hari besar keagamaan</li>
+          <li>Kegiatan sosial keagamaan dan pengajian</li>
+        </ul>
+      </div>
+    </div>
 </section>
 
 <script>
-const profileBtn = document.getElementById('profileBtn');
-const megaMenu = document.getElementById('megaMenu');
+  const profileBtn = document.getElementById('profileBtn');
+  const megaMenu = document.getElementById('megaMenu');
+  const dropdownParent = document.querySelector('.dropdown-full');
 
-profileBtn.onclick = (e) => {
-  e.preventDefault();
-  e.stopPropagation();
-  megaMenu.classList.toggle('active');
-};
+  profileBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    megaMenu.classList.toggle('active');
+  });
 
-document.onclick = () => megaMenu.classList.remove('active');
+  document.addEventListener('click', (e) => {
+    if (!dropdownParent.contains(e.target)) {
+      megaMenu.classList.remove('active');
+    }
+  });
+
+  document.querySelectorAll('.menu-card').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href.startsWith("#")) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          megaMenu.classList.remove('active');
+          const headerOffset = 100;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      }
+    });
+  });
 </script>
 
 </body>
