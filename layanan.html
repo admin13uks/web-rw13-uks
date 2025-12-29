@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layanan RW 013</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background: #f4f7f6;
+  color: #333;
+}
+
+/* ===== HEADER ===== */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  z-index: 1000;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #2fa56a;
+  font-weight: 700;
+}
+
+.logo img {
+  width: 40px;
+}
+
+/* ===== NAV ===== */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 22px;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #333;
+}
+
+nav a:hover {
+  color: #2fa56a;
+}
+
+/* ===== DROPDOWN LAYANAN ===== */
+.dropdown-services {
+  position: relative;
+}
+
+.services-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 850px;
+  background: #fff;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.15);
+}
+
+.dropdown-services:hover .services-menu {
+  display: block;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.service-item {
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  transition: .3s;
+}
+
+.service-item:hover {
+  transform: translateY(-6px);
+}
+
+.service-icon {
+  width: 56px;
+  height: 56px;
+  background: #ff6b00;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 24px;
+  color: white;
+}
+
+.service-title {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.service-desc {
+  font-size: 12px;
+  color: #666;
+}
+
+/* ===== CONTENT ===== */
+main {
+  max-width: 1200px;
+  margin: 140px auto 80px;
+  padding: 0 20px;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 32px;
+  color: #2fa56a;
+  margin-bottom: 50px;
+}
+
+.layanan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 30px;
+}
+
+.layanan-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.06);
+  transition: .3s;
+}
+
+.layanan-card:hover {
+  transform: translateY(-8px);
+}
+
+.layanan-card h3 {
+  margin-bottom: 10px;
+  color: #2fa56a;
+}
+
+.layanan-card p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .services-menu {
+    width: 95vw;
+  }
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
+      RW 013
+    </a>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+
+        <li class="dropdown-services">
+          <a href="layanan.html">Layanan ▾</a>
+          <div class="services-menu">
+            <div class="services-grid">
+
+              <a href="#" class="service-item">
+                <div class="service-icon">🏠</div>
+                <div class="service-title">Administrasi RW</div>
+                <div class="service-desc">Surat pengantar & data warga</div>
+              </a>
+
+              <a href="#" class="service-item">
+                <div class="service-icon">♻️</div>
+                <div class="service-title">Bank Sampah</div>
+                <div class="service-desc">Pengelolaan sampah warga</div>
+              </a>
+
+              <a href="#" class="service-item">
+                <div class="service-icon">🚨</div>
+                <div class="service-title">Keamanan</div>
+                <div class="service-desc">Siskamling lingkungan</div>
+              </a>
+
+              <a href="#" class="service-item">
+                <div class="service-icon">🚑</div>
+                <div class="service-title">Sosial</div>
+                <div class="service-desc">Santunan & bantuan warga</div>
+              </a>
+
+              <a href="#" class="service-item">
+                <div class="service-icon">🕌</div>
+                <div class="service-title">Kerohanian</div>
+                <div class="service-desc">Kegiatan keagamaan</div>
+              </a>
+
+              <a href="#" class="service-item">
+                <div class="service-icon">🏃</div>
+                <div class="service-title">Pemuda & Olahraga</div>
+                <div class="service-desc">Karang taruna</div>
+              </a>
+
+              <a href="#" class="service-item">
+                <div class="service-icon">🧹</div>
+                <div class="service-title">Kebersihan</div>
+                <div class="service-desc">Kerja bakti warga</div>
+              </a>
+
+              <a href="#" class="service-item">
+                <div class="service-icon">📄</div>
+                <div class="service-title">Pengaduan</div>
+                <div class="service-desc">Aspirasi & laporan</div>
+              </a>
+
+            </div>
+          </div>
+        </li>
+
+        <li><a href="#">Informasi</a></li>
+        <li><a href="#">Kontak</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h1 class="page-title">Layanan RW 013</h1>
+
+  <div class="layanan-grid">
+    <div class="layanan-card">
+      <h3>Administrasi RW</h3>
+      <p>Pelayanan surat pengantar, domisili, dan administrasi warga RW 013.</p>
+    </div>
+
+    <div class="layanan-card">
+      <h3>Bank Sampah</h3>
+      <p>Program pengelolaan dan pemilahan sampah berbasis lingkungan.</p>
+    </div>
+
+    <div class="layanan-card">
+      <h3>Keamanan Lingkungan</h3>
+      <p>Koordinasi siskamling dan keamanan wilayah RW.</p>
+    </div>
+
+    <div class="layanan-card">
+      <h3>Kegiatan Sosial</h3>
+      <p>Bantuan sosial, santunan, dan kegiatan kemasyarakatan.</p>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>
