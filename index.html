@@ -32,6 +32,65 @@ nav ul { list-style: none; display: flex; gap: 22px; align-items: center; }
 nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 500; transition: 0.3s; cursor: pointer; }
 nav a:hover { color: #2fa56a; }
 
+  /* ================= DROPDOWN LAYANAN ================= */
+.dropdown-services {
+  position: relative;
+}
+
+.services-menu {
+  display: none;
+  position: absolute;
+  top: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  z-index: 9999;
+}
+
+.dropdown-services:hover .services-menu {
+  display: block;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.service-item {
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+}
+
+.service-icon {
+  width: 54px;
+  height: 54px;
+  background: #ff6b00;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  font-size: 22px;
+  color: #fff;
+}
+
+.service-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.service-desc {
+  font-size: 12px;
+  color: #666;
+}
+
+
 /* MEGA MENU */
 .dropdown-full { position: static; }
 .mega-menu {
@@ -145,30 +204,66 @@ nav a:hover { color: #2fa56a; }
       </div>
     </div>
     <nav>
-      <ul>
-        <li><a href="index.html">Beranda</a></li>
-        <li class="dropdown-full" id="profilDrop">
-          <a>Profil ▾</a>
-          <div class="mega-menu" id="megaMenu">
-            <div class="mega-menu-inner">
-              <a href="profil.html#struktur" class="menu-card">
-                <div class="icon-box"><i class="fa-solid fa-users"></i></div>
-                <h3>Struktur Organisasi</h3>
-                <p>Susunan pengurus RW 013 periode terbaru.</p>
-              </a>
-              <a href="profil.html#bidang" class="menu-card">
-                <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
-                <h3>Bidang Kerja</h3>
-                <p>Uraian tugas dan fungsi tiap bidang.</p>
-              </a>
-            </div>
-          </div>
-        </li>
-        <li><a href="#layanan">Layanan</a></li>
-        <li><a href="#">Kegiatan</a></li>
-        <li><a href="#">Kontak Kami</a></li>
-      </ul>
-    </nav>
+  <ul>
+    <li><a href="index.html">Beranda</a></li>
+
+    <!-- PROFIL -->
+    <li class="dropdown-full" id="profilDrop">
+      <a>Profil ▾</a>
+      <div class="mega-menu" id="megaMenu">
+        <div class="mega-menu-inner">
+          <a href="profil.html#struktur" class="menu-card">
+            <div class="icon-box"><i class="fa-solid fa-users"></i></div>
+            <h3>Struktur Organisasi</h3>
+            <p>Susunan pengurus RW 013 periode terbaru.</p>
+          </a>
+          <a href="profil.html#bidang" class="menu-card">
+            <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+            <h3>Bidang Kerja</h3>
+            <p>Uraian tugas dan fungsi tiap bidang.</p>
+          </a>
+        </div>
+      </div>
+    </li>
+
+    <!-- LAYANAN -->
+    <li class="dropdown-full" id="layananDrop">
+      <a>Layanan ▾</a>
+      <div class="mega-menu" id="layananMenu">
+        <div class="mega-menu-inner">
+
+          <a href="layanan.html#administrasi" class="menu-card">
+            <div class="icon-box"><i class="fa-solid fa-file-lines"></i></div>
+            <h3>Administrasi Warga</h3>
+            <p>Surat pengantar dan legalisasi.</p>
+          </a>
+
+          <a href="layanan.html#bank-sampah" class="menu-card">
+            <div class="icon-box"><i class="fa-solid fa-recycle"></i></div>
+            <h3>Bank Sampah</h3>
+            <p>Pengelolaan lingkungan dan kebersihan.</p>
+          </a>
+
+          <a href="layanan.html#keamanan" class="menu-card">
+            <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3>Keamanan & Ketertiban</h3>
+            <p>Siskamling dan koordinasi warga.</p>
+          </a>
+
+          <a href="layanan.html#kesehatan" class="menu-card">
+            <div class="icon-box"><i class="fa-solid fa-heart-pulse"></i></div>
+            <h3>Kesehatan Masyarakat</h3>
+            <p>Posyandu dan olahraga warga.</p>
+          </a>
+
+        </div>
+      </div>
+    </li>
+
+    <li><a href="#">Kegiatan</a></li>
+    <li><a href="#">Kontak Kami</a></li>
+  </ul>
+</nav>
   </div>
 </header>
 
@@ -285,9 +380,9 @@ nav a:hover { color: #2fa56a; }
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  // ======================
-  // Typing Effect
-  // ======================
+  /* ======================
+     Typing Effect
+  ====================== */
   const typingEl = document.getElementById("typing");
   if (typingEl) {
     const textFull = "Selamat Datang di";
@@ -301,24 +396,39 @@ document.addEventListener("DOMContentLoaded", function () {
     type();
   }
 
-  // ======================
-  // Dropdown Logic
-  // ======================
-  const profDrop = document.getElementById('profilDrop');
+  /* ======================
+     DROPDOWN PROFIL & LAYANAN
+  ====================== */
+  const profilDrop = document.getElementById('profilDrop');
   const megaMenu = document.getElementById('megaMenu');
 
-  if (profDrop && megaMenu) {
-    profDrop.onclick = (e) => {
+  const layananDrop = document.getElementById('layananDrop');
+  const layananMenu = document.getElementById('layananMenu');
+
+  if (profilDrop && megaMenu) {
+    profilDrop.addEventListener('click', function (e) {
       e.stopPropagation();
       megaMenu.classList.toggle('show');
-    };
-
-    document.onclick = () => megaMenu.classList.remove('show');
+      if (layananMenu) layananMenu.classList.remove('show');
+    });
   }
 
-  // ======================
-  // Date Auto Update
-  // ======================
+  if (layananDrop && layananMenu) {
+    layananDrop.addEventListener('click', function (e) {
+      e.stopPropagation();
+      layananMenu.classList.toggle('show');
+      if (megaMenu) megaMenu.classList.remove('show');
+    });
+  }
+
+  document.addEventListener('click', function () {
+    if (megaMenu) megaMenu.classList.remove('show');
+    if (layananMenu) layananMenu.classList.remove('show');
+  });
+
+  /* ======================
+     DATE AUTO UPDATE
+  ====================== */
   const dateElement = document.getElementById("current-date");
   if (dateElement) {
     const today = new Date();
@@ -334,6 +444,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
+
 
 </body>
 </html>
