@@ -9,26 +9,36 @@
 /* ================= RESET & BASE ================= */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Roboto, Arial, sans-serif; }
 body { background: linear-gradient(135deg, #f0f4f8, #e2ece9); scroll-behavior: smooth; overflow-x: hidden; color: #333; }
-/* Gaya Khusus untuk Teknis & Support */
+
+/* ================= HEADER & NAV ================= */
+header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; z-index: 1000; }
+.header-inner { max-width: 1200px; margin: auto; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+
+/* ================= TREE SUPPORT ================= */
 .tree .card.support-box {
-    border: 2px dashed #2fa56a; 
-    background: #f9f9f9;
-    min-width: 160px;
-    margin-top: 15px;
+  border: 2px dashed #2fa56a;
+  background: #f9f9f9;
+  min-width: 160px;
+  margin-top: 15px;
 }
+.tree .support-box .role { color: #666; }
+.tree .support-box .name { font-size: 12px; }
 
-/* Menyesuaikan garis agar terlihat lebih panjang ke arah bawah */
-.tree ul ul ul ul::before {
-    height: 30px;
+/* ================= BIDANG ================= */
+.bidang-item ul {
+  list-style: none;
+  padding-left: 0;
 }
-
-/* Memastikan teks tetap terbaca */
-.tree .support-box .name {
-    color: #2c3e50;
-    font-size: 12px;
+.bidang-item ul li {
+  padding-left: 20px;
+  position: relative;
 }
-
-/* Penutup style Anda */
+.bidang-item ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #ff6b00;
+}
 </style>
 
 /* ================= HEADER & NAV ================= */
@@ -282,15 +292,14 @@ nav a:hover { color: #2fa56a; }
         </ul>
       </div>
 
-        <div class="bidang-item" style="border-top-color: #666;">
-    <h4 style="color: #666;">Teknis & Support</h4>
-    <ul>
-  </div>
-        <li>Menjaga kebersihan operasional di lingkungan RW</li>
-        <li>Memberikan dukungan teknis dan logistik pada setiap kegiatan</li>
-        <li>Membantu persiapan sarana dan prasarana umum</li>
-    </ul>
-    </div>
+  <div class="bidang-item" style="border-top-color: #666;">
+  <h4 style="color: #666;">Teknis & Support</h4>
+  <ul>
+    <li>Menjaga kebersihan operasional di lingkungan RW</li>
+    <li>Memberikan dukungan teknis dan logistik pada setiap kegiatan</li>
+    <li>Membantu persiapan sarana dan prasarana umum</li>
+  </ul>
+</div>
 </section>
 
 <script>
