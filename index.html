@@ -237,9 +237,10 @@ nav a:hover { color: #2fa56a; }
 
 <section class="info-section">
   <div class="info-header">
-    <h2>Informasi Tata Lingkungan</span></h2>
-    <div class="date-badge">📅 Jumat, 26 Desember 2025</div>
+    <h2>Data Tata Lingkungan</h2>
+    <div class="date-badge" id="current-date"></div>
   </div>
+</section>
   <div class="info-grid">
     <div class="stat-card orange">
       <h4>Jumlah Pengaspalan</h4>
@@ -283,31 +284,56 @@ nav a:hover { color: #2fa56a; }
 </section>
 
 <script>
-// Typing Effect
-const textFull = "Selamat Datang di Website RW 13 UKS";
-let idx = 0;
-const typingEl = document.getElementById("typing");
-function type() { if(idx < 17) { typingEl.innerHTML += textFull.charAt(idx++); setTimeout(type, 80); } }
-type();
+document.addEventListener("DOMContentLoaded", function () {
 
-// Dropdown Logic
-const profDrop = document.getElementById('profilDrop');
-const megaMenu = document.getElementById('megaMenu');
-profDrop.onclick = (e) => { e.stopPropagation(); megaMenu.classList.toggle('show'); };
-document.onclick = () => megaMenu.classList.remove('show');
+  // ======================
+  // Typing Effect
+  // ======================
+  const typingEl = document.getElementById("typing");
+  if (typingEl) {
+    const textFull = "Selamat Datang di Website RW 13 UKS";
+    let idx = 0;
+    function type() {
+      if (idx < textFull.length) {
+        typingEl.innerHTML += textFull.charAt(idx++);
+        setTimeout(type, 80);
+      }
+    }
+    type();
+  }
 
-// Layanan Switcher
-function changeLayanan(el, title, desc) {
-  document.querySelectorAll('.layanan-item').forEach(item => {
-    item.classList.remove('active');
-    const ind = item.querySelector('.active-indicator');
-    if(ind) ind.remove();
-  });
-  el.classList.add('active');
-  el.insertAdjacentHTML('afterbegin', '<div class="active-indicator"></div>');
-  document.getElementById('cardTitle').innerText = title;
-  document.getElementById('cardDesc').innerText = desc;
-}
+  // ======================
+  // Dropdown Logic
+  // ======================
+  const profDrop = document.getElementById('profilDrop');
+  const megaMenu = document.getElementById('megaMenu');
+
+  if (profDrop && megaMenu) {
+    profDrop.onclick = (e) => {
+      e.stopPropagation();
+      megaMenu.classList.toggle('show');
+    };
+
+    document.onclick = () => megaMenu.classList.remove('show');
+  }
+
+  // ======================
+  // Date Auto Update
+  // ======================
+  const dateElement = document.getElementById("current-date");
+  if (dateElement) {
+    const today = new Date();
+    const options = {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    };
+    dateElement.textContent =
+      "📅 " + today.toLocaleDateString('id-ID', options);
+  }
+
+});
 </script>
 
 </body>
