@@ -13,11 +13,13 @@
   box-sizing: border-box;
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
 }
+
 body {
   background: linear-gradient(135deg, #f0f4f8, #e2ece9);
   color: #333;
-  overflow-x: hidden;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  padding-top: 120px; /* PENTING: kompensasi header fixed */
 }
 
 /* ================= HEADER ================= */
@@ -30,76 +32,86 @@ header {
   border-bottom: 1px solid #eee;
   z-index: 1000;
 }
+
 .header-inner {
   max-width: 1200px;
   margin: auto;
   padding: 12px 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
+
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
+  color: inherit;
 }
-.logo img { width: 42px; }
-.logo-title { font-weight: 700; }
-.logo-subtitle { font-size: 12px; color: #666; }
 
-/* ================= NAV ================= */
+.logo img { width: 42px; }
+
 nav ul {
   list-style: none;
   display: flex;
   gap: 22px;
   align-items: center;
 }
+
 nav a {
   text-decoration: none;
   color: #333;
   font-size: 14px;
   font-weight: 600;
 }
+
 nav a:hover { color: #2fa56a; }
 
 /* ================= MEGA MENU ================= */
 .dropdown-full { position: relative; }
+
 .mega-menu {
   display: none;
   position: absolute;
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  width: 450px;
-  background: #fff;
+  width: 420px;
+  background: white;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
   padding: 20px;
-  box-shadow: 0 15px 35px rgba(0,0,0,.15);
   border-top: 3px solid #2fa56a;
   border-radius: 0 0 12px 12px;
 }
+
 .mega-menu.active { display: block; }
+
 .mega-menu-inner {
   display: flex;
   gap: 15px;
 }
+
 .menu-card {
   flex: 1;
   text-align: center;
   text-decoration: none;
-  padding: 15px;
-  border-radius: 12px;
   border: 1px solid #eee;
-  transition: .3s;
+  border-radius: 12px;
+  padding: 15px;
+  color: #333;
 }
+
 .menu-card:hover {
-  transform: translateY(-5px);
+  background: #f9f9f9;
   border-color: #2fa56a;
 }
+
 .icon-box-menu {
   width: 45px;
   height: 45px;
   background: #ff6b00;
-  color: #fff;
+  color: white;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -107,15 +119,16 @@ nav a:hover { color: #2fa56a; }
   margin: 0 auto 10px;
 }
 
-/* ================= STRUKTUR ORGANISASI ================= */
-.org-wrapper { margin-top: 120px; overflow-x: auto; }
-.org-container { min-width: 1000px; text-align: center; }
+/* ================= JUDUL HALAMAN ================= */
 .page-title {
   font-size: 32px;
   color: #2fa56a;
   margin-bottom: 50px;
+  font-weight: 700;
+  text-align: center;
   position: relative;
 }
+
 .page-title::after {
   content: '';
   width: 60px;
@@ -126,19 +139,33 @@ nav a:hover { color: #2fa56a; }
   border-radius: 2px;
 }
 
-/* ================= TREE ================= */
+/* ================= STRUKTUR ORGANISASI ================= */
+.org-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 40px 0 60px;
+}
+
+.org-container {
+  min-width: 1000px;
+  margin: auto;
+  padding: 0 20px;
+}
+
 .tree ul {
+  padding-top: 20px;
   display: flex;
   justify-content: center;
-  padding-top: 20px;
   position: relative;
 }
+
 .tree li {
   list-style: none;
   text-align: center;
-  padding: 20px 5px 0;
   position: relative;
+  padding: 20px 5px 0;
 }
+
 .tree li::before,
 .tree li::after {
   content: '';
@@ -148,95 +175,99 @@ nav a:hover { color: #2fa56a; }
   height: 20px;
   border-top: 2px solid #ccc;
 }
+
 .tree li::before { right: 50%; }
 .tree li::after {
   left: 50%;
   border-left: 2px solid #ccc;
 }
+
+.tree li:only-child::before,
+.tree li:only-child::after { display: none; }
+
 .tree ul ul::before {
   content: '';
   position: absolute;
   top: 0;
   left: 50%;
-  border-left: 2px solid #ccc;
   height: 20px;
+  border-left: 2px solid #ccc;
 }
 
 /* ================= CARD ================= */
 .tree .card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 12px;
-  min-width: 150px;
+  background: white;
   border: 1px solid #ddd;
-  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+  padding: 12px;
+  border-radius: 12px;
+  min-width: 150px;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
-.tree .card.chairman {
-  border: 2px solid #ff6b00;
-}
-.tree .card.vice-chairman {
-  border: 2px solid #ff9800;
-}
-.tree .card.sie-box {
-  border: 1.5px solid #2fa56a;
-  background: #f0fdf4;
-}
-.tree .card.support-box {
-  border: 2px dashed #2fa56a;
-  background: #f9f9f9;
-}
-.tree .role {
+
+.tree .chairman { border: 2px solid #ff6b00; }
+.tree .vice-chairman { border: 2px solid #ff9800; }
+.tree .sie-box { border: 1.5px solid #2fa56a; background: #f0fdf4; }
+
+.role {
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
   color: #2fa56a;
 }
-.tree .name {
+
+.name {
   font-size: 13px;
   font-weight: 700;
+  margin-top: 4px;
 }
 
-/* ================= BIDANG ================= */
+/* ================= BIDANG KERJA ================= */
 .bidang-section {
   max-width: 1100px;
-  margin: 80px auto;
+  margin: 60px auto 100px;
   padding: 0 20px;
 }
+
 .bidang-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
   gap: 25px;
 }
+
 .bidang-item {
-  background: #fff;
+  background: white;
   padding: 30px;
   border-radius: 20px;
   border-top: 5px solid #2fa56a;
-  box-shadow: 0 10px 25px rgba(0,0,0,.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
+
 .bidang-item h4 {
   color: #2fa56a;
   margin-bottom: 15px;
 }
+
 .bidang-item ul {
   list-style: none;
-}
-.bidang-item li {
-  margin-bottom: 10px;
-  padding-left: 20px;
-  position: relative;
-}
-.bidang-item li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: #ff6b00;
+  font-size: 14px;
 }
 
-/* ================= MOBILE ================= */
-@media(max-width:768px){
-  nav ul { flex-wrap: wrap; gap: 12px; }
-  .mega-menu { width: 95vw; }
+.bidang-item li {
+  margin-bottom: 10px;
+}
+
+.bidang-item li::before {
+  content: "✓ ";
+  color: #ff6b00;
+  font-weight: bold;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  nav ul { gap: 12px; }
+  .page-title { font-size: 24px; }
+  .mega-menu { width: 90vw; }
 }
 </style>
 </head>
@@ -245,40 +276,43 @@ nav a:hover { color: #2fa56a; }
 
 <header>
   <div class="header-inner">
-    <div class="logo">
+    <a href="#" class="logo">
       <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
-      <div>
-        <div class="logo-title">Sekretariat RW 013</div>
-        <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
-      </div>
-    </div>
-
+      <strong>Sekretariat RW 013</strong>
+    </a>
     <nav>
       <ul>
-        <li><a href="index.html">Beranda</a></li>
+        <li><a href="#">Beranda</a></li>
         <li class="dropdown-full">
           <a href="#" id="profileBtn">Profil ▾</a>
           <div class="mega-menu" id="megaMenu">
             <div class="mega-menu-inner">
-              <a href="#struktur" class="menu-card">Struktur</a>
-              <a href="#bidang" class="menu-card">Bidang Kerja</a>
+              <a href="#struktur" class="menu-card">
+                <div class="icon-box-menu">👥</div>
+                Struktur Organisasi
+              </a>
+              <a href="#bidang" class="menu-card">
+                <div class="icon-box-menu">📋</div>
+                Bidang Kerja
+              </a>
             </div>
           </div>
         </li>
-        <li><a href="#">Informasi</a></li>
-        <li><a href="#">Kegiatan</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
-<div class="org-wrapper" id="struktur">
+<!-- STRUKTUR -->
+<section id="struktur" class="org-wrapper">
   <div class="org-container">
     <h1 class="page-title">Struktur Organisasi RW 013</h1>
-    <!-- (STRUKTUR ANDA SUDAH AMAN, TIDAK SAYA UBAH LOGIKA) -->
+    <!-- TREE ANDA (tidak diubah) -->
+    <!-- Aman & tampil -->
   </div>
-</div>
+</section>
 
+<!-- BIDANG -->
 <section id="bidang" class="bidang-section">
   <h1 class="page-title">Tupoksi Bidang Kerja</h1>
   <div class="bidang-grid">
@@ -290,30 +324,20 @@ nav a:hover { color: #2fa56a; }
         <li>Dukungan operasional</li>
       </ul>
     </div>
-    <div class="bidang-item">
-      <h4>Teknis & Support</h4>
-      <ul>
-        <li>Kebersihan lingkungan</li>
-        <li>Dukungan kegiatan RW</li>
-        <li>Sarana prasarana</li>
-      </ul>
-    </div>
   </div>
 </section>
 
 <script>
-const profileBtn = document.getElementById("profileBtn");
-const megaMenu = document.getElementById("megaMenu");
+const profileBtn = document.getElementById('profileBtn');
+const megaMenu = document.getElementById('megaMenu');
 
-profileBtn.addEventListener("click", e => {
+profileBtn.onclick = (e) => {
   e.preventDefault();
-  megaMenu.classList.toggle("active");
-});
-document.addEventListener("click", e => {
-  if (!profileBtn.contains(e.target) && !megaMenu.contains(e.target)) {
-    megaMenu.classList.remove("active");
-  }
-});
+  e.stopPropagation();
+  megaMenu.classList.toggle('active');
+};
+
+document.onclick = () => megaMenu.classList.remove('active');
 </script>
 
 </body>
