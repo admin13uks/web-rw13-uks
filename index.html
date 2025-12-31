@@ -178,11 +178,15 @@ nav a:hover { color: #2fa56a; }
   background: #333;
 }
 
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
+
+  /* HAMBURGER */
   .hamburger { 
     display: flex; 
   }
 
+  /* NAV MENU */
   nav {
     display: none;
     width: 100%;
@@ -198,8 +202,22 @@ nav a:hover { color: #2fa56a; }
     padding: 15px;
     gap: 15px;
   }
+
+  /* DROPDOWN LAYANAN */
+  .dropdown-services .services-menu {
+    display: none;
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    padding: 20px 0;
+  }
+
+  .dropdown-services.active .services-menu {
+    display: block;
+  }
 }
 
+  
 /* MEGA MENU */
 .dropdown-full { position: static; }
 .mega-menu {
@@ -354,17 +372,40 @@ nav a:hover { color: #2fa56a; }
         </li>
 
         <!-- LAYANAN -->
-        <li class="dropdown" id="layananDrop">
-          <a href="javascript:void(0)">Layanan ▾</a>
-          <div class="mega-menu" id="layananMenu">
-            <div class="mega-menu-inner">
-              <a href="layanan.html#administrasi" class="menu-card">Administrasi</a>
-              <a href="layanan.html#bank-sampah" class="menu-card">Bank Sampah</a>
-              <a href="layanan.html#keamanan" class="menu-card">Keamanan</a>
-              <a href="layanan.html#kesehatan" class="menu-card">Kesehatan</a>
-            </div>
-          </div>
-        </li>
+        <li class="dropdown-services">
+  <a href="#">Layanan ▾</a>
+
+  <div class="services-menu">
+    <div class="services-grid">
+
+      <a href="layanan.html#administrasi" class="service-item">
+        <div class="service-icon">📄</div>
+        <div class="service-title">Administrasi</div>
+        <div class="service-desc">Surat & layanan warga</div>
+      </a>
+
+      <a href="layanan.html#keamanan" class="service-item">
+        <div class="service-icon">🛡️</div>
+        <div class="service-title">Keamanan</div>
+        <div class="service-desc">Ketertiban lingkungan</div>
+      </a>
+
+      <a href="layanan.html#sosial" class="service-item">
+        <div class="service-icon">🤝</div>
+        <div class="service-title">Sosial</div>
+        <div class="service-desc">Kegiatan kemasyarakatan</div>
+      </a>
+
+      <a href="layanan.html#bank-sampah" class="service-item">
+        <div class="service-icon">♻️</div>
+        <div class="service-title">Bank Sampah</div>
+        <div class="service-desc">Lingkungan bersih</div>
+      </a>
+
+    </div>
+  </div>
+</li>
+
 
         <li><a href="#">Kegiatan</a></li>
         <li><a href="#">Kontak</a></li>
@@ -510,6 +551,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ====================== */
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("navMenu");
+
   if (hamburger && navMenu) {
     hamburger.addEventListener("click", function (e) {
       e.stopPropagation();
@@ -518,32 +560,38 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* ======================
-     DROPDOWN PROFIL & LAYANAN
+     DROPDOWN PROFIL
   ====================== */
   const profilDrop = document.getElementById("profilDrop");
   const profilMenu = document.getElementById("profilMenu");
-  const layananDrop = document.getElementById("layananDrop");
-  const layananMenu = document.getElementById("layananMenu");
 
   if (profilDrop && profilMenu) {
     profilDrop.addEventListener("click", function (e) {
       e.stopPropagation();
       profilMenu.classList.toggle("show");
-      layananMenu.classList.remove("show");
     });
   }
 
-  if (layananDrop && layananMenu) {
-    layananDrop.addEventListener("click", function (e) {
-      e.stopPropagation();
-      layananMenu.classList.toggle("show");
-      profilMenu.classList.remove("show");
+  /* ======================
+     DROPDOWN LAYANAN (VERSI BARU)
+  ====================== */
+  document.querySelectorAll('.dropdown-services > a').forEach(menu => {
+    menu.addEventListener('click', function (e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        this.parentElement.classList.toggle('active');
+      }
     });
-  }
+  });
 
+  /* ======================
+     CLOSE MENU KLIK LUAR
+  ====================== */
   document.addEventListener("click", function () {
-    profilMenu.classList.remove("show");
-    layananMenu.classList.remove("show");
+    if (profilMenu) profilMenu.classList.remove("show");
+    document
+      .querySelectorAll('.dropdown-services')
+      .forEach(d => d.classList.remove('active'));
   });
 
   /* ======================
