@@ -203,6 +203,40 @@ nav a:hover { color: #2fa56a; }
     gap: 15px;
   }
 
+  /* DROPDOWN (PROFIL & LAYANAN) */
+  .dropdown {
+    width: 100%;
+  }
+
+  .mega-menu {
+    position: static;        /* PENTING */
+    width: 100%;
+    box-shadow: none;
+    border-top: none;
+    padding: 15px 0;
+    display: none;
+  }
+
+  .mega-menu.show {
+    display: block;
+  }
+
+  .mega-menu-inner {
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 15px;
+  }
+
+  .menu-card {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+}
+
+
   /* ================= DROPDOWN MOBILE ================= */
 
   /* LI dropdown */
@@ -255,6 +289,37 @@ nav a:hover { color: #2fa56a; }
     font-size: 16px;
     flex-shrink: 0;
   }
+}
+
+  /* ================= DESKTOP MEGA MENU ================= */
+.dropdown {
+  position: relative;
+}
+
+.mega-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  padding: 40px 0;
+  z-index: 999;
+  border-top: 1px solid #f0f0f0;
+}
+
+.mega-menu.show {
+  display: block;
+  animation: fadeIn 0.25s ease;
+}
+
+.mega-menu-inner {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
 }
 
 
