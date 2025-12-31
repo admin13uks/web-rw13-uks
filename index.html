@@ -8,28 +8,65 @@
 
 <style>
 /* ================= RESET & BASE ================= */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Arial, sans-serif; }
-body { background: linear-gradient(135deg, #f6f9fc, #eaf7f0); color: #222; overflow-x: hidden; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f6f9fc, #eaf7f0);
+  color: #222;
+  overflow-x: hidden;
+}
 
 /* ================= HEADER & NAV ================= */
 header {
-  position: fixed; top: 0; width: 100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
   background: rgba(255,255,255,0.98);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid rgba(0,0,0,0.08);
   z-index: 1000;
 }
+
 .header-inner {
-  max-width: 1200px; margin: auto; padding: 12px 20px;
-  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.logo { display: flex; align-items: center; gap: 10px; }
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .logo img { width: 42px; }
 .logo-title { font-size: 15px; font-weight: 700; color: #111; }
 .logo-subtitle { font-size: 12px; color: #555; }
 
-nav ul { list-style: none; display: flex; gap: 22px; align-items: center; }
-nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 500; transition: 0.3s; cursor: pointer; }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
 nav a:hover { color: #2fa56a; }
 
   /* ================= DROPDOWN LAYANAN ================= */
@@ -90,6 +127,78 @@ nav a:hover { color: #2fa56a; }
   color: #666;
 }
 
+  /* ================= HEADER BARU & HAMBURGER ================= */
+
+.dropdown {
+  position: static;
+}
+
+/* MEGA MENU */
+.mega-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #eee;
+  padding: 30px 0;
+  z-index: 999;
+}
+
+.mega-menu.show {
+  display: block;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #333;
+}
+
+/* ================= HAMBURGER & MOBILE ================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #333;
+}
+
+@media (max-width: 768px) {
+  .hamburger { 
+    display: flex; 
+  }
+
+  nav {
+    display: none;
+    width: 100%;
+    background: #fff;
+  }
+
+  nav.show { 
+    display: block; 
+  }
+
+  nav ul {
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+  }
+}
 
 /* MEGA MENU */
 .dropdown-full { position: static; }
@@ -189,6 +298,7 @@ nav a:hover { color: #2fa56a; }
   .earth-card { flex-direction: column; padding: 40px 20px; text-align: center; }
   .contact-card { width: 100%; }
 }
+
 </style>
 </head>
 
@@ -196,76 +306,60 @@ nav a:hover { color: #2fa56a; }
 
 <header>
   <div class="header-inner">
+
+    <!-- LOGO -->
     <div class="logo">
       <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo">
-      <div class="logo-text">
+      <div>
         <div class="logo-title">Sekretariat RW 013</div>
         <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
       </div>
     </div>
-    <nav>
-  <ul>
-    <li><a href="index.html">Beranda</a></li>
 
-    <!-- PROFIL -->
-    <li class="dropdown-full" id="profilDrop">
-      <a>Profil ▾</a>
-      <div class="mega-menu" id="megaMenu">
-        <div class="mega-menu-inner">
-          <a href="profil.html#struktur" class="menu-card">
-            <div class="icon-box"><i class="fa-solid fa-users"></i></div>
-            <h3>Struktur Organisasi</h3>
-            <p>Susunan pengurus RW 013 periode terbaru.</p>
-          </a>
-          <a href="profil.html#bidang" class="menu-card">
-            <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
-            <h3>Bidang Kerja</h3>
-            <p>Uraian tugas dan fungsi tiap bidang.</p>
-          </a>
-        </div>
-      </div>
-    </li>
+    <!-- HAMBURGER -->
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
 
-    <!-- LAYANAN -->
-    <li class="dropdown-full" id="layananDrop">
-      <a>Layanan ▾</a>
-      <div class="mega-menu" id="layananMenu">
-        <div class="mega-menu-inner">
+    <!-- NAV -->
+    <nav id="navMenu">
+      <ul>
 
-          <a href="layanan.html#administrasi" class="menu-card">
-            <div class="icon-box"><i class="fa-solid fa-file-lines"></i></div>
-            <h3>Administrasi Warga</h3>
-            <p>Surat pengantar dan legalisasi.</p>
-          </a>
+        <li><a href="index.html">Beranda</a></li>
 
-          <a href="layanan.html#bank-sampah" class="menu-card">
-            <div class="icon-box"><i class="fa-solid fa-recycle"></i></div>
-            <h3>Bank Sampah</h3>
-            <p>Pengelolaan lingkungan dan kebersihan.</p>
-          </a>
+        <!-- PROFIL -->
+        <li class="dropdown" id="profilDrop">
+          <a href="javascript:void(0)">Profil ▾</a>
+          <div class="mega-menu" id="profilMenu">
+            <div class="mega-menu-inner">
+              <a href="profil.html#struktur" class="menu-card">Struktur Organisasi</a>
+              <a href="profil.html#bidang" class="menu-card">Bidang Kerja</a>
+            </div>
+          </div>
+        </li>
 
-          <a href="layanan.html#keamanan" class="menu-card">
-            <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
-            <h3>Keamanan & Ketertiban</h3>
-            <p>Siskamling dan koordinasi warga.</p>
-          </a>
+        <!-- LAYANAN -->
+        <li class="dropdown" id="layananDrop">
+          <a href="javascript:void(0)">Layanan ▾</a>
+          <div class="mega-menu" id="layananMenu">
+            <div class="mega-menu-inner">
+              <a href="layanan.html#administrasi" class="menu-card">Administrasi</a>
+              <a href="layanan.html#bank-sampah" class="menu-card">Bank Sampah</a>
+              <a href="layanan.html#keamanan" class="menu-card">Keamanan</a>
+              <a href="layanan.html#kesehatan" class="menu-card">Kesehatan</a>
+            </div>
+          </div>
+        </li>
 
-          <a href="layanan.html#kesehatan" class="menu-card">
-            <div class="icon-box"><i class="fa-solid fa-heart-pulse"></i></div>
-            <h3>Kesehatan Masyarakat</h3>
-            <p>Posyandu dan olahraga warga.</p>
-          </a>
+        <li><a href="#">Kegiatan</a></li>
+        <li><a href="#">Kontak</a></li>
 
-        </div>
-      </div>
-    </li>
+      </ul>
+    </nav>
 
-    <li><a href="#">Kegiatan</a></li>
-    <li><a href="#">Kontak Kami</a></li>
-  </ul>
-</nav>
   </div>
 </header>
+
 
 <section class="hero">
   <div class="typing" id="typing"></div>
@@ -381,7 +475,7 @@ nav a:hover { color: #2fa56a; }
 document.addEventListener("DOMContentLoaded", function () {
 
   /* ======================
-     Typing Effect
+     TYPING EFFECT
   ====================== */
   const typingEl = document.getElementById("typing");
   if (typingEl) {
@@ -397,33 +491,44 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* ======================
+     HAMBURGER MENU
+  ====================== */
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("navMenu");
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", function (e) {
+      e.stopPropagation();
+      navMenu.classList.toggle("show");
+    });
+  }
+
+  /* ======================
      DROPDOWN PROFIL & LAYANAN
   ====================== */
-  const profilDrop = document.getElementById('profilDrop');
-  const megaMenu = document.getElementById('megaMenu');
+  const profilDrop = document.getElementById("profilDrop");
+  const profilMenu = document.getElementById("profilMenu");
+  const layananDrop = document.getElementById("layananDrop");
+  const layananMenu = document.getElementById("layananMenu");
 
-  const layananDrop = document.getElementById('layananDrop');
-  const layananMenu = document.getElementById('layananMenu');
-
-  if (profilDrop && megaMenu) {
-    profilDrop.addEventListener('click', function (e) {
+  if (profilDrop && profilMenu) {
+    profilDrop.addEventListener("click", function (e) {
       e.stopPropagation();
-      megaMenu.classList.toggle('show');
-      if (layananMenu) layananMenu.classList.remove('show');
+      profilMenu.classList.toggle("show");
+      layananMenu.classList.remove("show");
     });
   }
 
   if (layananDrop && layananMenu) {
-    layananDrop.addEventListener('click', function (e) {
+    layananDrop.addEventListener("click", function (e) {
       e.stopPropagation();
-      layananMenu.classList.toggle('show');
-      if (megaMenu) megaMenu.classList.remove('show');
+      layananMenu.classList.toggle("show");
+      profilMenu.classList.remove("show");
     });
   }
 
-  document.addEventListener('click', function () {
-    if (megaMenu) megaMenu.classList.remove('show');
-    if (layananMenu) layananMenu.classList.remove('show');
+  document.addEventListener("click", function () {
+    profilMenu.classList.remove("show");
+    layananMenu.classList.remove("show");
   });
 
   /* ======================
@@ -444,6 +549,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
+
 
 
 </body>
