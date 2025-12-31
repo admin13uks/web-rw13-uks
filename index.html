@@ -181,58 +181,25 @@ nav a:hover { color: #2fa56a; }
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
-  /* HAMBURGER */
-  .hamburger {
-    display: flex;
-  }
-
-  /* NAV MENU */
-  nav {
-    display: none;
-    width: 100%;
-    background: #fff;
-  }
-
-  nav.show {
-    display: block;
-  }
-
-  nav ul {
-    flex-direction: column;
-    padding: 15px;
-    gap: 15px;
-  }
-
-  /* DROPDOWN (PROFIL & LAYANAN) */
-  .dropdown {
-    width: 100%;
-  }
-
   .mega-menu {
-    position: static;        /* PENTING */
+    position: static;
     width: 100%;
     box-shadow: none;
-    border-top: none;
     padding: 15px 0;
-    display: none;
-  }
-
-  .mega-menu.show {
-    display: block;
   }
 
   .mega-menu-inner {
-    flex-direction: column;
+    flex-direction: column; /* BARU KE BAWAH */
     gap: 15px;
     padding: 0 15px;
   }
 
   .menu-card {
     width: 100%;
-    text-align: left;
     display: flex;
     align-items: center;
     gap: 15px;
+    text-align: left;
   }
 }
 
