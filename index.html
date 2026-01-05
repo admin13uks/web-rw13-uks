@@ -633,47 +633,52 @@ main {
   </div>
 </section>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  /* =========================
-     HAMBURGER MENU (MOBILE)
-  ========================= */
-  const hamburger = document.getElementById("hamburger");
-  const navMenu = document.querySelector(".nav-menu");
-
-  hamburger.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-  });
-
-
-  /* =========================
-     DROPDOWN MENU (MOBILE)
-     Klik untuk buka / tutup
-  ========================= */
-  document.querySelectorAll(".dropdown > a").forEach(link => {
-    link.addEventListener("click", function (e) {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        this.parentElement.classList.toggle("active");
+ // ======================
+  // Typing Effect
+  // ======================
+  const typingEl = document.getElementById("typing");
+  if (typingEl) {
+    const textFull = "Selamat Datang di";
+    let idx = 0;
+    function type() {
+      if (idx < textFull.length) {
+        typingEl.innerHTML += textFull.charAt(idx++);
+        setTimeout(type, 80);
       }
-    });
-  });
+    }
+    type();
+  }
 
+  // ======================
+  // Dropdown Logic
+  // ======================
+  const profDrop = document.getElementById('profilDrop');
+  const megaMenu = document.getElementById('megaMenu');
 
-  /* =========================
-     TUTUP MENU SAAT LINK DIKLIK (MOBILE)
-  ========================= */
-  document.querySelectorAll(".nav-menu a").forEach(link => {
-    link.addEventListener("click", () => {
-      if (window.innerWidth <= 768) {
-        navMenu.classList.remove("active");
-        document.querySelectorAll(".dropdown").forEach(d => {
-          d.classList.remove("active");
-        });
-      }
-    });
-  });
+  if (profDrop && megaMenu) {
+    profDrop.onclick = (e) => {
+      e.stopPropagation();
+      megaMenu.classList.toggle('show');
+    };
+
+    document.onclick = () => megaMenu.classList.remove('show');
+  }
+
+  // ======================
+  // Date Auto Update
+  // ======================
+  const dateElement = document.getElementById("current-date");
+  if (dateElement) {
+    const today = new Date();
+    const options = {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    };
+    dateElement.textContent =
+      "📅 " + today.toLocaleDateString('id-ID', options);
+  }
 
 });
 </script>
