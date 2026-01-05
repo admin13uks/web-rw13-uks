@@ -21,7 +21,7 @@
             background-color: #ffffff;
             color: #333;
             overflow-x: hidden;
-            padding-top: 120px; /* Ruang untuk Header + Marquee */
+            padding-top: 120px;
         }
 
         /* ================= HEADER ================= */
@@ -51,7 +51,6 @@
         }
 
         .logo img { height: 45px; }
-
         .logo-title { font-weight: 800; color: #16a34a; font-size: 18px; }
         .logo-subtitle { font-size: 12px; color: #6b7280; font-weight: 600; }
 
@@ -59,22 +58,58 @@
             display: flex;
             list-style: none;
             gap: 24px;
+            align-items: center;
         }
+
+        .nav-menu li { position: relative; } /* Penting untuk posisi dropdown */
 
         .nav-menu a {
             text-decoration: none;
             font-weight: 700;
             color: #374151;
             font-size: 14px;
+            cursor: pointer;
         }
 
-        /* ================= RUNNING TEXT (REQUESTED) ================= */
+        /* ================= DROPDOWN STYLING ================= */
+        .dropdown-content {
+            display: none; /* Sembunyikan default */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 10px 0;
+            margin-top: 10px;
+            z-index: 10001;
+            border: 1px solid #eee;
+        }
+
+        .dropdown-content a {
+            color: #374151;
+            padding: 10px 20px;
+            display: block;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f3f4f6;
+            color: #16a34a;
+        }
+
+        /* Class untuk memunculkan dropdown via JS */
+        .show { display: block !important; }
+
+        /* ================= MARQUEE & OTHERS ================= */
         .marquee {
             position: fixed;
-            top: 70px; /* Menempel di bawah header */
+            top: 70px;
             width: 100%;
             overflow: hidden;
-            background: #f39c12; /* Warna orange DLH */
+            background: #f39c12;
             border-top: 1px solid #e5e7eb;
             border-bottom: 1px solid #e5e7eb;
             z-index: 9999;
@@ -100,7 +135,6 @@
             to { transform: translateX(-50%); }
         }
 
-        /* ================= HERO (GAMBAR 1) ================= */
         .hero {
             padding: 60px 20px;
             text-align: center;
@@ -111,7 +145,6 @@
         .hero h1 span { color: #f39c12; }
         .hero p { color: #666; max-width: 700px; margin: auto; font-size: 16px; }
 
-        /* ================= LAYANAN (GAMBAR 2) ================= */
         .layanan-section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
         .layanan-grid {
             display: grid;
@@ -148,7 +181,6 @@
             background-size: cover;
         }
 
-        /* ================= STATISTIK (GAMBAR 3) ================= */
         .stats-section { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
         .stats-grid {
             display: grid;
@@ -166,7 +198,6 @@
         .bg-green { background: #27ae60; }
         .bg-blue { background: #3498db; }
 
-        /* ================= FOOTER (GAMBAR 4) ================= */
         footer {
             background: #27ae60;
             color: white;
@@ -205,8 +236,25 @@
             <nav class="nav-menu">
                 <ul>
                     <li><a href="#">Beranda</a></li>
-                    <li><a href="#">Profil ▾</a></li>
-                    <li><a href="#">Layanan ▾</a></li>
+                    
+                    <li class="dropdown">
+                        <a onclick="toggleDropdown('dropdownProfil')">Profil ▾</a>
+                        <div id="dropdownProfil" class="dropdown-content">
+                            <a href="#">Struktur Organisasi</a>
+                            <a href="#">Visi & Misi</a>
+                            <a href="#">Tupoksi</a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a onclick="toggleDropdown('dropdownLayanan')">Layanan ▾</a>
+                        <div id="dropdownLayanan" class="dropdown-content">
+                            <a href="#">Penjemputan e-Waste</a>
+                            <a href="#">Bank Sampah</a>
+                            <a href="#">Surat Pengantar</a>
+                        </div>
+                    </li>
+
                     <li><a href="#" style="background:#f39c12; color:#fff; padding:8px 15px; border-radius:8px;">Login</a></li>
                 </ul>
             </nav>
@@ -215,8 +263,6 @@
 
     <div class="marquee">
         <div class="marquee-track">
-            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
             <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
             <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
         </div>
@@ -248,9 +294,6 @@
             <div class="preview-box">
                 <p style="text-transform:uppercase; font-size:12px; letter-spacing:1px;">Telusuri</p>
                 <h2 style="font-size:32px;">Penjemputan e-Waste</h2>
-                <div style="position:absolute; bottom:30px; right:30px; background:#fff; color:#8b4513; width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </div>
             </div>
             <div class="layanan-col">
                 <div class="layanan-card">
@@ -269,66 +312,53 @@
         </div>
     </section>
 
-    <section class="stats-section">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-            <h2>Informasi <span style="color:#e67e22; font-style:italic;">Realtime</span></h2>
-            <div style="font-weight:700; background:#fff8ef; padding:8px 15px; border-radius:10px; border:1px solid #fce4bd;">
-                Senin, 05 Januari 2026
-            </div>
-        </div>
-        <div class="stats-grid">
-            <div class="stat-card bg-orange">
-                <i class="fa-solid fa-trash"></i>
-                <span class="label">Sampah Terkumpul</span>
-                <span class="value">3.586 <small style="font-size:16px;">Ton</small></span>
-            </div>
-            <div class="stat-card bg-yellow">
-                <i class="fa-solid fa-truck"></i>
-                <span class="label">Ritase Truk</span>
-                <span class="value">591 <small style="font-size:16px;">Unit</small></span>
-            </div>
-            <div class="stat-card bg-green">
-                <i class="fa-solid fa-wind"></i>
-                <span class="label">Kualitas Udara (Baik)</span>
-                <span class="value">18 <small style="font-size:16px;">ISPU</small></span>
-            </div>
-            <div class="stat-card bg-blue">
-                <i class="fa-solid fa-users"></i>
-                <span class="label">Partisipasi Warga</span>
-                <span class="value">92 <small style="font-size:16px;">%</small></span>
-            </div>
-        </div>
-    </section>
-
     <footer>
         <div class="footer-grid">
             <div class="footer-logo">
                 <h2>SAVE OUR<br>EARTH</h2>
-                <p style="margin-top:20px; opacity:0.8; font-size:14px; line-height:1.6;">Bersama menjaga kebersihan lingkungan RW 013 Utan Kayu Selatan untuk masa depan yang lebih hijau.</p>
-                <div style="display:flex; gap:15px; margin-top:25px; font-size:20px;">
-                    <i class="fa-brands fa-instagram"></i><i class="fa-brands fa-facebook"></i><i class="fa-brands fa-youtube"></i>
-                </div>
             </div>
             <div>
                 <h4 style="margin-bottom:20px;">Menu Utama</h4>
                 <ul style="list-style:none; opacity:0.8; line-height:2.2; font-size:14px;">
                     <li>Profil RW 013</li>
                     <li>Layanan Administrasi</li>
-                    <li>Program Lingkungan</li>
-                    <li>Kontak Pengaduan</li>
                 </ul>
             </div>
             <div style="background:rgba(255,255,255,0.1); padding:25px; border-radius:20px;">
                 <h4 style="margin-bottom:15px;">Hubungi Kami</h4>
-                <p style="font-size:13px; margin-bottom:10px;"><i class="fa-solid fa-map-marker-alt" style="margin-right:10px;"></i> Jl. Utan Kayu Selatan, Jakarta Timur</p>
-                <p style="font-size:13px; margin-bottom:10px;"><i class="fa-solid fa-phone" style="margin-right:10px;"></i> (021) 8092744</p>
-                <p style="font-size:13px;"><i class="fa-solid fa-envelope" style="margin-right:10px;"></i> info@rw013uks.id</p>
+                <p style="font-size:13px;"><i class="fa-solid fa-phone"></i> (021) 8092744</p>
             </div>
         </div>
-        <div style="text-align:center; margin-top:60px; font-size:12px; opacity:0.5; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px;">
-            &copy; 2026 RW 013 Utan Kayu Selatan. All Rights Reserved.
-        </div>
     </footer>
+
+    <script>
+        // Fungsi untuk buka tutup dropdown
+        function toggleDropdown(id) {
+            // Tutup semua dropdown yang mungkin sedang terbuka
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.id !== id) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+            // Toggle dropdown yang diklik
+            document.getElementById(id).classList.toggle("show");
+        }
+
+        // Tutup dropdown jika user klik di luar menu
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown a')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
 
 </body>
 </html>
