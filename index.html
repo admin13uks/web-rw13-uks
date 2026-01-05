@@ -13,12 +13,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 body {
   padding-top: 90px;
-  color: #333;
+  color: #1f2937;
+  background: #f9fafb;
 }
 
 /* ================= HEADER ================= */
@@ -26,8 +27,8 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #fff;
-  border-bottom: 1px solid #eee;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
   z-index: 9999;
 }
 
@@ -44,7 +45,7 @@ header {
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
 }
 
@@ -54,26 +55,27 @@ header {
 }
 
 .logo-title {
-  font-weight: 700;
+  font-weight: 800;
   color: #16a34a;
 }
 
 .logo-subtitle {
   font-size: 12px;
-  color: #666;
+  color: #6b7280;
 }
 
 /* NAV */
 .nav-menu ul {
   list-style: none;
   display: flex;
-  gap: 22px;
+  gap: 24px;
+  align-items: center;
 }
 
 .nav-menu a {
   text-decoration: none;
   font-weight: 600;
-  color: #333;
+  color: #374151;
 }
 
 /* DROPDOWN */
@@ -84,18 +86,25 @@ header {
 .mega-menu {
   display: none;
   position: absolute;
-  top: 110%;
+  top: 120%;
   left: 0;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 15px 30px rgba(0,0,0,.15);
-  padding: 10px 0;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.15);
   min-width: 220px;
+  overflow: hidden;
+  z-index: 999;
 }
 
 .mega-menu a {
   display: block;
-  padding: 10px 20px;
+  padding: 12px 20px;
+  font-size: 14px;
+}
+
+.mega-menu a:hover {
+  background: #f0fdf4;
+  color: #16a34a;
 }
 
 .dropdown:hover .mega-menu {
@@ -125,76 +134,81 @@ header {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 40px 20px;
+  padding: 50px 20px;
   background:
-    radial-gradient(circle at top right, #dcfce7, transparent 50%),
-    radial-gradient(circle at bottom left, #ecfeff, transparent 50%),
+    radial-gradient(circle at top right, #dcfce7, transparent 45%),
+    radial-gradient(circle at bottom left, #ecfeff, transparent 45%),
     linear-gradient(135deg, #f0fdf4, #ffffff);
 }
 
 .typing {
-  font-size: 36px;
+  font-size: 38px;
   font-weight: 800;
   color: #f97316;
-  min-height: 46px;
+  min-height: 48px;
 }
 
 .float-text {
-  font-size: 36px;
+  font-size: 38px;
   font-weight: 800;
   color: #16a34a;
+  margin-top: 6px;
   opacity: 0;
   animation: fadeUp 1s forwards 2.4s;
 }
 
 @keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* DESKRIPSI */
 .desc {
   margin-top: 20px;
   font-size: 16px;
-  color: #555;
+  color: #4b5563;
+  line-height: 1.6;
 }
 
-/* RUNNING TEXT */
+/* ================= RUNNING TEXT ================= */
 .marquee {
   width: 100%;
   overflow: hidden;
-  background: #fff;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
   margin-top: 40px;
 }
 
 .marquee-track {
   display: flex;
-  width: max-content;
-  animation: marquee 30s linear infinite;
+  width: fit-content;
+  animation: marquee 18s linear infinite;
 }
 
 .marquee-track span {
   white-space: nowrap;
-  padding-right: 50px;
+  padding-right: 60px;
   font-size: 14px;
+  color: #374151;
 }
 
 @keyframes marquee {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(-100%); }
 }
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
+
+  body { padding-top: 80px; }
+
   .hamburger { display: flex; }
 
   .nav-menu {
     display: none;
     width: 100%;
+    background: #ffffff;
+    padding: 15px 20px;
   }
 
   .nav-menu.active {
@@ -203,7 +217,7 @@ header {
 
   .nav-menu ul {
     flex-direction: column;
-    margin-top: 15px;
+    gap: 14px;
   }
 
   .dropdown:hover .mega-menu {
@@ -214,11 +228,17 @@ header {
     display: block;
     position: static;
     box-shadow: none;
+    border-radius: 10px;
+    margin-top: 8px;
   }
 
   .typing,
   .float-text {
     font-size: 26px;
+  }
+
+  .desc {
+    font-size: 14px;
   }
 }
 </style>
@@ -243,6 +263,7 @@ header {
     <nav class="nav-menu" id="navMenu">
       <ul>
         <li><a href="#">Beranda</a></li>
+
         <li class="dropdown">
           <a href="#">Profil ▾</a>
           <div class="mega-menu">
@@ -250,6 +271,7 @@ header {
             <a href="#">Bidang Kerja</a>
           </div>
         </li>
+
         <li class="dropdown">
           <a href="#">Layanan ▾</a>
           <div class="mega-menu">
@@ -259,6 +281,7 @@ header {
             <a href="#">Bank Sampah</a>
           </div>
         </li>
+
         <li><a href="#">Kegiatan</a></li>
         <li><a href="#">Kontak</a></li>
       </ul>
@@ -269,6 +292,7 @@ header {
 <section class="hero">
   <div class="typing" id="typing"></div>
   <div class="float-text">Website RW 013 UKS</div>
+
   <div class="desc">
     Media informasi, pelayanan, dan kegiatan warga RW 013<br>
     Kelurahan Utan Kayu Selatan – Matraman
@@ -305,6 +329,7 @@ document.querySelectorAll(".dropdown > a").forEach(link => {
 const typingEl = document.getElementById("typing");
 const text = "Selamat Datang di";
 let i = 0;
+
 function typing() {
   if (i < text.length) {
     typingEl.innerHTML += text.charAt(i++);
