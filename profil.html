@@ -11,14 +11,126 @@
 body { background: linear-gradient(135deg, #f0f4f8, #e2ece9); scroll-behavior: smooth; overflow-x: hidden; color: #333; }
 
 /* ================= HEADER & NAV ================= */
-header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; z-index: 1000; }
-.header-inner { max-width: 1200px; margin: auto; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; position: relative; }
-.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
-.logo img { width: 42px; }
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  z-index: 9999;
+}
 
-nav ul { list-style: none; display: flex; gap: 22px; align-items: center; }
-nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.3s; }
-nav a:hover { color: #2fa56a; }
+.header-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  gap: 10px;
+  text-decoration: none;
+  color: #2fa56a;
+  font-weight: 700;
+}
+
+/* NAV */
+.nav-menu ul {
+  list-style: none;
+  display: flex;
+  gap: 22px;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #333;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.mega-menu {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0,0,0,.15);
+  padding: 10px 0;
+  min-width: 220px;
+}
+
+.mega-menu a {
+  display: block;
+  padding: 10px 20px;
+}
+
+.dropdown:hover .mega-menu {
+  display: block;
+}
+
+.mega-menu.wide {
+  width: 320px;
+  columns: 2;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background: #2fa56a;
+  border-radius: 3px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .hamburger { display: flex; }
+
+  .nav-menu {
+    display: none;
+    width: 100%;
+  }
+
+  .nav-menu.active {
+    display: block;
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+    margin-top: 15px;
+  }
+
+  .dropdown .mega-menu {
+    position: static;
+    box-shadow: none;
+    display: none;
+  }
+
+  .dropdown.active .mega-menu {
+    display: block;
+  }
+
+  .mega-menu.wide {
+    columns: 1;
+  }
+}
+
 
 /* ================= MEGA MENU ================= */
 .dropdown-full { position: relative; }
@@ -272,38 +384,48 @@ nav a:hover { color: #2fa56a; }
 </section>
 
 <script>
-  const profileBtn = document.getElementById('profileBtn');
-  const megaMenu = document.getElementById('megaMenu');
-  const dropdownParent = document.querySelector('.dropdown-full');
+document.addEventListener("DOMContentLoaded", function () {
 
-  profileBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    megaMenu.classList.toggle('active');
+  /* =========================
+     HAMBURGER MENU (MOBILE)
+  ========================= */
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.querySelector(".nav-menu");
+
+  hamburger.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
   });
 
-  document.addEventListener('click', (e) => {
-    if (!dropdownParent.contains(e.target)) {
-      megaMenu.classList.remove('active');
-    }
-  });
 
-  document.querySelectorAll('.menu-card').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const href = this.getAttribute('href');
-      if (href.startsWith("#")) {
+  /* =========================
+     DROPDOWN MENU (MOBILE)
+     Klik untuk buka / tutup
+  ========================= */
+  document.querySelectorAll(".dropdown > a").forEach(link => {
+    link.addEventListener("click", function (e) {
+      if (window.innerWidth <= 768) {
         e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          megaMenu.classList.remove('active');
-          const headerOffset = 100;
-          const elementPosition = target.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        }
+        this.parentElement.classList.toggle("active");
       }
     });
   });
+
+
+  /* =========================
+     TUTUP MENU SAAT LINK DIKLIK (MOBILE)
+  ========================= */
+  document.querySelectorAll(".nav-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth <= 768) {
+        navMenu.classList.remove("active");
+        document.querySelectorAll(".dropdown").forEach(d => {
+          d.classList.remove("active");
+        });
+      }
+    });
+  });
+
+});
 </script>
 
 </body>
