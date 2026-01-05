@@ -7,67 +7,161 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <style>
-/* ================= RESET & BASE ================= */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  background: linear-gradient(135deg, #f6f9fc, #eaf7f0);
-  color: #222;
-  overflow-x: hidden;
+  padding-top: 90px; /* WAJIB karena header fixed */
+  color: #333;
 }
 
-/* ================= HEADER & NAV ================= */
+/* ================= HEADER ================= */
 header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(255,255,255,0.98);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-  z-index: 1000;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  z-index: 9999;
 }
 
 .header-inner {
   max-width: 1200px;
   margin: auto;
-  padding: 12px 20px;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+/* LOGO */
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
 }
 
-.logo img { width: 42px; }
-.logo-title { font-size: 15px; font-weight: 700; color: #111; }
-.logo-subtitle { font-size: 12px; color: #555; }
+.logo img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
 
-nav ul {
+.logo-title {
+  font-weight: 700;
+  color: #2fa56a;
+}
+
+.logo-subtitle {
+  font-size: 12px;
+  color: #666;
+}
+
+/* NAV */
+.nav-menu ul {
   list-style: none;
   display: flex;
   gap: 22px;
-  align-items: center;
 }
 
-nav a {
+.nav-menu a {
   text-decoration: none;
+  font-weight: 600;
   color: #333;
-  font-size: 14px;
-  font-weight: 500;
-  transition: 0.3s;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.mega-menu {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0,0,0,.15);
+  padding: 10px 0;
+  min-width: 220px;
+}
+
+.mega-menu a {
+  display: block;
+  padding: 10px 20px;
+}
+
+.dropdown:hover .mega-menu {
+  display: block;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
   cursor: pointer;
 }
 
-nav a:hover { color: #2fa56a; }
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background: #2fa56a;
+  border-radius: 3px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+
+  .nav-menu {
+    display: none;
+    width: 100%;
+  }
+
+  .nav-menu.active {
+    display: block;
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+    margin-top: 15px;
+  }
+
+  .dropdown .mega-menu {
+    position: static;
+    box-shadow: none;
+    display: none;
+  }
+
+  .dropdown.active .mega-menu {
+    display: block;
+  }
+}
+
+/* ================= CONTENT ================= */
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.hero {
+  text-align: center;
+}
+
+.hero img {
+  max-width: 320px;
+  margin-bottom: 20px;
+}
+
 
   /* ================= DROPDOWN LAYANAN ================= */
 .dropdown-services {
