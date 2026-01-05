@@ -1,364 +1,334 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Website RW 013 UKS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Resmi RW 013 UKS</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-<style>
-/* ================= RESET ================= */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:"Segoe UI", Arial, sans-serif;
-}
+    <style>
+        /* ================= RESET & BASE ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
 
-body{
-  padding-top:90px;
-  background:#f9fafb;
-  color:#111827;
-}
+        body {
+            background-color: #ffffff;
+            color: #333;
+            overflow-x: hidden;
+            padding-top: 120px; /* Ruang untuk Header + Marquee */
+        }
 
-/* ================= HEADER ================= */
-header{
-  position:fixed;
-  top:0;
-  width:100%;
-  background:#fff;
-  border-bottom:1px solid #e5e7eb;
-  z-index:9999;
-}
+        /* ================= HEADER ================= */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            z-index: 10000;
+        }
 
-.header-inner{
-  max-width:1200px;
-  margin:auto;
-  padding:14px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.logo{
-  display:flex;
-  gap:12px;
-  align-items:center;
-  text-decoration:none;
-}
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
 
-.logo img{
-  width:46px;
-  height:46px;
-}
+        .logo img { height: 45px; }
 
-.logo-title{
-  font-weight:800;
-  color:#16a34a;
-}
+        .logo-title { font-weight: 800; color: #16a34a; font-size: 18px; }
+        .logo-subtitle { font-size: 12px; color: #6b7280; font-weight: 600; }
 
-.logo-subtitle{
-  font-size:12px;
-  color:#6b7280;
-}
+        .nav-menu ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
 
-/* NAV */
-.nav-menu ul{
-  list-style:none;
-  display:flex;
-  gap:24px;
-}
+        .nav-menu a {
+            text-decoration: none;
+            font-weight: 700;
+            color: #374151;
+            font-size: 14px;
+        }
 
-.nav-menu a{
-  text-decoration:none;
-  font-weight:600;
-  color:#374151;
-}
+        /* ================= RUNNING TEXT (REQUESTED) ================= */
+        .marquee {
+            position: fixed;
+            top: 70px; /* Menempel di bawah header */
+            width: 100%;
+            overflow: hidden;
+            background: #f39c12; /* Warna orange DLH */
+            border-top: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+            z-index: 9999;
+            padding: 8px 0;
+        }
 
-/* ================= MEGA MENU ================= */
-.mega-panel{
-  position:fixed;
-  top:90px;
-  left:0;
-  width:100%;
-  background:#fff;
-  box-shadow:0 20px 40px rgba(0,0,0,.15);
-  display:none;
-  z-index:9998;
-}
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 20s linear infinite;
+        }
 
-.mega-panel.active{display:block;}
+        .marquee-track span {
+            white-space: nowrap;
+            padding-right: 60px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+        }
 
-.mega-content{
-  max-width:1200px;
-  margin:auto;
-  padding:40px 20px;
-  display:none;
-}
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
 
-.mega-content.active{display:block;}
+        /* ================= HERO (GAMBAR 1) ================= */
+        .hero {
+            padding: 60px 20px;
+            text-align: center;
+            background: radial-gradient(circle at top right, #f0fff4, #ffffff);
+        }
 
-.mega-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:30px;
-}
+        .hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 10px; }
+        .hero h1 span { color: #f39c12; }
+        .hero p { color: #666; max-width: 700px; margin: auto; font-size: 16px; }
 
-.mega-card{
-  background:#fff;
-  border-radius:16px;
-  padding:28px;
-  text-align:center;
-  text-decoration:none;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
-  transition:.3s;
-}
+        /* ================= LAYANAN (GAMBAR 2) ================= */
+        .layanan-section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .layanan-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1fr;
+            gap: 20px;
+            align-items: center;
+            margin-top: 40px;
+        }
 
-.mega-card i{
-  font-size:28px;
-  color:#f97316;
-  margin-bottom:12px;
-}
+        .layanan-card {
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid transparent;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-.mega-card h4{
-  font-size:16px;
-  margin-bottom:6px;
-}
+        .layanan-card.active, .layanan-card:hover {
+            background: #f9fafb;
+            border-left-color: #f39c12;
+        }
 
-.mega-card p{
-  font-size:13px;
-  color:#6b7280;
-}
+        .preview-box {
+            background: #8b4513;
+            border-radius: 20px;
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            color: white;
+            position: relative;
+            background-image: linear-gradient(transparent, rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+        }
 
-.mega-card:hover{
-  transform:translateY(-6px);
-}
+        /* ================= STATISTIK (GAMBAR 3) ================= */
+        .stats-section { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
 
-/* ================= SLIDER ================= */
-.slider{
-  position:relative;
-  width:100%;
-  height:100vh;
-  overflow:hidden;
-}
+        .stat-card { padding: 30px; border-radius: 15px; color: white; position: relative; }
+        .stat-card i { position: absolute; top: 20px; right: 20px; font-size: 24px; opacity: 0.3; }
+        .stat-card .value { font-size: 40px; font-weight: 800; margin-top: 20px; display: block; }
+        
+        .bg-orange { background: #e67e22; }
+        .bg-yellow { background: #f1c40f; }
+        .bg-green { background: #27ae60; }
+        .bg-blue { background: #3498db; }
 
-.slides{
-  display:flex;
-  height:100%;
-  transition:transform .6s ease;
-}
+        /* ================= FOOTER (GAMBAR 4) ================= */
+        footer {
+            background: #27ae60;
+            color: white;
+            padding: 80px 20px 40px;
+            border-radius: 60px 60px 0 0;
+            margin-top: 100px;
+        }
 
-.slide{
-  min-width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:40px;
-  text-align:center;
-}
+        .footer-grid {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 50px;
+        }
 
-.slide h1{
-  font-size:42px;
-  color:#fff;
-  font-weight:800;
-}
-
-.slide p{
-  margin-top:12px;
-  color:#f9fafb;
-  font-size:18px;
-}
-
-/* WARNA SLIDE */
-.slide-1{background:linear-gradient(135deg,#16a34a,#22c55e);}
-.slide-2{background:linear-gradient(135deg,#f97316,#fb923c);}
-.slide-3{background:linear-gradient(135deg,#0ea5e9,#38bdf8);}
-.slide-4{background:linear-gradient(135deg,#7c3aed,#a78bfa);}
-
-/* DOT */
-.dots{
-  position:absolute;
-  bottom:30px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:10px;
-}
-
-.dot{
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  background:rgba(255,255,255,.5);
-  cursor:pointer;
-}
-
-.dot.active{background:#fff;}
-
-/* ================= RUNNING TEXT ================= */
-.marquee{
-  width:100%;
-  overflow:hidden;
-  background:#fff;
-  border-top:1px solid #e5e7eb;
-  border-bottom:1px solid #e5e7eb;
-}
-
-.marquee-track{
-  display:flex;
-  width:fit-content;
-  animation:marquee 18s linear infinite;
-}
-
-.marquee-track span{
-  white-space:nowrap;
-  padding-right:60px;
-  font-size:14px;
-  color:#374151;
-}
-
-@keyframes marquee{
-  from{transform:translateX(0);}
-  to{transform:translateX(-100%);}
-}
-
-/* ================= MOBILE ================= */
-@media(max-width:768px){
-  body{padding-top:80px;}
-  .slide h1{font-size:26px;}
-  .slide p{font-size:14px;}
-}
-</style>
+        .footer-logo h2 { font-size: 42px; font-weight: 900; line-height: 1; }
+        
+        @media (max-width: 992px) {
+            .layanan-grid, .footer-grid { grid-template-columns: 1fr; }
+            .preview-box { order: -1; min-height: 250px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-  <div class="header-inner">
-    <a class="logo">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
-      <div>
-        <div class="logo-title">RW 013 UKS</div>
-        <div class="logo-subtitle">Utan Kayu Selatan</div>
-      </div>
-    </a>
+    <header>
+        <div class="header-inner">
+            <a class="logo">
+                <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
+                <div>
+                    <div class="logo-title">RW 013 UKS</div>
+                    <div class="logo-subtitle">Utan Kayu Selatan</div>
+                </div>
+            </a>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="#">Profil ▾</a></li>
+                    <li><a href="#">Layanan ▾</a></li>
+                    <li><a href="#" style="background:#f39c12; color:#fff; padding:8px 15px; border-radius:8px;">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <nav class="nav-menu">
-      <ul>
-        <li><a href="#" data-mega="profil">Profil ▾</a></li>
-        <li><a href="#" data-mega="layanan">Layanan ▾</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<!-- MEGA MENU -->
-<div class="mega-panel" id="megaPanel">
-  <div class="mega-content" data-content="profil">
-    <div class="mega-grid">
-      <a class="mega-card"><i class="fa-solid fa-sitemap"></i><h4>Struktur Organisasi</h4><p>Susunan pengurus RW</p></a>
-      <a class="mega-card"><i class="fa-solid fa-users"></i><h4>Bidang & Seksi</h4><p>Bidang kerja RW</p></a>
-      <a class="mega-card"><i class="fa-solid fa-book"></i><h4>Tupoksi</h4><p>Tugas & fungsi</p></a>
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+        </div>
     </div>
-  </div>
 
-  <div class="mega-content" data-content="layanan">
-    <div class="mega-grid">
-      <a class="mega-card"><i class="fa-solid fa-file-lines"></i><h4>Administrasi</h4><p>Layanan surat menyurat</p></a>
-      <a class="mega-card"><i class="fa-solid fa-recycle"></i><h4>Bank Sampah</h4><p>Pengelolaan sampah warga</p></a>
-      <a class="mega-card"><i class="fa-solid fa-hand-holding-heart"></i><h4>Sosial</h4><p>Kegiatan kemasyarakatan</p></a>
-    </div>
-  </div>
-</div>
+    <section class="hero">
+        <div style="background:#e8f5e9; color:#27ae60; display:inline-block; padding:5px 15px; border-radius:20px; font-weight:800; font-size:12px; margin-bottom:15px;">● SELAMAT DATANG</div>
+        <h1>Website Resmi <br> <span>Dinas Lingkungan RW 013</span></h1>
+        <p>Pusat informasi dan layanan digital warga untuk mewujudkan lingkungan yang asri, bersih, dan nyaman di wilayah Utan Kayu Selatan.</p>
+    </section>
 
-<!-- SLIDER -->
-<section class="slider">
-  <div class="slides" id="slides">
-    <div class="slide slide-1">
-      <div>
-        <h1>Selamat Datang</h1>
-        <p>Website Resmi RW 013 UKS</p>
-      </div>
-    </div>
-    <div class="slide slide-2">
-      <div>
-        <h1>Layanan Warga</h1>
-        <p>Administrasi & Sosial</p>
-      </div>
-    </div>
-    <div class="slide slide-3">
-      <div>
-        <h1>Lingkungan Bersih</h1>
-        <p>Bank Sampah & Kebersihan</p>
-      </div>
-    </div>
-    <div class="slide slide-4">
-      <div>
-        <h1>Bersama Membangun</h1>
-        <p>RW Aman & Nyaman</p>
-      </div>
-    </div>
-  </div>
+    <section class="layanan-section">
+        <h2 style="text-align:center; font-size:28px;">Layanan Kami</h2>
+        <div class="layanan-grid">
+            <div class="layanan-col">
+                <div class="layanan-card active">
+                    <h4>Penjemputan e-Waste</h4>
+                    <p>Layanan angkut sampah elektronik warga.</p>
+                </div>
+                <div class="layanan-card">
+                    <h4>Uji Sampel Lab</h4>
+                    <p>Cek kualitas air dan udara lingkungan.</p>
+                </div>
+                <div class="layanan-card">
+                    <h4>Bus Toilet</h4>
+                    <p>Fasilitas sanitasi untuk acara warga.</p>
+                </div>
+            </div>
+            <div class="preview-box">
+                <p style="text-transform:uppercase; font-size:12px; letter-spacing:1px;">Telusuri</p>
+                <h2 style="font-size:32px;">Penjemputan e-Waste</h2>
+                <div style="position:absolute; bottom:30px; right:30px; background:#fff; color:#8b4513; width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+            <div class="layanan-col">
+                <div class="layanan-card">
+                    <h4>Bulky Waste</h4>
+                    <p>Layanan angkut sampah ukuran besar.</p>
+                </div>
+                <div class="layanan-card">
+                    <h4>Bank Sampah</h4>
+                    <p>Digitalisasi tabungan sampah warga.</p>
+                </div>
+                <div class="layanan-card">
+                    <h4>Whistleblowing</h4>
+                    <p>Lapor pelanggaran kebersihan lingkungan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <div class="dots" id="dots"></div>
-</section>
+    <section class="stats-section">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h2>Informasi <span style="color:#e67e22; font-style:italic;">Realtime</span></h2>
+            <div style="font-weight:700; background:#fff8ef; padding:8px 15px; border-radius:10px; border:1px solid #fce4bd;">
+                Senin, 05 Januari 2026
+            </div>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card bg-orange">
+                <i class="fa-solid fa-trash"></i>
+                <span class="label">Sampah Terkumpul</span>
+                <span class="value">3.586 <small style="font-size:16px;">Ton</small></span>
+            </div>
+            <div class="stat-card bg-yellow">
+                <i class="fa-solid fa-truck"></i>
+                <span class="label">Ritase Truk</span>
+                <span class="value">591 <small style="font-size:16px;">Unit</small></span>
+            </div>
+            <div class="stat-card bg-green">
+                <i class="fa-solid fa-wind"></i>
+                <span class="label">Kualitas Udara (Baik)</span>
+                <span class="value">18 <small style="font-size:16px;">ISPU</small></span>
+            </div>
+            <div class="stat-card bg-blue">
+                <i class="fa-solid fa-users"></i>
+                <span class="label">Partisipasi Warga</span>
+                <span class="value">92 <small style="font-size:16px;">%</small></span>
+            </div>
+        </div>
+    </section>
 
-<!-- RUNNING TEXT -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-    <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-  </div>
-</div>
-
-<script>
-/* SLIDER */
-const slides=document.getElementById("slides");
-const total=slides.children.length;
-const dots=document.getElementById("dots");
-let index=0;
-
-for(let i=0;i<total;i++){
-  const d=document.createElement("div");
-  d.className="dot"+(i===0?" active":"");
-  d.onclick=()=>goSlide(i);
-  dots.appendChild(d);
-}
-
-function goSlide(i){
-  index=i;
-  slides.style.transform=`translateX(-${i*100}%)`;
-  document.querySelectorAll(".dot").forEach((d,idx)=>{
-    d.classList.toggle("active",idx===i);
-  });
-}
-
-setInterval(()=>{
-  index=(index+1)%total;
-  goSlide(index);
-},5000);
-
-/* MEGA MENU */
-const megaPanel=document.getElementById("megaPanel");
-document.querySelectorAll("[data-mega]").forEach(link=>{
-  link.onclick=e=>{
-    e.preventDefault();
-    const t=link.dataset.mega;
-    megaPanel.classList.add("active");
-    document.querySelectorAll(".mega-content").forEach(c=>{
-      c.classList.toggle("active",c.dataset.content===t);
-    });
-  };
-});
-
-document.addEventListener("click",e=>{
-  if(!e.target.closest("[data-mega]")&&!e.target.closest(".mega-panel")){
-    megaPanel.classList.remove("active");
-  }
-});
-</script>
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-logo">
+                <h2>SAVE OUR<br>EARTH</h2>
+                <p style="margin-top:20px; opacity:0.8; font-size:14px; line-height:1.6;">Bersama menjaga kebersihan lingkungan RW 013 Utan Kayu Selatan untuk masa depan yang lebih hijau.</p>
+                <div style="display:flex; gap:15px; margin-top:25px; font-size:20px;">
+                    <i class="fa-brands fa-instagram"></i><i class="fa-brands fa-facebook"></i><i class="fa-brands fa-youtube"></i>
+                </div>
+            </div>
+            <div>
+                <h4 style="margin-bottom:20px;">Menu Utama</h4>
+                <ul style="list-style:none; opacity:0.8; line-height:2.2; font-size:14px;">
+                    <li>Profil RW 013</li>
+                    <li>Layanan Administrasi</li>
+                    <li>Program Lingkungan</li>
+                    <li>Kontak Pengaduan</li>
+                </ul>
+            </div>
+            <div style="background:rgba(255,255,255,0.1); padding:25px; border-radius:20px;">
+                <h4 style="margin-bottom:15px;">Hubungi Kami</h4>
+                <p style="font-size:13px; margin-bottom:10px;"><i class="fa-solid fa-map-marker-alt" style="margin-right:10px;"></i> Jl. Utan Kayu Selatan, Jakarta Timur</p>
+                <p style="font-size:13px; margin-bottom:10px;"><i class="fa-solid fa-phone" style="margin-right:10px;"></i> (021) 8092744</p>
+                <p style="font-size:13px;"><i class="fa-solid fa-envelope" style="margin-right:10px;"></i> info@rw013uks.id</p>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:60px; font-size:12px; opacity:0.5; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px;">
+            &copy; 2026 RW 013 Utan Kayu Selatan. All Rights Reserved.
+        </div>
+    </footer>
 
 </body>
 </html>
