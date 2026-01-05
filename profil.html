@@ -105,38 +105,53 @@ nav a:hover { color: #2fa56a; }
 
 <header>
   <div class="header-inner">
+
+    <!-- LOGO -->
     <a href="index.html" class="logo">
       <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo">
-      <div class="logo-text"><strong>Sekretariat RW 013</strong></div>
+      <div>
+        <div class="logo-title">Sekretariat RW 013</div>
+        <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
+      </div>
     </a>
-    <nav>
+
+    <!-- HAMBURGER -->
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+
+    <!-- NAV -->
+    <nav class="nav-menu">
       <ul>
+
         <li><a href="index.html">Beranda</a></li>
-        <li class="dropdown-full">
-          <a href="javascript:void(0)" id="profileBtn">Profil <small>▾</small></a>
-          <div class="mega-menu" id="megaMenu">
-            <div class="mega-menu-inner">
-              <a href="#struktur" class="menu-card">
-                <div class="icon-box-menu">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
-                </div>
-                <h3>Struktur Organisasi</h3>
-              </a>
-              <a href="#bidang" class="menu-card">
-                <div class="icon-box-menu">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                </div>
-                <h3>Bidang Kerja</h3>
-              </a>
-            </div>
+
+        <!-- PROFIL -->
+        <li class="dropdown">
+          <a href="profil.html">Profil ▾</a>
+          <div class="mega-menu">
+            <a href="profil.html#struktur">Struktur Organisasi</a>
+            <a href="profil.html#bidang">Bidang Kerja</a>
           </div>
         </li>
-        <li><a href="#">Informasi</a></li>
-        <li><a href="#">Layanan</a></li>
+
+        <!-- LAYANAN -->
+        <li class="dropdown">
+          <a href="layanan.html">Layanan ▾</a>
+          <div class="mega-menu wide">
+            <a href="layanan.html#administrasi">Administrasi</a>
+            <a href="layanan.html#keamanan">Keamanan</a>
+            <a href="layanan.html#sosial">Sosial</a>
+            <a href="layanan.html#bank-sampah">Bank Sampah</a>
+          </div>
+        </li>
+
         <li><a href="#">Kegiatan</a></li>
-        <li><a href="#">Kontak Kami</a></li>
+        <li><a href="#">Kontak</a></li>
+
       </ul>
     </nav>
+
   </div>
 </header>
 
