@@ -3,243 +3,232 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Website Resmi RW 013 UKS</title>
+<title>Website RW 013 UKS</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 /* ================= RESET ================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Arial, sans-serif;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI", Arial, sans-serif;
 }
 
-body {
-  padding-top: 90px;
-  color: #1f2937;
-  background: #f9fafb;
+body{
+  padding-top:90px;
+  background:#f9fafb;
+  color:#111827;
 }
 
 /* ================= HEADER ================= */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  z-index: 9999;
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:#fff;
+  border-bottom:1px solid #e5e7eb;
+  z-index:9999;
 }
 
-.header-inner {
-  max-width: 1200px;
-  margin: auto;
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.header-inner{
+  max-width:1200px;
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-/* LOGO */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
+.logo{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  text-decoration:none;
 }
 
-.logo img {
-  width: 46px;
-  height: 46px;
+.logo img{
+  width:46px;
+  height:46px;
 }
 
-.logo-title {
-  font-weight: 800;
-  color: #16a34a;
+.logo-title{
+  font-weight:800;
+  color:#16a34a;
 }
 
-.logo-subtitle {
-  font-size: 12px;
-  color: #6b7280;
+.logo-subtitle{
+  font-size:12px;
+  color:#6b7280;
 }
 
 /* NAV */
-.nav-menu ul {
-  list-style: none;
-  display: flex;
-  gap: 24px;
-  align-items: center;
+.nav-menu ul{
+  list-style:none;
+  display:flex;
+  gap:24px;
 }
 
-.nav-menu a {
-  text-decoration: none;
-  font-weight: 600;
-  color: #374151;
+.nav-menu a{
+  text-decoration:none;
+  font-weight:600;
+  color:#374151;
 }
 
-/* DROPDOWN */
-.dropdown {
-  position: relative;
+/* ================= MEGA MENU ================= */
+.mega-panel{
+  position:fixed;
+  top:90px;
+  left:0;
+  width:100%;
+  background:#fff;
+  box-shadow:0 20px 40px rgba(0,0,0,.15);
+  display:none;
+  z-index:9998;
 }
 
-.mega-menu {
-  display: none;
-  position: absolute;
-  top: 120%;
-  left: 0;
-  background: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0 20px 40px rgba(0,0,0,.15);
-  min-width: 220px;
-  overflow: hidden;
-  z-index: 999;
+.mega-panel.active{display:block;}
+
+.mega-content{
+  max-width:1200px;
+  margin:auto;
+  padding:40px 20px;
+  display:none;
 }
 
-.mega-menu a {
-  display: block;
-  padding: 12px 20px;
-  font-size: 14px;
+.mega-content.active{display:block;}
+
+.mega-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:30px;
 }
 
-.mega-menu a:hover {
-  background: #f0fdf4;
-  color: #16a34a;
+.mega-card{
+  background:#fff;
+  border-radius:16px;
+  padding:28px;
+  text-align:center;
+  text-decoration:none;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  transition:.3s;
 }
 
-.dropdown:hover .mega-menu {
-  display: block;
+.mega-card i{
+  font-size:28px;
+  color:#f97316;
+  margin-bottom:12px;
 }
 
-/* HAMBURGER */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
+.mega-card h4{
+  font-size:16px;
+  margin-bottom:6px;
 }
 
-.hamburger span {
-  width: 26px;
-  height: 3px;
-  background: #16a34a;
-  border-radius: 3px;
+.mega-card p{
+  font-size:13px;
+  color:#6b7280;
 }
 
-/* ================= HERO ================= */
-.hero {
-  min-height: calc(100vh - 90px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 50px 20px;
-  background:
-    radial-gradient(circle at top right, #dcfce7, transparent 45%),
-    radial-gradient(circle at bottom left, #ecfeff, transparent 45%),
-    linear-gradient(135deg, #f0fdf4, #ffffff);
+.mega-card:hover{
+  transform:translateY(-6px);
 }
 
-.typing {
-  font-size: 38px;
-  font-weight: 800;
-  color: #f97316;
-  min-height: 48px;
+/* ================= SLIDER ================= */
+.slider{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
 }
 
-.float-text {
-  font-size: 38px;
-  font-weight: 800;
-  color: #16a34a;
-  margin-top: 6px;
-  opacity: 0;
-  animation: fadeUp 1s forwards 2.4s;
+.slides{
+  display:flex;
+  height:100%;
+  transition:transform .6s ease;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+.slide{
+  min-width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px;
+  text-align:center;
 }
 
-.desc {
-  margin-top: 20px;
-  font-size: 16px;
-  color: #4b5563;
-  line-height: 1.6;
+.slide h1{
+  font-size:42px;
+  color:#fff;
+  font-weight:800;
 }
+
+.slide p{
+  margin-top:12px;
+  color:#f9fafb;
+  font-size:18px;
+}
+
+/* WARNA SLIDE */
+.slide-1{background:linear-gradient(135deg,#16a34a,#22c55e);}
+.slide-2{background:linear-gradient(135deg,#f97316,#fb923c);}
+.slide-3{background:linear-gradient(135deg,#0ea5e9,#38bdf8);}
+.slide-4{background:linear-gradient(135deg,#7c3aed,#a78bfa);}
+
+/* DOT */
+.dots{
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:10px;
+}
+
+.dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:rgba(255,255,255,.5);
+  cursor:pointer;
+}
+
+.dot.active{background:#fff;}
 
 /* ================= RUNNING TEXT ================= */
-.marquee {
-  width: 100%;
-  overflow: hidden;
-  background: #ffffff;
-  border-top: 1px solid #e5e7eb;
-  border-bottom: 1px solid #e5e7eb;
-  margin-top: 40px;
+.marquee{
+  width:100%;
+  overflow:hidden;
+  background:#fff;
+  border-top:1px solid #e5e7eb;
+  border-bottom:1px solid #e5e7eb;
 }
 
-.marquee-track {
-  display: flex;
-  width: fit-content;
-  animation: marquee 18s linear infinite;
+.marquee-track{
+  display:flex;
+  width:fit-content;
+  animation:marquee 18s linear infinite;
 }
 
-.marquee-track span {
-  white-space: nowrap;
-  padding-right: 60px;
-  font-size: 14px;
-  color: #374151;
+.marquee-track span{
+  white-space:nowrap;
+  padding-right:60px;
+  font-size:14px;
+  color:#374151;
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+@keyframes marquee{
+  from{transform:translateX(0);}
+  to{transform:translateX(-100%);}
 }
 
 /* ================= MOBILE ================= */
-@media (max-width: 768px) {
-
-  body { padding-top: 80px; }
-
-  .hamburger { display: flex; }
-
-  .nav-menu {
-    display: none;
-    width: 100%;
-    background: #ffffff;
-    padding: 15px 20px;
-  }
-
-  .nav-menu.active {
-    display: block;
-  }
-
-  .nav-menu ul {
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .dropdown:hover .mega-menu {
-    display: none;
-  }
-
-  .dropdown.active .mega-menu {
-    display: block;
-    position: static;
-    box-shadow: none;
-    border-radius: 10px;
-    margin-top: 8px;
-  }
-
-  .typing,
-  .float-text {
-    font-size: 26px;
-  }
-
-  .desc {
-    font-size: 14px;
-  }
+@media(max-width:768px){
+  body{padding-top:80px;}
+  .slide h1{font-size:26px;}
+  .slide p{font-size:14px;}
 }
 </style>
 </head>
@@ -248,95 +237,127 @@ header {
 
 <header>
   <div class="header-inner">
-    <a href="#" class="logo">
+    <a class="logo">
       <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
       <div>
-        <div class="logo-title">Sekretariat RW 013</div>
-        <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
+        <div class="logo-title">RW 013 UKS</div>
+        <div class="logo-subtitle">Utan Kayu Selatan</div>
       </div>
     </a>
 
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
-    </div>
-
-    <nav class="nav-menu" id="navMenu">
+    <nav class="nav-menu">
       <ul>
-        <li><a href="#">Beranda</a></li>
-
-        <li class="dropdown">
-          <a href="#">Profil ▾</a>
-          <div class="mega-menu">
-            <a href="#">Struktur Organisasi</a>
-            <a href="#">Bidang Kerja</a>
-          </div>
-        </li>
-
-        <li class="dropdown">
-          <a href="#">Layanan ▾</a>
-          <div class="mega-menu">
-            <a href="#">Administrasi</a>
-            <a href="#">Keamanan</a>
-            <a href="#">Sosial</a>
-            <a href="#">Bank Sampah</a>
-          </div>
-        </li>
-
-        <li><a href="#">Kegiatan</a></li>
-        <li><a href="#">Kontak</a></li>
+        <li><a href="#" data-mega="profil">Profil ▾</a></li>
+        <li><a href="#" data-mega="layanan">Layanan ▾</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
-<section class="hero">
-  <div class="typing" id="typing"></div>
-  <div class="float-text">Website RW 013 UKS</div>
-
-  <div class="desc">
-    Media informasi, pelayanan, dan kegiatan warga RW 013<br>
-    Kelurahan Utan Kayu Selatan – Matraman
-  </div>
-
-  <div class="marquee">
-    <div class="marquee-track">
-      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-      <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+<!-- MEGA MENU -->
+<div class="mega-panel" id="megaPanel">
+  <div class="mega-content" data-content="profil">
+    <div class="mega-grid">
+      <a class="mega-card"><i class="fa-solid fa-sitemap"></i><h4>Struktur Organisasi</h4><p>Susunan pengurus RW</p></a>
+      <a class="mega-card"><i class="fa-solid fa-users"></i><h4>Bidang & Seksi</h4><p>Bidang kerja RW</p></a>
+      <a class="mega-card"><i class="fa-solid fa-book"></i><h4>Tupoksi</h4><p>Tugas & fungsi</p></a>
     </div>
   </div>
+
+  <div class="mega-content" data-content="layanan">
+    <div class="mega-grid">
+      <a class="mega-card"><i class="fa-solid fa-file-lines"></i><h4>Administrasi</h4><p>Layanan surat menyurat</p></a>
+      <a class="mega-card"><i class="fa-solid fa-recycle"></i><h4>Bank Sampah</h4><p>Pengelolaan sampah warga</p></a>
+      <a class="mega-card"><i class="fa-solid fa-hand-holding-heart"></i><h4>Sosial</h4><p>Kegiatan kemasyarakatan</p></a>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDER -->
+<section class="slider">
+  <div class="slides" id="slides">
+    <div class="slide slide-1">
+      <div>
+        <h1>Selamat Datang</h1>
+        <p>Website Resmi RW 013 UKS</p>
+      </div>
+    </div>
+    <div class="slide slide-2">
+      <div>
+        <h1>Layanan Warga</h1>
+        <p>Administrasi & Sosial</p>
+      </div>
+    </div>
+    <div class="slide slide-3">
+      <div>
+        <h1>Lingkungan Bersih</h1>
+        <p>Bank Sampah & Kebersihan</p>
+      </div>
+    </div>
+    <div class="slide slide-4">
+      <div>
+        <h1>Bersama Membangun</h1>
+        <p>RW Aman & Nyaman</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dots" id="dots"></div>
 </section>
 
+<!-- RUNNING TEXT -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+    <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+  </div>
+</div>
+
 <script>
-/* HAMBURGER */
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("navMenu");
+/* SLIDER */
+const slides=document.getElementById("slides");
+const total=slides.children.length;
+const dots=document.getElementById("dots");
+let index=0;
 
-hamburger.addEventListener("click", () => {
-  navMenu.classList.toggle("active");
-});
-
-/* DROPDOWN MOBILE */
-document.querySelectorAll(".dropdown > a").forEach(link => {
-  link.addEventListener("click", function(e) {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      this.parentElement.classList.toggle("active");
-    }
-  });
-});
-
-/* TYPING EFFECT */
-const typingEl = document.getElementById("typing");
-const text = "Selamat Datang di";
-let i = 0;
-
-function typing() {
-  if (i < text.length) {
-    typingEl.innerHTML += text.charAt(i++);
-    setTimeout(typing, 80);
-  }
+for(let i=0;i<total;i++){
+  const d=document.createElement("div");
+  d.className="dot"+(i===0?" active":"");
+  d.onclick=()=>goSlide(i);
+  dots.appendChild(d);
 }
-typing();
+
+function goSlide(i){
+  index=i;
+  slides.style.transform=`translateX(-${i*100}%)`;
+  document.querySelectorAll(".dot").forEach((d,idx)=>{
+    d.classList.toggle("active",idx===i);
+  });
+}
+
+setInterval(()=>{
+  index=(index+1)%total;
+  goSlide(index);
+},5000);
+
+/* MEGA MENU */
+const megaPanel=document.getElementById("megaPanel");
+document.querySelectorAll("[data-mega]").forEach(link=>{
+  link.onclick=e=>{
+    e.preventDefault();
+    const t=link.dataset.mega;
+    megaPanel.classList.add("active");
+    document.querySelectorAll(".mega-content").forEach(c=>{
+      c.classList.toggle("active",c.dataset.content===t);
+    });
+  };
+});
+
+document.addEventListener("click",e=>{
+  if(!e.target.closest("[data-mega]")&&!e.target.closest(".mega-panel")){
+    megaPanel.classList.remove("active");
+  }
+});
 </script>
 
 </body>
