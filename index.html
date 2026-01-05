@@ -146,6 +146,9 @@ header {
   }
 }
 
+
+
+  
 /* ================= CONTENT ================= */
 main {
   max-width: 1200px;
@@ -162,7 +165,156 @@ main {
   margin-bottom: 20px;
 }
 
+  /* ================= HERO STYLE DLH ================= */
+.hero {
+  min-height: calc(100vh - 90px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  background:
+    radial-gradient(circle at top right, #dcfce7, transparent 50%),
+    radial-gradient(circle at bottom left, #ecfeff, transparent 50%),
+    linear-gradient(135deg, #f0fdf4, #ffffff);
+}
 
+.hero-inner {
+  max-width: 900px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #dcfce7;
+  color: #15803d;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #f97316;
+}
+
+.hero h1 span {
+  color: #15803d;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #4b5563;
+  max-width: 720px;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <a href="index.html" class="logo">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
+      <div>
+        <div class="logo-title">Sekretariat RW 013</div>
+        <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
+      </div>
+    </a>
+
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+
+        <li class="dropdown">
+          <a href="profil.html">Profil ▾</a>
+          <div class="mega-menu">
+            <a href="profil.html#struktur">Struktur Organisasi</a>
+            <a href="profil.html#bidang">Bidang Kerja</a>
+          </div>
+        </li>
+
+        <li class="dropdown">
+          <a href="layanan.html">Layanan ▾</a>
+          <div class="mega-menu">
+            <a href="layanan.html#administrasi">Administrasi</a>
+            <a href="layanan.html#keamanan">Keamanan</a>
+            <a href="layanan.html#sosial">Sosial</a>
+            <a href="layanan.html#bank-sampah">Bank Sampah</a>
+          </div>
+        </li>
+
+        <li><a href="#">Kegiatan</a></li>
+        <li><a href="#">Kontak</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <div class="hero-badge">
+      🌱 Selamat Datang di
+    </div>
+
+    <h1>
+      Website Resmi<br>
+      <span>RW 013 Utan Kayu Selatan</span>
+    </h1>
+
+    <p>
+      Jelajahi berbagai informasi, layanan, dan kegiatan warga
+      untuk mendukung lingkungan yang tertib, bersih, dan harmonis
+      di wilayah RW 013.
+    </p>
+
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.querySelector(".nav-menu");
+
+  hamburger.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+  });
+
+  document.querySelectorAll(".dropdown > a").forEach(link => {
+    link.addEventListener("click", function (e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        this.parentElement.classList.toggle("active");
+      }
+    });
+  });
+});
+</script>
   /* ================= DROPDOWN LAYANAN ================= */
 .dropdown-services {
   position: relative;
