@@ -169,21 +169,25 @@
 }
 
 .hero h1 span#typing-text {
-    color: #f39c12;
-    font-size: 24px; /* Ukuran lebih kecil sesuai permintaan */
+    /* Warna orange tipis/lembut menggunakan kode hex atau rgba */
+    color: rgba(243, 156, 18, 0.8); 
+    /* Ukuran huruf diperkecil */
+    font-size: 18px; 
     display: inline-block;
-    font-weight: 700;
+    font-weight: 600;
     min-height: 1.2em;
-    border-right: 3px solid #f39c12; /* Efek kursor */
+    /* Efek kursor mengetik */
+    border-right: 2px solid rgba(243, 156, 18, 0.5); 
     padding-right: 5px;
-    white-space: pre-wrap; /* Menjaga baris baru tetap berfungsi */
-    animation: blink 0.7s infinite;
+    white-space: pre-wrap; 
+    animation: blink 0.8s infinite;
+    line-height: 1.5;
+    margin-top: 10px;
 }
 
 @keyframes blink {
     50% { border-color: transparent; }
 }
-
       .hero p { 
     color: #666; 
     /* Ukuran huruf diperkecil agar muat 1 baris */
@@ -329,16 +333,12 @@
 </div>
 
    <section class="hero">
-    <div class="welcome-badge">● SELAMAT DATANG DI</div>
-    <h1>
-        Website Resmi <br> 
-        <span>
-            RW 013 Kelurahan Utan Kayu Selatan<br>
-            Kecamatan Matraman<br>
-            Kota Administrasi Jakarta Timur
-        </span>
-    </h1>
-    <p>Portal informasi warga RW untuk mewujudkan lingkungan yang tertata, aman, dan nyaman.</p>
+    <div class="typing" id="typing"></div>
+  <div class="float-text">Website RW 013 UKS</div>
+  <div class="desc">
+    <div class="desc-line1">Media informasi dan pelayanan warga RW 013</div>
+    <div class="desc-line2">Kelurahan Utan Kayu Selatan, Kecamatan Matraman, Jakarta Timur</div>
+  </div>
 </section>
 
     <section class="layanan-section">
