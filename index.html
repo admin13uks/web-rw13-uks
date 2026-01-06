@@ -122,13 +122,15 @@
             animation: marquee 30s linear infinite;
         }
 
-        .marquee-track span {
-            white-space: nowrap;
-            font-size: 14px;
-            font-weight: 700;
-            color: #fff;
-            display: flex;
-        }
+      .marquee-track span {
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    /* Tambahkan padding di bawah ini untuk jarak antar pengulangan teks */
+    padding-right: 50px; 
+}
 
         @keyframes marquee {
             from { transform: translateX(0); }
@@ -284,18 +286,22 @@
         </div>
     </header>
 
-    <div class="marquee">
-        <div class="marquee-track">
-            <span>
-                Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •&nbsp;
-                Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •&nbsp;
-            </span>
-            <span>
-                Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •&nbsp;
-                Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •&nbsp;
-            </span>
-        </div>
+  <div class="marquee">
+    <div class="marquee-track">
+        <span>
+            Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan &nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+        <span>
+            Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan &nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+        <span>
+            Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan &nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+        <span>
+            Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan &nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
     </div>
+</div>
 
     <section class="hero">
         <div class="welcome-badge">● SELAMAT DATANG DI</div>
