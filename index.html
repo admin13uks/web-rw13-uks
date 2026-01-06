@@ -75,20 +75,23 @@
 
         /* MEGA MENU STYLING */
         .dropdown-full { position: static; }
-        .mega-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: white;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            padding: 40px 0;
-            z-index: 999;
-            border-top: 1px solid #f0f0f0;
-        }
+       /* Pastikan mega-menu menempel atau overlap sedikit dengan navigasi */
+.mega-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Menempel tepat di bawah header */
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 40px 0;
+    z-index: 999;
+    border-top: 2px solid #f39c12; /* Garis jingga estetik */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
 
-        .mega-menu.show { display: block; animation: fadeIn 0.3s ease; }
+.mega-menu.show {
+    display: block !important; /* Memaksa tampil saat class 'show' ada */
+}
         
         .mega-menu-inner {
             max-width: 1000px;
@@ -433,47 +436,53 @@
             }
             type();
 
-    // ======================
-// Mega Menu Logic (Fixed & Stable)
-// ======================
+   // ==========================================
+// MEGA MENU LOGIC (STABLE & LOCK VERSION)
+// ==========================================
 const profDrop = document.getElementById('profilDrop');
 const megaMenu = document.getElementById('megaMenu');
 const profLink = profDrop.querySelector('a');
 
-// 1. Fungsi Klik untuk Membuka/Menutup (Toggle)
+// 1. Fungsi Klik pada teks "Profil"
 profLink.addEventListener('click', function(e) {
-    // Mencegah pindah halaman saat klik pertama agar dropdown muncul
-    e.preventDefault(); 
-    e.stopPropagation();
+    e.preventDefault(); // Mencegah pindah halaman langsung
+    e.stopPropagation(); // Mencegah event "naik" ke document
     
-    // Toggle class 'show' agar menu tampil diam/tetap di tempat
-    megaMenu.classList.toggle('show');
+    // Toggle class 'show'
+    const isShowing = megaMenu.classList.contains('show');
     
-    // Opsional: Beri warna aktif pada teks "Profil" saat menu terbuka
-    this.style.color = megaMenu.classList.contains('show') ? "#16a34a" : "";
-});
-
-// 2. Mencegah menu tertutup saat area di dalam mega menu diklik
-megaMenu.addEventListener('click', function(e) {
-    e.stopPropagation();
-});
-
-// 3. Menutup menu hanya jika mengklik area di luar profilDrop
-document.addEventListener('click', function(e) {
-    if (!profDrop.contains(e.target)) {
+    if (isShowing) {
         megaMenu.classList.remove('show');
-        profLink.style.color = ""; // Kembalikan warna teks asli
+    } else {
+        megaMenu.classList.add('show');
     }
 });
 
-// 4. Untuk Desktop (Hover tetap berfungsi namun klik tetap prioritas)
+// 2. Mencegah menu tertutup saat area di DALAM mega menu diklik
+// Ini agar saat Anda mengklik kartu atau ikon, menu tidak hilang sebelum pindah halaman
+megaMenu.addEventListener('click', function(e) {
+    e.stopPropagation(); 
+});
+
+// 3. Menutup menu jika mengklik di mana saja di luar area profilDrop
+document.addEventListener('click', function(e) {
+    if (!profDrop.contains(e.target)) {
+        megaMenu.classList.remove('show');
+    }
+});
+
+// 4. Penanganan Hover untuk Desktop agar tetap halus
 profDrop.addEventListener('mouseenter', () => {
-    if (window.innerWidth > 768) megaMenu.classList.add('show');
+    if (window.innerWidth > 768) {
+        megaMenu.classList.add('show');
+    }
 });
 
 profDrop.addEventListener('mouseleave', () => {
-    // Menu hanya tertutup otomatis di desktop jika tidak sedang dalam mode klik
-    if (window.innerWidth > 768) megaMenu.classList.remove('show');
+    if (window.innerWidth > 768) {
+        // Menu hanya tertutup jika tidak sedang di-klik secara manual (opsional)
+        megaMenu.classList.remove('show');
+    }
 });
 
             // ======================
