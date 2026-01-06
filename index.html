@@ -425,5 +425,21 @@
         }
     </script>
 
+    // ======================
+  // Typing Effect
+  // ======================
+  const typingEl = document.getElementById("typing");
+  if (typingEl) {
+    const textFull = "Selamat Datang di";
+    let idx = 0;
+    function type() {
+      if (idx < textFull.length) {
+        typingEl.innerHTML += textFull.charAt(idx++);
+        setTimeout(type, 80);
+      }
+    }
+    type();
+  }
+
 </body>
 </html>
