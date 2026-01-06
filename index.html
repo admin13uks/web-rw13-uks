@@ -123,35 +123,38 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* ================= MARQUEE ================= */
-        .marquee {
-            position: fixed;
-            top: 70px;
-            width: 100%;
-            overflow: hidden;
-            background: #f39c12;
-            z-index: 9999;
-            padding: 10px 0;
-        }
+       * ================= MARQUEE FIXED ================= */
+.marquee {
+    position: fixed;
+    top: 70px; 
+    width: 100%;
+    overflow: hidden;
+    background: #f39c12;
+    z-index: 9999;
+    padding: 12px 0;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
 
-        .marquee-track {
-            display: flex;
-            width: max-content;
-            animation: marquee-infinite 30s linear infinite;
-        }
+.marquee-track {
+    display: flex;
+    width: max-content; /* Sangat penting agar track mengikuti panjang teks */
+    animation: marquee-infinite 40s linear infinite;
+}
 
-        .marquee-track span {
-            white-space: nowrap;
-            font-size: 14px;
-            font-weight: 700;
-            color: #fff;
-            padding-right: 100px;
-        }
+.marquee-track span {
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    padding-right: 50px; /* Jarak antar kalimat */
+}
 
-        @keyframes marquee-infinite {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
+/* Animasi agar tidak terputus */
+@keyframes marquee-infinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Geser tepat setengah dari total panjang track */
+}
 
         /* ================= HERO SECTION ================= */
         .hero {
@@ -300,9 +303,9 @@
 
     <div class="marquee">
         <div class="marquee-track">
-            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan</span>
-            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan</span>
-            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan</span>
+            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
         </div>
     </div>
 
