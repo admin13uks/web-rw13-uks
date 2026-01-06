@@ -116,24 +116,28 @@
             padding: 8px 0;
         }
 
-        .marquee-track {
-            display: flex;
-            width: max-content;
-            animation: marquee 20s linear infinite;
-        }
+       /* ================= PERBAIKAN MARQUEE ================= */
+.marquee-track {
+    display: flex;
+    width: max-content;
+    /* Durasi disesuaikan: makin besar angkanya makin lambat */
+    animation: marquee 40s linear infinite; 
+}
 
-        .marquee-track span {
-            white-space: nowrap;
-            padding-right: 60px;
-            font-size: 14px;
-            font-weight: 700;
-            color: #fff;
-        }
+.marquee-track span {
+    white-space: nowrap;
+    padding-right: 0px; /* Reset padding */
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+}
 
-        @keyframes marquee {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
+/* Gunakan animasi yang menggeser tepat 50% dari total lebar track */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
 
         .hero {
             padding: 60px 20px;
@@ -261,12 +265,17 @@
         </div>
     </header>
 
-    <div class="marquee">
-        <div class="marquee-track">
-            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-        </div>
+  <div class="marquee-track">
+        <span>
+            Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •&nbsp;
+            Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •&nbsp;
+        </span>
+        <span>
+            Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •&nbsp;
+            Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •&nbsp;
+        </span>
     </div>
+</div>
 
     <section class="hero">
         <div style="background:#e8f5e9; color:#27ae60; display:inline-block; padding:5px 15px; border-radius:20px; font-weight:800; font-size:12px; margin-bottom:15px;">● SELAMAT DATANG DI</div>
