@@ -171,13 +171,25 @@
 
         .hero h1 span { color: #f39c12; }
 
-        .hero p { 
-            color: #666; 
-            max-width: 700px; 
-            margin: 0 auto; 
-            font-size: 18px;
-            line-height: 1.6;
-        }
+      .hero p { 
+    color: #666; 
+    /* Ukuran huruf diperkecil agar muat 1 baris */
+    font-size: 14px; 
+    /* Max-width ditambah atau dihapus agar teks tidak tertekuk ke bawah */
+    max-width: 100%; 
+    margin: 0 auto; 
+    line-height: 1.6;
+    /* Memastikan teks tetap dalam satu baris jika layar cukup lebar */
+    white-space: nowrap; 
+}
+
+/* Tambahan: Agar tetap rapi di HP (Mobile), teks boleh kembali ke 2 baris */
+@media (max-width: 768px) {
+    .hero p {
+        font-size: 12px;
+        white-space: normal; 
+    }
+}
 
         /* ================= LAYANAN SECTION ================= */
         .layanan-section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
