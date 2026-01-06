@@ -433,30 +433,48 @@
             }
             type();
 
-         // ======================
-// Mega Menu Logic (VERSI TERBARU)
+    // ======================
+// Mega Menu Logic (Fixed & Stable)
 // ======================
 const profDrop = document.getElementById('profilDrop');
 const megaMenu = document.getElementById('megaMenu');
-const profLink = profDrop.querySelector('a'); // Ini penting untuk menangkap klik pada tulisan "Profil"
+const profLink = profDrop.querySelector('a');
 
-// 1. Saat teks "Profil" diklik, dropdown muncul (tidak langsung pindah halaman)
+// 1. Fungsi Klik untuk Membuka/Menutup (Toggle)
 profLink.addEventListener('click', function(e) {
+    // Mencegah pindah halaman saat klik pertama agar dropdown muncul
     e.preventDefault(); 
     e.stopPropagation();
-    megaMenu.classList.toggle('show'); 
+    
+    // Toggle class 'show' agar menu tampil diam/tetap di tempat
+    megaMenu.classList.toggle('show');
+    
+    // Opsional: Beri warna aktif pada teks "Profil" saat menu terbuka
+    this.style.color = megaMenu.classList.contains('show') ? "#16a34a" : "";
 });
 
-// 2. Klik di luar menu akan menutup dropdown
+// 2. Mencegah menu tertutup saat area di dalam mega menu diklik
+megaMenu.addEventListener('click', function(e) {
+    e.stopPropagation();
+});
+
+// 3. Menutup menu hanya jika mengklik area di luar profilDrop
 document.addEventListener('click', function(e) {
     if (!profDrop.contains(e.target)) {
         megaMenu.classList.remove('show');
+        profLink.style.color = ""; // Kembalikan warna teks asli
     }
 });
 
-// 3. Efek Hover untuk pengguna Mouse (Desktop)
-profDrop.addEventListener('mouseenter', () => megaMenu.classList.add('show'));
-profDrop.addEventListener('mouseleave', () => megaMenu.classList.remove('show'))
+// 4. Untuk Desktop (Hover tetap berfungsi namun klik tetap prioritas)
+profDrop.addEventListener('mouseenter', () => {
+    if (window.innerWidth > 768) megaMenu.classList.add('show');
+});
+
+profDrop.addEventListener('mouseleave', () => {
+    // Menu hanya tertutup otomatis di desktop jika tidak sedang dalam mode klik
+    if (window.innerWidth > 768) megaMenu.classList.remove('show');
+});
 
             // ======================
             // Date Update
