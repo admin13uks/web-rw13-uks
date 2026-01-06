@@ -420,20 +420,30 @@
             }
             type();
 
-            // ======================
-            // Mega Menu Logic
-            // ======================
-            const profDrop = document.getElementById('profilDrop');
-            const megaMenu = document.getElementById('megaMenu');
+         // ======================
+// Mega Menu Logic (VERSI TERBARU)
+// ======================
+const profDrop = document.getElementById('profilDrop');
+const megaMenu = document.getElementById('megaMenu');
+const profLink = profDrop.querySelector('a'); // Ini penting untuk menangkap klik pada tulisan "Profil"
 
-            profDrop.addEventListener('click', function(e) {
-                e.stopPropagation();
-                megaMenu.classList.toggle('show');
-            });
+// 1. Saat teks "Profil" diklik, dropdown muncul (tidak langsung pindah halaman)
+profLink.addEventListener('click', function(e) {
+    e.preventDefault(); 
+    e.stopPropagation();
+    megaMenu.classList.toggle('show'); 
+});
 
-            document.addEventListener('click', function() {
-                megaMenu.classList.remove('show');
-            });
+// 2. Klik di luar menu akan menutup dropdown
+document.addEventListener('click', function(e) {
+    if (!profDrop.contains(e.target)) {
+        megaMenu.classList.remove('show');
+    }
+});
+
+// 3. Efek Hover untuk pengguna Mouse (Desktop)
+profDrop.addEventListener('mouseenter', () => megaMenu.classList.add('show'));
+profDrop.addEventListener('mouseleave', () => megaMenu.classList.remove('show'))
 
             // ======================
             // Date Update
