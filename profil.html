@@ -426,14 +426,16 @@ document.addEventListener("DOMContentLoaded", function () {
      DROPDOWN MENU (MOBILE)
      Klik untuk buka / tutup
   ========================= */
-  document.querySelectorAll(".dropdown > a").forEach(link => {
+ document.querySelectorAll(".dropdown > a").forEach(link => {
     link.addEventListener("click", function (e) {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        this.parentElement.classList.toggle("active");
-      }
+        if (window.innerWidth <= 768) {
+            // Di mobile, klik pertama buka menu, klik kedua (atau klik teks) baru pindah halaman
+            // Namun cara paling aman adalah membiarkan link utama bekerja jika diklik
+            // atau gunakan toggle class pada parent li
+            this.parentElement.classList.toggle("active");
+        }
     });
-  });
+});
 
 
   /* =========================
