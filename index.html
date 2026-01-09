@@ -1,442 +1,223 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Resmi RW 013 UKS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Resmi RW 013 UKS</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-    <style>
-        /* ================= RESET & BASE ================= */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
+body{background:linear-gradient(135deg,#f6f9fc,#eaf7f0);color:#333;padding-top:145px;overflow-x:hidden}
 
-        body {
-            background: linear-gradient(135deg, #f6f9fc, #eaf7f0);
-            color: #333;
-            overflow-x: hidden;
-            padding-top: 130px; 
-        }
+/* ================= HEADER ================= */
+header{
+ position:fixed;top:0;width:100%;
+ background:rgba(255,255,255,.98);
+ backdrop-filter:blur(6px);
+ border-bottom:1px solid rgba(0,0,0,.08);
+ z-index:10000;
+}
+.header-inner{
+ max-width:1200px;margin:auto;
+ padding:12px 20px;
+ display:flex;justify-content:space-between;align-items:center
+}
+.logo{display:flex;gap:12px;text-decoration:none}
+.logo img{height:45px}
+.logo-title{font-weight:800;color:#16a34a;font-size:18px}
+.logo-subtitle{font-size:12px;color:#6b7280;font-weight:600}
+nav ul{display:flex;list-style:none;gap:24px;align-items:center}
+nav a{text-decoration:none;font-weight:700;color:#374151;font-size:14px}
+nav a:hover{color:#16a34a}
 
-        /* ================= HEADER & NAV ================= */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255,255,255,0.98);
-            backdrop-filter: blur(6px);
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-            z-index: 10000;
-        }
+/* ================= MEGA MENU ================= */
+.dropdown-full{position:static}
+.mega-menu{
+ display:none;position:fixed;
+ top:70px;left:0;width:100%;
+ background:#fff;
+ box-shadow:0 20px 40px rgba(0,0,0,.12);
+ padding:40px 0;z-index:9999
+}
+.mega-menu.show{display:block;animation:fadeIn .3s ease}
+.mega-menu-inner{
+ max-width:1100px;margin:auto;
+ display:flex;justify-content:center;gap:40px
+}
+.menu-card{
+ width:230px;text-align:center;text-decoration:none;
+ color:#333;padding:15px;border-radius:14px;transition:.3s
+}
+.menu-card:hover{background:#f9fafb;transform:translateY(-6px)}
+.icon-box{
+ width:55px;height:55px;background:#f39c12;
+ border-radius:16px;
+ display:flex;align-items:center;justify-content:center;
+ color:#fff;font-size:22px;margin:0 auto 12px
+}
 
-        .header-inner {
-            max-width: 1200px;
-            margin: auto;
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* ================= MARQUEE ================= */
+.marquee{
+ position:fixed;top:70px;width:100%;
+ background:#f39c12;overflow:hidden;
+ padding:12px 0;z-index:9998
+}
+.marquee-track{
+ display:flex;width:max-content;
+ animation:marquee 40s linear infinite
+}
+.marquee-track span{
+ white-space:nowrap;
+ font-weight:800;font-size:18px;
+ color:#000;padding-right:100px
+}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
+/* ================= HERO ================= */
+.hero{
+ min-height:70vh;
+ display:flex;flex-direction:column;
+ align-items:center;justify-content:center;
+ text-align:center;padding:40px 20px
+}
+.welcome-badge{
+ background:#e8f5e9;color:#27ae60;
+ padding:8px 20px;border-radius:20px;
+ font-weight:800;font-size:12px;
+ margin-bottom:15px
+}
+.hero h1{font-size:48px;font-weight:800}
+#typing-text{
+ color:#f39c12;font-size:20px;
+ white-space:pre-wrap;
+ border-right:2px solid #f39c12;
+ padding-right:6px;animation:blink .8s infinite
+}
+@keyframes blink{50%{border-color:transparent}}
 
-        .logo img { height: 45px; }
-        .logo-title { font-weight: 800; color: #16a34a; font-size: 18px; }
-        .logo-subtitle { font-size: 12px; color: #6b7280; font-weight: 600; }
+/* ================= LAYANAN ================= */
+.layanan-container{text-align:center;padding:80px 20px}
+.layanan-content{
+ max-width:1200px;margin:40px auto;
+ display:flex;gap:30px;align-items:center;justify-content:center
+}
+.layanan-list{flex:1;display:flex;flex-direction:column;gap:15px}
+.layanan-item{
+ background:#fff;padding:20px;border-radius:14px;
+ box-shadow:0 4px 15px rgba(0,0,0,.05);
+ text-align:left;transition:.3s
+}
+.layanan-item:hover,.layanan-item.active{
+ border-left:5px solid #f39c12
+}
+.preview-card{
+ width:380px;height:420px;border-radius:20px;
+ background:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.8)),
+ url('https://images.unsplash.com/photo-1604187351574-c75ca79f5807?auto=format&fit=crop&w=900&q=80');
+ background-size:cover;background-position:center;
+ display:flex;align-items:flex-end;padding:30px;color:#fff
+}
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 24px;
-            align-items: center;
-        }
+/* ================= KEGIATAN RW ================= */
+.section-title{text-align:center;margin-top:80px}
+.layanan-grid{
+ max-width:1100px;margin:40px auto;
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(450px,1fr));
+ gap:20px;padding:0 20px
+}
+.kegiatan-item{
+ background:#fff;padding:25px;border-radius:15px;
+ display:flex;gap:20px;box-shadow:0 4px 15px rgba(0,0,0,.05)
+}
+.kegiatan-num{
+ width:40px;height:40px;border-radius:50%;
+ background:#e8f5e9;color:#16a34a;
+ display:flex;align-items:center;justify-content:center;font-weight:800
+}
 
-        nav a {
-            text-decoration: none;
-            font-weight: 700;
-            color: #374151;
-            font-size: 14px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+/* ================= FOOTER ================= */
+footer{
+ background:#27ae60;color:#fff;
+ padding:60px 20px;border-radius:60px 60px 0 0
+}
+.footer-inner{
+ max-width:1200px;margin:auto;
+ display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px
+}
 
-        nav a:hover { color: #16a34a; }
-
-        /* MEGA MENU STYLING */
-        .dropdown-full { position: static; }
-        .mega-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: white;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            padding: 40px 0;
-            z-index: 999;
-            border-top: 1px solid #f0f0f0;
-        }
-
-        .mega-menu.show { display: block; animation: fadeIn 0.3s ease; }
-        
-        .mega-menu-inner {
-            max-width: 1000px;
-            margin: auto;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-        }
-
-        .menu-card {
-            text-align: center;
-            text-decoration: none;
-            width: 220px;
-            transition: 0.3s;
-            color: #333;
-        }
-
-        .menu-card:hover { transform: translateY(-8px); }
-
-        .icon-box {
-            width: 60px;
-            height: 60px;
-            background: #f39c12;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            color: white;
-            font-size: 24px;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* ================= MARQUEE FIXED (SUDAH DIUPDATE) ================= */
-        .marquee {
-            position: fixed;
-            top: 70px; 
-            width: 100%;
-            overflow: hidden;
-            background: #f39c12;
-            z-index: 9999;
-            padding: 15px 0; /* Padding ditambah agar teks besar tidak terpotong */
-            border-top: 1px solid rgba(255,255,255,0.2);
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .marquee-track {
-            display: flex;
-            width: max-content; 
-            animation: marquee-infinite 45s linear infinite; /* Durasi sedikit ditambah agar smooth */
-        }
-
-        .marquee-track span {
-            white-space: nowrap;
-            font-size: 22px;       /* Ukuran diperbesar */
-            font-weight: 800;       /* Lebih tebal */
-            color: #000000;         /* Warna Hitam */
-            padding-right: 100px;   /* Jarak antar kalimat */
-        }
-
-        @keyframes marquee-infinite {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } 
-        }
-
-        /* ================= HERO SECTION ================= */
-        .hero {
-            padding: 100px 20px 60px;
-            text-align: center;
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .welcome-badge {
-            background: #e8f5e9; 
-            color: #27ae60; 
-            padding: 8px 20px; 
-            border-radius: 20px; 
-            font-weight: 800; 
-            font-size: 12px; 
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .hero h1 { font-size: 48px; font-weight: 800; line-height: 1.2; color: #111; }
-
-        /* TYPING EFFECT CSS */
-        #typing-text {
-            color: rgba(243, 156, 18, 0.8); 
-            font-size: 20px; 
-            display: inline-block;
-            font-weight: 600;
-            min-height: 1.5em;
-            border-right: 2px solid rgba(243, 156, 18, 0.5);
-            padding-right: 5px;
-            white-space: pre-wrap;
-            animation: blink 0.8s infinite;
-            margin-top: 15px;
-        }
-
-        @keyframes blink { 50% { border-color: transparent; } }
-
-        .hero p.main-desc {
-            color: #666;
-            font-size: 15px;
-            max-width: 800px;
-            margin: 25px auto 0;
-            white-space: nowrap;
-        }
-
-        /* ================= LAYANAN SECTION ================= */
-        .layanan-container { max-width: 1200px; margin: 60px auto; padding: 0 20px; text-align: center; }
-        .layanan-content { display: flex; justify-content: center; align-items: center; gap: 30px; margin-top: 40px; }
-        .layanan-list { flex: 1; display: flex; flex-direction: column; gap: 15px; }
-
-        .layanan-item {
-            padding: 20px; border-radius: 12px; cursor: pointer; transition: 0.3s;
-            text-align: left; background: rgba(255,255,255,0.5); border: 1px solid transparent;
-        }
-        .layanan-item:hover, .layanan-item.active { 
-            background: white; border-color: #f39c12; box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        }
-
-        .preview-card {
-            width: 380px; height: 420px;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80');
-            background-size: cover; background-position: center; border-radius: 20px;
-            display: flex; align-items: flex-end; padding: 30px; color: white; text-align: left;
-        }
-
-        /* ================= INFO GRID ================= */
-        .info-section { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px;}
-        .stat-card { border-radius: 20px; padding: 25px; color: white; }
-        .stat-card h4 { font-size: 14px; opacity: 0.9; }
-        .stat-card .big-num { font-size: 38px; font-weight: 800; display: block; margin: 10px 0; }
-        .stat-card .loc { font-size: 11px; background: rgba(255,255,255,0.2); padding: 8px; border-radius: 8px; }
-        
-        .orange { background: #f97316; } .yellow { background: #facc15; } .green { background: #22c55e; } .blue { background: #38bdf8; }
-
-        /* ================= FOOTER ================= */
-        footer {
-            background: #27ae60;
-            color: white;
-            padding: 60px 20px;
-            border-radius: 60px 60px 0 0;
-            margin-top: 80px;
-        }
-        .footer-inner { 
-            max-width: 1200px; margin: auto; 
-            display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; 
-        }
-
-        @media (max-width: 992px) {
-            .header-inner { padding: 10px; }
-            .hero h1 { font-size: 32px; }
-            .hero p.main-desc { white-space: normal; font-size: 14px; }
-            .layanan-content { flex-direction: column; }
-            .preview-card { width: 100%; height: 300px; order: -1; }
-            .footer-inner { grid-template-columns: 1fr; text-align: center; }
-            .marquee-track span { font-size: 16px; } /* Mengecil sedikit di HP agar rapi */
-        }
-    </style>
+/* ================= RESPONSIVE ================= */
+@media(max-width:992px){
+.hero h1{font-size:34px}
+.layanan-content{flex-direction:column}
+.preview-card{width:100%;height:300px;order:-1}
+.footer-inner{grid-template-columns:1fr;text-align:center}
+.layanan-grid{grid-template-columns:1fr}
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+</style>
 </head>
+
 <body>
 
-    <header>
-        <div class="header-inner">
-            <a class="logo" href="#">
-                <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo">
-                <div>
-                    <div class="logo-title">RW 013 UKS</div>
-                    <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
-                </div>
-            </a>
-            <nav class="nav-menu">
-                <ul>
-                    <li><a href="#">Beranda</a></li>
-                    <li class="dropdown-full" id="profilDrop">
-                        <a>Profil ▾</a>
-                        <div class="mega-menu" id="megaMenu">
-                            <div class="mega-menu-inner">
-                                <a href="#" class="menu-card">
-                                    <div class="icon-box"><i class="fa-solid fa-users"></i></div>
-                                    <h3>Struktur Organisasi</h3>
-                                    <p>Susunan pengurus RW 013.</p>
-                                </a>
-                                <a href="#" class="menu-card">
-                                    <div class="icon-box"><i class="fa-solid fa-bullseye"></i></div>
-                                    <h3>Visi & Misi</h3>
-                                    <p>Tujuan dan aspirasi warga.</p>
-                                </a>
-                                <a href="#" class="menu-card">
-                                    <div class="icon-box"><i class="fa-solid fa-list-check"></i></div>
-                                    <h3>Tupoksi</h3>
-                                    <p>Tugas pokok dan fungsi.</p>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="#layanan">Layanan</a></li>
-                    <li><a href="#" style="background:#f39c12; color:#fff; padding:8px 18px; border-radius:8px;">Login</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<header>
+ <div class="header-inner">
+  <a class="logo" href="#">
+   <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
+   <div>
+    <div class="logo-title">RW 013 UKS</div>
+    <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
+   </div>
+  </a>
+  <nav>
+   <ul>
+    <li><a href="#">Beranda</a></li>
+    <li class="dropdown-full" id="profilDrop">
+     <a>Profil ▾</a>
+     <div class="mega-menu" id="megaMenu">
+      <div class="mega-menu-inner">
+       <a class="menu-card"><div class="icon-box"><i class="fa-users"></i></div><h3>Struktur</h3></a>
+       <a class="menu-card"><div class="icon-box"><i class="fa-bullseye"></i></div><h3>Visi Misi</h3></a>
+       <a class="menu-card"><div class="icon-box"><i class="fa-list-check"></i></div><h3>Tupoksi</h3></a>
+      </div>
+     </div>
+    </li>
+    <li><a href="#layanan">Layanan</a></li>
+    <li><a style="background:#f39c12;color:#fff;padding:8px 18px;border-radius:8px">Login</a></li>
+   </ul>
+  </nav>
+ </div>
+</header>
 
-    <div class="marquee">
-        <div class="marquee-track">
-            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-        </div>
-    </div>
+<div class="marquee">
+ <div class="marquee-track">
+  <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+  <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+ </div>
+</div>
 
-    <section class="hero">
-        <div class="welcome-badge">● Selamat Datang di</div>
-        <h1>Website Resmi<br><span id="typing-text"></span></h1>
-        <p class="main-desc">Portal informasi warga RW untuk mewujudkan lingkungan yang tertata, aman, dan nyaman.</p>
-    </section>
+<section class="hero">
+ <div class="welcome-badge">Selamat Datang</div>
+ <h1>Website Resmi<br><span id="typing-text"></span></h1>
+</section>
 
-    <section class="layanan-container" id="layanan">
-        <h2 style="font-size:32px; font-weight:800; color:#1e3a8a;">Layanan Kami</h2>
-        <p style="color:#666; margin-top:10px;">Beragam fasilitas pendukung untuk seluruh warga RW 013</p>
-        
-        <div class="layanan-content">
-            <div class="layanan-list">
-                <div class="layanan-item active">
-                    <h3>Penjemputan e-Waste</h3>
-                    <p>Layanan angkut sampah elektronik.</p>
-                </div>
-                <div class="layanan-item">
-                    <h3>Administrasi Warga</h3>
-                    <p>Surat pengantar & legalisasi.</p>
-                </div>
-            </div>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+ const text="RW 013 Kelurahan Utan Kayu Selatan\nKecamatan Matraman\nJakarta Timur";
+ let i=0,el=document.getElementById("typing-text");
+ (function type(){
+  if(i<text.length){el.textContent+=text.charAt(i++);setTimeout(type,70)}
+  else el.style.border="none";
+ })();
 
-            <div class="preview-card">
-                <div>
-                    <span style="background:#f39c12; padding:4px 10px; border-radius:4px; font-size:10px; font-weight:700;">FITUR UNGGULAN</span>
-                    <h2 id="cardTitle" style="margin-top:10px;">Layanan e-Waste</h2>
-                    <p style="font-size:13px; opacity:0.9; margin-bottom:15px;">Mendukung lingkungan bersih dari limbah elektronik.</p>
-                    <div style="font-weight:700;">Telusuri →</div>
-                </div>
-            </div>
+ const d=document.getElementById("profilDrop"),
+ m=document.getElementById("megaMenu");
+ d.onclick=e=>{e.stopPropagation();m.classList.toggle("show")}
+ document.onclick=()=>m.classList.remove("show")
+});
+</script>
 
-            <div class="layanan-list">
-                <div class="layanan-item">
-                    <h3>Bank Sampah</h3>
-                    <p>Digitalisasi tabungan sampah warga.</p>
-                </div>
-                <div class="layanan-item">
-                    <h3>Kesehatan Masyarakat</h3>
-                    <p>Info Posyandu dan olahraga warga.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="info-section">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h2 style="font-size:28px; font-weight:800;">Data Tata Lingkungan</h2>
-            <div id="current-date" style="background:#fff8e1; padding:8px 15px; border-radius:10px; color:#b8860b; font-weight:600; font-size:13px;"></div>
-        </div>
-
-        <div class="info-grid">
-            <div class="stat-card orange">
-                <h4>Pengaspalan Jalan</h4>
-                <span class="big-num">9 <small style="font-size:18px;">RT</small></span>
-                <div class="loc">RT 007, 009, 010, 011, 012, 014, 015, 016, 017</div>
-            </div>
-            <div class="stat-card yellow">
-                <h4>Lampu Jalan</h4>
-                <span class="big-num">4 <small style="font-size:18px;">RT</small></span>
-                <div class="loc">RT 009, 012, 016, 017</div>
-            </div>
-            <div class="stat-card green">
-                <h4>Perbaikan Saluran</h4>
-                <span class="big-num">8 <small style="font-size:18px;">RT</small></span>
-                <div class="loc">RT 001, 004, 005, 007, 013, 014, 017</div>
-            </div>
-            <div class="stat-card blue">
-                <h4>Total Wilayah</h4>
-                <span class="big-num">17 <small style="font-size:18px;">RT</small></span>
-                <div class="loc">Kelurahan Utan Kayu Selatan</div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-inner">
-            <div>
-                <h2 style="font-size:36px; font-weight:900; line-height:1;">SAVE OUR<br><span style="color:#fef08a;">FUTURE</span></h2>
-                <p style="margin-top:15px; opacity:0.8; font-size:14px;">Membangun kepedulian bersama demi kenyamanan warga RW 013.</p>
-            </div>
-            <div>
-                <h4 style="margin-bottom:15px;">Tautan Cepat</h4>
-                <ul style="list-style:none; line-height:2; opacity:0.8; font-size:14px;">
-                    <li>Profil RW 013</li>
-                    <li>Layanan Administrasi</li>
-                    <li>Kegiatan Warga</li>
-                </ul>
-            </div>
-            <div style="background:rgba(255,255,255,0.1); padding:20px; border-radius:15px;">
-                <h4 style="margin-bottom:15px;"><i class="fa-solid fa-headset"></i> Kontak Kami</h4>
-                <p style="font-size:13px; margin-bottom:8px;"><i class="fa-solid fa-phone"></i> 0821-2416-3753</p>
-                <p style="font-size:13px;"><i class="fa-solid fa-envelope"></i> jktuksdok13@gmail.com</p>
-            </div>
-        </div>
-        <p style="text-align:center; margin-top:50px; font-size:12px; opacity:0.6;">&copy; 2024 Sekretariat RW 013 Utan Kayu Selatan</p>
-    </footer>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const typingEl = document.getElementById("typing-text");
-            const textContent = "RW 013 Kelurahan Utan Kayu Selatan\nKecamatan Matraman\nKota Administrasi Jakarta Timur";
-            let idx = 0;
-
-            function type() {
-                if (idx < textContent.length) {
-                    typingEl.textContent += textContent.charAt(idx++);
-                    setTimeout(type, 70);
-                } else {
-                    typingEl.style.borderRight = "none";
-                }
-            }
-            type();
-
-            const profDrop = document.getElementById('profilDrop');
-            const megaMenu = document.getElementById('megaMenu');
-
-            profDrop.addEventListener('click', function(e) {
-                e.stopPropagation();
-                megaMenu.classList.toggle('show');
-            });
-
-            document.addEventListener('click', function() {
-                megaMenu.classList.remove('show');
-            });
-
-            const dateEl = document.getElementById("current-date");
-            const today = new Date();
-            const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-            dateEl.textContent = "📅 " + today.toLocaleDateString('id-ID', options);
-        });
-    </script>
 </body>
 </html>
