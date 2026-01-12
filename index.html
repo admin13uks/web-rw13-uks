@@ -501,22 +501,26 @@
         <p style="text-align:center; margin-top:50px; font-size:12px; opacity:0.6;">&copy; 2024 Sekretariat RW 013 Utan Kayu Selatan</p>
     </footer>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Typing Effect
-            const typingEl = document.getElementById("typing-text");
-            const textContent = "RW 013 Kelurahan Utan Kayu Selatan\nKecamatan Matraman\nKota Administrasi Jakarta Timur";
-            let idx = 0;
+   <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const typingEl = document.getElementById("typing-text");
+    const textContent =
+"RW 013 Kelurahan Utan Kayu Selatan\nKecamatan Matraman\nKota Administrasi Jakarta Timur";
 
-            function type() {
-                if (idx < textContent.length) {
-                    typingEl.textContent += textContent.charAt(idx++);
-                    setTimeout(type, 70);
-                } else {
-                    typingEl.style.borderRight = "none";
-                }
-            }
-            type();
+    let idx = 0;
+
+    function type() {
+        if (idx < textContent.length) {
+            typingEl.textContent += textContent.charAt(idx++);
+            setTimeout(type, 70);
+        } else {
+            typingEl.style.borderRight = "none";
+        }
+    }
+
+    type();
+});
+</script>
 
             // Mega Menu Logic
             const profDrop = document.getElementById('profilDrop');
