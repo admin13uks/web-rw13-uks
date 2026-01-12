@@ -262,18 +262,28 @@
 
         .hero h1 { font-size: 48px; font-weight: 800; line-height: 1.2; color: #111; }
 
-        #typing-text {
-            color: rgba(243, 156, 18, 0.8); 
-            font-size: 20px; 
-            display: inline-block;
-            font-weight: 600;
-            min-height: 1.5em;
-            border-right: 2px solid rgba(243, 156, 18, 0.5);
-            padding-right: 5px;
-            white-space: pre-wrap;
-            animation: blink 0.8s infinite;
-            margin-top: 15px;
-        }
+       #typing-text {
+    display: inline-block;
+    margin-top: 15px;
+
+    font-size: 22px;
+    font-weight: 800;
+    color: #ffffff;
+
+    /* OUTLINE HITAM */
+    text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+
+    /* AGAR \n JADI ENTER */
+    white-space: pre-line;
+
+    /* CURSOR KETIK */
+    border-right: 2px solid rgba(0,0,0,.7);
+    padding-right: 4px;
+}
 
         @keyframes blink { 50% { border-color: transparent; } }
 
