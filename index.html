@@ -21,7 +21,7 @@
             background: linear-gradient(135deg, #f6f9fc, #eaf7f0);
             color: #333;
             overflow-x: hidden;
-            padding-top: 130px; 
+            padding-top: 120px; 
         }
 
         /* ================= HEADER & NAV ================= */
@@ -72,6 +72,52 @@
         }
 
         nav a:hover { color: #16a34a; }
+
+        nav ul li {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 10px 0;
+    display: none;
+    z-index: 9999;
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.dropdown-menu a:hover {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+/* SHOW ON HOVER (DESKTOP) */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+        .btn-login {
+    background: #f39c12;
+    color: #fff !important;
+    padding: 8px 18px;
+    border-radius: 8px;
+}
 
         /* MEGA MENU STYLING */
         .dropdown-full { position: static; }
@@ -138,28 +184,21 @@
 
 .marquee-track {
     display: flex;
-    width: fit-content;
-    animation: marquee-loop 30s linear infinite;
+    width: max-content;
+    animation: marquee-loop 25s linear infinite;
 }
 
-  .marquee-track span {
 .marquee-track span {
     white-space: nowrap;
     font-size: 14px;
     font-weight: 600;
     color: #000;
-    padding-right: 80px; /* JARAK ANTAR TEKS */
+    padding-right: 80px;
 }
-        .marquee:hover .marquee-track {
-    animation-play-state: paused;
-}
-      @keyframes marquee-loop {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-100%);
-    }
+
+@keyframes marquee-loop {
+    0%   { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
 }
 
         /* ================= HERO SECTION ================= */
