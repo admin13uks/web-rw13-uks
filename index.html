@@ -24,49 +24,70 @@
             padding-top: 120px; 
         }
 
-         /* ================= ANNOUNCEMENT BAR ================= */
-  .announcement-bar {
+      /* ================= ANNOUNCEMENT BAR ================= */
+.announcement-bar {
     position: fixed;
     top: 64px;
     width: 100%;
     height: 40px;
     background: #f39c12;
+    display: flex;
+    align-items: center;
     overflow: hidden;
     z-index: 9999;
 }
 
-.marquee {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-}
-
-.marquee-track {
+.scrolling-track {
     display: flex;
     width: max-content;
-    animation: marquee 25s linear infinite;
+    animation: scroll 35s linear infinite; /* LEBIH LAMBAT */
 }
 
-.marquee-track span {
-    white-space: nowrap;
-    padding-right: 60px;
+.scrolling-track span {
+    color: #fff;
+    font-weight: 600;
     font-size: 14px;
+    white-space: nowrap;
+    padding-right: 80px;
+    line-height: 40px; /* 🔥 KUNCI TENGAH */
+}
+
+/* ANIMASI HALUS TANPA PUTUS */
+@keyframes scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}.announcement-bar {
+    position: fixed;
+    top: 64px;
+    width: 100%;
+    height: 40px;
+    background: #f39c12;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.scrolling-track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: scroll 35s linear infinite;
+}
+
+.scrolling-track span {
+    color: #fff;
     font-weight: 700;
-    color: #000;
+    font-size: 14px;
+    padding-right: 80px;
     line-height: 40px;
 }
 
-/* ANIMASI LOOP SEMPURNA */
-@keyframes marquee {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-50%);
-    }
+@keyframes scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-100%); }
 }
+        
         /* ================= HEADER & NAV ================= */
         header {
             position: fixed;
@@ -155,7 +176,7 @@
 }
         
 /* SHOW ON HOVER (DESKTOP) */
-.dropdown:open  .dropdown-menu {
+.dropdown-menu.show {
     display: block;
 }
 
@@ -369,23 +390,23 @@
             <ul>
                 <li><a href="#">Beranda</a></li>
 
-                <li class="dropdown">
-    <a class="dropdown-toggle" role="button">Profil ▾</a>
-    <ul class="dropdown-menu">
-                        <li><a href="#">Struktur Organisasi</a></li>
-                        <li><a href="#">Visi & Misi</a></li>
-                        <li><a href="#">Tupoksi</a></li>
-                    </ul>
-                </li>
+               <li class="dropdown">
+    <a id="profilDrop" class="dropdown-toggle">Profil ▾</a>
+    <ul id="megaMenu" class="dropdown-menu">
+        <li><a href="#">Struktur Organisasi</a></li>
+        <li><a href="#">Visi & Misi</a></li>
+        <li><a href="#">Tupoksi</a></li>
+    </ul>
+</li>
 
-                <li class="dropdown">
-                    <a href="#">Layanan ▾</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Administrasi Warga</a></li>
-                        <li><a href="#">Bank Sampah</a></li>
-                        <li><a href="#">Kesehatan</a></li>
-                    </ul>
-                </li>
+<li class="dropdown">
+    <a class="dropdown-toggle layananDrop">Layanan ▾</a>
+    <ul class="dropdown-menu layananMenu">
+        <li><a href="#">Administrasi Warga</a></li>
+        <li><a href="#">Bank Sampah</a></li>
+        <li><a href="#">Kesehatan</a></li>
+    </ul>
+</li>
 
                 <li><a href="#">Kegiatan</a></li>
                 <li><a href="#">Kontak</a></li>
@@ -396,15 +417,13 @@
 </header>
 
 <div class="announcement-bar">
-    <div class="marquee">
-        <div class="marquee-track">
+    <div class="scrolling-track">
         <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
         <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
         <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
         <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
     </div>
 </div>
-  </div>  
 
     <section class="hero">
         <div class="welcome-badge">● Selamat Datang di</div>
@@ -529,11 +548,12 @@ Kecamatan Matraman
 Kota Administrasi Jakarta Timur`;
 
         let idx = 0;
+        const speed = 110;
 
         function type() {
             if (idx < textContent.length) {
                 typingEl.textContent += textContent.charAt(idx++);
-                setTimeout(type, 70);
+                setTimeout(type, speed);
             } else {
                 typingEl.style.borderRight = "none";
             }
@@ -546,10 +566,15 @@ Kota Administrasi Jakarta Timur`;
     const megaMenu = document.getElementById('megaMenu');
 
     if (profDrop && megaMenu) {
+
         profDrop.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             megaMenu.classList.toggle('show');
+        });
+
+        megaMenu.addEventListener('click', function (e) {
+            e.stopPropagation();
         });
 
         document.addEventListener('click', function () {
@@ -557,36 +582,48 @@ Kota Administrasi Jakarta Timur`;
         });
     }
 
+    /* ================= DROPDOWN LAYANAN ================= */
+    document.querySelectorAll('.layananDrop').forEach((btn, i) => {
+        const menus = document.querySelectorAll('.layananMenu');
+        if (menus[i]) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                menus[i].classList.toggle('show');
+            });
+        }
+    });
+
     /* ================= DATE DISPLAY ================= */
     const dateEl = document.getElementById("current-date");
     if (dateEl) {
-        const today = new Date();
-        const options = {
+        dateEl.textContent = "📅 " + new Date().toLocaleDateString('id-ID', {
             weekday: 'long',
             day: 'numeric',
             month: 'long',
             year: 'numeric'
-        };
-        dateEl.textContent = "📅 " + today.toLocaleDateString('id-ID', options);
+        });
     }
 
     /* ================= LAYANAN INTERACTIVE ================= */
     document.querySelectorAll('.layanan-item').forEach(item => {
         item.addEventListener('click', () => {
+
             document.querySelectorAll('.layanan-item')
                 .forEach(i => i.classList.remove('active'));
 
             item.classList.add('active');
 
             const title = document.getElementById('cardTitle');
-            const desc = document.getElementById('cardDesc');
-            const card = document.getElementById('previewCard');
+            const desc  = document.getElementById('cardDesc');
+            const card  = document.getElementById('previewCard');
 
             if (title) title.textContent = item.dataset.title;
-            if (desc) desc.textContent = item.dataset.desc;
-            if (card) {
+            if (desc)  desc.textContent  = item.dataset.desc;
+
+            if (card && item.dataset.img) {
                 card.style.backgroundImage =
-                    `linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.8)), 
+                    `linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.8)),
                      url('${item.dataset.img}?auto=format&fit=crop&w=800&q=80')`;
             }
         });
@@ -594,6 +631,7 @@ Kota Administrasi Jakarta Timur`;
 
 });
 </script>
+
 
 </body>
 </html>
