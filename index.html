@@ -124,36 +124,32 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* ================= MARQUEE FIXED ================= */
-   .marquee {
+.marquee {
     position: fixed;
     top: 60px;
     width: 100%;
-    height: 36px;                 /* tinggi konsisten */
-    overflow: hidden;
+    height: 36px;
     background: #f39c12;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
     z-index: 9999;
-    display: flex;
-    align-items: center;          /* teks benar-benar di tengah */
-    border-top: 1px solid rgba(255,255,255,0.2);
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-}
-     .marquee-track {
-    display: flex;
-    flex-wrap: nowrap;
-    width: fit-content;
-    animation: marquee-loop 28s linear infinite;
 }
 
-     .marquee-track span {
-    display: inline-flex;
-    align-items: center;
+.marquee-track {
+    display: flex;
+    width: fit-content;
+    animation: marquee-loop 30s linear infinite;
+}
+
+  .marquee-track span {
+.marquee-track span {
     white-space: nowrap;
     font-size: 14px;
     font-weight: 600;
     color: #000;
-    padding-right: 80px;   /* JARAK ANTAR TEKS */
+    padding-right: 80px; /* JARAK ANTAR TEKS */
 }
-
         .marquee:hover .marquee-track {
     animation-play-state: paused;
 }
@@ -280,34 +276,35 @@
                 </div>
             </a>
             <nav class="nav-menu">
-                <ul>
-                    <li><a href="#">Beranda</a></li>
-                    <li class="dropdown-full" id="profilDrop">
-                        <a>Profil ▾</a>
-                        <div class="mega-menu" id="megaMenu">
-                            <div class="mega-menu-inner">
-                                <a href="#" class="menu-card">
-                                    <div class="icon-box"><i class="fa-solid fa-users"></i></div>
-                                    <h3>Struktur Organisasi</h3>
-                                    <p>Susunan pengurus RW 013.</p>
-                                </a>
-                                <a href="#" class="menu-card">
-                                    <div class="icon-box"><i class="fa-solid fa-bullseye"></i></div>
-                                    <h3>Visi & Misi</h3>
-                                    <p>Tujuan dan aspirasi warga.</p>
-                                </a>
-                                <a href="#" class="menu-card">
-                                    <div class="icon-box"><i class="fa-solid fa-list-check"></i></div>
-                                    <h3>Tupoksi</h3>
-                                    <p>Tugas pokok dan fungsi.</p>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="#layanan">Layanan</a></li>
-                    <li><a href="#" style="background:#f39c12; color:#fff; padding:8px 18px; border-radius:8px;">Login</a></li>
-                </ul>
-            </nav>
+    <ul>
+        <li><a href="#">Beranda</a></li>
+
+        <li class="dropdown">
+            <a href="#">Profil ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Struktur Organisasi</a></li>
+                <li><a href="#">Visi & Misi</a></li>
+                <li><a href="#">Tupoksi</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#">Layanan ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Administrasi Warga</a></li>
+                <li><a href="#">Bank Sampah</a></li>
+                <li><a href="#">Kesehatan</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#">Kegiatan</a></li>
+        <li><a href="#">Kontak</a></li>
+
+        <li>
+            <a href="#" class="btn-login">Login</a>
+        </li>
+    </ul>
+</nav>
         </div>
     </header>
 
