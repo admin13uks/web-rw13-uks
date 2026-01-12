@@ -354,13 +354,12 @@
         <span>Bersama Membangun Lingkungan • Bersama Membangun Lingkungan • Bersama Membangun Lingkungan • </span>
     </div>
 </div>
-
-    /* ================= ANNOUNCEMENT BAR (KUNING) ================= */
+/* ================= ANNOUNCEMENT BAR ================= */
 .announcement-bar {
-    background: #f39c12; /* Warna kuning oranye sesuai gambar */
+    background: #f39c12;
     height: 40px;
     display: flex;
-    align-items: center; /* Menjaga teks presisi di tengah vertikal */
+    align-items: center;
     overflow: hidden;
     position: relative;
     width: 100%;
@@ -368,8 +367,10 @@
 
 .scrolling-track {
     display: flex;
+    min-width: 100%;
     width: max-content;
     animation: scroll 20s linear infinite;
+    will-change: transform;
 }
 
 .scrolling-track span {
@@ -377,16 +378,14 @@
     font-weight: 600;
     font-size: 14px;
     white-space: nowrap;
-    padding-right: 10px; /* Jarak antar pengulangan teks */
+    padding-right: 60px;
+    line-height: 40px;
 }
 
-/* Animasi agar tidak terputus */
 @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } 
-    /* Menggeser 50% karena kita menduplikasi teks di HTML */
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
 }
-    
     <section class="hero">
         <div class="welcome-badge">● Selamat Datang di</div>
         <h1>Website Resmi<br><span id="typing-text"></span></h1>
