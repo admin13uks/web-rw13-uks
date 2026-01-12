@@ -306,63 +306,63 @@
 <body>
 
     <header>
-        <div class="header-inner">
-            <a class="logo" href="#">
-                <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo">
-                <div>
-                    <div class="logo-title">RW 013 UKS</div>
-                    <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
-                </div>
-            </a>
-            <nav class="nav-menu">
-    <ul>
-        <li><a href="#">Beranda</a></li>
+    <div class="header-inner">
+        <a class="logo" href="#">
+            <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png" alt="Logo">
+            <div>
+                <div class="logo-title">RW 013 UKS</div>
+                <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
+            </div>
+        </a>
 
-        <li class="dropdown">
-            <a href="#">Profil ▾</a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Struktur Organisasi</a></li>
-                <li><a href="#">Visi & Misi</a></li>
-                <li><a href="#">Tupoksi</a></li>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#">Beranda</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Profil ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Struktur Organisasi</a></li>
+                        <li><a href="#">Visi & Misi</a></li>
+                        <li><a href="#">Tupoksi</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Layanan ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Administrasi Warga</a></li>
+                        <li><a href="#">Bank Sampah</a></li>
+                        <li><a href="#">Kesehatan</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Kegiatan</a></li>
+                <li><a href="#">Kontak</a></li>
+                <li><a href="#" class="btn-login">Login</a></li>
             </ul>
-        </li>
+        </nav>
+    </div>
+</header>
 
-        <li class="dropdown">
-            <a href="#">Layanan ▾</a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Administrasi Warga</a></li>
-                <li><a href="#">Bank Sampah</a></li>
-                <li><a href="#">Kesehatan</a></li>
-            </ul>
-        </li>
-
-        <li><a href="#">Kegiatan</a></li>
-        <li><a href="#">Kontak</a></li>
-
-        <li>
-            <a href="#" class="btn-login">Login</a>
-        </li>
-    </ul>
-</nav>
-     
-        </div>
-    </header>
-
-  <div class="announcement-bar">
+<div class="announcement-bar">
     <div class="scrolling-track">
-        <span>Bersama Membangun Lingkungan • Bersama Membangun Lingkungan • Bersama Membangun Lingkungan • </span>
-        <span>Bersama Membangun Lingkungan • Bersama Membangun Lingkungan • Bersama Membangun Lingkungan • </span>
+        <span>Bersama Membangun Lingkungan • Bersama Membangun Lingkungan • Bersama Membangun Lingkungan •</span>
+        <span>Bersama Membangun Lingkungan • Bersama Membangun Lingkungan • Bersama Membangun Lingkungan •</span>
     </div>
 </div>
+    
 /* ================= ANNOUNCEMENT BAR ================= */
 .announcement-bar {
-    background: #f39c12;
+    position: fixed;
+    top: 64px; /* di bawah header */
+    width: 100%;
     height: 40px;
+    background: #f39c12;
     display: flex;
     align-items: center;
     overflow: hidden;
-    position: relative;
-    width: 100%;
+    z-index: 9999;
 }
 
 .scrolling-track {
