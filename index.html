@@ -344,16 +344,49 @@
         </li>
     </ul>
 </nav>
+     
         </div>
     </header>
 
-    <div class="marquee">
-        <div class="marquee-track">
-            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-            <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
-        </div>
+  <div class="announcement-bar">
+    <div class="scrolling-track">
+        <span>Bersama Membangun Lingkungan • Bersama Membangun Lingkungan • Bersama Membangun Lingkungan • </span>
+        <span>Bersama Membangun Lingkungan • Bersama Membangun Lingkungan • Bersama Membangun Lingkungan • </span>
     </div>
+</div>
 
+    /* ================= ANNOUNCEMENT BAR (KUNING) ================= */
+.announcement-bar {
+    background: #f39c12; /* Warna kuning oranye sesuai gambar */
+    height: 40px;
+    display: flex;
+    align-items: center; /* Menjaga teks presisi di tengah vertikal */
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.scrolling-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 20s linear infinite;
+}
+
+.scrolling-track span {
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+    padding-right: 10px; /* Jarak antar pengulangan teks */
+}
+
+/* Animasi agar tidak terputus */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+    /* Menggeser 50% karena kita menduplikasi teks di HTML */
+}
+    
     <section class="hero">
         <div class="welcome-badge">● Selamat Datang di</div>
         <h1>Website Resmi<br><span id="typing-text"></span></h1>
