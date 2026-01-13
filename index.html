@@ -147,6 +147,7 @@
 
 .dropdown-menu {
     display: none;
+    position: absolute;
 }
         
 /* SHOW ON HOVER (DESKTOP) */
@@ -363,12 +364,12 @@
             <ul>
                 <li><a href="#">Beranda</a></li>
 
-               <li class="dropdown">
-    <a id="profilDrop" class="dropdown-toggle">Profil ▾</a>
-    <ul id="megaMenu" class="dropdown-menu">
-        <li><a href="#">Struktur Organisasi</a></li>
-        <li><a href="#">Visi & Misi</a></li>
-        <li><a href="#">Tupoksi</a></li>
+           <li class="dropdown">
+    <a href="profil.html">Profil ▾</a>
+    <ul class="dropdown-menu">
+        <li><a href="profil.html#struktur">Struktur Organisasi</a></li>
+        <li><a href="profil.html#visi">Visi & Misi</a></li>
+        <li><a href="profil.html#tupoksi">Tupoksi</a></li>
     </ul>
 </li>
 
@@ -534,26 +535,7 @@ Kota Administrasi Jakarta Timur`;
         type();
     }
 
-   /* ================= DROPDOWN PROFIL ================= */
-const profDrop = document.getElementById('profilDrop');
-const megaMenu = document.getElementById('megaMenu');
-
-if (profDrop && megaMenu) {
-
-    profDrop.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        megaMenu.classList.toggle('show');
-    });
-
-    megaMenu.addEventListener('click', function (e) {
-        e.stopPropagation();
-    });
-
-    document.addEventListener('click', function () {
-        megaMenu.classList.remove('show');
-    });
-}
+ 
     /* ================= DROPDOWN LAYANAN ================= */
     document.querySelectorAll('.layananDrop').forEach((btn, i) => {
         const menus = document.querySelectorAll('.layananMenu');
