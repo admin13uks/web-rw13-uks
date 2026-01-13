@@ -535,27 +535,26 @@ Kota Administrasi Jakarta Timur`;
         type();
     }
 
-    /* ================= DROPDOWN PROFIL ================= */
-    const profDrop = document.getElementById('profilDrop');
-    const megaMenu = document.getElementById('megaMenu');
+   /* ================= DROPDOWN PROFIL ================= */
+const profDrop = document.getElementById('profilDrop');
+const megaMenu = document.getElementById('megaMenu');
 
-    if (profDrop && megaMenu) {
+if (profDrop && megaMenu) {
 
-        profDrop.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            megaMenu.classList.toggle('show');
-        });
+    profDrop.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        megaMenu.classList.toggle('show');
+    });
 
-        megaMenu.addEventListener('click', function (e) {
-            e.stopPropagation();
-        });
+    megaMenu.addEventListener('click', function (e) {
+        e.stopPropagation();
+    });
 
-        document.addEventListener('click', function () {
-            megaMenu.classList.remove('show');
-        });
-    }
-
+    document.addEventListener('click', function () {
+        megaMenu.classList.remove('show');
+    });
+}
     /* ================= DROPDOWN LAYANAN ================= */
     document.querySelectorAll('.layananDrop').forEach((btn, i) => {
         const menus = document.querySelectorAll('.layananMenu');
