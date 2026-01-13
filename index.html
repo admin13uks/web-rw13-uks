@@ -138,6 +138,7 @@
     font-size: 14px;
     font-weight: 600;
     color: #374151;
+    text-decoration: none;
 }
 
 .dropdown-menu a:hover {
@@ -145,15 +146,11 @@
     color: #92400e;
 }
 
-.dropdown-menu {
-    display: none;
-    position: absolute;
-}
-        
-/* SHOW ON HOVER (DESKTOP) */
-.dropdown:hover > .dropdown-menu {
+.dropdown-menu.show {
     display: block;
 }
+   
+/* SHOW ON HOVER (DESKTOP) */
         .btn-login {
     background: #f39c12;
     color: #fff !important;
@@ -364,8 +361,8 @@
             <ul>
                 <li><a href="#">Beranda</a></li>
 
-           <li class="dropdown">
-    <a href="profil.html">Profil ▾</a>
+        <li class="dropdown">
+    <a href="#" class="dropdown-toggle">Profil ▾</a>
     <ul class="dropdown-menu">
         <li><a href="profil.html#struktur">Struktur Organisasi</a></li>
         <li><a href="profil.html#visi">Visi & Misi</a></li>
@@ -535,6 +532,22 @@ Kota Administrasi Jakarta Timur`;
         type();
     }
 
+    /* ================= DROPDOWN PROFIL ================= */
+document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', function (e) {
+        e.preventDefault();        // ⛔ hentikan pindah halaman
+        e.stopPropagation();       // ⛔ hentikan bubbling
+
+        const menu = this.parentElement.querySelector('.dropdown-menu');
+        menu.classList.toggle('show');
+    });
+});
+
+/* TUTUP DROPDOWN SAAT KLIK DI LUAR */
+document.addEventListener('click', function () {
+    document.querySelectorAll('.dropdown-menu')
+        .forEach(menu => menu.classList.remove('show'));
+});
  
     /* ================= DROPDOWN LAYANAN ================= */
     document.querySelectorAll('.layananDrop').forEach((btn, i) => {
