@@ -134,44 +134,83 @@
   position: relative;
 }
 
-/* ===== MEGA MENU FIX FINAL ===== */
-.dropdown-menu {
+/* ===== MEGA MENU CENTER ===== */
+.mega-center {
   display: none;
   position: fixed;
-  top: 104px; /* header + announcement */
+  top: 110px;
   left: 0;
   width: 100%;
   background: #fff;
   padding: 40px 20px;
   box-shadow: 0 20px 40px rgba(0,0,0,.12);
-  z-index: 9999;
+  z-index: 9998;
 }
 
-.dropdown-menu.show {
+.mega-center.show {
   display: block;
 }
 
-.mega-container {
-  max-width: 1200px;
+/* wrapper agar konten di tengah */
+.mega-wrapper {
+  max-width: 1000px;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(2, minmax(240px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 40px;
+  justify-items: center;
 }
 
+/* item */
 .mega-item {
   text-decoration: none;
-  background: #f9fafb;
-  padding: 24px;
+  text-align: center;
+  max-width: 240px;
+  padding: 20px;
   border-radius: 16px;
-  color: #111;
   transition: .3s;
 }
 
 .mega-item:hover {
-  background: #fff;
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0,0,0,.1);
+  background: #fff7ed;
+}
+
+/* icon */
+.mega-icon {
+  width: 56px;
+  height: 56px;
+  background: #f97316;
+  color: #fff;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  font-size: 20px;
+}
+
+/* text */
+.mega-title {
+  font-weight: 800;
+  color: #111;
+}
+
+.mega-desc {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+/* animasi halus */
+.mega-center {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: .25s ease;
+}
+
+.mega-center.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 
@@ -411,30 +450,29 @@
         <li><a href="index.html">Beranda</a></li>
 
         <!-- PROFIL -->
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle">Profil ▾</a>
+       <li class="dropdown">
+  <a href="#" class="dropdown-toggle">Profil ▾</a>
 
-          <div class="dropdown-menu">
-            <div class="mega-container">
+  <div class="dropdown-menu mega-center">
+    <div class="mega-wrapper">
 
-              <a href="profil.html#struktur" class="mega-item">
-                <div class="mega-icon"><i class="fa-solid fa-sitemap"></i></div>
-                <div class="mega-title">Struktur Organisasi</div>
-				  <div class="mega-icon"><i class="fa-duotone fa-regular fa-note-sticky"></i></div>
-                  <div class="mega-title">Bidang Kerja</div>
-              </a>
+      <a href="profil.html#struktur" class="mega-item">
+        <div class="mega-icon"><i class="fa-solid fa-users"></i></div>
+        <div class="mega-title">Struktur Organisasi</div>
+        <div class="mega-desc">Susunan pengurus RW 013</div>
+      </a>
 
-              <a href="profil.html#bidang" class="mega-item">
-                <div class="mega-icon"><i class="fa-solid fa-briefcase"></i></div>
-                <div class="mega-title">Bidang Kerja</div>
-                <div class="mega-desc">Tugas & fungsi bidang RW</div>
-              </a>
+      <a href="profil.html#bidang" class="mega-item">
+        <div class="mega-icon"><i class="fa-solid fa-briefcase"></i></div>
+        <div class="mega-title">Bidang Kerja</div>
+        <div class="mega-desc">Tugas dan fungsi masing-masing bidang</div>
+      </a>
 
-            </div>
-          </div>
-        </li>
-
-        <li><a href="#">Kegiatan</a></li>
+    </div>
+  </div>
+</li>
+        <li><a href="#">Layanan</a></li>
+		<li><a href="#">Kegiatan</a></li>
         <li><a href="#">Kontak</a></li>
 
       </ul>
