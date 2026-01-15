@@ -138,13 +138,13 @@
 .dropdown-menu {
   display: none;
   position: fixed;
-  top: 110px;
+  top: 104px; /* header + announcement */
   left: 0;
   width: 100%;
   background: #fff;
   padding: 40px 20px;
   box-shadow: 0 20px 40px rgba(0,0,0,.12);
-  z-index: 9998;
+  z-index: 9999;
 }
 
 .dropdown-menu.show {
@@ -155,35 +155,23 @@
   max-width: 1200px;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
   gap: 30px;
 }
 
 .mega-item {
   text-decoration: none;
   background: #f9fafb;
+  padding: 24px;
   border-radius: 16px;
-  padding: 25px;
-  transition: .3s;
   color: #111;
+  transition: .3s;
 }
 
 .mega-item:hover {
   background: #fff;
-  box-shadow: 0 10px 25px rgba(0,0,0,.08);
-  transform: translateY(-3px);
-}
-
-.mega-icon {
-  width: 48px;
-  height: 48px;
-  background: #f59e0b;
-  color: #fff;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 12px;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.1);
 }
 
 
@@ -417,57 +405,43 @@
       </div>
     </a>
 
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
-    </div>
-
-    <nav class="nav-menu" id="navMenu">
+    <nav class="nav-menu">
       <ul>
 
         <li><a href="index.html">Beranda</a></li>
 
-    <a href="#" class="mega-item">
-      <span class="icon">🏢</span>
-      <h4>Struktur Organisasi</h4>
-      <p>Susunan pengurus RW</p>
-    </a>
+        <!-- PROFIL -->
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle">Profil ▾</a>
 
-    <a href="#" class="mega-item">
-      <span class="icon">📂</span>
-      <h4>Bidang Kerja</h4>
-      <p>Tugas & fungsi bidang RW</p>
-    </a>
-  </div>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle">Profil ▾</a>
+          <div class="dropdown-menu">
+            <div class="mega-container">
 
-  <div class="dropdown-menu mega-menu">
-    <div class="mega-container">
+              <a href="profil.html#struktur" class="mega-item">
+                <div class="mega-icon"><i class="fa-solid fa-sitemap"></i></div>
+                <div class="mega-title">Struktur Organisasi</div>
+                <div class="mega-desc">Susunan pengurus RW</div>
+              </a>
 
-      <a href="profil.html#struktur" class="mega-item">
-        <div class="mega-icon"><i class="fa-solid fa-sitemap"></i></div>
-        <div class="mega-title">Struktur Organisasi</div>
-        <div class="mega-desc">Susunan pengurus RW</div>
-      </a>
+              <a href="profil.html#bidang" class="mega-item">
+                <div class="mega-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <div class="mega-title">Bidang Kerja</div>
+                <div class="mega-desc">Tugas & fungsi bidang RW</div>
+              </a>
 
-      <a href="profil.html#bidang" class="mega-item">
-        <div class="mega-icon"><i class="fa-solid fa-briefcase"></i></div>
-        <div class="mega-title">Bidang Kerja</div>
-        <div class="mega-desc">Tugas dan fungsi bidang RW</div>
-      </a>
-
-    </div>
-  </div>
-</li>
+            </div>
+          </div>
+        </li>
 
         <li><a href="#">Kegiatan</a></li>
         <li><a href="#">Kontak</a></li>
 
       </ul>
     </nav>
+
   </div>
 </header>
+
 
 
 <div class="announcement-bar">
@@ -617,103 +591,93 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* ===============================
-       TYPING EFFECT
-    =============================== */
-    const typingEl = document.getElementById("typing-text");
-    if (typingEl) {
-        const text =
+  /* ===============================
+     TYPING EFFECT
+  =============================== */
+  const typingEl = document.getElementById("typing-text");
+  if (typingEl) {
+    const text =
 `RW 013 Kelurahan Utan Kayu Selatan
 Kecamatan Matraman
 Kota Administrasi Jakarta Timur`;
 
-        let i = 0;
-        const speed = 110;
+    let i = 0;
+    const speed = 110;
 
-        function type() {
-            if (i < text.length) {
-                typingEl.textContent += text.charAt(i++);
-                setTimeout(type, speed);
-            } else {
-                typingEl.style.borderRight = "none";
-            }
-        }
-        type();
+    function type() {
+      if (i < text.length) {
+        typingEl.textContent += text.charAt(i++);
+        setTimeout(type, speed);
+      } else {
+        typingEl.style.borderRight = "none";
+      }
     }
+    type();
+  }
 
-    /* ===============================
-       DROPDOWN MENU (CLICK ONLY)
-    =============================== */
-    const toggles = document.querySelectorAll(".dropdown-toggle");
+  /* ===============================
+     DROPDOWN MENU (CLICK ONLY)
+  =============================== */
+  const toggles = document.querySelectorAll(".dropdown-toggle");
 
-    toggles.forEach(toggle => {
-        toggle.addEventListener("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
+  toggles.forEach(toggle => {
+    toggle.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
 
-            const menu = this.nextElementSibling;
+      const menu = this.nextElementSibling;
+      if (!menu || !menu.classList.contains("dropdown-menu")) return;
 
-            if (!menu || !menu.classList.contains("dropdown-menu")) return;
+      document.querySelectorAll(".dropdown-menu").forEach(m => {
+        if (m !== menu) m.classList.remove("show");
+      });
 
-            document.querySelectorAll(".dropdown-menu").forEach(d => {
-                if (d !== menu) d.classList.remove("show");
-            });
-
-            menu.classList.toggle("show");
-        });
+      menu.classList.toggle("show");
     });
+  });
 
-    // klik submenu → tutup dropdown (biar pindah halaman)
-    document.querySelectorAll(".dropdown-menu a").forEach(link => {
-        link.addEventListener("click", () => {
-            document.querySelectorAll(".dropdown-menu")
-                .forEach(menu => menu.classList.remove("show"));
-        });
+  document.addEventListener("click", () => {
+    document.querySelectorAll(".dropdown-menu")
+      .forEach(menu => menu.classList.remove("show"));
+  });
+
+  /* ===============================
+     DATE DISPLAY
+  =============================== */
+  const dateEl = document.getElementById("current-date");
+  if (dateEl) {
+    dateEl.textContent = "📅 " + new Date().toLocaleDateString("id-ID", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
     });
+  }
 
-    // klik luar → tutup semua dropdown
-    document.addEventListener("click", () => {
-        document.querySelectorAll(".dropdown-menu")
-            .forEach(menu => menu.classList.remove("show"));
+  /* ===============================
+     LAYANAN PREVIEW CARD
+  =============================== */
+  const layananItems = document.querySelectorAll(".layanan-item");
+  const title = document.getElementById("cardTitle");
+  const desc  = document.getElementById("cardDesc");
+  const card  = document.getElementById("previewCard");
+
+  layananItems.forEach(item => {
+    item.addEventListener("click", () => {
+
+      layananItems.forEach(i => i.classList.remove("active"));
+      item.classList.add("active");
+
+      if (title) title.textContent = item.dataset.title || "";
+      if (desc)  desc.textContent  = item.dataset.desc || "";
+
+      if (card && item.dataset.img) {
+        card.style.backgroundImage =
+          `linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.8)),
+           url('${item.dataset.img}')`;
+      }
     });
-
-    /* ===============================
-       DATE DISPLAY
-    =============================== */
-    const dateEl = document.getElementById("current-date");
-    if (dateEl) {
-        dateEl.textContent = "📅 " + new Date().toLocaleDateString("id-ID", {
-            weekday: "long",
-            day: "numeric",
-            month: "long",
-            year: "numeric"
-        });
-    }
-
-    /* ===============================
-       LAYANAN PREVIEW CARD
-    =============================== */
-    const layananItems = document.querySelectorAll(".layanan-item");
-    const title = document.getElementById("cardTitle");
-    const desc  = document.getElementById("cardDesc");
-    const card  = document.getElementById("previewCard");
-
-    layananItems.forEach(item => {
-        item.addEventListener("click", () => {
-
-            layananItems.forEach(i => i.classList.remove("active"));
-            item.classList.add("active");
-
-            if (title) title.textContent = item.dataset.title || "";
-            if (desc)  desc.textContent  = item.dataset.desc || "";
-
-            if (card && item.dataset.img) {
-                card.style.backgroundImage =
-                    `linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.8)),
-                     url('${item.dataset.img}')`;
-            }
-        });
-    });
+  });
 
 });
 </script>
