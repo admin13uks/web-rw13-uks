@@ -134,21 +134,19 @@
   position: relative;
 }
 
-/* ===== MEGA MENU ===== */		
+/* ===== MEGA MENU FIX FINAL ===== */
 .dropdown-menu {
   display: none;
   position: fixed;
-  top: 110px; /* tepat di bawah header + announcement */
+  top: 110px;
   left: 0;
   width: 100%;
-  background: #ffffff;
+  background: #fff;
   padding: 40px 20px;
   box-shadow: 0 20px 40px rgba(0,0,0,.12);
   z-index: 9998;
 }
-		
 
-/* HANYA DIKONTROL OLEH JS */
 .dropdown-menu.show {
   display: block;
 }
@@ -167,13 +165,13 @@
   border-radius: 16px;
   padding: 25px;
   transition: .3s;
-  border: 1px solid transparent;
+  color: #111;
 }
 
 .mega-item:hover {
   background: #fff;
-  border-color: #f59e0b;
   box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  transform: translateY(-3px);
 }
 
 .mega-icon {
@@ -185,22 +183,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
-.mega-title {
-  font-weight: 800;
-  color: #111;
-}
-
-.mega-desc {
-  font-size: 13px;
-  color: #6b7280;
-  margin-top: 5px;
-}
-
-		<div class="dropdown-menu">
-  <div class="mega-container">
 
     <a href="profil.html#struktur" class="mega-item">
       <div class="mega-icon"><i class="fa-solid fa-sitemap"></i></div>
@@ -268,11 +253,6 @@
   z-index: 999;
 }
 
-/* tampil saat hover */
-.dropdown:hover .dropdown-menu {
-  display: grid;
-}
-
 /* ITEM */
 .dropdown-menu a {
   text-align: center;
@@ -287,19 +267,6 @@
 .dropdown-menu a:hover {
   background: #f3f4f6;
   transform: translateY(-4px);
-}
-
-/* icon */
-.dropdown-menu a i {
-  font-size: 28px;
-  display: inline-block;
-  background: #f97316;
-  color: #fff;
-  width: 56px;
-  height: 56px;
-  line-height: 56px;
-  border-radius: 14px;
-  margin-bottom: 10px;
 }
 		
 /* ================= MOBILE ================= */
@@ -459,10 +426,6 @@
 
         <li><a href="index.html">Beranda</a></li>
 
-       <li class="dropdown mega">
-  <a href="#">Profil ▾</a>
-
-  <div class="mega-menu">
     <a href="#" class="mega-item">
       <span class="icon">🏢</span>
       <h4>Struktur Organisasi</h4>
@@ -476,17 +439,27 @@
     </a>
   </div>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle">Profil ▾</a>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle">Layanan ▾</a>
-          <ul class="dropdown-menu">
-            <li><a href="layanan.html#administrasi">Administrasi</a></li>
-            <li><a href="layanan.html#lingkungan">Lingkungan</a></li>
-            <li><a href="layanan.html#kesehatan">Kesehatan</a></li>
-            <li><a href="layanan.html#sosial">Sosial</a></li>
-            <li><a href="layanan.html#keamanan">Keamanan</a></li>
-          </ul>
-        </li>
+  <div class="dropdown-menu mega-menu">
+    <div class="mega-container">
+
+      <a href="profil.html#struktur" class="mega-item">
+        <div class="mega-icon"><i class="fa-solid fa-sitemap"></i></div>
+        <div class="mega-title">Struktur Organisasi</div>
+        <div class="mega-desc">Susunan pengurus RW</div>
+      </a>
+
+      <a href="profil.html#bidang" class="mega-item">
+        <div class="mega-icon"><i class="fa-solid fa-briefcase"></i></div>
+        <div class="mega-title">Bidang Kerja</div>
+        <div class="mega-desc">Tugas dan fungsi bidang RW</div>
+      </a>
+
+    </div>
+  </div>
+</li>
 
         <li><a href="#">Kegiatan</a></li>
         <li><a href="#">Kontak</a></li>
