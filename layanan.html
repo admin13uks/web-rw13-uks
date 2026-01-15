@@ -19,13 +19,15 @@ body {
 }
 
 /* ===== HEADER ===== */
-header {
+/* ================= HEADER ================= */
+.site-header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #fff;
-  border-bottom: 1px solid #eee;
-  z-index: 1000;
+  background: rgba(255,255,255,0.98);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  z-index: 10000;
 }
 
 .header-inner {
@@ -37,154 +39,142 @@ header {
   align-items: center;
 }
 
+/* ================= LOGO ================= */
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
-  color: #2fa56a;
-  font-weight: 700;
 }
 
-.logo img {
-  width: 40px;
-}
+.logo img { height: 45px; }
 
-/* ===== NAV ===== */
-nav ul {
-  list-style: none;
+.logo-text {
   display: flex;
-  gap: 22px;
+  flex-direction: column;
 }
 
-nav a {
-  text-decoration: none;
+.logo-title {
+  font-weight: 800;
+  color: #16a34a;
+  font-size: 18px;
+}
+
+.logo-subtitle {
+  font-size: 12px;
+  color: #6b7280;
   font-weight: 600;
-  color: #333;
 }
 
-nav a:hover {
-  color: #2fa56a;
+/* ================= NAV ================= */
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+  align-items: center;
 }
 
-/* ===== DROPDOWN LAYANAN ===== */
-.dropdown-services {
+.nav-menu a {
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  color: #374151;
+  transition: .3s;
+}
+
+.nav-menu a:hover {
+  color: #16a34a;
+}
+
+/* ================= DROPDOWN ================= */
+.dropdown {
   position: relative;
 }
 
-.services-menu {
+.dropdown-menu {
   display: none;
   position: absolute;
   top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 850px;
+  left: 0;
   background: #fff;
-  padding: 35px;
-  border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(0,0,0,.15);
+  min-width: 220px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+  padding: 10px 0;
 }
 
-.dropdown-services:hover .services-menu {
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu a {
+  padding: 10px 18px;
+  display: block;
+  font-weight: 600;
+}
+
+.dropdown-menu a:hover {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.dropdown-menu.show {
   display: block;
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+/* ================= BUTTON ================= */
+.btn-login {
+  background: #16a34a;
+  color: #fff !important;
+  padding: 8px 18px;
+  border-radius: 8px;
 }
 
-.service-item {
-  text-align: center;
-  text-decoration: none;
-  color: #333;
-  transition: .3s;
+/* ================= HAMBURGER ================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
 }
 
-.service-item:hover {
-  transform: translateY(-6px);
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background: #16a34a;
+  border-radius: 2px;
 }
 
-.service-icon {
-  width: 56px;
-  height: 56px;
-  background: #ff6b00;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 12px;
-  font-size: 24px;
-  color: white;
-}
-
-.service-title {
-  font-weight: 700;
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-
-.service-desc {
-  font-size: 12px;
-  color: #666;
-}
-
-/* ===== CONTENT ===== */
-main {
-  max-width: 1200px;
-  margin: 140px auto 80px;
-  padding: 0 20px;
-}
-
-.page-title {
-  text-align: center;
-  font-size: 32px;
-  color: #2fa56a;
-  margin-bottom: 50px;
-}
-
-.layanan-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap: 30px;
-}
-
-.layanan-card {
-  background: #fff;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.06);
-  transition: .3s;
-
-  /* TAMBAHAN WAJIB */
-  scroll-margin-top: 140px;
-}
-
-.layanan-card:hover {
-  transform: translateY(-8px);
-}
-
-.layanan-card h3 {
-  margin-bottom: 10px;
-  color: #2fa56a;
-}
-
-.layanan-card p {
-  font-size: 14px;
-  color: #555;
-  line-height: 1.6;
-}
-
-/* ===== RESPONSIVE ===== */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
-  .services-menu {
-    width: 95vw;
+  .hamburger { display: flex; }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 20px;
   }
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
+
+  .nav-menu.active {
+    display: block;
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    margin-top: 10px;
   }
 }
+
 </style>
 </head>
 
