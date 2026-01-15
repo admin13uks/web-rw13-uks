@@ -108,9 +108,13 @@
             font-size: 14px;
         }
 
-        .dropdown:hover .mega-menu {
-            display: block;
-        }
+        .dropdown .mega-menu {
+    display: none;
+}
+
+.dropdown.active .mega-menu {
+    display: block;
+}
 
         /* HAMBURGER */
         .hamburger {
@@ -506,23 +510,54 @@
 </section>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const hamburger = document.getElementById("hamburger");
-        const navMenu = document.querySelector(".nav-menu");
+document.addEventListener("DOMContentLoaded", function () {
 
-        hamburger.addEventListener("click", () => {
-            navMenu.classList.toggle("active");
-        });
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.querySelector(".nav-menu");
+    const dropdowns = document.querySelectorAll(".dropdown");
 
-        document.querySelectorAll(".dropdown > a").forEach(link => {
-            link.addEventListener("click", function (e) {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    this.parentElement.classList.toggle("active");
-                }
-            });
+    /* ================= HAMBURGER ================= */
+    hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+    });
+
+    /* ================= DROPDOWN DESKTOP & MOBILE ================= */
+    dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector("a");
+
+        trigger.addEventListener("click", function (e) {
+
+            // jika dropdown (punya mega-menu)
+            if (dropdown.querySelector(".mega-menu")) {
+                e.preventDefault();
+
+                // tutup dropdown lain
+                dropdowns.forEach(d => {
+                    if (d !== dropdown) d.classList.remove("active");
+                });
+
+                // toggle dropdown ini
+                dropdown.classList.toggle("active");
+            }
         });
     });
+
+    /* ================= KLIK DI LUAR MENU ================= */
+    document.addEventListener("click", function (e) {
+        if (!e.target.closest(".nav-menu")) {
+            dropdowns.forEach(d => d.classList.remove("active"));
+        }
+    });
+
+    /* ================= TUTUP MENU SETELAH KLIK LINK ================= */
+    document.querySelectorAll(".mega-menu a").forEach(link => {
+        link.addEventListener("click", () => {
+            navMenu.classList.remove("active");
+            dropdowns.forEach(d => d.classList.remove("active"));
+        });
+    });
+
+});
 </script>
 
 </body>
