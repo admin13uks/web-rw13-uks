@@ -276,25 +276,25 @@ body {
   </div>
 </main>
 
-  <script>
+ <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* ==================================================
-       TYPING EFFECT (AMAN)
-    ================================================== */
+    /* ===============================
+       TYPING EFFECT
+    =============================== */
     const typingEl = document.getElementById("typing-text");
     if (typingEl) {
-        const textContent =
+        const text =
 `RW 013 Kelurahan Utan Kayu Selatan
 Kecamatan Matraman
 Kota Administrasi Jakarta Timur`;
 
-        let idx = 0;
+        let i = 0;
         const speed = 110;
 
         function type() {
-            if (idx < textContent.length) {
-                typingEl.textContent += textContent.charAt(idx++);
+            if (i < text.length) {
+                typingEl.textContent += text.charAt(i++);
                 setTimeout(type, speed);
             } else {
                 typingEl.style.borderRight = "none";
@@ -303,88 +303,83 @@ Kota Administrasi Jakarta Timur`;
         type();
     }
 
-    /* ==================================================
-       DROPDOWN MENU (FIX TOTAL)
-       - Klik menu utama → buka dropdown
-       - Klik submenu → PINDAH HALAMAN
-       - Klik luar → tutup
-       - Aman desktop & HP
-    ================================================== */
-    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-        toggle.addEventListener('click', function (e) {
+    /* ===============================
+       DROPDOWN MENU (CLICK ONLY)
+    =============================== */
+    const toggles = document.querySelectorAll(".dropdown-toggle");
+
+    toggles.forEach(toggle => {
+        toggle.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
 
             const menu = this.nextElementSibling;
 
-            // HANYA proses jika benar-benar dropdown
-            if (menu && menu.classList.contains('dropdown-menu')) {
-                e.preventDefault();       // cegah pindah halaman
-                e.stopPropagation();
+            if (!menu || !menu.classList.contains("dropdown-menu")) return;
 
-                // Tutup dropdown lain
-                document.querySelectorAll('.dropdown-menu').forEach(m => {
-                    if (m !== menu) m.classList.remove('show');
-                });
+            document.querySelectorAll(".dropdown-menu").forEach(d => {
+                if (d !== menu) d.classList.remove("show");
+            });
 
-                // Toggle dropdown ini
-                menu.classList.toggle('show');
-            }
+            menu.classList.toggle("show");
         });
     });
 
-    // Klik submenu JANGAN dicegah (biar pindah halaman)
-    document.querySelectorAll('.dropdown-menu a').forEach(link => {
-        link.addEventListener('click', function () {
-            document.querySelectorAll('.dropdown-menu')
-                .forEach(menu => menu.classList.remove('show'));
+    // klik submenu → tutup dropdown (biar pindah halaman)
+    document.querySelectorAll(".dropdown-menu a").forEach(link => {
+        link.addEventListener("click", () => {
+            document.querySelectorAll(".dropdown-menu")
+                .forEach(menu => menu.classList.remove("show"));
         });
     });
 
-    // Klik di luar menu → tutup semua dropdown
-    document.addEventListener('click', function () {
-        document.querySelectorAll('.dropdown-menu')
-            .forEach(menu => menu.classList.remove('show'));
+    // klik luar → tutup semua dropdown
+    document.addEventListener("click", () => {
+        document.querySelectorAll(".dropdown-menu")
+            .forEach(menu => menu.classList.remove("show"));
     });
 
-    /* ==================================================
+    /* ===============================
        DATE DISPLAY
-    ================================================== */
+    =============================== */
     const dateEl = document.getElementById("current-date");
     if (dateEl) {
-        dateEl.textContent = "📅 " + new Date().toLocaleDateString('id-ID', {
-            weekday: 'long',
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
+        dateEl.textContent = "📅 " + new Date().toLocaleDateString("id-ID", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
         });
     }
 
-    /* ==================================================
-       LAYANAN INTERACTIVE (PREVIEW CARD)
-    ================================================== */
-    const layananItems = document.querySelectorAll('.layanan-item');
-    const title = document.getElementById('cardTitle');
-    const desc  = document.getElementById('cardDesc');
-    const card  = document.getElementById('previewCard');
+    /* ===============================
+       LAYANAN PREVIEW CARD
+    =============================== */
+    const layananItems = document.querySelectorAll(".layanan-item");
+    const title = document.getElementById("cardTitle");
+    const desc  = document.getElementById("cardDesc");
+    const card  = document.getElementById("previewCard");
 
     layananItems.forEach(item => {
-        item.addEventListener('click', () => {
+        item.addEventListener("click", () => {
 
-            layananItems.forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
+            layananItems.forEach(i => i.classList.remove("active"));
+            item.classList.add("active");
 
-            if (title) title.textContent = item.dataset.title || '';
-            if (desc)  desc.textContent  = item.dataset.desc || '';
+            if (title) title.textContent = item.dataset.title || "";
+            if (desc)  desc.textContent  = item.dataset.desc || "";
 
             if (card && item.dataset.img) {
                 card.style.backgroundImage =
                     `linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.8)),
-                     url('${item.dataset.img}?auto=format&fit=crop&w=800&q=80')`;
+                     url('${item.dataset.img}')`;
             }
         });
     });
 
 });
 </script>
+
 
 </body>
 </html>
