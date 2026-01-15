@@ -139,36 +139,36 @@
   display: none;
   position: fixed;
   top: 110px;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
   width: 100%;
+  max-width: 1200px;
   background: #fff;
-  padding: 40px 20px;
+  padding: 40px 60px;
+  border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0,0,0,.12);
   z-index: 9998;
+  opacity: 0;
+  transition: .25s ease;
 }
 
 .mega-center.show {
   display: block;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
-/* wrapper agar konten di tengah */
 .mega-wrapper {
-  max-width: 1000px;
-  margin: auto;
   display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
   justify-items: center;
+  align-items: start;
 }
 
-/* item */
 .mega-item {
-  text-decoration: none;
   text-align: center;
   max-width: 240px;
-  padding: 20px;
-  border-radius: 16px;
-  transition: .3s;
 }
 
 .mega-item:hover {
