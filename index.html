@@ -240,6 +240,68 @@
   border-radius: 2px;
 }
 
+/* ================= DESKTOP MEGA DROPDOWN ================= */
+
+.nav-menu ul {
+  display: flex;
+  gap: 25px;
+}
+
+/* parent dropdown */
+.dropdown {
+  position: relative;
+}
+
+/* MEGA DROPDOWN */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 640px;
+  background: #fff;
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0,0,0,.15);
+  z-index: 999;
+}
+
+/* tampil saat hover */
+.dropdown:hover .dropdown-menu {
+  display: grid;
+}
+
+/* ITEM */
+.dropdown-menu a {
+  text-align: center;
+  padding: 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #333;
+  transition: .25s ease;
+}
+
+/* hover item */
+.dropdown-menu a:hover {
+  background: #f3f4f6;
+  transform: translateY(-4px);
+}
+
+/* icon */
+.dropdown-menu a i {
+  font-size: 28px;
+  display: inline-block;
+  background: #f97316;
+  color: #fff;
+  width: 56px;
+  height: 56px;
+  line-height: 56px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+}
+		
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
   .hamburger { display: flex; }
@@ -397,13 +459,23 @@
 
         <li><a href="index.html">Beranda</a></li>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle">Profil ▾</a>
-          <ul class="dropdown-menu">
-            <li><a href="profil.html#struktur">Struktur Organisasi</a></li>
-            <li><a href="profil.html#bidang">Bidang Kerja</a></li>
-          </ul>
-        </li>
+       <li class="dropdown mega">
+  <a href="#">Profil ▾</a>
+
+  <div class="mega-menu">
+    <a href="#" class="mega-item">
+      <span class="icon">🏢</span>
+      <h4>Struktur Organisasi</h4>
+      <p>Susunan pengurus RW</p>
+    </a>
+
+    <a href="#" class="mega-item">
+      <span class="icon">📂</span>
+      <h4>Bidang Kerja</h4>
+      <p>Tugas & fungsi bidang RW</p>
+    </a>
+  </div>
+</li>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle">Layanan ▾</a>
