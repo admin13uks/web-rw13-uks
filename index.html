@@ -370,12 +370,14 @@
 </li>
 
 <li class="dropdown">
-    <a class="dropdown-toggle layananDrop">Layanan ▾</a>
-    <ul class="dropdown-menu layananMenu">
-        <li><a href="#">Administrasi Warga</a></li>
-        <li><a href="#">Bank Sampah</a></li>
-        <li><a href="#">Kesehatan</a></li>
-    </ul>
+  <a href="layanan.html" class="dropdown-toggle">Layanan ▾</a>
+  <ul class="dropdown-menu">
+    <li><a href="layanan.html#administrasi">Administrasi Warga</a></li>
+    <li><a href="layanan.html#bank-sampah">Lingkungan & Kebersihan</a></li>
+    <li><a href="layanan.html#kesehatan">Kesehatan</a></li>
+	<li><a href="layanan.html#kesehatan">Sosial</a></li>
+	<li><a href="layanan.html#kesehatan">Keamanan</a></li>
+  </ul>
 </li>
 
                 <li><a href="#">Kegiatan</a></li>
@@ -533,7 +535,9 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* ================= TYPING EFFECT ================= */
+    /* ==================================================
+       TYPING EFFECT (AMAN)
+    ================================================== */
     const typingEl = document.getElementById("typing-text");
     if (typingEl) {
         const textContent =
@@ -555,41 +559,51 @@ Kota Administrasi Jakarta Timur`;
         type();
     }
 
-    /* ================= DROPDOWN MENU (SEMUA) ================= */
+    /* ==================================================
+       DROPDOWN MENU (FIX TOTAL)
+       - Klik menu utama → buka dropdown
+       - Klik submenu → PINDAH HALAMAN
+       - Klik luar → tutup
+       - Aman desktop & HP
+    ================================================== */
     document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
         toggle.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
 
-            const currentMenu = this.nextElementSibling;
+            const menu = this.nextElementSibling;
 
-            // tutup dropdown lain
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                if (menu !== currentMenu) {
-                    menu.classList.remove('show');
-                }
-            });
+            // HANYA proses jika benar-benar dropdown
+            if (menu && menu.classList.contains('dropdown-menu')) {
+                e.preventDefault();       // cegah pindah halaman
+                e.stopPropagation();
 
-            if (currentMenu) {
-                currentMenu.classList.toggle('show');
+                // Tutup dropdown lain
+                document.querySelectorAll('.dropdown-menu').forEach(m => {
+                    if (m !== menu) m.classList.remove('show');
+                });
+
+                // Toggle dropdown ini
+                menu.classList.toggle('show');
             }
         });
     });
 
-    /* ================= IZINKAN KLIK SUBMENU ================= */
-    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-        menu.addEventListener('click', function (e) {
-            e.stopPropagation();
+    // Klik submenu JANGAN dicegah (biar pindah halaman)
+    document.querySelectorAll('.dropdown-menu a').forEach(link => {
+        link.addEventListener('click', function () {
+            document.querySelectorAll('.dropdown-menu')
+                .forEach(menu => menu.classList.remove('show'));
         });
     });
 
-    /* ================= KLIK DI LUAR = TUTUP ================= */
+    // Klik di luar menu → tutup semua dropdown
     document.addEventListener('click', function () {
         document.querySelectorAll('.dropdown-menu')
             .forEach(menu => menu.classList.remove('show'));
     });
 
-    /* ================= DATE DISPLAY ================= */
+    /* ==================================================
+       DATE DISPLAY
+    ================================================== */
     const dateEl = document.getElementById("current-date");
     if (dateEl) {
         dateEl.textContent = "📅 " + new Date().toLocaleDateString('id-ID', {
@@ -600,25 +614,26 @@ Kota Administrasi Jakarta Timur`;
         });
     }
 
-    /* ================= LAYANAN INTERACTIVE ================= */
-    document.querySelectorAll('.layanan-item').forEach(item => {
+    /* ==================================================
+       LAYANAN INTERACTIVE (PREVIEW CARD)
+    ================================================== */
+    const layananItems = document.querySelectorAll('.layanan-item');
+    const title = document.getElementById('cardTitle');
+    const desc  = document.getElementById('cardDesc');
+    const card  = document.getElementById('previewCard');
+
+    layananItems.forEach(item => {
         item.addEventListener('click', () => {
 
-            document.querySelectorAll('.layanan-item')
-                .forEach(i => i.classList.remove('active'));
-
+            layananItems.forEach(i => i.classList.remove('active'));
             item.classList.add('active');
 
-            const title = document.getElementById('cardTitle');
-            const desc  = document.getElementById('cardDesc');
-            const card  = document.getElementById('previewCard');
-
-            if (title) title.textContent = item.dataset.title;
-            if (desc)  desc.textContent  = item.dataset.desc;
+            if (title) title.textContent = item.dataset.title || '';
+            if (desc)  desc.textContent  = item.dataset.desc || '';
 
             if (card && item.dataset.img) {
                 card.style.backgroundImage =
-                    `linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.8)),
+                    `linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.8)),
                      url('${item.dataset.img}?auto=format&fit=crop&w=800&q=80')`;
             }
         });
@@ -626,8 +641,6 @@ Kota Administrasi Jakarta Timur`;
 
 });
 </script>
-
-
 
 </body>
 </html>
