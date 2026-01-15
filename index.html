@@ -62,7 +62,6 @@
     }
 }
         
-        /* ================= HEADER & NAV ================= */
        /* ================= HEADER ================= */
 .site-header {
   position: fixed;
@@ -135,17 +134,17 @@
   position: relative;
 }
 
+/* ===== MEGA MENU ===== */
 .dropdown-menu {
   display: none;
-  position: absolute;
-  top: 100%;
+  position: fixed;
+  top: 110px; /* tepat di bawah header + announcement */
   left: 0;
-  min-width: 220px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.15);
-  padding: 10px 0;
-  z-index: 9999;
+  width: 100%;
+  background: #ffffff;
+  padding: 40px 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.12);
+  z-index: 9998;
 }
 
 /* tampil hanya jika ada class .show */
