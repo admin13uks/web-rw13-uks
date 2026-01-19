@@ -7,8 +7,41 @@
 
 <style>
 /* ================= RESET & BASE ================= */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Roboto, Arial, sans-serif; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", toboto, Arial, sans-serif; }
 body { background: linear-gradient(135deg, #f0f4f8, #e2ece9); scroll-behavior: smooth; overflow-x: hidden; color: #333; }
+
+    /* ================= ANNOUNCEMENT BAR ================= */
+.announcement-bar {
+    position: fixed;
+    top: 64px;
+    width: 100%;
+    height: 40px;
+    background: #f39c12;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    z-index: 999;
+}
+
+.scrolling-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 25s linear infinite;
+}
+
+.scrolling-track span {
+    white-space: nowrap;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    padding-right: 80px;
+    line-height: 40px;
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
 
 /* ================= HEADER & NAV ================= */
 header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; z-index: 1000; }
@@ -92,12 +125,22 @@ nav a:hover { color: #2fa56a; }
 .bidang-item ul li { margin-bottom: 10px; position: relative; padding-left: 20px; }
 .bidang-item ul li::before { content: '✓'; position: absolute; left: 0; color: #ff6b00; font-weight: bold; }
 
+/* ================= GLOBAL OFFSET ================= */
+body {
+    padding-top: 110px;
+}
+
 /* ================= MOBILE RESPONSIVE ================= */
 @media (max-width: 768px) {
     .header-inner { padding: 10px 15px; flex-direction: column; gap: 10px; }
     nav ul { gap: 12px; font-size: 12px; }
     .mega-menu { width: 95vw; }
     .page-title { font-size: 24px; }
+
+    /* optional: kalau mau lebih kecil di mobile */
+    body {
+        padding-top: 120px;
+    }
 }
 </style>
 </head>
@@ -140,6 +183,14 @@ nav a:hover { color: #2fa56a; }
   </div>
 </header>
 
+<div class="announcement-bar">
+    <div class="scrolling-track">
+        <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+        <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+        <span>Website Resmi RW 013 • Informasi • Pelayanan • Kegiatan • Bersama Membangun Lingkungan •</span>
+    </div>
+</div>
+    
 <div class="org-wrapper">
     <div class="org-container" id="struktur">
         <h1 class="page-title">Struktur Organisasi RW 013</h1>
