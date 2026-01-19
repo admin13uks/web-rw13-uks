@@ -91,47 +91,42 @@ body {
 /* ========== DROPDOWN & MEGA MENU ========== */
 .dropdown { position: relative; }
 
-/* Mega menu Profil */
-.mega-center {
+/* ===== MEGA MENU PROFIL (FIXED & CENTER) ===== */
+.mega-menu {
   display: none;
-  position: fixed;
-  top: 110px;
+  position: absolute;
+  top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(-10px);
-  width: 100%;
-  max-width: 1200px;
+  transform: translateX(-50%);
+  width: 720px;
   background: #fff;
-  padding: 40px 60px;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,.12);
-  opacity: 0;
-  transition: .25s ease;
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.15);
   z-index: 9999;
 }
-.mega-center.show {
+
+.mega-menu.show {
   display: block;
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
 }
 
 .mega-wrapper {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 60px;
-  justify-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
 }
 
 .mega-item {
   text-align: center;
-  max-width: 260px;
   padding: 25px;
-  border-radius: 16px;
+  border-radius: 14px;
   text-decoration: none;
-  transition: .25s;
+  transition: .25s ease;
 }
+
 .mega-item:hover {
   background: #fff7ed;
-  transform: translateY(-6px);
+  transform: translateY(-4px);
 }
 .mega-icon {
   width: 60px;
@@ -263,11 +258,36 @@ body {
 /* ========== MOBILE ========== */
 @media (max-width:768px) {
   .hamburger { display: flex; }
-  .nav-menu { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #fff; padding: 20px; }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    padding: 20px;
+  }
+
   .nav-menu.active { display: block; }
-  .nav-menu ul { flex-direction: column; align-items: flex-start; }
-  .mega-center { position: static; transform: none; box-shadow: none; padding: 20px; }
-  .mega-wrapper { grid-template-columns: 1fr; }
+
+  .nav-menu ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* PERBAIKAN */
+  .mega-menu {
+    position: static;
+    transform: none;
+    width: 100%;
+    box-shadow: none;
+    padding: 20px;
+  }
+
+  .mega-wrapper {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
@@ -292,24 +312,6 @@ body {
     <nav class="nav-menu" id="navMenu">
       <ul>
         <li><a href="index.html">Beranda</a></li>
-
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle">Profil ▾</a>
-          <div class="dropdown-menu mega-center">
-            <div class="mega-wrapper">
-              <a href="#struktur" class="mega-item">
-                <div class="mega-icon"><i class="fa-solid fa-users"></i></div>
-                <div class="mega-title">Struktur Organisasi</div>
-                <div class="mega-desc">Susunan pengurus RW</div>
-              </a>
-              <a href="#bidang" class="mega-item">
-                <div class="mega-icon"><i class="fa-solid fa-briefcase"></i></div>
-                <div class="mega-title">Bidang Kerja</div>
-                <div class="mega-desc">Tugas & fungsi bidang</div>
-              </a>
-            </div>
-          </div>
-        </li>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle">Layanan ▾</a>
@@ -352,9 +354,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  document.addEventListener("click", () => {
-    document.querySelectorAll(".dropdown-menu").forEach(d => d.classList.remove("show"));
-  });
+document.addEventListener("click", () => {
+  document.querySelectorAll(".dropdown-menu, .mega-menu")
+    .forEach(d => d.classList.remove("show"));
+  navMenu.classList.remove("active");
+});
 
 });
 </script>
