@@ -108,6 +108,44 @@
             font-size: 14px;
         }
 
+        /* ===============================
+   MEGA MENU KHUSUS LAYANAN
+================================ */
+.mega-menu.layanan {
+    padding: 20px;
+    min-width: 700px;
+}
+
+/* grid layout */
+.mega-menu.layanan .mega-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* item */
+.mega-menu.layanan a {
+    display: block;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: all .25s ease;
+}
+
+.mega-menu.layanan a:hover {
+    background: #f3f7f5;
+    transform: translateY(-4px);
+}
+
+/* icon */
+.mega-menu.layanan .icon {
+    font-size: 30px;
+    display: block;
+    margin-bottom: 8px;
+}
+
         .dropdown:hover .mega-menu {
             display: block;
         }
@@ -375,20 +413,35 @@
                         <a href="#bidang">Bidang Kerja</a>
                     </div>
                 </li>
-                <li class="dropdown">
-                    <a href="#">Layanan ▾</a>
-                    <div class="mega-menu">
-                        <a href="#">Administrasi</a>
-                        <a href="#">Keamanan</a>
-                        <a href="#">Sosial</a>
-                        <a href="#">Bank Sampah</a>
-                    </div>
-                </li>
-                <li><a href="#">Kegiatan</a></li>
-                <li><a href="#">Kontak</a></li>
-            </ul>
-        </nav>
+             <li class="dropdown">
+    <a href="#">Layanan ▾</a>
+
+    <div class="mega-menu layanan">
+        <div class="mega-grid">
+
+            <a href="#">
+                <span class="icon">📄</span>
+                Administrasi
+            </a>
+
+            <a href="#">
+                <span class="icon">🛡️</span>
+                Keamanan
+            </a>
+
+            <a href="#">
+                <span class="icon">🤝</span>
+                Sosial
+            </a>
+
+            <a href="#">
+                <span class="icon">♻️</span>
+                Bank Sampah
+            </a>
+
+        </div>
     </div>
+</li>
 </header>
 
 <div class="org-wrapper">
