@@ -129,6 +129,28 @@
   color: #16a34a;
 }
 
+		/* ===== ARROW DROPDOWN ===== */
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.dropdown-toggle .arrow {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #333;
+  transition: transform .25s ease;
+}
+
+/* panah berputar saat dropdown aktif */
+.dropdown.open .arrow {
+  transform: rotate(180deg);
+}
+
 /* ===== DROPDOWN FIX CLICK ONLY ===== */
 .dropdown {
   position: relative;
@@ -475,10 +497,13 @@
         <li><a href="index.html">Beranda</a></li>
 
         <!-- PROFIL -->
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle">Profil</a>
-          <div class="dropdown-menu mega-center">
-            <div class="mega-wrapper">
+    <li class="dropdown">
+  <a href="#" class="dropdown-toggle">
+    Profil <span class="arrow"></span>
+  </a>
+
+  <div class="dropdown-menu mega-center">
+    <div class="mega-wrapper">
 
               <a href="profil.html#struktur" class="mega-item">
                 <div class="mega-icon"><i class="fa-solid fa-users"></i></div>
@@ -495,11 +520,14 @@
         </li>
 
         <!-- LAYANAN -->
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle">Layanan</a>
-          <div class="dropdown-menu mega-center">
-            <div class="mega-wrapper">
+       <li class="dropdown">
+  <a href="#" class="dropdown-toggle">
+    Layanan <span class="arrow"></span>
+  </a>
 
+  <div class="dropdown-menu mega-center">
+    <div class="mega-wrapper">
+		
               <a href="layanan.html#administrasi" class="mega-item">
                 <div class="mega-icon"><i class="fa-solid fa-file-lines"></i></div>
                 <div class="mega-title">Administrasi</div>
@@ -715,32 +743,39 @@ Kota Administrasi Jakarta Timur`;
     type();
   }
 
-  /* ===============================
-     DROPDOWN MENU (CLICK ONLY)
-  =============================== */
-  const toggles = document.querySelectorAll(".dropdown-toggle");
+ /* =============================== DROPDOWN MENU (CLICK + ARROW) =============================== */
+const toggles = document.querySelectorAll(".dropdown-toggle");
 
-  toggles.forEach(toggle => {
-    toggle.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
+toggles.forEach(toggle => {
+  toggle.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-      const menu = this.nextElementSibling;
-      if (!menu || !menu.classList.contains("dropdown-menu")) return;
+    const parent = this.parentElement;
+    const menu = this.nextElementSibling;
 
-      document.querySelectorAll(".dropdown-menu").forEach(m => {
-        if (m !== menu) m.classList.remove("show");
-      });
-
-      menu.classList.toggle("show");
+    // tutup dropdown lain
+    document.querySelectorAll(".dropdown").forEach(d => {
+      if (d !== parent) d.classList.remove("open");
     });
-  });
 
-  document.addEventListener("click", () => {
-    document.querySelectorAll(".dropdown-menu")
-      .forEach(menu => menu.classList.remove("show"));
-  });
+    document.querySelectorAll(".dropdown-menu").forEach(m => {
+      if (m !== menu) m.classList.remove("show");
+    });
 
+    // toggle dropdown aktif
+    parent.classList.toggle("open");
+    menu.classList.toggle("show");
+  });
+});
+
+// klik area luar → tutup semua
+document.addEventListener("click", () => {
+  document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("open"));
+  document.querySelectorAll(".dropdown-menu").forEach(m => m.classList.remove("show"));
+});
+
+	
   /* ===============================
      DATE DISPLAY
   =============================== */
