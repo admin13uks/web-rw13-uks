@@ -99,7 +99,16 @@ nav a:hover { color: #2fa56a; }
 
 .tree .role { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #2fa56a; margin-bottom: 4px; }
 .tree .chairman .role, .tree .vice-chairman .role { color: #ff6b00; }
-.tree .name { font-size: 13px; font-weight: 700; color: #111; }
+.tree .name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+
+    /* TAMBAHAN */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 /* Gaya Khusus untuk Teknis & Support */
 .tree .card.support-box {
@@ -135,7 +144,7 @@ body {
     .header-inner { padding: 10px 15px; flex-direction: column; gap: 10px; }
     nav ul { gap: 12px; font-size: 12px; }
     .mega-menu { width: 95vw; }
-    .page-title { font-size: 24px; }
+    .page-title { font-size: 20px; }
 
     /* optional: kalau mau lebih kecil di mobile */
     body {
