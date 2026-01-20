@@ -134,8 +134,13 @@
   position: relative;
 }
 
-/* ===== MEGA MENU CENTER ===== */
-.mega-center {
+/* ================= MEGA DROPDOWN (CLICK ONLY) ================= */
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu.mega-center {
   display: none;
   position: fixed;
   top: 110px;
@@ -147,12 +152,12 @@
   padding: 40px 60px;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0,0,0,.12);
-  z-index: 9998;
+  z-index: 9999;
   opacity: 0;
   transition: .25s ease;
 }
 
-.mega-center.show {
+.dropdown-menu.mega-center.show {
   display: block;
   opacity: 1;
   transform: translateX(-50%) translateY(0);
@@ -163,18 +168,15 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 60px;
   justify-items: center;
-  align-items: start;
 }
 
 .mega-item {
   text-align: center;
   max-width: 240px;
+  text-decoration: none;
+  color: #111;
 }
-
-.mega-item:hover {
-  background: #fff7ed;
-}
-
+		
 /* icon */
 .mega-icon {
   width: 56px;
@@ -277,10 +279,6 @@
   z-index: 999;
 }
 
-/* 👉 INI WAJIB (desktop hover) */
-.dropdown:hover .dropdown-menu {
-  display: grid;
-}
 
 /* item */
 .dropdown-menu a {
