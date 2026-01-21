@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layanan Administrasi | RW 013 UKS</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+  background: #f6f9fc;
+  color: #1f2937;
+}
+
+/* ================= HERO ================= */
+.page-hero {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #fff;
+  padding: 90px 20px 70px;
+  text-align: center;
+}
+
+.page-hero h1 {
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.page-hero p {
+  margin-top: 12px;
+  font-size: 15px;
+  opacity: 0.95;
+}
+
+/* ================= BREADCRUMB ================= */
+.breadcrumb {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.breadcrumb a {
+  color: #16a34a;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ================= CONTENT ================= */
+.container {
+  max-width: 1200px;
+  margin: 40px auto 80px;
+  padding: 0 20px;
+}
+
+/* intro */
+.section-intro {
+  max-width: 800px;
+  margin-bottom: 50px;
+}
+
+.section-intro h2 {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.section-intro p {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+/* ================= LAYANAN LIST ================= */
+.layanan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.layanan-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 15px 35px rgba(0,0,0,.06);
+  transition: .3s ease;
+}
+
+.layanan-card:hover {
+  transform: translateY(-6px);
+}
+
+.layanan-card i {
+  font-size: 26px;
+  color: #16a34a;
+  margin-bottom: 15px;
+}
+
+.layanan-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.layanan-card p {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+/* ================= ALUR ================= */
+.alur-box {
+  background: #ecfdf5;
+  border-left: 6px solid #16a34a;
+  padding: 25px 30px;
+  border-radius: 16px;
+  margin-top: 60px;
+}
+
+.alur-box h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.alur-box ol {
+  margin-left: 20px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.alur-box li {
+  margin-bottom: 8px;
+}
+
+/* ================= CATATAN ================= */
+.note {
+  background: #fff7ed;
+  border-left: 6px solid #f97316;
+  padding: 22px 28px;
+  border-radius: 16px;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #92400e;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .page-hero h1 {
+    font-size: 28px;
+  }
+
+  .section-intro h2 {
+    font-size: 22px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="page-hero">
+  <h1>Layanan Administrasi RW</h1>
+  <p>Pelayanan administrasi warga RW 013 Utan Kayu Selatan</p>
+</section>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Beranda</a> &nbsp;/&nbsp; Layanan Administrasi
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+  <div class="section-intro">
+    <h2>Pelayanan Administrasi Warga</h2>
+    <p>
+      Layanan Administrasi RW 013 merupakan bentuk pelayanan kepada warga
+      dalam membantu pengurusan dokumen pengantar dan administrasi dasar
+      yang diperlukan untuk keperluan kependudukan, sosial, dan kemasyarakatan.
+    </p>
+  </div>
+
+  <!-- LIST LAYANAN -->
+  <div class="layanan-grid">
+
+    <div class="layanan-card">
+      <i class="fa-solid fa-file-signature"></i>
+      <h3>Surat Pengantar RT/RW</h3>
+      <p>
+        Pengantar administrasi untuk keperluan kelurahan, kecamatan,
+        dan instansi terkait.
+      </p>
+    </div>
+
+    <div class="layanan-card">
+      <i class="fa-solid fa-id-card"></i>
+      <h3>Pengurusan KTP & KK</h3>
+      <p>
+        Pengantar pembuatan, perubahan, atau pembaruan KTP dan Kartu Keluarga.
+      </p>
+    </div>
+
+    <div class="layanan-card">
+      <i class="fa-solid fa-house-circle-check"></i>
+      <h3>Surat Domisili</h3>
+      <p>
+        Keterangan domisili bagi warga tetap maupun sementara di wilayah RW.
+      </p>
+    </div>
+
+    <div class="layanan-card">
+      <i class="fa-solid fa-user-plus"></i>
+      <h3>Pendataan Warga</h3>
+      <p>
+        Pendataan warga baru, pindah datang, pindah keluar, dan mutasi data.
+      </p>
+    </div>
+
+    <div class="layanan-card">
+      <i class="fa-solid fa-hand-holding-heart"></i>
+      <h3>Surat Keterangan Sosial</h3>
+      <p>
+        Pengantar bantuan sosial, santunan, dan keperluan kemasyarakatan lainnya.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ALUR -->
+  <div class="alur-box">
+    <h3>Alur Pelayanan</h3>
+    <ol>
+      <li>Warga menghubungi Ketua RT setempat</li>
+      <li>Dokumen diverifikasi oleh RT</li>
+      <li>Pengajuan ke Sekretariat RW</li>
+      <li>Surat pengantar diterbitkan RW</li>
+      <li>Warga melanjutkan ke kelurahan / instansi terkait</li>
+    </ol>
+  </div>
+
+  <!-- CATATAN -->
+  <div class="note">
+    <strong>Catatan:</strong><br>
+    Pelayanan administrasi dilakukan pada hari dan jam kerja yang telah
+    ditentukan. Pastikan dokumen persyaratan telah lengkap.
+  </div>
+
+</div>
+
+</body>
+</html>
