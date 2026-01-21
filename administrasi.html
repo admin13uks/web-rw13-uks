@@ -3,268 +3,164 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Layanan Administrasi RW 013</title>
+<title>Layanan Administrasi | RW 013 UKS</title>
 
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
-  background: #f4f7f6;
-  color: #333;
-  padding-top: 110px; /* WAJIB karena header fixed */
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-/* ================= HEADER ================= */
-.site-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(255,255,255,.98);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(0,0,0,.08);
-  z-index: 10000;
-}
-
-.header-inner {
-  max-width: 1200px;
-  margin: auto;
-  padding: 12px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* LOGO */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-}
-
-.logo img {
-  height: 45px;
-}
-
-.logo-title {
-  font-weight: 800;
-  color: #16a34a;
-  font-size: 18px;
-}
-
-.logo-subtitle {
-  font-size: 12px;
-  color: #6b7280;
-  font-weight: 600;
-}
-
-/* NAV */
-.nav-menu > ul {
-  display: flex;
-  list-style: none;
-  gap: 24px;
-  align-items: center;
-}
-
-.nav-menu a {
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 14px;
-  color: #374151;
-}
-
-.nav-menu a:hover {
-  color: #16a34a;
-}
-
-/* DROPDOWN */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-toggle {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-}
-
-.arrow {
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 6px solid #333;
-}
-
-.dropdown-menu {
-  display: none;
-  position: fixed;
-  top: 110px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1100px;
-  background: #fff;
-  padding: 40px;
-  border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(0,0,0,.12);
-}
-
-.dropdown-menu.show {
-  display: block;
-}
-
-.mega-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-  gap: 40px;
-  text-align: center;
-}
-
-.mega-item {
-  text-decoration: none;
-  color: #111;
-}
-
-.mega-icon {
-  width: 56px;
-  height: 56px;
-  background: #16a34a;
-  color: #fff;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 12px;
-}
-
-.mega-title {
-  font-weight: 800;
-}
-
-/* HAMBURGER */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-}
-
-.hamburger span {
-  width: 26px;
-  height: 3px;
-  background: #16a34a;
-  border-radius: 2px;
+  background: #f6f9fc;
+  color: #1f2937;
 }
 
 /* ================= HERO ================= */
-.hero-admin {
-  background: #16a34a;
-  color: white;
-  padding: 80px 20px;
+.page-hero {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #fff;
+  padding: 90px 20px 70px;
   text-align: center;
 }
 
-.hero-admin h1 {
-  font-size: 36px;
+.page-hero h1 {
+  font-size: 38px;
   font-weight: 800;
 }
 
-.hero-admin p {
-  margin-top: 10px;
+.page-hero p {
+  margin-top: 12px;
   font-size: 15px;
-  opacity: .95;
+  opacity: 0.95;
+}
+
+/* ================= BREADCRUMB ================= */
+.breadcrumb {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.breadcrumb a {
+  color: #16a34a;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 /* ================= CONTENT ================= */
-.section-admin {
+.container {
   max-width: 1200px;
-  margin: 60px auto;
+  margin: 40px auto 80px;
   padding: 0 20px;
 }
 
-.section-admin h2 {
-  font-size: 28px;
+/* intro */
+.section-intro {
+  max-width: 800px;
+  margin-bottom: 50px;
+}
+
+.section-intro h2 {
+  font-size: 26px;
   font-weight: 800;
   margin-bottom: 12px;
 }
 
-.section-admin p {
-  max-width: 720px;
+.section-intro p {
+  font-size: 14px;
   color: #4b5563;
-  margin-bottom: 40px;
+  line-height: 1.7;
 }
 
-.admin-grid {
+/* ================= LAYANAN LIST ================= */
+.layanan-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
 }
 
-.admin-card {
-  background: white;
+.layanan-card {
+  background: #fff;
   border-radius: 18px;
-  padding: 26px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.08);
-  border-left: 6px solid #16a34a;
+  padding: 28px;
+  box-shadow: 0 15px 35px rgba(0,0,0,.06);
+  transition: .3s ease;
 }
 
-.admin-card i {
+.layanan-card:hover {
+  transform: translateY(-6px);
+}
+
+.layanan-card i {
   font-size: 26px;
   color: #16a34a;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
-.admin-card h4 {
+.layanan-card h3 {
+  font-size: 18px;
   font-weight: 800;
   margin-bottom: 8px;
 }
 
-.admin-card p {
-  font-size: 14px;
+.layanan-card p {
+  font-size: 13px;
   color: #6b7280;
+  line-height: 1.6;
+}
+
+/* ================= ALUR ================= */
+.alur-box {
+  background: #ecfdf5;
+  border-left: 6px solid #16a34a;
+  padding: 25px 30px;
+  border-radius: 16px;
+  margin-top: 60px;
+}
+
+.alur-box h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.alur-box ol {
+  margin-left: 20px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.alur-box li {
+  margin-bottom: 8px;
+}
+
+/* ================= CATATAN ================= */
+.note {
+  background: #fff7ed;
+  border-left: 6px solid #f97316;
+  padding: 22px 28px;
+  border-radius: 16px;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #92400e;
 }
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
-
-  .hamburger {
-    display: flex;
+  .page-hero h1 {
+    font-size: 28px;
   }
 
-  .nav-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: white;
-    padding: 20px;
-  }
-
-  .nav-menu.active {
-    display: block;
-  }
-
-  .nav-menu ul {
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .hero-admin h1 {
-    font-size: 26px;
+  .section-intro h2 {
+    font-size: 22px;
   }
 }
 </style>
@@ -272,106 +168,95 @@ html {
 
 <body>
 
-<header class="site-header">
-  <div class="header-inner">
-
-    <a href="index.html" class="logo">
-      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
-      <div>
-        <div class="logo-title">RW 013 UKS</div>
-        <div class="logo-subtitle">Utan Kayu Selatan – Matraman</div>
-      </div>
-    </a>
-
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
-    </div>
-
-    <nav class="nav-menu" id="navMenu">
-      <ul>
-        <li><a href="index.html">Beranda</a></li>
-
-        <li class="dropdown">
-          <a class="dropdown-toggle">Profil <span class="arrow"></span></a>
-          <div class="dropdown-menu">
-            <div class="mega-wrapper">
-              <a href="profil.html#struktur" class="mega-item">
-                <div class="mega-icon"><i class="fa-solid fa-users"></i></div>
-                <div class="mega-title">Struktur</div>
-              </a>
-              <a href="profil.html#bidang" class="mega-item">
-                <div class="mega-icon"><i class="fa-solid fa-briefcase"></i></div>
-                <div class="mega-title">Bidang Kerja</div>
-              </a>
-            </div>
-          </div>
-        </li>
-
-        <li><a href="layanan.html">Layanan</a></li>
-        <li><a href="#">Kegiatan</a></li>
-        <li><a href="#">Kontak</a></li>
-      </ul>
-    </nav>
-
-  </div>
-</header>
-
-<section class="hero-admin">
+<!-- HERO -->
+<section class="page-hero">
   <h1>Layanan Administrasi RW</h1>
   <p>Pelayanan administrasi warga RW 013 Utan Kayu Selatan</p>
 </section>
 
-<section class="section-admin">
-  <h2>Pelayanan Administrasi Warga</h2>
-  <p>
-    RW 013 memberikan pelayanan administrasi dasar sebagai penghubung
-    antara warga dengan kelurahan dan instansi terkait.
-  </p>
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Beranda</a> &nbsp;/&nbsp; Layanan Administrasi
+</div>
 
-  <div class="admin-grid">
+<!-- CONTENT -->
+<div class="container">
 
-    <div class="admin-card">
-      <i class="fa-solid fa-envelope-open-text"></i>
-      <h4>Surat Pengantar RT/RW</h4>
-      <p>Pengantar untuk keperluan kelurahan, kecamatan, sekolah, dan instansi.</p>
+  <div class="section-intro">
+    <h2>Pelayanan Administrasi Warga</h2>
+    <p>
+      Layanan Administrasi RW 013 merupakan bentuk pelayanan kepada warga
+      dalam membantu pengurusan dokumen pengantar dan administrasi dasar
+      yang diperlukan untuk keperluan kependudukan, sosial, dan kemasyarakatan.
+    </p>
+  </div>
+
+  <!-- LIST LAYANAN -->
+  <div class="layanan-grid">
+
+    <div class="layanan-card">
+      <i class="fa-solid fa-file-signature"></i>
+      <h3>Surat Pengantar RT/RW</h3>
+      <p>
+        Pengantar administrasi untuk keperluan kelurahan, kecamatan,
+        dan instansi terkait.
+      </p>
     </div>
 
-    <div class="admin-card">
+    <div class="layanan-card">
       <i class="fa-solid fa-id-card"></i>
-      <h4>Pengurusan KTP & KK</h4>
-      <p>Pengantar pembuatan, perubahan, dan pembaruan data kependudukan.</p>
+      <h3>Pengurusan KTP & KK</h3>
+      <p>
+        Pengantar pembuatan, perubahan, atau pembaruan KTP dan Kartu Keluarga.
+      </p>
     </div>
 
-    <div class="admin-card">
-      <i class="fa-solid fa-house-user"></i>
-      <h4>Surat Domisili</h4>
-      <p>Keterangan domisili bagi warga tetap maupun sementara.</p>
+    <div class="layanan-card">
+      <i class="fa-solid fa-house-circle-check"></i>
+      <h3>Surat Domisili</h3>
+      <p>
+        Keterangan domisili bagi warga tetap maupun sementara di wilayah RW.
+      </p>
     </div>
 
-    <div class="admin-card">
-      <i class="fa-solid fa-people-roof"></i>
-      <h4>Pendataan Warga</h4>
-      <p>Pendataan warga baru, pindah, dan mutasi kependudukan.</p>
+    <div class="layanan-card">
+      <i class="fa-solid fa-user-plus"></i>
+      <h3>Pendataan Warga</h3>
+      <p>
+        Pendataan warga baru, pindah datang, pindah keluar, dan mutasi data.
+      </p>
+    </div>
+
+    <div class="layanan-card">
+      <i class="fa-solid fa-hand-holding-heart"></i>
+      <h3>Surat Keterangan Sosial</h3>
+      <p>
+        Pengantar bantuan sosial, santunan, dan keperluan kemasyarakatan lainnya.
+      </p>
     </div>
 
   </div>
-</section>
 
-<script>
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("navMenu");
+  <!-- ALUR -->
+  <div class="alur-box">
+    <h3>Alur Pelayanan</h3>
+    <ol>
+      <li>Warga menghubungi Ketua RT setempat</li>
+      <li>Dokumen diverifikasi oleh RT</li>
+      <li>Pengajuan ke Sekretariat RW</li>
+      <li>Surat pengantar diterbitkan RW</li>
+      <li>Warga melanjutkan ke kelurahan / instansi terkait</li>
+    </ol>
+  </div>
 
-hamburger.addEventListener("click", () => {
-  navMenu.classList.toggle("active");
-});
+  <!-- CATATAN -->
+  <div class="note">
+    <strong>Catatan:</strong><br>
+    Pelayanan administrasi dilakukan pada hari dan jam kerja yang telah
+    ditentukan. Pastikan dokumen persyaratan telah lengkap.
+  </div>
 
-document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
-  toggle.addEventListener("click", () => {
-    const menu = toggle.nextElementSibling;
-    menu.classList.toggle("show");
-  });
-});
-</script>
+</div>
 
 </body>
 </html>
