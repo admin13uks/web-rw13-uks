@@ -241,32 +241,34 @@
 }
 
 
-/* ANNOUNCEMENT */
+/* ================= ANNOUNCEMENT BAR ================= */
 .announcement-bar {
   position: fixed;
-  top: 74px;
+  top: 74px; /* tepat di bawah header */
+  left: 0;
   width: 100%;
-  background: #f39c12;    /* rubah warna list running teks/
+  background: #f39c12;
   color: #fff;
   font-size: 13px;
   overflow: hidden;
-  z-index: 999;
+  z-index: 10001; /* DI ATAS HEADER */
 }
 
 .scrolling-track {
   display: flex;
-  width: max-content;
-  animation: scrollText 30s linear infinite;
+  width: fit-content;
+  animation: scrollText 25s linear infinite;
 }
 
 .scrolling-track span {
-  padding: 8px 40px;
+  padding: 8px 50px;
   white-space: nowrap;
 }
 
+/* ANIMASI BENAR */
 @keyframes scrollText {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 /* OFFSET BODY */
