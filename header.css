@@ -248,27 +248,37 @@
   left: 0;
   width: 100%;
   background: #f39c12;
-  color: #fff;
-  font-size: 13px;
+  color: #ffffff;
   overflow: hidden;
-  z-index: 10001; /* DI ATAS HEADER */
+  z-index: 10001;
+
+  /* SAMAKAN DENGAN SEMUA LAYER */
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 .scrolling-track {
   display: flex;
-  width: fit-content;
+  width: max-content;
   animation: scrollText 25s linear infinite;
 }
 
 .scrolling-track span {
-  padding: 8px 50px;
+  padding: 10px 60px;
   white-space: nowrap;
+  line-height: 1.4;
 }
 
-/* ANIMASI BENAR */
+/* ANIMASI */
 @keyframes scrollText {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* OFFSET BODY */
