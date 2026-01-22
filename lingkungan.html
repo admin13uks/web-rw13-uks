@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layanan Lingkungan & Kebersihan | RW 013 UKS</title>
+
+<link rel="stylesheet" href="header.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f3faf6 35%,
+    #f8f4ec 65%,
+    #ffffff 100%
+  );
+  color: #1f2937;
+}
+
+/* ================= HERO ================= */
+.page-hero {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+}
+
+.hero-card {
+  max-width: 1200px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 48px;
+  box-shadow: 0 25px 60px rgba(0,0,0,.08);
+}
+
+.breadcrumb {
+  display: inline-flex;
+  gap: 8px;
+  background: #f1f5f9;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #1e3a8a;
+  font-weight: 600;
+}
+
+.hero-title {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.hero-title span {
+  color: #f39c12;
+}
+
+.hero-desc {
+  font-size: 15px;
+  color: #4b5563;
+  max-width: 700px;
+  line-height: 1.7;
+}
+
+/* ================= CONTENT ================= */
+.container {
+  max-width: 1200px;
+  margin: 50px auto 80px;
+  padding: 0 20px;
+}
+
+/* GRID */
+.layanan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.layanan-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 15px 35px rgba(0,0,0,.06);
+  transition: .3s ease;
+}
+
+.layanan-card:hover {
+  transform: translateY(-6px);
+}
+
+.layanan-card i {
+  font-size: 28px;
+  color: #f39c12;
+  margin-bottom: 14px;
+}
+
+.layanan-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.layanan-card p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+/* ================= ALUR ================= */
+.alur-box {
+  background: #ecfdf5;
+  border-left: 6px solid #16a34a;
+  padding: 26px 32px;
+  border-radius: 18px;
+  margin-top: 60px;
+}
+
+.alur-box h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.alur-box ol {
+  margin-left: 20px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ================= CATATAN ================= */
+.note {
+  background: #fff7ed;
+  border-left: 6px solid #f97316;
+  padding: 24px 30px;
+  border-radius: 18px;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #92400e;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 26px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HERO ================= -->
+<section class="page-hero">
+  <div class="hero-card">
+
+    <div class="breadcrumb">
+      <a href="index.html">Beranda</a>
+      <span>›</span>
+      Layanan Lingkungan & Kebersihan
+    </div>
+
+    <h1 class="hero-title">
+      Layanan Lingkungan & <span>Kebersihan</span>
+    </h1>
+
+    <p class="hero-desc">
+      Layanan Lingkungan & Kebersihan RW 013 Utan Kayu Selatan merupakan
+      upaya bersama dalam menjaga kebersihan, pengelolaan sampah, serta
+      menciptakan lingkungan yang sehat, aman, dan nyaman bagi warga.
+    </p>
+
+  </div>
+</section>
+
+<!-- ================= CONTENT ================= -->
+<div class="container">
+
+  <div class="layanan-grid">
+
+    <div class="layanan-card">
+      <i class="fa-solid fa-broom"></i>
+      <h3>Kebersihan Lingkungan</h3>
+      <p>Pengelolaan kebersihan jalan, saluran, dan fasilitas umum wilayah RW.</p>
+    </div>
+
+    <div class="layanan-card">
+      <i class="fa-solid fa-trash"></i>
+      <h3>Pengelolaan Sampah</h3>
+      <p>Koordinasi pengangkutan sampah rumah tangga dan edukasi pemilahan sampah.</p>
+    </div>
+
+    <div class="layanan-card">
+      <i class="fa-solid fa-recycle"></i>
+      <h3>Bank Sampah</h3>
+      <p>Program pengumpulan dan pengelolaan sampah bernilai ekonomis.</p>
+    </div>
+
+    <div class="layanan-card">
+      <i class="fa-solid fa-tree"></i>
+      <h3>Penghijauan</h3>
+      <p>Penanaman dan perawatan tanaman untuk menciptakan lingkungan asri.</p>
+    </div>
+
+    <div class="layanan-card">
+      <i class="fa-solid fa-water"></i>
+      <h3>Drainase & Saluran</h3>
+      <p>Pemantauan dan pembersihan saluran air untuk mencegah genangan.</p>
+    </div>
+
+  </div>
+
+  <!-- ALUR -->
+  <div class="alur-box">
+    <h3>Alur Pelayanan</h3>
+    <ol>
+      <li>Warga menyampaikan laporan atau usulan ke RT</li>
+      <li>Koordinasi RT dengan pengurus RW</li>
+      <li>Tindak lanjut oleh Sie Lingkungan</li>
+      <li>Koordinasi dengan instansi terkait bila diperlukan</li>
+    </ol>
+  </div>
+
+  <!-- CATATAN -->
+  <div class="note">
+    <strong>Catatan:</strong><br>
+    Partisipasi aktif warga sangat dibutuhkan untuk menjaga kebersihan dan
+    kelestarian lingkungan bersama.
+  </div>
+
+</div>
+
+</body>
+</html>
