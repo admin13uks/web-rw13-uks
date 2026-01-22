@@ -45,6 +45,59 @@ body {
   align-items: center;
 }
 
+	.layanan-title {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: #111;
+}
+
+.layanan-desc {
+  font-size: 15px;
+  color: #4b5563;
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+
+.layanan-grid-detail {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.layanan-box {
+  background: #f9fafb;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  transition: .3s ease;
+}
+
+.layanan-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+.layanan-box h3 {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: #16a34a;
+}
+
+.layanan-box p {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.layanan-note {
+  margin-top: 32px;
+  font-size: 14px;
+  color: #374151;
+}
+
+
 /* ================= LOGO ================= */
 .logo {
   display: flex;
@@ -384,119 +437,54 @@ body {
 
 
 <main>
-  <h1 class="page-title">Layanan RW 013</h1>
 
-  <div class="layanan-grid">
+<section id="lingkungan" class="layanan-section default">
 
-    <!-- ================= ADMINISTRASI================= -->
-    <div class="layanan-card" id="administrasi">
-      <h3>Administrasi</h3>
-      <p>
-        Pelayanan surat pengantar, domisili, SKTM,
-        dan administrasi warga RW 013.
-      </p>
-    </div>
+  <h1 class="layanan-title">
+    Layanan Lingkungan RW 013 Utan Kayu Selatan
+  </h1>
 
-    <!-- ================= Lingkungan & Kebersihan ================= -->
-    <div class="layanan-card" id="lingkungan">
-      <h3>Lingkungan dan Kebersihan</h3>
-      <p>
-        Kerja bakti, bank sampah, pembangunan lingkungan serta penanganan banjir dan saluran air.
-      </p>
-    </div>
-
-	  <!-- ================= DETAIL LAYANAN LINGKUNGAN ================= -->
-<section id="lingkungan-detail" class="layanan-detail">
-
-  <h2>Layanan Lingkungan RW 013 Utan Kayu Selatan</h2>
-
-  <p class="page-description">
+  <p class="layanan-desc">
     Layanan Lingkungan RW 013 Utan Kayu Selatan merupakan bentuk komitmen
     pengurus RW dalam menjaga kebersihan, kenyamanan, dan kelestarian lingkungan.
-    Warga diharapkan dapat berpartisipasi aktif dalam setiap program lingkungan.
   </p>
 
-  <div class="service-list">
+  <div class="layanan-grid-detail">
 
-    <div class="service-item">
+    <div class="layanan-box">
       <h3>Pengelolaan Kebersihan Lingkungan</h3>
-      <p>
-        Koordinasi kegiatan kebersihan rutin, pengangkutan sampah,
-        serta pengawasan kebersihan fasilitas umum di lingkungan RW.
-      </p>
+      <p>Koordinasi kebersihan rutin, pengangkutan sampah, dan pengawasan fasilitas umum.</p>
     </div>
 
-    <div class="service-item">
+    <div class="layanan-box">
       <h3>Kerja Bakti Warga</h3>
-      <p>
-        Pelaksanaan kerja bakti bersama untuk membersihkan jalan,
-        saluran air, dan lingkungan sekitar secara berkala.
-      </p>
+      <p>Kegiatan kerja bakti membersihkan jalan dan saluran air.</p>
     </div>
 
-    <div class="service-item">
+    <div class="layanan-box">
       <h3>Pengelolaan Sampah & Bank Sampah</h3>
-      <p>
-        Edukasi pemilahan sampah rumah tangga dan pengelolaan
-        Bank Sampah sebagai upaya pengurangan sampah.
-      </p>
+      <p>Edukasi pemilahan sampah dan pengelolaan Bank Sampah RW.</p>
     </div>
 
-    <div class="service-item">
+    <div class="layanan-box">
       <h3>Pengawasan Drainase & Banjir</h3>
-      <p>
-        Pemantauan dan penanganan saluran air untuk mencegah
-        genangan dan potensi banjir di lingkungan RW.
-      </p>
+      <p>Pemantauan saluran air untuk mencegah genangan dan banjir.</p>
     </div>
 
-    <div class="service-item">
+    <div class="layanan-box">
       <h3>Penghijauan & Taman Lingkungan</h3>
-      <p>
-        Penanaman pohon, perawatan taman,
-        serta penghijauan untuk meningkatkan kualitas lingkungan.
-      </p>
+      <p>Penanaman pohon dan perawatan taman lingkungan.</p>
     </div>
 
   </div>
 
-  <p class="service-note">
-    Apabila terdapat permasalahan lingkungan, warga dapat
-    melaporkan kepada pengurus RW melalui menu <strong>Kontak Kami</strong>.
+  <p class="layanan-note">
+    Apabila terdapat permasalahan lingkungan, warga dapat melaporkan melalui menu
+    <strong>Kontak Kami</strong>.
   </p>
 
 </section>
 
-</main>
-
-    <!-- ================= Kesehatan ================= -->
-    <div class="layanan-card" id="kesehatan">
-      <h3>Kesehatan</h3>
-      <p>
-         Program kesehatan lingkungan, POSYANDU balita dan lansia serta
-         informasi imunisasi dan Edukasi PHBS (Perilaku Hidup Bersih dan Sehat).
-      </p>
-    </div>
-
-    <!-- ================= KEAMANAN ================= -->
-    <div class="layanan-card" id="keamanan">
-      <h3>Keamanan</h3>
-      <p>
-        Koordinasi siskamling, ronda malam,
-        serta pengamanan wilayah RW.
-      </p>
-    </div>
-
-    <!-- ================= SOSIAL ================= -->
-    <div class="layanan-card" id="sosial">
-      <h3>Sosial</h3>
-      <p>
-        Bantuan sosial, santunan warga,
-        dan kegiatan kemasyarakatan RW 013.
-      </p>
-    </div>
-
-  </div>
 </main>
 
  <script>
