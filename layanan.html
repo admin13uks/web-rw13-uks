@@ -248,6 +248,42 @@ body {
   }
 }
 
+/* ================= KONTEN LAYANAN (WAJIB ADA) ================= */
+
+/* semua layanan disembunyikan */
+.layanan-section {
+  display: none;
+  max-width: 1200px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.08);
+  animation: fadeUp .4s ease;
+}
+
+/* tampilkan sesuai hash */
+.layanan-section:target {
+  display: block;
+}
+
+/* default saat buka layanan.html */
+.layanan-section.default {
+  display: block;
+}
+
+/* animasi */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+	
 </style>
 </head>
 
