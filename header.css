@@ -58,6 +58,28 @@
   color: #16a34a;
 }
 
+/* ================= ARROW DROPDOWN ================= */
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.dropdown-toggle .arrow {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #1f2937;
+  transition: transform .25s ease;
+}
+
+/* panah berputar saat dropdown aktif */
+.dropdown.open .arrow {
+  transform: rotate(180deg);
+}
+
 /* ================= DESKTOP MEGA DROPDOWN ================= */
 
 .dropdown {
@@ -116,6 +138,11 @@
 /* ================= MOBILE NAV ================= */
 @media (max-width: 768px) {
 
+  .dropdown-toggle {
+    justify-content: space-between;
+    width: 100%;
+  }
+
   .hamburger {
     display: flex;
     flex-direction: column;
@@ -159,14 +186,6 @@
   .dropdown-menu.show {
     display: block;
   }
-
-  .dropdown-toggle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  cursor: pointer;
-}
 
   .mega-wrapper {
     grid-template-columns: 1fr;
