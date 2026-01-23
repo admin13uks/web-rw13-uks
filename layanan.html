@@ -303,9 +303,8 @@ body {
 
 /* ================= KONTEN LAYANAN (WAJIB ADA) ================= */
 
-/* semua layanan disembunyikan */
 .layanan-section {
-  display: none;
+  display: block;
   max-width: 1200px;
   margin: 40px auto;
   background: #ffffff;
@@ -483,74 +482,68 @@ body {
 	<!-- ================= DETAIL LAYANAN KESEHATAN ================= -->
 <section id="kesehatan" class="layanan-section">
 
-  <h1 class="layanan-title">Layanan Kesehatan RW 013 Utan Kayu Selatan</h2>
+  <h1 class="layanan-title">
+    Layanan Kesehatan RW 013 Utan Kayu Selatan
+  </h1>
 
   <p class="layanan-desc">
-    Layanan ini bertujuan meningkatkan kualitas kesehatan warga melalui pelayanan dasar,
-    edukasi, serta kegiatan kesehatan masyarakat secara berkelanjutan.
+    Layanan kesehatan RW 013 bertujuan meningkatkan kualitas hidup warga melalui
+    kegiatan posyandu, edukasi kesehatan, serta koordinasi dengan fasilitas kesehatan.
   </p>
 
   <div class="layanan-grid-detail">
 
-    <div class="service-card">
-      <div class="icon"><i class="fa-solid fa-baby"></i></div>
-      <h3>Posyandu Balita</h3>
+    <div class="layanan-box">
+      <h3><i class="fa-solid fa-baby"></i> Posyandu Balita</h3>
       <p>
-        Penimbangan, imunisasi, pemberian vitamin, dan pemantauan tumbuh kembang anak.
+        Penimbangan berat badan, imunisasi, pemberian vitamin,
+        dan pemantauan tumbuh kembang balita secara rutin.
       </p>
     </div>
 
     <div class="layanan-box">
-      <div class="icon"><i class="fa-solid fa-heart-pulse"></i></div>
-      <h3>Posyandu Lansia</h3>
+      <h3><i class="fa-solid fa-heart-pulse"></i> Posyandu Lansia</h3>
       <p>
-        Pemeriksaan tekanan darah, gula darah, dan konsultasi kesehatan rutin untuk lansia.
+        Pemeriksaan kesehatan lansia meliputi tekanan darah,
+        gula darah, serta konsultasi kesehatan berkala.
       </p>
     </div>
 
-    <div class="service-card">
-      <div class="icon"><i class="fa-solid fa-chalkboard-teacher"></i></div>
-      <h3>Edukasi PHBS</h3>
+    <div class="layanan-box">
+      <h3><i class="fa-solid fa-chalkboard-teacher"></i> Edukasi PHBS</h3>
       <p>
-        Edukasi Perilaku Hidup Bersih & Sehat (PHBS) untuk mencegah penyakit di lingkungan kita.
+        Edukasi Perilaku Hidup Bersih dan Sehat untuk mencegah
+        penyakit dan meningkatkan kesadaran kesehatan warga.
       </p>
     </div>
 
-    <div class="service-card">
-      <div class="icon"><i class="fa-solid fa-syringe"></i></div>
-      <h3>Informasi Imunisasi</h3>
+    <div class="layanan-box">
+      <h3><i class="fa-solid fa-syringe"></i> Informasi Imunisasi</h3>
       <p>
-        Jadwal dan info imunisasi terbaru dari Puskesmas & Dinas Kesehatan sekitar.
+        Informasi jadwal imunisasi terbaru dari Puskesmas
+        dan Dinas Kesehatan setempat.
       </p>
     </div>
 
-    <div class="service-card">
-      <div class="icon"><i class="fa-solid fa-handshake"></i></div>
-      <h3>Koordinasi Layanan Kesehatan</h3>
+    <div class="layanan-box">
+      <h3><i class="fa-solid fa-handshake"></i> Koordinasi Layanan</h3>
       <p>
-        Koordinasi dengan Puskesmas, kader kesehatan, dan instansi terkait untuk dukungan warga.
+        Koordinasi dengan Puskesmas, kader kesehatan,
+        serta instansi terkait untuk mendukung kesehatan warga.
       </p>
     </div>
 
   </div>
 
-  <div class="service-note">
-    Untuk info lebih lanjut atau bantuan kesehatan, silakan menghubungi pengurus RW melalui
+  <p class="layanan-note">
+    Untuk informasi lebih lanjut, silakan menghubungi pengurus RW melalui
     menu <strong>Kontak Kami</strong>.
-  </div>
+  </p>
 
 </section>
 
+
 	<script>
-/* ===============================
-   DEFAULT LAYANAN
-=============================== */
-document.addEventListener("DOMContentLoaded", () => {
-  if (!location.hash) {
-    const def = document.getElementById("lingkungan");
-    if (def) def.style.display = "block";
-  }
-});
 
 /* ===============================
    TYPING EFFECT (AMAN)
