@@ -320,11 +320,6 @@ body {
   display: block;
 }
 
-/* default saat buka layanan.html */
-.layanan-section.default {
-  display: block;
-}
-
 /* animasi */
 @keyframes fadeUp {
   from {
@@ -438,7 +433,7 @@ body {
 
 <main>
 
-<section id="lingkungan" class="layanan-section default">
+<section id="lingkungan" class="layanan-section">
 
   <h1 class="layanan-title">
     Layanan Lingkungan RW 013 Utan Kayu Selatan
@@ -547,60 +542,66 @@ body {
 </section>
 
 	<script>
-document.addEventListener("DOMContentLoaded", function () {
+/* ===============================
+   DEFAULT LAYANAN
+=============================== */
+document.addEventListener("DOMContentLoaded", () => {
+  if (!location.hash) {
+    const def = document.getElementById("lingkungan");
+    if (def) def.style.display = "block";
+  }
+});
 
-  /* ===============================
-     TYPING EFFECT (AMAN MESKI ELEMEN TIDAK ADA)
-  =============================== */
-  const typingEl = document.getElementById("typing-text");
-  if (typingEl) {
-    const text =
+/* ===============================
+   TYPING EFFECT (AMAN)
+=============================== */
+const typingEl = document.getElementById("typing-text");
+if (typingEl) {
+  const text =
 `RW 013 Kelurahan Utan Kayu Selatan
 Kecamatan Matraman
 Kota Administrasi Jakarta Timur`;
 
-    let i = 0;
-    const speed = 110;
+  let i = 0;
+  const speed = 110;
 
-    function type() {
-      if (i < text.length) {
-        typingEl.textContent += text.charAt(i++);
-        setTimeout(type, speed);
-      }
+  function type() {
+    if (i < text.length) {
+      typingEl.textContent += text.charAt(i++);
+      setTimeout(type, speed);
     }
-    type();
   }
+  type();
+}
 
-  /* ===============================
-     DROPDOWN MENU (CLICK ONLY)
-  =============================== */
-  const toggles = document.querySelectorAll(".dropdown-toggle");
+/* ===============================
+   DROPDOWN MENU (CLICK ONLY)
+=============================== */
+const toggles = document.querySelectorAll(".dropdown-toggle");
 
-  toggles.forEach(toggle => {
-    toggle.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
+toggles.forEach(toggle => {
+  toggle.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-      const parent = this.parentElement;
-      const menu = this.nextElementSibling;
+    const parent = this.parentElement;
+    const menu = this.nextElementSibling;
 
-      document.querySelectorAll(".dropdown").forEach(d => {
-        if (d !== parent) d.classList.remove("open");
-      });
-      document.querySelectorAll(".dropdown-menu").forEach(m => {
-        if (m !== menu) m.classList.remove("show");
-      });
-
-      parent.classList.toggle("open");
-      menu.classList.toggle("show");
+    document.querySelectorAll(".dropdown").forEach(d => {
+      if (d !== parent) d.classList.remove("open");
     });
-  });
+    document.querySelectorAll(".dropdown-menu").forEach(m => {
+      if (m !== menu) m.classList.remove("show");
+    });
 
-  document.addEventListener("click", () => {
-    document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("open"));
-    document.querySelectorAll(".dropdown-menu").forEach(m => m.classList.remove("show"));
+    parent.classList.toggle("open");
+    menu.classList.toggle("show");
   });
+});
 
+document.addEventListener("click", () => {
+  document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("open"));
+  document.querySelectorAll(".dropdown-menu").forEach(m => m.classList.remove("show"));
 });
 </script>
 </main>
