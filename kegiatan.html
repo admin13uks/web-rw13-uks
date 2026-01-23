@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kegiatan Warga | RW 013 Utan Kayu Selatan</title>
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Plus Jakarta Sans', sans-serif;
+}
+
+body{
+  background:#f9fafb;
+  color:#1f2937;
+}
+
+/* ================= HERO ================= */
+.kegiatan-hero{
+  background:linear-gradient(135deg,#16a34a,#22c55e);
+  padding:100px 20px 70px;
+  text-align:center;
+  color:#fff;
+}
+
+.kegiatan-hero h1{
+  font-size:38px;
+  font-weight:800;
+}
+
+.kegiatan-hero p{
+  margin-top:10px;
+  max-width:720px;
+  margin-inline:auto;
+  opacity:.95;
+}
+
+/* ================= CONTAINER ================= */
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:60px 20px;
+}
+
+/* ================= CARD KEGIATAN ================= */
+.kegiatan-card{
+  background:#fff;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 20px 40px rgba(0,0,0,.08);
+  margin-bottom:60px;
+}
+
+/* ================= INFO ================= */
+.kegiatan-info{
+  padding:30px;
+}
+
+.kegiatan-info h2{
+  font-size:26px;
+  font-weight:800;
+  color:#16a34a;
+}
+
+.kegiatan-meta{
+  margin:10px 0 15px;
+  font-size:14px;
+  color:#6b7280;
+}
+
+.kegiatan-info p{
+  line-height:1.7;
+  color:#374151;
+}
+
+/* ================= GALERI ================= */
+.kegiatan-gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  padding:0 30px 30px;
+}
+
+.kegiatan-gallery img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:16px;
+  transition:.35s;
+}
+
+.kegiatan-gallery img:hover{
+  transform:scale(1.05);
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+  .kegiatan-gallery{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:600px){
+  .kegiatan-hero h1{
+    font-size:28px;
+  }
+
+  .kegiatan-gallery{
+    grid-template-columns:1fr;
+  }
+
+  .kegiatan-gallery img{
+    height:200px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HERO ================= -->
+<section class="kegiatan-hero">
+  <h1>Kegiatan Warga RW 013</h1>
+  <p>
+    Berbagai aktivitas sosial, kesehatan, dan kebersamaan warga
+    sebagai wujud kepedulian dan gotong royong di lingkungan RW 013.
+  </p>
+</section>
+
+<!-- ================= ISI ================= -->
+<div class="container">
+
+  <!-- ===== KEGIATAN 1 ===== -->
+  <div class="kegiatan-card">
+    <div class="kegiatan-info">
+      <h2>Kerja Bakti Lingkungan</h2>
+      <div class="kegiatan-meta">
+        <i class="fa-solid fa-calendar-days"></i> Minggu, 12 Januari 2025
+      </div>
+      <p>
+        Kegiatan kerja bakti rutin warga RW 013 untuk menjaga kebersihan,
+        keindahan, dan kenyamanan lingkungan bersama.
+      </p>
+    </div>
+
+    <div class="kegiatan-gallery">
+      <img src="img/kegiatan/kerja-bakti-1.jpg" alt="">
+      <img src="img/kegiatan/kerja-bakti-2.jpg" alt="">
+      <img src="img/kegiatan/kerja-bakti-3.jpg" alt="">
+    </div>
+  </div>
+
+  <!-- ===== KEGIATAN 2 ===== -->
+  <div class="kegiatan-card">
+    <div class="kegiatan-info">
+      <h2>Posyandu Balita & Lansia</h2>
+      <div class="kegiatan-meta">
+        <i class="fa-solid fa-calendar-days"></i> Sabtu, 20 Januari 2025
+      </div>
+      <p>
+        Pemeriksaan kesehatan, imunisasi, dan edukasi kesehatan bagi balita
+        serta lansia yang dilakukan bersama kader dan Puskesmas.
+      </p>
+    </div>
+
+    <div class="kegiatan-gallery">
+      <img src="img/kegiatan/posyandu-1.jpg" alt="">
+      <img src="img/kegiatan/posyandu-2.jpg" alt="">
+      <img src="img/kegiatan/posyandu-3.jpg" alt="">
+    </div>
+  </div>
+
+  <!-- ===== KEGIATAN 3 ===== -->
+  <div class="kegiatan-card">
+    <div class="kegiatan-info">
+      <h2>Lomba & Kegiatan Hari Besar</h2>
+      <div class="kegiatan-meta">
+        <i class="fa-solid fa-calendar-days"></i> 17 Agustus 2024
+      </div>
+      <p>
+        Berbagai perlombaan dan kegiatan hiburan dalam rangka
+        memperingati Hari Kemerdekaan Republik Indonesia.
+      </p>
+    </div>
+
+    <div class="kegiatan-gallery">
+      <img src="img/kegiatan/lomba-1.jpg" alt="">
+      <img src="img/kegiatan/lomba-2.jpg" alt="">
+      <img src="img/kegiatan/lomba-3.jpg" alt="">
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
