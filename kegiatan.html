@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
+/* ================= RESET ================= */
 *{
   margin:0;
   padding:0;
@@ -22,25 +23,111 @@
 body{
   background:#f9fafb;
   color:#1f2937;
+  padding-top:80px;
+}
+
+/* ================= HEADER ================= */
+.site-header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  background:#fff;
+  border-bottom:1px solid #e5e7eb;
+  z-index:9999;
+}
+
+.header-inner{
+  max-width:1200px;
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-weight:800;
+  font-size:18px;
+  color:#16a34a;
+  text-decoration:none;
+}
+
+.nav-menu ul{
+  display:flex;
+  list-style:none;
+  gap:24px;
+}
+
+.nav-menu a{
+  text-decoration:none;
+  font-weight:700;
+  font-size:14px;
+  color:#374151;
+}
+
+.nav-menu a.active,
+.nav-menu a:hover{
+  color:#16a34a;
+}
+
+/* ================= HAMBURGER ================= */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+
+.hamburger span{
+  width:26px;
+  height:3px;
+  background:#16a34a;
+  border-radius:2px;
+}
+
+/* ================= MOBILE MENU ================= */
+@media(max-width:768px){
+  .hamburger{display:flex;}
+
+  .nav-menu{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:#fff;
+    display:none;
+    padding:20px;
+    border-bottom:1px solid #e5e7eb;
+  }
+
+  .nav-menu.active{
+    display:block;
+  }
+
+  .nav-menu ul{
+    flex-direction:column;
+    gap:14px;
+  }
 }
 
 /* ================= HERO ================= */
 .kegiatan-hero{
   background:linear-gradient(135deg,#16a34a,#22c55e);
-  padding:100px 20px 70px;
+  padding:120px 20px 80px;
   text-align:center;
   color:#fff;
 }
 
 .kegiatan-hero h1{
-  font-size:38px;
+  font-size:40px;
   font-weight:800;
 }
 
 .kegiatan-hero p{
-  margin-top:10px;
   max-width:720px;
-  margin-inline:auto;
+  margin:12px auto 0;
+  font-size:16px;
   opacity:.95;
 }
 
@@ -51,30 +138,35 @@ body{
   padding:60px 20px;
 }
 
-/* ================= CARD KEGIATAN ================= */
+/* ================= CARD ================= */
 .kegiatan-card{
   background:#fff;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 20px 40px rgba(0,0,0,.08);
+  border-radius:24px;
   margin-bottom:60px;
+  box-shadow:0 25px 45px rgba(0,0,0,.08);
+  overflow:hidden;
+  transition:.3s ease;
+}
+
+.kegiatan-card:hover{
+  transform:translateY(-6px);
 }
 
 /* ================= INFO ================= */
 .kegiatan-info{
-  padding:30px;
+  padding:32px;
 }
 
 .kegiatan-info h2{
-  font-size:26px;
-  font-weight:800;
   color:#16a34a;
+  font-weight:800;
+  margin-bottom:6px;
 }
 
 .kegiatan-meta{
-  margin:10px 0 15px;
   font-size:14px;
   color:#6b7280;
+  margin-bottom:14px;
 }
 
 .kegiatan-info p{
@@ -82,12 +174,12 @@ body{
   color:#374151;
 }
 
-/* ================= GALERI ================= */
+/* ================= GALLERY ================= */
 .kegiatan-gallery{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:15px;
-  padding:0 30px 30px;
+  gap:16px;
+  padding:0 32px 32px;
 }
 
 .kegiatan-gallery img{
@@ -95,21 +187,10 @@ body{
   height:220px;
   object-fit:cover;
   border-radius:16px;
-  transition:.35s;
-}
-
-.kegiatan-gallery img:hover{
-  transform:scale(1.05);
 }
 
 /* ================= RESPONSIVE ================= */
-@media(max-width:900px){
-  .kegiatan-gallery{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-@media(max-width:600px){
+@media(max-width:768px){
   .kegiatan-hero h1{
     font-size:28px;
   }
@@ -117,15 +198,32 @@ body{
   .kegiatan-gallery{
     grid-template-columns:1fr;
   }
-
-  .kegiatan-gallery img{
-    height:200px;
-  }
 }
 </style>
 </head>
 
 <body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">RW 013 UKS</a>
+
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav class="nav-menu" id="navMenu">
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="kegiatan.html" class="active">Kegiatan</a></li>
+        <li><a href="kontak.html">Kontak</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
 <!-- ================= HERO ================= -->
 <section class="kegiatan-hero">
@@ -139,7 +237,6 @@ body{
 <!-- ================= ISI ================= -->
 <div class="container">
 
-  <!-- ===== KEGIATAN 1 ===== -->
   <div class="kegiatan-card">
     <div class="kegiatan-info">
       <h2>Kerja Bakti Lingkungan</h2>
@@ -151,15 +248,13 @@ body{
         keindahan, dan kenyamanan lingkungan bersama.
       </p>
     </div>
-
     <div class="kegiatan-gallery">
-      <img src="img/kegiatan/kerja-bakti-1.jpg" alt="">
-      <img src="img/kegiatan/kerja-bakti-2.jpg" alt="">
-      <img src="img/kegiatan/kerja-bakti-3.jpg" alt="">
+      <img src="img/kegiatan/kerja-bakti-1.jpg">
+      <img src="img/kegiatan/kerja-bakti-2.jpg">
+      <img src="img/kegiatan/kerja-bakti-3.jpg">
     </div>
   </div>
 
-  <!-- ===== KEGIATAN 2 ===== -->
   <div class="kegiatan-card">
     <div class="kegiatan-info">
       <h2>Posyandu Balita & Lansia</h2>
@@ -171,59 +266,24 @@ body{
         serta lansia yang dilakukan bersama kader dan Puskesmas.
       </p>
     </div>
-
     <div class="kegiatan-gallery">
-      <img src="img/kegiatan/posyandu-1.jpg" alt="">
-      <img src="img/kegiatan/posyandu-2.jpg" alt="">
-      <img src="img/kegiatan/posyandu-3.jpg" alt="">
-    </div>
-  </div>
-
-  <!-- ===== KEGIATAN 3 ===== -->
-  <div class="kegiatan-card">
-    <div class="kegiatan-info">
-      <h2>Pembangunan Wilayah</h2>
-      <div class="kegiatan-meta">
-        <i class="fa-solid fa-calendar-days"></i> 17 Agustus 2024
-      </div>
-      <p>
-       Kegiatan pembangunan dan perapihan wilayah dilaksanakan sebagai upaya
-  meningkatkan kualitas lingkungan RW 013 agar lebih tertata, aman,
-  dan nyaman bagi seluruh warga. Kegiatan ini meliputi perbaikan
-  fasilitas umum, penataan lingkungan, serta pembenahan sarana
-  pendukung yang dilakukan secara bertahap dan berkelanjutan melalui
-  kerja sama antara pengurus RW dan partisipasi aktif warga.
-      </p>
-    </div>
-
-    <div class="kegiatan-gallery">
-      <img src="img/kegiatan/lomba-1.jpg" alt="">
-      <img src="img/kegiatan/lomba-2.jpg" alt="">
-      <img src="img/kegiatan/lomba-3.jpg" alt="">
-    </div>
-  </div>
-
-   <!-- ===== KEGIATAN 4 ===== -->
-  <div class="kegiatan-card">
-    <div class="kegiatan-info">
-      <h2>Lomba & Kegiatan Hari Besar</h2>
-      <div class="kegiatan-meta">
-        <i class="fa-solid fa-calendar-days"></i> 17 Agustus 2024
-      </div>
-      <p>
-        Berbagai perlombaan dan kegiatan hiburan dalam rangka
-        memperingati Hari Kemerdekaan Republik Indonesia.
-      </p>
-    </div>
-
-    <div class="kegiatan-gallery">
-      <img src="img/kegiatan/lomba-1.jpg" alt="">
-      <img src="img/kegiatan/lomba-2.jpg" alt="">
-      <img src="img/kegiatan/lomba-3.jpg" alt="">
+      <img src="img/kegiatan/posyandu-1.jpg">
+      <img src="img/kegiatan/posyandu-2.jpg">
+      <img src="img/kegiatan/posyandu-3.jpg">
     </div>
   </div>
 
 </div>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("navMenu");
+
+hamburger.addEventListener("click", () => {
+  navMenu.classList.toggle("active");
+});
+</script>
 
 </body>
 </html>
