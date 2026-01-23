@@ -301,6 +301,7 @@ body {
   }
 }
 
+	
 /* ================= KONTEN LAYANAN (WAJIB ADA) ================= */
 
 .layanan-section {
@@ -577,6 +578,17 @@ Kota Administrasi Jakarta Timur`;
   }
   type();
 }
+
+/* ===============================
+   HAMBURGER MENU
+=============================== */
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("navMenu");
+
+hamburger.addEventListener("click", function (e) {
+  e.stopPropagation();
+  navMenu.classList.toggle("active");
+});
 
 /* ===============================
    DROPDOWN MENU (CLICK ONLY)
