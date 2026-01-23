@@ -1,56 +1,311 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Layanan Kesehatan | RW 013 Utan Kayu Selatan</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layanan Kesehatan | RW 013 Utan Kayu Selatan</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/header.css">
-  <link rel="stylesheet" href="css/style.css">
+<style>
+/* ================= BASE ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+  background: #f6f9fc;
+  color: #333;
+  padding-top: 90px;
+}
+
+/* ================= HEADER ================= */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  z-index: 1000;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo img { height: 42px; }
+
+.logo-title {
+  font-weight: 800;
+  color: #16a34a;
+  font-size: 18px;
+}
+
+.logo-sub {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  color: #374151;
+}
+
+nav a:hover { color: #16a34a; }
+
+/* ================= HERO ================= */
+.hero {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #fff;
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.hero p {
+  max-width: 760px;
+  margin: 15px auto 0;
+  opacity: .95;
+  font-size: 15px;
+}
+
+/* ================= SECTION ================= */
+.section {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
+  color: #166534;
+}
+
+.section-desc {
+  text-align: center;
+  max-width: 760px;
+  margin: 12px auto 50px;
+  color: #555;
+}
+
+/* ================= SERVICE GRID ================= */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.service-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.06);
+  transition: .3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(0,0,0,.08);
+}
+
+.service-icon {
+  width: 58px;
+  height: 58px;
+  background: #dcfce7;
+  color: #16a34a;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 18px;
+}
+
+.service-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.service-card p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ================= INFO BAR ================= */
+.info-bar {
+  background: #ecfdf5;
+  border-left: 6px solid #22c55e;
+  padding: 22px 26px;
+  border-radius: 14px;
+  margin-top: 60px;
+  color: #065f46;
+  font-weight: 600;
+}
+
+/* ================= FOOTER ================= */
+footer {
+  background: #16a34a;
+  color: #fff;
+  padding: 60px 20px;
+  margin-top: 100px;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+footer p {
+  opacity: .85;
+  font-size: 14px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 28px; }
+}
+</style>
 </head>
+
 <body>
 
-  <!-- ================= HEADER ================= -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="logo">
-        <img src="img/logo.png" alt="RW 013">
-        <div class="logo-text">
-          <span class="logo-title">RW 013</span>
-          <span class="logo-subtitle">Utan Kayu Selatan</span>
-        </div>
-      </a>
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
+      <div>
+        <div class="logo-title">RW 013 UKS</div>
+        <div class="logo-sub">Utan Kayu Selatan</div>
+      </div>
+    </a>
+    <nav>
+      <a href="index.html">Beranda</a>
+    </nav>
+  </div>
+</header>
 
-      <nav class="nav-menu">
-        <ul>
-          <li><a href="index.html">Beranda</a></li>
-          <li class="dropdown">
-            <span class="dropdown-toggle">Layanan <span class="arrow"></span></span>
-          </li>
-          <li><a href="kontak.html">Kontak</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<!-- HERO -->
+<section class="hero">
+  <h1>Layanan Kesehatan Masyarakat</h1>
+  <p>
+    Pelayanan kesehatan berbasis masyarakat RW 013 Utan Kayu Selatan
+    untuk meningkatkan kualitas hidup warga secara berkelanjutan.
+  </p>
+</section>
 
-  <!-- ================= ANNOUNCEMENT ================= -->
-  <div class="announcement-bar">
-    <div class="scrolling-track">
-      <span>Informasi Posyandu & Layanan Kesehatan RW 013 Utan Kayu Selatan</span>
+<!-- CONTENT -->
+<section class="section">
+
+  <h2 class="section-title">Program Kesehatan RW 013</h2>
+  <p class="section-desc">
+    Berbagai kegiatan dan layanan kesehatan yang dilaksanakan
+    bekerja sama dengan kader kesehatan dan Puskesmas setempat.
+  </p>
+
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-solid fa-baby"></i></div>
+      <h3>Posyandu Balita</h3>
+      <p>
+        Penimbangan berat badan, imunisasi, pemberian vitamin,
+        serta pemantauan tumbuh kembang balita secara rutin.
+      </p>
     </div>
+
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+      <h3>Posyandu Lansia</h3>
+      <p>
+        Pemeriksaan tekanan darah, gula darah,
+        konsultasi kesehatan, dan pemantauan kondisi lansia.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+      <h3>Kesehatan Ibu</h3>
+      <p>
+        Edukasi kesehatan ibu hamil, ibu menyusui,
+        serta pendampingan kader kesehatan RW.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+      <h3>Edukasi PHBS</h3>
+      <p>
+        Sosialisasi Perilaku Hidup Bersih dan Sehat
+        untuk mencegah penyakit di lingkungan RW.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-solid fa-syringe"></i></div>
+      <h3>Informasi Imunisasi</h3>
+      <p>
+        Penyampaian jadwal imunisasi dan program kesehatan
+        dari Puskesmas dan Dinas Kesehatan.
+      </p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-solid fa-people-group"></i></div>
+      <h3>Koordinasi Kesehatan</h3>
+      <p>
+        Koordinasi dengan Puskesmas, kader Posyandu,
+        dan instansi terkait untuk kebutuhan warga.
+      </p>
+    </div>
+
   </div>
 
-  <!-- ================= KESEHATAN ================= -->
-  <section id="kesehatan-detail" class="kesehatan-section">
-    <!-- (isi kesehatan TIDAK SAYA UBAH karena sudah benar) -->
-  </section>
+  <div class="info-bar">
+    <i class="fa-solid fa-circle-info"></i>
+    Untuk informasi jadwal Posyandu atau bantuan kesehatan,
+    silakan menghubungi pengurus RW melalui menu <strong>Kontak Kami</strong>.
+  </div>
 
-  <footer class="site-footer">
-    © RW 013 Utan Kayu Selatan
-  </footer>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <p>
+      &copy; 2024 RW 013 Kelurahan Utan Kayu Selatan<br>
+      Bersama Mewujudkan Warga Sehat & Lingkungan Berkualitas
+    </p>
+  </div>
+</footer>
 
 </body>
 </html>
