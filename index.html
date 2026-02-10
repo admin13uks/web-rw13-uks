@@ -260,17 +260,6 @@
   transform: translateY(0);
 }
 
-
-    <a href="profil.html#struktur" class="mega-item">
-      <div class="mega-icon"><i class="fa-solid fa-sitemap"></i></div>
-      <div class="mega-title">Struktur Organisasi</div>
-    </a>
-
-    <a href="profil.html#bidang" class="mega-item">
-      <div class="mega-icon"><i class="fa-solid fa-briefcase"></i></div>
-      <div class="mega-title">Bidang Kerja</div>
-    </a>
-
   </div>
 </div>
 
@@ -297,19 +286,17 @@
   border-radius: 3px;
 }
 
-
 /* ===============================
-   HAMBURGER MOBILE MENU
+   HAMBURGER TOGGLE
 =============================== */
 const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("navMenu");
+const navMenu   = document.getElementById("navMenu");
 
 if (hamburger && navMenu) {
   hamburger.addEventListener("click", () => {
     navMenu.classList.toggle("active");
   });
 }
-		
 
 /* ================= DESKTOP MEGA DROPDOWN ================= */
 
