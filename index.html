@@ -1181,9 +1181,6 @@ document.addEventListener("click", () => {
   const desc  = document.getElementById("cardDesc");
   const card  = document.getElementById("previewCard");
 
-  layananItems.forEach(item => {
-    item.addEventListener("click", () => {
-
       layananItems.forEach(i => i.classList.remove("active"));
       item.classList.add("active");
 
@@ -1252,6 +1249,29 @@ document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
       menu.classList.toggle("show");
     }
   });
+});
+
+	document.addEventListener("DOMContentLoaded", function () {
+
+  const hamburger = document.getElementById("hamburger");
+  const navMenu   = document.getElementById("navMenu");
+
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", function (e) {
+      e.stopPropagation();
+      navMenu.classList.toggle("active");
+      hamburger.classList.toggle("active");
+    });
+
+    // klik luar → tutup
+    document.addEventListener("click", function (e) {
+      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        navMenu.classList.remove("active");
+        hamburger.classList.remove("active");
+      }
+    });
+  }
+
 });
 </script>
 
