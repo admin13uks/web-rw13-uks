@@ -536,11 +536,6 @@
     gap: 16px;
   }
 
-  /* NAV MENU */
-  .nav-menu {
-    display: none;
-  }
-
   /* LOGO + HEADER RAPAT */
   .header-inner {
     padding: 10px 14px;
@@ -646,6 +641,29 @@
 
 }
 
+		/* RESET MENU */
+.nav-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-menu li {
+  list-style: none;
+}
+
+.nav-menu a {
+  text-decoration: none;
+}
+
+		@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+}
 
         /* ================= HERO SECTION ================= */
         .hero {
@@ -832,84 +850,87 @@
       </div>
     </a>
 
-        <!-- PROFIL -->
+       <!-- NAVIGATION -->
+<nav class="nav-menu" id="navMenu">
+  <ul>
+
+    <!-- PROFIL -->
     <li class="dropdown">
-  <a href="#" class="dropdown-toggle">
-    Profil <span class="arrow"></span>
-  </a>
+      <a href="#" class="dropdown-toggle">
+        Profil <span class="arrow"></span>
+      </a>
+      <div class="dropdown-menu mega-center">
+        <div class="mega-wrapper">
+          <a href="profil.html#struktur" class="mega-item">
+            <div class="mega-icon"><i class="fa-solid fa-sitemap"></i></div>
+            <div class="mega-title">Struktur Organisasi</div>
+          </a>
 
-  <div class="dropdown-menu mega-center">
-    <div class="mega-wrapper">
+          <a href="profil.html#bidang" class="mega-item">
+            <div class="mega-icon"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="mega-title">Bidang Kerja</div>
+          </a>
+        </div>
+      </div>
+    </li>
 
-      <a href="profil.html#struktur" class="mega-item">
-        <div class="mega-icon"><i class="fa-solid fa-sitemap"></i></div>
-        <div class="mega-title">Struktur Organisasi</div>
+    <!-- LAYANAN -->
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle">
+        Layanan <span class="arrow"></span>
       </a>
 
-      <a href="profil.html#bidang" class="mega-item">
-        <div class="mega-icon"><i class="fa-solid fa-briefcase"></i></div>
-        <div class="mega-title">Bidang Kerja</div>
-      </a>
+      <div class="dropdown-menu mega-center">
+        <div class="mega-wrapper">
 
-    </div>
-  </div>
-</li>
+          <a href="administrasi.html" class="mega-item">
+            <div class="mega-icon"><i class="fa-solid fa-file-lines"></i></div>
+            <div class="mega-title">Administrasi</div>
+          </a>
 
+          <a href="lingkungan.html" class="mega-item">
+            <div class="mega-icon"><i class="fa-solid fa-leaf"></i></div>
+            <div class="mega-title">Lingkungan</div>
+          </a>
 
-        <!-- LAYANAN -->
-       <li class="dropdown">
-  <a href="#" class="dropdown-toggle">
-    Layanan <span class="arrow"></span>
-  </a>
+          <a href="kesehatan.html" class="mega-item">
+            <div class="mega-icon"><i class="fa-solid fa-notes-medical"></i></div>
+            <div class="mega-title">Kesehatan</div>
+          </a>
 
-  <div class="dropdown-menu mega-center">
-    <div class="mega-wrapper">
-		
-          	<a href="administrasi.html" class="mega-item">
-  <div class="mega-icon"><i class="fa-solid fa-file-lines"></i></div>
-  <div class="mega-title">Administrasi</div>
-</a>
+          <a href="sosial.html" class="mega-item">
+            <div class="mega-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+            <div class="mega-title">Sosial</div>
+          </a>
 
-            <a href="lingkungan.html" class="mega-item">
-  <div class="mega-icon"><i class="fa-solid fa-leaf"></i></div>
-  <div class="mega-title">Lingkungan</div>
-  <div class="mega-desc">Kebersihan & lingkungan</div>
-</a>
+          <a href="keamanan.html" class="mega-item">
+            <div class="mega-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="mega-title">Keamanan</div>
+          </a>
 
-              <a href="kesehatan.html" class="mega-item">
-                <div class="mega-icon"><i class="fa-solid fa-notes-medical"></i></div>
-                <div class="mega-title">Kesehatan</div>
-                <div class="mega-desc">Posyandu & kesehatan</div>
-              </a>
+          <a href="banksampah.html" class="mega-item">
+            <div class="mega-icon"><i class="fa-solid fa-recycle"></i></div>
+            <div class="mega-title">Bank Sampah</div>
+          </a>
 
-              <a href="sosial.html" class="mega-item">
-                <div class="mega-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                <div class="mega-title">Sosial</div>
-                <div class="mega-desc">Santunan & kemasyarakatan</div>
-              </a>
+        </div>
+      </div>
+    </li>
 
-              <a href="keamanan.html" class="mega-item">
-                <div class="mega-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <div class="mega-title">Keamanan</div>
-                <div class="mega-desc">Siskamling RW</div>
-              </a>
-		
-		      <a href="banksampah.html" class="mega-item">
-                <div class="mega-icon"><i class="fa-solid fa-recycle"></i></div>
-                <div class="mega-title">Bank Sampah</div>
-              </a>
+    <li><a href="kegiatan.html">Kegiatan</a></li>
+    <li><a href="#">Kontak Kami</a></li>
+    <li><a href="#" class="btn-login">Login</a></li>
 
-            </div>
-          </div>
-        </li>
+  </ul>
+</nav>
 
-       <li><a href="kegiatan.html">Kegiatan</a></li>
-        <li><a href="#">Kontak Kami</a></li>
+<!-- HAMBURGER -->
+<div class="hamburger" id="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
 
-      </ul>
-    </nav>
-
-  </div>
 
 </header>
 
@@ -1176,20 +1197,60 @@ document.addEventListener("click", () => {
     });
   });
 
-	/* ===============================
-   HAMBURGER TOGGLE
+/* ===============================
+   HAMBURGER TOGGLE (MOBILE)
+=============================== */
+const hamburger = document.getElementById("hamburger");
+const navMenu   = document.getElementById("nav...
+👉 GANTI dengan ini (FULL FIX):
+
+/* ===============================
+   HAMBURGER TOGGLE (MOBILE)
 =============================== */
 const hamburger = document.getElementById("hamburger");
 const navMenu   = document.getElementById("navMenu");
 
 if (hamburger && navMenu) {
-  hamburger.addEventListener("click", () => {
-  navMenu.classList.toggle("active");
-  hamburger.classList.toggle("active");
+  hamburger.addEventListener("click", function (e) {
+    e.stopPropagation();
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
   });
 }
 
-	
+/* klik luar → tutup menu */
+document.addEventListener("click", function (e) {
+  if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+  }
+});
+
+/* ===============================
+   MOBILE DROPDOWN FIX
+=============================== */
+document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+  toggle.addEventListener("click", function (e) {
+
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+
+      const parent = this.parentElement;
+      const menu   = this.nextElementSibling;
+
+      // tutup dropdown lain
+      document.querySelectorAll(".dropdown").forEach(d => {
+        if (d !== parent) d.classList.remove("open");
+      });
+
+      document.querySelectorAll(".dropdown-menu").forEach(m => {
+        if (m !== menu) m.classList.remove("show");
+      });
+
+      parent.classList.toggle("open");
+      menu.classList.toggle("show");
+    }
+  });
 });
 </script>
 
