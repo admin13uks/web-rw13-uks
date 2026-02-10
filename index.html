@@ -340,52 +340,155 @@
   transform: translateY(-4px);
 }
 		
-/* ================= MOBILE ================= */
+/* =====================================================
+   MOBILE UI IMPROVEMENT — PREMIUM LOOK
+   ===================================================== */
 @media (max-width: 768px) {
 
-  .hamburger { display: flex; }
+  body {
+    padding-top: 100px;
+  }
 
+  /* HEADER */
+  .header-inner {
+    padding: 10px 14px;
+  }
+
+  .logo img {
+    height: 38px;
+  }
+
+  .logo-title {
+    font-size: 16px;
+  }
+
+  .logo-subtitle {
+    font-size: 11px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 60px 16px 30px;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+    line-height: 1.3;
+  }
+
+  #typing-text {
+    font-size: 16px;
+  }
+
+  .hero p.main-desc {
+    font-size: 13px;
+  }
+
+  /* ANNOUNCEMENT */
+  .announcement-bar {
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .scrolling-track span {
+    font-size: 12px;
+  }
+
+  /* NAV MOBILE */
   .nav-menu {
-    position: fixed;
-    top: 80px;
-    right: -100%;
-    width: 100%;
-    height: calc(100vh - 80px);
-    background: #fff;
-    transition: .3s;
-    overflow-y: auto;
+    border-radius: 16px 0 0 16px;
+    box-shadow: -10px 0 30px rgba(0,0,0,.08);
   }
 
-  .nav-menu.active {
-    right: 0;
-  }
-
-  .nav-menu ul {
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  .nav-menu li {
-    width: 100%;
-  }
-
-  /* accordion dropdown */
-  .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    display: none;
-    width: 100%;
-  }
-
-  .dropdown-menu.show {
+  .nav-menu a {
+    font-size: 15px;
+    padding: 14px 0;
     display: block;
   }
 
-  .mega-wrapper {
-    grid-template-columns: 1fr;
-    padding: 10px 0;
+  /* LAYANAN */
+  .layanan-container {
+    margin: 40px auto;
+  }
+
+  .layanan-content {
+    gap: 18px;
+  }
+
+  .layanan-item {
+    padding: 16px;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 6px 14px rgba(0,0,0,.04);
+  }
+
+  .layanan-item h3 {
+    font-size: 16px;
+  }
+
+  .layanan-item p {
+    font-size: 12px;
+  }
+
+  .preview-card {
+    height: 240px;
+    border-radius: 18px;
+    padding: 20px;
+  }
+
+  .preview-card h2 {
+    font-size: 18px;
+  }
+
+  /* INFO GRID */
+  .info-section {
+    margin: 50px auto;
+  }
+
+  .stat-card {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .stat-card .big-num {
+    font-size: 28px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-radius: 30px 30px 0 0;
+    padding: 40px 16px 30px;
+  }
+
+  footer h2 {
+    font-size: 24px;
+  }
+
+  .footer-logo img {
+    width: 120px;
+  }
+
+  footer p {
+    font-size: 12px;
+  }
+
+  /* CARD FEELING LIKE APP */
+  .layanan-item,
+  .stat-card,
+  .preview-card {
+    transition: all .25s ease;
+  }
+
+  .layanan-item:active {
+    transform: scale(0.97);
+  }
+
+  /* SMOOTH SCROLL */
+  html {
+    scroll-behavior: smooth;
   }
 }
+
 
         /* ================= HERO SECTION ================= */
         .hero {
