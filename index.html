@@ -260,6 +260,20 @@
   transform: translateY(0);
 }
 
+
+    <a href="profil.html#struktur" class="mega-item">
+      <div class="mega-icon"><i class="fa-solid fa-sitemap"></i></div>
+      <div class="mega-title">Struktur Organisasi</div>
+    </a>
+
+    <a href="profil.html#bidang" class="mega-item">
+      <div class="mega-icon"><i class="fa-solid fa-briefcase"></i></div>
+      <div class="mega-title">Bidang Kerja</div>
+    </a>
+
+  </div>
+</div>
+
 /* ================= BUTTON ================= */
 .btn-login {
   background: #16a34a;
@@ -283,22 +297,6 @@
   border-radius: 3px;
 }
 
-.hamburger span {
-  transition: 0.3s;
-}
-
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-		
 /* ================= DESKTOP MEGA DROPDOWN ================= */
 
 .nav-menu ul {
@@ -342,231 +340,20 @@
   transform: translateY(-4px);
 }
 		
-/* =====================================================
-   MOBILE UI IMPROVEMENT — PREMIUM LOOK
-   ===================================================== */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
-  body {
-    padding-top: 100px;
-  }
-
-  /* HEADER */
-  .header-inner {
-    padding: 10px 14px;
-  }
-
-  .logo img {
-    height: 38px;
-  }
-
-  .logo-title {
-    font-size: 16px;
-  }
-
-  .logo-subtitle {
-    font-size: 11px;
-  }
-
-  /* HERO */
-  .hero {
-    padding: 60px 16px 30px;
-  }
-
-  .hero h1 {
-    font-size: 26px;
-    line-height: 1.3;
-  }
-
-  #typing-text {
-    font-size: 16px;
-  }
-
-  .hero p.main-desc {
-    font-size: 13px;
-  }
-
-  /* ANNOUNCEMENT */
-  .announcement-bar {
-    height: 36px;
-    font-size: 12px;
-  }
-
-  .scrolling-track span {
-    font-size: 12px;
-  }
-
-  /* NAV MOBILE */
-  .nav-menu {
-    border-radius: 16px 0 0 16px;
-    box-shadow: -10px 0 30px rgba(0,0,0,.08);
-  }
-
-  .nav-menu a {
-    font-size: 15px;
-    padding: 14px 0;
-    display: block;
-  }
-
-  /* LAYANAN */
-  .layanan-container {
-    margin: 40px auto;
-  }
-
-  .layanan-content {
-    gap: 18px;
-  }
-
-  .layanan-item {
-    padding: 16px;
-    border-radius: 14px;
-    background: #fff;
-    box-shadow: 0 6px 14px rgba(0,0,0,.04);
-  }
-
-  .layanan-item h3 {
-    font-size: 16px;
-  }
-
-  .layanan-item p {
-    font-size: 12px;
-  }
-
-  .preview-card {
-    height: 240px;
-    border-radius: 18px;
-    padding: 20px;
-  }
-
-  .preview-card h2 {
-    font-size: 18px;
-  }
-
-  /* INFO GRID */
-  .info-section {
-    margin: 50px auto;
-  }
-
-  .stat-card {
-    padding: 18px;
-    border-radius: 16px;
-  }
-
-  .stat-card .big-num {
-    font-size: 28px;
-  }
-
-  /* FOOTER */
-  footer {
-    border-radius: 30px 30px 0 0;
-    padding: 40px 16px 30px;
-  }
-
-  footer h2 {
-    font-size: 24px;
-  }
-
-  .footer-logo img {
-    width: 120px;
-  }
-
-  footer p {
-    font-size: 12px;
-  }
-
-  /* CARD FEELING LIKE APP */
-  .layanan-item,
-  .stat-card,
-  .preview-card {
-    transition: all .25s ease;
-  }
-
-  .layanan-item:active {
-    transform: scale(0.97);
-  }
-
-  /* SMOOTH SCROLL */
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
-		/* ================= MOBILE FIX ================= */
-@media (max-width: 768px) {
-
-  body {
-    overflow-x: hidden;
-  }
-
-  .container,
-  .wrapper,
-  .content,
-  .section,
-  .hero,
-  .footer-inner {
-    width: 100%;
-    max-width: 100%;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  /* HERO TEXT */
-  .hero h1 {
-    font-size: 26px;
-    line-height: 1.3;
-    text-align: center;
-  }
-
-  .hero h2 {
-    font-size: 18px;
-    text-align: center;
-  }
-
-  .hero p {
-    font-size: 14px;
-    text-align: center;
-  }
-
-  /* LAYANAN GRID JADI 1 KOLOM */
-  .layanan-grid,
-  .grid,
-  .cards {
-    display: grid;
-    grid-template-columns: 1fr !important;
-    gap: 16px;
-  }
-
-  /* LOGO + HEADER RAPAT */
-  .header-inner {
-    padding: 10px 14px;
-  }
-
-  /* SECTION JUDUL */
-  h2.section-title {
-    font-size: 22px;
-    text-align: center;
-  }
-
-}
-
-/* ===============================
-   MOBILE MENU — ESTETIK
-=============================== */
-@media (max-width: 768px) {
+  .hamburger { display: flex; }
 
   .nav-menu {
     position: fixed;
-    top: 90px;
+    top: 80px;
     right: -100%;
-    width: 280px;
-    height: calc(100% - 90px);
-    background: #ffffff;
-    padding: 22px 20px;
-    transition: 0.35s ease;
-    z-index: 9999;
-
-    border-radius: 18px 0 0 18px;
-    box-shadow: -10px 0 35px rgba(0,0,0,0.12);
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: #fff;
+    transition: .3s;
+    overflow-y: auto;
   }
 
   .nav-menu.active {
@@ -575,32 +362,19 @@
 
   .nav-menu ul {
     flex-direction: column;
-    gap: 6px;
+    padding: 20px;
   }
 
-  .nav-menu a {
-    display: block;
-    padding: 14px 16px;
-    border-radius: 12px;
-    font-size: 15px;
-    font-weight: 700;
-    color: #374151;
-    transition: 0.25s;
+  .nav-menu li {
+    width: 100%;
   }
 
-  .nav-menu a:hover,
-  .nav-menu a:active {
-    background: #f3f4f6;
-    color: #16a34a;
-    transform: translateX(3px);
-  }
-
+  /* accordion dropdown */
   .dropdown-menu {
     position: static;
-    width: 100%;
     box-shadow: none;
-    padding: 8px 0 0;
     display: none;
+    width: 100%;
   }
 
   .dropdown-menu.show {
@@ -609,59 +383,7 @@
 
   .mega-wrapper {
     grid-template-columns: 1fr;
-    gap: 6px;
-  }
-
-  .mega-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-align: left;
-    padding: 10px 12px;
-    border-radius: 10px;
-    transition: 0.2s;
-  }
-
-  .mega-item:hover {
-    background: #f9fafb;
-  }
-
-  .mega-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    font-size: 14px;
-    margin: 0;
-  }
-
-  .mega-title {
-    font-size: 14px;
-    font-weight: 700;
-  }
-
-}
-
-		/* RESET MENU */
-.nav-menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-
-.nav-menu li {
-  list-style: none;
-}
-
-.nav-menu a {
-  text-decoration: none;
-}
-
-		@media (max-width: 768px) {
-  .hamburger {
-    display: flex;
+    padding: 10px 0;
   }
 }
 
@@ -766,28 +488,49 @@
   align-items: center;
         }
 
-    /* ================= MEDIA QUERY ================= */
-@media (max-width: 992px) {
-  .layanan-content { flex-direction: column; }
-  .preview-card { width:100%; height:320px; order:-1; }
-  .hero h1 { font-size:32px; }
-  .footer-inner { grid-template-columns:1fr; text-align:center; }
-}
-@media (max-width:768px){
-  body { padding-top:100px; }
-  .header-inner { padding:10px 14px; }
-  .logo img { height:38px; }
-  .logo-title { font-size:16px; }
-  .logo-subtitle { font-size:11px; }
-  .hero h1 { font-size:26px; }
-  #typing-text { font-size:16px; }
-  .hero p.main-desc { font-size:13px; text-align:center; }
-  .layanan-grid, .grid, .cards { grid-template-columns:1fr !important; }
-  .nav-menu { position:fixed; top:100px; right:-100%; width:260px; height:calc(100%-100px); background:#fff; padding:20px; transition:.3s; border-radius:18px 0 0 18px; box-shadow:-10px 0 35px rgba(0,0,0,.12); }
-  .nav-menu.active { right:0; }
-  .nav-menu ul { flex-direction:column; gap:10px; }
-  .hamburger { display:flex; cursor:pointer; z-index:10002; }
-}
+        @media (max-width: 992px) {
+            .layanan-content { flex-direction: column; }
+            .preview-card { width: 100%; height: 320px; order: -1; }
+            .hero h1 { font-size: 32px; }
+            .footer-inner { grid-template-columns: 1fr; text-align: center; }
+
+			 /* ================= FOOTER MOBILE RAPİ ================= */
+  @media (max-width: 768px) {
+
+    footer {
+      padding: 50px 20px 40px;
+      border-radius: 40px 40px 0 0;
+    }
+
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      order: -1;
+    }
+
+    .footer-logo img {
+      width: 140px;
+      margin-bottom: 10px;
+    }
+
+    footer h2 {
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    footer p {
+      font-size: 13px;
+    }
+
+    footer .footer-inner > div:last-child {
+      padding: 18px;
+    }
+
+        }
     </style>
 </head>
 <body>
@@ -804,90 +547,98 @@
       </div>
     </a>
 
-       <!-- NAVIGATION -->
-<nav class="nav-menu" id="navMenu">
-  <ul>
+    <!-- HAMBURGER (MOBILE) -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
-	  <li><a href="index.html">Beranda</a></li>
-    <!-- PROFIL -->
+    <!-- NAVIGATION -->
+    <nav class="nav-menu" id="navMenu">
+      <ul>
+
+        <li><a href="index.html">Beranda</a></li>
+
+        <!-- PROFIL -->
     <li class="dropdown">
-      <a href="#" class="dropdown-toggle">
-        Profil <span class="arrow"></span>
-      </a>
-      <div class="dropdown-menu mega-center">
-        <div class="mega-wrapper">
-          <a href="profil.html#struktur" class="mega-item">
-            <div class="mega-icon"><i class="fa-solid fa-sitemap"></i></div>
-            <div class="mega-title">Struktur Organisasi</div>
-          </a>
+  <a href="#" class="dropdown-toggle">
+    Profil <span class="arrow"></span>
+  </a>
 
-          <a href="profil.html#bidang" class="mega-item">
-            <div class="mega-icon"><i class="fa-solid fa-briefcase"></i></div>
-            <div class="mega-title">Bidang Kerja</div>
-          </a>
-        </div>
-      </div>
-    </li>
+  <div class="dropdown-menu mega-center">
+    <div class="mega-wrapper">
 
-    <!-- LAYANAN -->
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle">
-        Layanan <span class="arrow"></span>
-      </a>
+              <a href="profil.html#struktur" class="mega-item">
+                <div class="mega-icon"><i class="fa-solid fa-users"></i></div>
+                <div class="mega-title">Struktur Organisasi</div>
+              </a>
 
-      <div class="dropdown-menu mega-center">
-        <div class="mega-wrapper">
+              <a href="profil.html#bidang" class="mega-item">
+                <div class="mega-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <div class="mega-title">Bidang Kerja</div>
+              </a>
 
-          <a href="administrasi.html" class="mega-item">
-            <div class="mega-icon"><i class="fa-solid fa-file-lines"></i></div>
-            <div class="mega-title">Administrasi</div>
-          </a>
+            </div>
+          </div>
+        </li>
 
-          <a href="lingkungan.html" class="mega-item">
-            <div class="mega-icon"><i class="fa-solid fa-leaf"></i></div>
-            <div class="mega-title">Lingkungan</div>
-          </a>
+        <!-- LAYANAN -->
+       <li class="dropdown">
+  <a href="#" class="dropdown-toggle">
+    Layanan <span class="arrow"></span>
+  </a>
 
-          <a href="kesehatan.html" class="mega-item">
-            <div class="mega-icon"><i class="fa-solid fa-notes-medical"></i></div>
-            <div class="mega-title">Kesehatan</div>
-          </a>
+  <div class="dropdown-menu mega-center">
+    <div class="mega-wrapper">
+		
+          	<a href="administrasi.html" class="mega-item">
+  <div class="mega-icon"><i class="fa-solid fa-file-lines"></i></div>
+  <div class="mega-title">Administrasi</div>
+</a>
 
-          <a href="sosial.html" class="mega-item">
-            <div class="mega-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-            <div class="mega-title">Sosial</div>
-          </a>
+            <a href="lingkungan.html" class="mega-item">
+  <div class="mega-icon"><i class="fa-solid fa-leaf"></i></div>
+  <div class="mega-title">Lingkungan</div>
+  <div class="mega-desc">Kebersihan & lingkungan</div>
+</a>
 
-          <a href="keamanan.html" class="mega-item">
-            <div class="mega-icon"><i class="fa-solid fa-shield-halved"></i></div>
-            <div class="mega-title">Keamanan</div>
-          </a>
+              <a href="kesehatan.html" class="mega-item">
+                <div class="mega-icon"><i class="fa-solid fa-notes-medical"></i></div>
+                <div class="mega-title">Kesehatan</div>
+                <div class="mega-desc">Posyandu & kesehatan</div>
+              </a>
 
-          <a href="banksampah.html" class="mega-item">
-            <div class="mega-icon"><i class="fa-solid fa-recycle"></i></div>
-            <div class="mega-title">Bank Sampah</div>
-          </a>
+              <a href="sosial.html" class="mega-item">
+                <div class="mega-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                <div class="mega-title">Sosial</div>
+                <div class="mega-desc">Santunan & kemasyarakatan</div>
+              </a>
 
-        </div>
-      </div>
-    </li>
+              <a href="keamanan.html" class="mega-item">
+                <div class="mega-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="mega-title">Keamanan</div>
+                <div class="mega-desc">Siskamling RW</div>
+              </a>
+		
+		      <a href="banksampah.html" class="mega-item">
+                <div class="mega-icon"><i class="fa-solid fa-recycle"></i></div>
+                <div class="mega-title">Bank Sampah</div>
+              </a>
 
-    <li><a href="kegiatan.html">Kegiatan</a></li>
-    <li><a href="#">Kontak Kami</a></li>
-    <li><a href="#" class="btn-login">Login</a></li>
+            </div>
+          </div>
+        </li>
 
-  </ul>
-</nav>
+        <li><a href="#">Kegiatan</a></li>
+        <li><a href="#">Kontak Kami</a></li>
 
-<!-- HAMBURGER -->
-<div class="hamburger" id="hamburger">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
+      </ul>
+    </nav>
 
-
+  </div>
 </header>
+
 
 <div class="announcement-bar">
     <div class="scrolling-track">
@@ -1135,6 +886,9 @@ document.addEventListener("click", () => {
   const desc  = document.getElementById("cardDesc");
   const card  = document.getElementById("previewCard");
 
+  layananItems.forEach(item => {
+    item.addEventListener("click", () => {
+
       layananItems.forEach(i => i.classList.remove("active"));
       item.classList.add("active");
 
@@ -1149,144 +903,7 @@ document.addEventListener("click", () => {
     });
   });
 
-/* ===============================
-   HAMBURGER TOGGLE (MOBILE)
-=============================== */
-const hamburger = document.getElementById("hamburger");
-const navMenu   = document.getElementById("nav...
-👉 GANTI dengan ini (FULL FIX):
-
-/* ===============================
-   HAMBURGER TOGGLE (MOBILE)
-=============================== */
-const hamburger = document.getElementById("hamburger");
-const navMenu   = document.getElementById("navMenu");
-
-if (hamburger && navMenu) {
-  hamburger.addEventListener("click", function (e) {
-    e.stopPropagation();
-    navMenu.classList.toggle("active");
-    hamburger.classList.toggle("active");
-  });
-}
-
-// klik luar menu → tutup
-document.addEventListener("click", function (e) {
-  if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-    navMenu.classList.remove("active");
-    hamburger.classList.remove("active");
-  }
 });
-
-/* ===============================
-   MOBILE DROPDOWN FIX
-=============================== */
-document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
-  toggle.addEventListener("click", function (e) {
-
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-
-      const parent = this.parentElement;
-      const menu   = this.nextElementSibling;
-
-      // tutup dropdown lain
-      document.querySelectorAll(".dropdown").forEach(d => {
-        if (d !== parent) d.classList.remove("open");
-      });
-
-      document.querySelectorAll(".dropdown-menu").forEach(m => {
-        if (m !== menu) m.classList.remove("show");
-      });
-
-      parent.classList.toggle("open");
-      menu.classList.toggle("show");
-    }
-  });
-});
-
-	document.addEventListener("DOMContentLoaded", function () {
-
-  /* ================= TYPING EFFECT ================= */
-  const typingEl = document.getElementById("typing-text");
-  if (typingEl) {
-    const text = `RW 013 Kelurahan Utan Kayu Selatan
-Kecamatan Matraman
-Kota Administrasi Jakarta Timur`;
-    let i = 0;
-    const speed = 110;
-    function type() {
-      if (i < text.length) {
-        typingEl.textContent += text.charAt(i++);
-        setTimeout(type, speed);
-      } else {
-        typingEl.style.borderRight = "none";
-      }
-    }
-    type();
-  }
-
-  /* ================= DATE DISPLAY ================= */
-  const dateEl = document.getElementById("current-date");
-  if (dateEl) {
-    dateEl.textContent = "📅 " + new Date().toLocaleDateString("id-ID", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric"
-    });
-  }
-
-  /* ================= DROPDOWN MENU (DESKTOP & MOBILE) ================= */
-  const toggles = document.querySelectorAll(".dropdown-toggle");
-
-  toggles.forEach(toggle => {
-    toggle.addEventListener("click", function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      const parent = this.parentElement;
-      const menu   = this.nextElementSibling;
-
-      // tutup dropdown lain
-      document.querySelectorAll(".dropdown").forEach(d => {
-        if (d !== parent) d.classList.remove("open");
-      });
-      document.querySelectorAll(".dropdown-menu").forEach(m => {
-        if (m !== menu) m.classList.remove("show");
-      });
-
-      parent.classList.toggle("open");
-      menu.classList.toggle("show");
-    });
-  });
-
-  // klik di luar → tutup semua dropdown
-  document.addEventListener("click", () => {
-    document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("open"));
-    document.querySelectorAll(".dropdown-menu").forEach(m => m.classList.remove("show"));
-  });
-
-  /* ================= HAMBURGER MOBILE ================= */
-  const hamburger = document.getElementById("hamburger");
-  const navMenu   = document.getElementById("navMenu");
-
-  if (hamburger && navMenu) {
-    hamburger.addEventListener("click", function(e) {
-      e.stopPropagation();
-      hamburger.classList.toggle("active");
-      navMenu.classList.toggle("active");
-    });
-  }
-
-  document.addEventListener("click", function(e) {
-    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-      navMenu.classList.remove("active");
-      hamburger.classList.remove("active");
-    }
-  });
-
-});
-
 </script>
 
 
