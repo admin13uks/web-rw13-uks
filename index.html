@@ -807,6 +807,9 @@
 
   .hamburger {
     display: flex;
+    cursor: pointer;
+    position: relative;
+    z-index: 10002;
   }
 
   .nav-menu {
@@ -817,9 +820,8 @@
     height: calc(100% - 100px);
     background: #fff;
     padding: 20px;
-    transition: 0.3s;
-    display: block;
-    z-index: 9999;
+    transition: right 0.3s ease;
+    z-index: 10001;
   }
 
   .nav-menu.active {
@@ -830,9 +832,7 @@
     flex-direction: column;
     gap: 10px;
   }
-
 }
-
 		
     </style>
 </head>
@@ -854,6 +854,7 @@
 <nav class="nav-menu" id="navMenu">
   <ul>
 
+	  <li><a href="index.html">Beranda</a></li>
     <!-- PROFIL -->
     <li class="dropdown">
       <a href="#" class="dropdown-toggle">
@@ -1213,16 +1214,16 @@ const navMenu   = document.getElementById("navMenu");
 if (hamburger && navMenu) {
   hamburger.addEventListener("click", function (e) {
     e.stopPropagation();
-    hamburger.classList.toggle("active");
     navMenu.classList.toggle("active");
+    hamburger.classList.toggle("active");
   });
 }
 
-/* klik luar → tutup menu */
+// klik luar menu → tutup
 document.addEventListener("click", function (e) {
   if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-    hamburger.classList.remove("active");
     navMenu.classList.remove("active");
+    hamburger.classList.remove("active");
   }
 });
 
