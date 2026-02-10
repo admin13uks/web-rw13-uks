@@ -489,6 +489,69 @@
   }
 }
 
+		/* ================= MOBILE FIX ================= */
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .container,
+  .wrapper,
+  .content,
+  .section,
+  .hero,
+  .footer-inner {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* HERO TEXT */
+  .hero h1 {
+    font-size: 26px;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .hero h2 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .hero p {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  /* LAYANAN GRID JADI 1 KOLOM */
+  .layanan-grid,
+  .grid,
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  /* NAV MENU */
+  .nav-menu {
+    display: none;
+  }
+
+  /* LOGO + HEADER RAPAT */
+  .header-inner {
+    padding: 10px 14px;
+  }
+
+  /* SECTION JUDUL */
+  h2.section-title {
+    font-size: 22px;
+    text-align: center;
+  }
+
+}
+
 
         /* ================= HERO SECTION ================= */
         .hero {
