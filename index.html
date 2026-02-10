@@ -286,6 +286,22 @@
   border-radius: 3px;
 }
 
+.hamburger span {
+  transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+		
 /* ================= DESKTOP MEGA DROPDOWN ================= */
 
 .nav-menu ul {
@@ -537,6 +553,98 @@
   h2.section-title {
     font-size: 22px;
     text-align: center;
+  }
+
+}
+
+/* ===============================
+   MOBILE MENU — ESTETIK
+=============================== */
+@media (max-width: 768px) {
+
+  .nav-menu {
+    position: fixed;
+    top: 90px;
+    right: -100%;
+    width: 280px;
+    height: calc(100% - 90px);
+    background: #ffffff;
+    padding: 22px 20px;
+    transition: 0.35s ease;
+    z-index: 9999;
+
+    border-radius: 18px 0 0 18px;
+    box-shadow: -10px 0 35px rgba(0,0,0,0.12);
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .nav-menu a {
+    display: block;
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #374151;
+    transition: 0.25s;
+  }
+
+  .nav-menu a:hover,
+  .nav-menu a:active {
+    background: #f3f4f6;
+    color: #16a34a;
+    transform: translateX(3px);
+  }
+
+  .dropdown-menu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    padding: 8px 0 0;
+    display: none;
+  }
+
+  .dropdown-menu.show {
+    display: block;
+  }
+
+  .mega-wrapper {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .mega-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    padding: 10px 12px;
+    border-radius: 10px;
+    transition: 0.2s;
+  }
+
+  .mega-item:hover {
+    background: #f9fafb;
+  }
+
+  .mega-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .mega-title {
+    font-size: 14px;
+    font-weight: 700;
   }
 
 }
@@ -1081,7 +1189,8 @@ const navMenu   = document.getElementById("navMenu");
 
 if (hamburger && navMenu) {
   hamburger.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
+  navMenu.classList.toggle("active");
+  hamburger.classList.toggle("active");
   });
 }
 
