@@ -164,9 +164,10 @@ window.simpan = async function(){
     });
 
     // Kirim ke halaman tujuan
-    localStorage.setItem("fotoTerakhir", downloadURL);
-    localStorage.setItem("judulTerakhir", judul);
-    localStorage.setItem("ketTerakhir", keterangan);
+localStorage.setItem("fotoTerakhir", base64Foto);
+localStorage.setItem("judulTerakhir", judul);
+localStorage.setItem("ketTerakhir", keterangan);
+window.location.href = "kesehatan.html";
 
     alert("✅ Foto berhasil disimpan");
 
