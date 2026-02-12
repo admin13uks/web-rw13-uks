@@ -90,6 +90,7 @@ button{
   <img id="previewImg">
 
   <button onclick="simpan()">Simpan</button>
+<button onclick="batal()" style="background:#dc2626;margin-top:10px;">Batal</button>
 </div>
 
 <script type="module">
@@ -125,6 +126,12 @@ window.preview = function(input){
   }
 }
 
+window.batal = function(){
+  if(confirm("Batalkan upload?")){
+    location.reload();
+  }
+}
+
 window.simpan = async function(){
 
   const kategori = document.getElementById("kategori").value;
@@ -139,13 +146,13 @@ window.simpan = async function(){
 
   try{
 
-    // Upload ke Storage sesuai kategori
+    // Upload ke Firebase Storage
     const storageRef = ref(storage, kategori + "/" + Date.now() + "_" + file.name);
     await uploadBytes(storageRef, file);
 
     const downloadURL = await getDownloadURL(storageRef);
 
-    // Simpan ke Firestore sesuai kategori
+    // Simpan ke Firestore
     await addDoc(collection(db, kategori), {
       judul: judul,
       keterangan: keterangan,
@@ -153,8 +160,15 @@ window.simpan = async function(){
       createdAt: serverTimestamp()
     });
 
+    // Kirim data ke halaman tujuan (agar foto langsung muncul)
+    localStorage.setItem("fotoTerakhir", downloadURL);
+    localStorage.setItem("judulTerakhir", judul);
+    localStorage.setItem("ketTerakhir", keterangan);
+
     alert("Berhasil disimpan!");
-    location.reload();
+
+    // Pindah ke halaman kategori (contoh: lingkungan.html)
+    window.location.href = kategori + ".html";
 
   }catch(error){
     alert("Gagal upload: " + error.message);
