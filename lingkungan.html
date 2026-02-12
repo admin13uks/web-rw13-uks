@@ -391,5 +391,26 @@ footer p {
   </div>
 </footer>
 
+<h2>Foto Terbaru</h2>
+
+<img id="fotoBaru" style="width:100%;border-radius:10px;margin-top:10px;">
+<h3 id="judulBaru"></h3>
+<p id="ketBaru"></p>
+
+<script>
+const foto = localStorage.getItem("fotoTerakhir");
+const judul = localStorage.getItem("judulTerakhir");
+const ket = localStorage.getItem("ketTerakhir");
+
+if(foto){
+  document.getElementById("fotoBaru").src = foto;
+  document.getElementById("judulBaru").innerText = judul;
+  document.getElementById("ketBaru").innerText = ket;
+
+  localStorage.removeItem("fotoTerakhir");
+  localStorage.removeItem("judulTerakhir");
+  localStorage.removeItem("ketTerakhir");
+}
+  
 </body>
 </html>
