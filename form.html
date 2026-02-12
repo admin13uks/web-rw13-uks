@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  font-family: Arial;
+  background:#f9fafb;
+  padding:30px;
+}
+.container{
+  max-width:500px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+label{
+  font-weight:bold;
+  display:block;
+  margin-top:15px;
+}
+input{
+  width:100%;
+  margin-top:5px;
+}
+img{
+  margin-top:10px;
+  width:100%;
+  max-height:200px;
+  object-fit:cover;
+  border-radius:8px;
+}
+button{
+  margin-top:20px;
+  padding:12px;
+  width:100%;
+  background:#16a34a;
+  color:white;
+  border:none;
+  cursor:pointer;
+  border-radius:8px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Form Upload Foto</h2>
+
+  <label>Foto Lingkungan</label>
+  <input type="file" id="lingkungan" accept="image/*" capture="environment" onchange="preview(this,'p1')">
+  <img id="p1">
+
+  <label>Foto Kesehatan</label>
+  <input type="file" id="kesehatan" accept="image/*" capture="environment" onchange="preview(this,'p2')">
+  <img id="p2">
+
+  <label>Foto Sosial</label>
+  <input type="file" id="sosial" accept="image/*" capture="environment" onchange="preview(this,'p3')">
+  <img id="p3">
+
+  <label>Foto Keamanan</label>
+  <input type="file" id="keamanan" accept="image/*" capture="environment" onchange="preview(this,'p4')">
+  <img id="p4">
+
+  <label>Foto Bank Sampah</label>
+  <input type="file" id="banksampah" accept="image/*" capture="environment" onchange="preview(this,'p5')">
+  <img id="p5">
+
+  <button onclick="simpan()">Simpan</button>
+</div>
+
+<script>
+function preview(input, target){
+  const file = input.files[0];
+  if(file){
+    const reader = new FileReader();
+    reader.onload = function(e){
+      document.getElementById(target).src = e.target.result;
+    }
+    reader.readAsDataURL(file);
+  }
+}
+
+function simpan(){
+  alert("Foto siap diupload (silakan hubungkan ke Firebase / backend)");
+}
+</script>
+
+</body>
+</html>
