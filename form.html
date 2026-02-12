@@ -134,6 +134,10 @@ window.batal = function(){
 
 window.simpan = async function(){
 
+  const btn = document.querySelector("button");
+  btn.innerText = "Mengupload...";
+  btn.disabled = true;
+
   const kategori = document.getElementById("kategori").value;
   const judul = document.getElementById("judul").value;
   const keterangan = document.getElementById("keterangan").value;
@@ -141,18 +145,17 @@ window.simpan = async function(){
 
   if(!kategori || !judul || !keterangan || !file){
     alert("Semua field harus diisi!");
+    btn.innerText = "Simpan";
+    btn.disabled = false;
     return;
   }
 
   try{
 
-    // Upload ke Firebase Storage
     const storageRef = ref(storage, kategori + "/" + Date.now() + "_" + file.name);
     await uploadBytes(storageRef, file);
-
     const downloadURL = await getDownloadURL(storageRef);
 
-    // Simpan ke Firestore
     await addDoc(collection(db, kategori), {
       judul: judul,
       keterangan: keterangan,
@@ -160,20 +163,22 @@ window.simpan = async function(){
       createdAt: serverTimestamp()
     });
 
-    // Kirim data ke halaman tujuan (agar foto langsung muncul)
+    // Kirim ke halaman tujuan
     localStorage.setItem("fotoTerakhir", downloadURL);
     localStorage.setItem("judulTerakhir", judul);
     localStorage.setItem("ketTerakhir", keterangan);
 
-    alert("Berhasil disimpan!");
+    alert("✅ Foto berhasil disimpan");
 
-    // Pindah ke halaman kategori (contoh: lingkungan.html)
     window.location.href = kategori + ".html";
 
   }catch(error){
-    alert("Gagal upload: " + error.message);
+    alert("❌ Upload gagal: " + error.message);
+    btn.innerText = "Simpan";
+    btn.disabled = false;
   }
 }
+
 </script>
 
 </body>
