@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login RW 013</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } 
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "ISI_API_KEY_ANDA",
+      authDomain: "ISI_AUTH_DOMAIN",
+      projectId: "ISI_PROJECT_ID",
+      storageBucket: "ISI_STORAGE_BUCKET",
+      messagingSenderId: "ISI_SENDER_ID",
+      appId: "ISI_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.login = function() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        window.location.href = "upload.html";
+      })
+      .catch(error => alert(error.message));
+    }
+  </script>
+
+  <style>
+    body{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      background:linear-gradient(135deg,#16a34a,#0f766e);
+      font-family:Arial;
+    }
+    .box{
+      background:white;
+      padding:30px;
+      border-radius:12px;
+      width:300px;
+      text-align:center;
+    }
+    input{
+      width:100%;
+      padding:10px;
+      margin:10px 0;
+    }
+    button{
+      width:100%;
+      padding:10px;
+      background:#16a34a;
+      color:white;
+      border:none;
+      cursor:pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h3>Login Petugas RW</h3>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+</body>
+</html>
