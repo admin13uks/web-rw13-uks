@@ -152,6 +152,7 @@ window.simpan = async function(){
 
   try{
 
+    /* ================= UPLOAD KE FIREBASE ================= */
     const storageRef = ref(storage, kategori + "/" + Date.now() + "_" + file.name);
     await uploadBytes(storageRef, file);
     const downloadURL = await getDownloadURL(storageRef);
@@ -163,14 +164,14 @@ window.simpan = async function(){
       createdAt: serverTimestamp()
     });
 
-    // Kirim ke halaman tujuan
-localStorage.setItem("fotoTerakhir", base64Foto);
-localStorage.setItem("judulTerakhir", judul);
-localStorage.setItem("ketTerakhir", keterangan);
-window.location.href = "kesehatan.html";
+    /* ================= SIMPAN KE LOCALSTORAGE (UNTUK GALERI) ================= */
+    localStorage.setItem("fotoTerakhir", downloadURL);
+    localStorage.setItem("judulTerakhir", judul);
+    localStorage.setItem("ketTerakhir", keterangan);
 
     alert("✅ Foto berhasil disimpan");
 
+    /* ================= REDIRECT KE HALAMAN SESUAI KATEGORI ================= */
     window.location.href = kategori + ".html";
 
   }catch(error){
