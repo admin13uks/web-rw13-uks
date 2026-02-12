@@ -1,152 +1,105 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Upload RW 013</title>
+<title>Upload Dokumentasi RW 013</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
-
 body{
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   margin:0;
   background:linear-gradient(135deg,#16a34a,#22c55e);
 }
 
-.header{
-  background:white;
-  padding:15px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  box-shadow:0 3px 10px rgba(0,0,0,.1);
-}
-
-.header span{
-  font-size:14px;
-  font-weight:bold;
-  color:#16a34a;
-}
-
-.logout{
-  background:#ef4444;
-  color:white;
-  border:none;
-  padding:6px 12px;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:13px;
-}
-
 .container{
-  max-width:500px;
-  margin:20px auto;
+  max-width:550px;
+  margin:40px auto;
   background:white;
-  padding:20px;
+  padding:25px;
   border-radius:15px;
-  box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
 
 h2{
   text-align:center;
-  margin-bottom:20px;
   color:#16a34a;
 }
 
 label{
   font-weight:bold;
-  display:block;
   margin-top:15px;
-  font-size:14px;
+  display:block;
 }
 
-input{
+input, textarea, select{
   width:100%;
-  margin-top:5px;
   padding:10px;
+  margin-top:5px;
   border-radius:8px;
   border:1px solid #ddd;
 }
 
+textarea{
+  resize:none;
+  height:80px;
+}
+
 img{
-  margin-top:10px;
   width:100%;
-  max-height:200px;
-  object-fit:cover;
+  margin-top:10px;
   border-radius:10px;
 }
 
-button.upload{
-  margin-top:25px;
-  padding:14px;
+button{
+  margin-top:20px;
   width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
   background:#16a34a;
   color:white;
-  border:none;
-  cursor:pointer;
-  border-radius:10px;
-  font-size:16px;
   font-weight:bold;
-}
-
-button.upload:hover{
-  background:#15803d;
-}
-
-/* Responsive HP lebih kecil */
-@media(max-width:480px){
-  .container{
-    margin:10px;
-    padding:15px;
-  }
-
-  h2{
-    font-size:18px;
-  }
+  cursor:pointer;
 }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <span id="userEmail"></span>
-  <button class="logout" onclick="logout()">Logout</button>
-</div>
-
 <div class="container">
-  <h2>Form Upload Foto</h2>
+  <h2>Upload Dokumentasi RW 013</h2>
 
-  <label>Foto Lingkungan</label>
-  <input type="file" id="lingkungan" accept="image/*" capture="environment" onchange="preview(this,'p1')">
-  <img id="p1">
+  <label>Pilih Kategori</label>
+  <select id="kategori">
+    <option value="">-- Pilih Kategori --</option>
+    <option value="lingkungan">Lingkungan</option>
+    <option value="kesehatan">Kesehatan</option>
+    <option value="sosial">Sosial</option>
+    <option value="keamanan">Keamanan</option>
+    <option value="banksampah">Bank Sampah</option>
+    <option value="kegiatan">Foto Kegiatan</option>
+  </select>
 
-  <label>Foto Kesehatan</label>
-  <input type="file" id="kesehatan" accept="image/*" capture="environment" onchange="preview(this,'p2')">
-  <img id="p2">
+  <label>Judul</label>
+  <input type="text" id="judul">
 
-  <label>Foto Sosial</label>
-  <input type="file" id="sosial" accept="image/*" capture="environment" onchange="preview(this,'p3')">
-  <img id="p3">
+  <label>Keterangan</label>
+  <textarea id="keterangan"></textarea>
 
-  <label>Foto Keamanan</label>
-  <input type="file" id="keamanan" accept="image/*" capture="environment" onchange="preview(this,'p4')">
-  <img id="p4">
+  <label>Upload Foto</label>
+  <input type="file" id="foto" accept="image/*" onchange="preview(this)">
+  <img id="previewImg">
 
-  <label>Foto Bank Sampah</label>
-  <input type="file" id="banksampah" accept="image/*" capture="environment" onchange="preview(this,'p5')">
-  <img id="p5">
-
-  <button class="upload" onclick="simpan()">Simpan</button>
+  <button onclick="simpan()">Simpan</button>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { 
+  getStorage, ref, uploadBytes, getDownloadURL 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+import { 
+  getFirestore, collection, addDoc, serverTimestamp 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB5XkibU-ei072xcQ4ZN4D4tK-PVRrxucA",
@@ -158,35 +111,54 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+const storage = getStorage(app);
+const db = getFirestore(app);
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    document.getElementById("userEmail").innerText = "Login: " + user.email;
-  } else {
-    window.location.href = "login.html";
-  }
-});
-
-window.logout = function(){
-  signOut(auth).then(()=>{
-    window.location.href="login.html";
-  });
-}
-
-window.preview = function(input, target){
+window.preview = function(input){
   const file = input.files[0];
   if(file){
     const reader = new FileReader();
-    reader.onload = function(e){
-      document.getElementById(target).src = e.target.result;
+    reader.onload = e => {
+      document.getElementById("previewImg").src = e.target.result;
     }
     reader.readAsDataURL(file);
   }
 }
 
-window.simpan = function(){
-  alert("Foto siap diupload ke Firebase Storage");
+window.simpan = async function(){
+
+  const kategori = document.getElementById("kategori").value;
+  const judul = document.getElementById("judul").value;
+  const keterangan = document.getElementById("keterangan").value;
+  const file = document.getElementById("foto").files[0];
+
+  if(!kategori || !judul || !keterangan || !file){
+    alert("Semua field harus diisi!");
+    return;
+  }
+
+  try{
+
+    // Upload ke Storage sesuai kategori
+    const storageRef = ref(storage, kategori + "/" + Date.now() + "_" + file.name);
+    await uploadBytes(storageRef, file);
+
+    const downloadURL = await getDownloadURL(storageRef);
+
+    // Simpan ke Firestore sesuai kategori
+    await addDoc(collection(db, kategori), {
+      judul: judul,
+      keterangan: keterangan,
+      imageUrl: downloadURL,
+      createdAt: serverTimestamp()
+    });
+
+    alert("Berhasil disimpan!");
+    location.reload();
+
+  }catch(error){
+    alert("Gagal upload: " + error.message);
+  }
 }
 </script>
 
