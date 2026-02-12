@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
+
+
 <style>
 /* ================= BASE ================= */
 * {
@@ -192,6 +194,57 @@ footer p {
 @media (max-width: 768px) {
   .hero h1 { font-size: 28px; }
 }
+
+  /* ================= GALERI FOTO ================= */
+.gallery {
+  margin-top: 70px;
+}
+
+.gallery-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 800;
+  color: #14532d;
+  margin-bottom: 40px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,.08);
+  transition: .3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.12);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(to top, rgba(0,0,0,.65), transparent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+}
+
 </style>
 </head>
 
