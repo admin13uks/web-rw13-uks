@@ -319,16 +319,60 @@ footer p {
     </p>
   </div>
 </footer>
-<script>
+  
+<<script>
 document.addEventListener("DOMContentLoaded", function(){
 
-  const foto = localStorage.getItem("fotoTerakhir");
-  const judul = localStorage.getItem("judulTerakhir");
-  const ket   = localStorage.getItem("ketTerakhir");
+  const galeri = document.getElementById("galeriKesehatan");
 
-  if(foto){
-    const galeri = document.getElementById("galeriKesehatan");
+  /* ================= DATA DEFAULT (3 FOTO AWAL) ================= */
+  let galeriData = JSON.parse(localStorage.getItem("galeriKesehatanData")) || [
+    {
+      foto: "https://images.unsplash.com/photo-1584515933487-779824d29309",
+      judul: "Kegiatan Posyandu Balita",
+      ket: "Pemeriksaan kesehatan dan penimbangan balita rutin RW 013"
+    },
+    {
+      foto: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289",
+      judul: "Pemeriksaan Kesehatan Lansia",
+      ket: "Pemeriksaan tekanan darah dan konsultasi kesehatan warga lansia"
+    },
+    {
+      foto: "https://images.unsplash.com/photo-1580281657527-47c1b6bb3e9f",
+      judul: "Edukasi Hidup Sehat",
+      ket: "Sosialisasi PHBS kepada warga RW 013"
+    }
+  ];
 
+  /* ================= CEK JIKA ADA FOTO BARU DARI FORM ================= */
+  const fotoBaru  = localStorage.getItem("fotoTerakhir");
+  const judulBaru = localStorage.getItem("judulTerakhir");
+  const ketBaru   = localStorage.getItem("ketTerakhir");
+
+  if(fotoBaru){
+    // hapus foto paling lama (index terakhir)
+    galeriData.pop();
+
+    // masukkan foto baru ke paling depan
+    galeriData.unshift({
+      foto: fotoBaru,
+      judul: judulBaru,
+      ket: ketBaru
+    });
+
+    // simpan kembali ke localStorage
+    localStorage.setItem("galeriKesehatanData", JSON.stringify(galeriData));
+
+    // hapus data sementara dari form
+    localStorage.removeItem("fotoTerakhir");
+    localStorage.removeItem("judulTerakhir");
+    localStorage.removeItem("ketTerakhir");
+  }
+
+  /* ================= TAMPILKAN GALERI ================= */
+  galeri.innerHTML = "";
+
+  galeriData.forEach(item => {
     const card = document.createElement("div");
     card.style.background = "#fff";
     card.style.borderRadius = "15px";
@@ -336,25 +380,19 @@ document.addEventListener("DOMContentLoaded", function(){
     card.style.boxShadow = "0 8px 20px rgba(0,0,0,.06)";
 
     card.innerHTML = `
-      <img src="${foto}" style="width:100%;height:220px;object-fit:cover">
+      <img src="${item.foto}" style="width:100%;height:220px;object-fit:cover">
       <div style="padding:15px">
-        <h3 style="font-size:16px;font-weight:800;margin-bottom:6px">${judul}</h3>
-        <p style="font-size:13px;color:#666">${ket}</p>
+        <h3 style="font-size:16px;font-weight:800;margin-bottom:6px">${item.judul}</h3>
+        <p style="font-size:13px;color:#666">${item.ket}</p>
       </div>
     `;
 
-    galeri.prepend(card);
-
-    // hapus supaya tidak dobel saat refresh
-    localStorage.removeItem("fotoTerakhir");
-    localStorage.removeItem("judulTerakhir");
-    localStorage.removeItem("ketTerakhir");
-  }
+    galeri.appendChild(card);
+  });
 
 });
 </script>
 
-  
   
 </body>
 </html>
