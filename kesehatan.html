@@ -319,27 +319,41 @@ footer p {
     </p>
   </div>
 </footer>
-
-<h2>Foto Terbaru</h2>
-
-<img id="fotoBaru" style="width:100%;border-radius:10px;margin-top:10px;">
-<h3 id="judulBaru"></h3>
-<p id="ketBaru"></p>
-
 <script>
-const foto = localStorage.getItem("fotoTerakhir");
-const judul = localStorage.getItem("judulTerakhir");
-const ket = localStorage.getItem("ketTerakhir");
+document.addEventListener("DOMContentLoaded", function(){
 
-if(foto){
-  document.getElementById("fotoBaru").src = foto;
-  document.getElementById("judulBaru").innerText = judul;
-  document.getElementById("ketBaru").innerText = ket;
+  const foto = localStorage.getItem("fotoTerakhir");
+  const judul = localStorage.getItem("judulTerakhir");
+  const ket   = localStorage.getItem("ketTerakhir");
 
-  localStorage.removeItem("fotoTerakhir");
-  localStorage.removeItem("judulTerakhir");
-  localStorage.removeItem("ketTerakhir");
-}
+  if(foto){
+    const galeri = document.getElementById("galeriKesehatan");
+
+    const card = document.createElement("div");
+    card.style.background = "#fff";
+    card.style.borderRadius = "15px";
+    card.style.overflow = "hidden";
+    card.style.boxShadow = "0 8px 20px rgba(0,0,0,.06)";
+
+    card.innerHTML = `
+      <img src="${foto}" style="width:100%;height:220px;object-fit:cover">
+      <div style="padding:15px">
+        <h3 style="font-size:16px;font-weight:800;margin-bottom:6px">${judul}</h3>
+        <p style="font-size:13px;color:#666">${ket}</p>
+      </div>
+    `;
+
+    galeri.prepend(card);
+
+    // hapus supaya tidak dobel saat refresh
+    localStorage.removeItem("fotoTerakhir");
+    localStorage.removeItem("judulTerakhir");
+    localStorage.removeItem("ketTerakhir");
+  }
+
+});
+</script>
+
   
   
 </body>
