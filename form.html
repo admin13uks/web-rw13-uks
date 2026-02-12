@@ -132,7 +132,7 @@ window.batal = function(){
   }
 }
 
-window.simpan = async function(){
+async function simpan(){
 
   const btn = document.querySelector("button");
   btn.innerText = "Mengupload...";
@@ -152,35 +152,55 @@ window.simpan = async function(){
 
   try{
 
-    /* ================= UPLOAD KE FIREBASE ================= */
-    const storageRef = ref(storage, kategori + "/" + Date.now() + "_" + file.name);
-    await uploadBytes(storageRef, file);
-    const downloadURL = await getDownloadURL(storageRef);
+    // ====== CONFIG GITHUB ======
+    const GITHUB_USERNAME = "admin13uks";
+    const REPO_NAME = "rw13-uks";
+    const TOKEN = "ISI_TOKEN_ANDA_DISINI";   // <<< TOKEN ANDA (JANGAN SHARE)
+    // ===========================
 
-    await addDoc(collection(db, kategori), {
-      judul: judul,
-      keterangan: keterangan,
-      imageUrl: downloadURL,
-      createdAt: serverTimestamp()
-    });
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
 
-    /* ================= SIMPAN KE LOCALSTORAGE (UNTUK GALERI) ================= */
-    localStorage.setItem("fotoTerakhir", downloadURL);
-    localStorage.setItem("judulTerakhir", judul);
-    localStorage.setItem("ketTerakhir", keterangan);
+    reader.onload = async function(){
 
-    alert("✅ Foto berhasil disimpan");
+      const base64 = reader.result.split(",")[1];
+      const fileName = Date.now() + "_" + file.name;
+      const path = `${kategori}/${fileName}`;
 
-    /* ================= REDIRECT KE HALAMAN SESUAI KATEGORI ================= */
-    window.location.href = kategori + ".html";
+      const response = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/${path}`, {
+        method: "PUT",
+        headers: {
+          "Authorization": `token ${TOKEN}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: "Upload foto dari website",
+          content: base64
+        })
+      });
 
-  }catch(error){
-    alert("❌ Upload gagal: " + error.message);
+      if(!response.ok){
+        throw new Error("Gagal upload ke GitHub");
+      }
+
+      const imageUrl = `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${REPO_NAME}/main/${path}`;
+
+      // Simpan ke localStorage untuk ditampilkan
+      localStorage.setItem("fotoTerakhir", imageUrl);
+      localStorage.setItem("judulTerakhir", judul);
+      localStorage.setItem("ketTerakhir", keterangan);
+
+      alert("✅ Foto berhasil diupload");
+
+      window.location.href = kategori + ".html";
+    }
+
+  }catch(err){
+    alert("❌ Upload gagal: " + err.message);
     btn.innerText = "Simpan";
     btn.disabled = false;
   }
 }
-
 </script>
 
 </body>
