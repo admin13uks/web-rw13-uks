@@ -51,7 +51,7 @@ img{
 }
 
 button{
-  margin-top:20px;
+  margin-top:15px;
   width:100%;
   padding:12px;
   border:none;
@@ -60,6 +60,14 @@ button{
   color:white;
   font-weight:bold;
   cursor:pointer;
+}
+
+.btn-home{
+  background:#2563eb;
+}
+
+.btn-home:hover{
+  background:#1d4ed8;
 }
 </style>
 </head>
@@ -90,13 +98,41 @@ button{
   <img id="previewImg">
 
   <button onclick="simpan()">Simpan</button>
-<button onclick="batal()" style="background:#dc2626;margin-top:10px;">Batal</button>
+  <button onclick="batal()" style="background:#dc2626;">Batal</button>
+
+  <!-- TOMBOL BERANDA -->
+  <button class="btn-home" onclick="beranda()">⬅ Kembali ke Beranda</button>
+
 </div>
 
 <script>
 const GITHUB_TOKEN = "ISI_TOKEN_GITHUB_KAMU";
 const REPO = "admin13uks/rw13-uks";
 const BRANCH = "main";
+
+/* ================= PREVIEW ================= */
+function preview(input){
+  const file = input.files[0];
+  if(file){
+    const reader = new FileReader();
+    reader.onload = e => {
+      document.getElementById("previewImg").src = e.target.result;
+    }
+    reader.readAsDataURL(file);
+  }
+}
+
+/* ================= BATAL ================= */
+function batal(){
+  if(confirm("Batalkan upload?")){
+    location.reload();
+  }
+}
+
+/* ================= BERANDA ================= */
+function beranda(){
+  window.location.href = "index.html";
+}
 
 /* ================= SIMPAN ================= */
 async function simpan(){
@@ -148,8 +184,6 @@ async function simpan(){
       }
 
       alert("✅ Upload berhasil");
-
-      // pindah ke halaman kategori
       window.location.href = kategori + ".html";
     };
 
