@@ -102,6 +102,7 @@ import {
   getFirestore, collection, addDoc, serverTimestamp 
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+/* ================= FIREBASE CONFIG ================= */
 const firebaseConfig = {
   apiKey: "AIzaSyB5XkibU-ei072xcQ4ZN4D4tK-PVRrxucA",
   authDomain: "rw13-uks.firebaseapp.com",
@@ -115,6 +116,7 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 const db = getFirestore(app);
 
+/* ================= PREVIEW ================= */
 window.preview = function(input){
   const file = input.files[0];
   if(file){
@@ -126,13 +128,19 @@ window.preview = function(input){
   }
 }
 
+/* ================= BATAL ================= */
 window.batal = function(){
   if(confirm("Batalkan upload?")){
     location.reload();
   }
 }
 
-async function simpan(){
+/* ================= SIMPAN ================= */
+window.simpan = async function(){
+
+  const btn = document.querySelector("button");
+  btn.innerText = "Mengupload...";
+  btn.disabled = true;
 
   const kategori = document.getElementById("kategori").value;
   const judul = document.getElementById("judul").value;
@@ -141,31 +149,44 @@ async function simpan(){
 
   if(!kategori || !judul || !keterangan || !file){
     alert("Semua field harus diisi!");
+    btn.innerText = "Simpan";
+    btn.disabled = false;
     return;
   }
 
   try {
+    console.log("Mulai upload...");
 
     const storageRef = ref(storage, "foto/" + Date.now() + "_" + file.name);
     await uploadBytes(storageRef, file);
+
+    console.log("Upload storage selesai");
+
     const imageUrl = await getDownloadURL(storageRef);
 
     await addDoc(collection(db, "dokumentasi"), {
-      kategori: kategori,
-      judul: judul,
-      keterangan: keterangan,
-      imageUrl: imageUrl,
+      kategori,
+      judul,
+      keterangan,
+      imageUrl,
       createdAt: serverTimestamp()
     });
+
+    console.log("Data Firestore tersimpan");
 
     alert("✅ Upload berhasil");
     window.location.href = kategori + ".html";
 
   } catch(err){
-    alert("❌ Upload gagal: " + err.message);
+    console.error("ERROR:", err);
+    alert("❌ Upload gagal:\n" + err.message);
+
+    btn.innerText = "Simpan";
+    btn.disabled = false;
   }
 }
 </script>
+
 
 </body>
 </html>
