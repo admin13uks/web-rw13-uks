@@ -411,6 +411,57 @@ if(foto){
   localStorage.removeItem("judulTerakhir");
   localStorage.removeItem("ketTerakhir");
 }
+
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getFirestore, collection, query, where, orderBy, onSnapshot
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+/* ================= FIREBASE CONFIG ================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyB5XkibU-ei072xcQ4ZN4D4tK-PVRrxucA",
+  authDomain: "rw13-uks.firebaseapp.com",
+  projectId: "rw13-uks",
+  storageBucket: "rw13-uks.firebasestorage.app",
+  messagingSenderId: "500710465344",
+  appId: "1:500710465344:web:eb1c89900edfd5925924a5"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* ================= REALTIME GALERI LINGKUNGAN ================= */
+
+const galeri = document.querySelector(".gallery-grid");
+
+const q = query(
+  collection(db, "dokumentasi"),
+  where("kategori", "==", "lingkungan"),
+  orderBy("createdAt", "desc")
+);
+
+onSnapshot(q, (snapshot) => {
+  galeri.innerHTML = "";
+
+  snapshot.forEach(doc => {
+    const d = doc.data();
+
+    const item = `
+      <div class="gallery-item">
+        <img src="${d.imageUrl}" loading="lazy">
+        <div class="gallery-caption">
+          ${d.judul}<br>
+          <small style="opacity:.85;font-weight:400">${d.keterangan}</small>
+        </div>
+      </div>
+    `;
+
+    galeri.innerHTML += item;
+  });
+});
+</script>
+
   
 </body>
 </html>
