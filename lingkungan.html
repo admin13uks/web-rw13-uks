@@ -398,70 +398,46 @@ footer p {
 <p id="ketBaru"></p>
 
 <script>
-const foto = localStorage.getItem("fotoTerakhir");
-const judul = localStorage.getItem("judulTerakhir");
-const ket = localStorage.getItem("ketTerakhir");
+const USER = "admin13uks";
+const REPO = "rw13-uks";
+const FOLDER = "uploads/lingkungan";   // folder kategori
+const BRANCH = "main";
 
-if(foto){
-  document.getElementById("fotoBaru").src = foto;
-  document.getElementById("judulBaru").innerText = judul;
-  document.getElementById("ketBaru").innerText = ket;
+async function loadGallery(){
+  try{
+    const res = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER}?ref=${BRANCH}`);
+    const files = await res.json();
 
-  localStorage.removeItem("fotoTerakhir");
-  localStorage.removeItem("judulTerakhir");
-  localStorage.removeItem("ketTerakhir");
+    const container = document.querySelector(".gallery-grid");
+    container.innerHTML = "";
+
+    // urutkan terbaru dulu
+    files.sort((a,b)=> b.name.localeCompare(a.name));
+
+    files.forEach(file=>{
+      if(file.type === "file" && file.name.match(/\.(jpg|jpeg|png|webp)$/i)){
+
+        const imgUrl = file.download_url + "?t=" + new Date().getTime(); // anti cache
+
+        const item = document.createElement("div");
+        item.className = "gallery-item";
+
+        item.innerHTML = `
+          <img src="${imgUrl}">
+          <div class="gallery-caption">${file.name}</div>
+        `;
+
+        container.appendChild(item);
+      }
+    });
+
+  }catch(err){
+    console.error("Gagal load galeri:", err);
+  }
 }
 
-  <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import {
-  getFirestore, collection, query, where, orderBy, onSnapshot
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-/* ================= FIREBASE CONFIG ================= */
-const firebaseConfig = {
-  apiKey: "AIzaSyB5XkibU-ei072xcQ4ZN4D4tK-PVRrxucA",
-  authDomain: "rw13-uks.firebaseapp.com",
-  projectId: "rw13-uks",
-  storageBucket: "rw13-uks.firebasestorage.app",
-  messagingSenderId: "500710465344",
-  appId: "1:500710465344:web:eb1c89900edfd5925924a5"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-/* ================= REALTIME GALERI LINGKUNGAN ================= */
-
-const galeri = document.querySelector(".gallery-grid");
-
-const q = query(
-  collection(db, "dokumentasi"),
-  where("kategori", "==", "lingkungan"),
-  orderBy("createdAt", "desc")
-);
-
-onSnapshot(q, (snapshot) => {
-  galeri.innerHTML = "";
-
-  snapshot.forEach(doc => {
-    const d = doc.data();
-
-    const item = `
-      <div class="gallery-item">
-        <img src="${d.imageUrl}" loading="lazy">
-        <div class="gallery-caption">
-          ${d.judul}<br>
-          <small style="opacity:.85;font-weight:400">${d.keterangan}</small>
-        </div>
-      </div>
-    `;
-
-    galeri.innerHTML += item;
-  });
-});
+loadGallery();
 </script>
-
   
 </body>
 </html>
