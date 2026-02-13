@@ -93,50 +93,13 @@ button{
 <button onclick="batal()" style="background:#dc2626;margin-top:10px;">Batal</button>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { 
-  getStorage, ref, uploadBytes, getDownloadURL 
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
-import { 
-  getFirestore, collection, addDoc, serverTimestamp 
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-/* ================= FIREBASE CONFIG ================= */
-const firebaseConfig = {
-  apiKey: "AIzaSyB5XkibU-ei072xcQ4ZN4D4tK-PVRrxucA",
-  authDomain: "rw13-uks.firebaseapp.com",
-  projectId: "rw13-uks",
-  storageBucket: "rw13-uks.firebasestorage.app",
-  messagingSenderId: "500710465344",
-  appId: "1:500710465344:web:eb1c89900edfd5925924a5"
-};
-
-const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
-const db = getFirestore(app);
-
-/* ================= PREVIEW ================= */
-window.preview = function(input){
-  const file = input.files[0];
-  if(file){
-    const reader = new FileReader();
-    reader.onload = e => {
-      document.getElementById("previewImg").src = e.target.result;
-    }
-    reader.readAsDataURL(file);
-  }
-}
-
-/* ================= BATAL ================= */
-window.batal = function(){
-  if(confirm("Batalkan upload?")){
-    location.reload();
-  }
-}
+<script>
+const GITHUB_TOKEN = "ISI_TOKEN_GITHUB_KAMU";
+const REPO = "admin13uks/rw13-uks";
+const BRANCH = "main";
 
 /* ================= SIMPAN ================= */
-window.simpan = async function(){
+async function simpan(){
 
   const btn = document.querySelector("button");
   btn.innerText = "Mengupload...";
@@ -154,39 +117,49 @@ window.simpan = async function(){
     return;
   }
 
-  try {
-    console.log("Mulai upload...");
+  try{
 
-    const storageRef = ref(storage, "foto/" + Date.now() + "_" + file.name);
-    await uploadBytes(storageRef, file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
 
-    console.log("Upload storage selesai");
+    reader.onload = async () => {
 
-    const imageUrl = await getDownloadURL(storageRef);
+      const base64 = reader.result.split(",")[1];
+      const filename = Date.now() + "_" + file.name;
+      const path = `uploads/${kategori}/${filename}`;
 
-    await addDoc(collection(db, "dokumentasi"), {
-      kategori,
-      judul,
-      keterangan,
-      imageUrl,
-      createdAt: serverTimestamp()
-    });
+      const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+        method: "PUT",
+        headers: {
+          "Authorization": "token " + GITHUB_TOKEN,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: "Upload foto dokumentasi",
+          content: base64,
+          branch: BRANCH
+        })
+      });
 
-    console.log("Data Firestore tersimpan");
+      const data = await res.json();
 
-    alert("✅ Upload berhasil");
-    window.location.href = kategori + ".html";
+      if(!res.ok){
+        throw new Error(data.message || "Upload gagal");
+      }
 
-  } catch(err){
-    console.error("ERROR:", err);
-    alert("❌ Upload gagal:\n" + err.message);
+      alert("✅ Upload berhasil");
 
+      // pindah ke halaman kategori
+      window.location.href = kategori + ".html";
+    };
+
+  }catch(err){
+    alert("❌ Error: " + err.message);
     btn.innerText = "Simpan";
     btn.disabled = false;
   }
 }
 </script>
-
 
 </body>
 </html>
