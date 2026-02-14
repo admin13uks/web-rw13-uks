@@ -106,6 +106,52 @@ const GITHUB_TOKEN = "ISI_TOKEN_GITHUB_KAMU";
 const REPO = "admin13uks/rw13-uks";
 const BRANCH = "main";
 
+/* ================= HAPUS FOTO LAMA ================= */
+async function hapusFotoLama(folder){
+
+  try{
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/uploads/${folder}?ref=${BRANCH}`,{
+      headers:{ "Authorization": "token " + GITHUB_TOKEN }
+    });
+
+    const files = await res.json();
+
+    // Ambil hanya file gambar
+    const images = files.filter(f =>
+      f.type === "file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i)
+    );
+
+    // Jika <=3 tidak perlu hapus
+    if(images.length <= 3) return;
+
+    // Urutkan terbaru
+    images.sort((a,b)=> b.name.localeCompare(a.name));
+
+    // Ambil foto lama (lebih dari 3)
+    const oldFiles = images.slice(3);
+
+    for(const file of oldFiles){
+
+      await fetch(`https://api.github.com/repos/${REPO}/contents/${file.path}`,{
+        method:"DELETE",
+        headers:{
+          "Authorization": "token " + GITHUB_TOKEN,
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify({
+          message: "Auto delete foto lama",
+          sha: file.sha,
+          branch: BRANCH
+        })
+      });
+
+      console.log("Deleted:", file.name);
+    }
+
+  }catch(err){
+    console.error("Gagal hapus foto lama:", err);
+  }
+}
 /* ================= PREVIEW ================= */
 function preview(input){
   const file = input.files[0];
@@ -187,21 +233,15 @@ async function simpan(){
     return;
   }
 
-  if(file.size > 2 * 1024 * 1024){
-    alert("Ukuran foto maksimal 2MB");
-    btn.innerText = "Simpan";
-    btn.disabled = false;
-    return;
-  }
-
   try{
 
-    // Resize + convert ke base64
+    // Resize → base64
     const base64 = await resizeImage(file);
 
     const filename = Date.now() + ".jpg";
     const path = `uploads/${kategori}/${filename}`;
 
+    // Upload foto baru
     const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
       method: "PUT",
       headers: {
@@ -216,12 +256,13 @@ async function simpan(){
     });
 
     const data = await res.json();
-
     if(!res.ok) throw new Error(data.message);
 
-    alert("✅ Upload berhasil!");
+    // 🔥 HAPUS FOTO LAMA (sisakan 3)
+    await hapusFotoLama(kategori);
 
-    // Redirect ke halaman kategori
+    alert("✅ Upload berhasil! Foto lama otomatis dihapus");
+
     window.location.href = kategori + ".html";
 
   }catch(err){
