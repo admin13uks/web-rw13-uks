@@ -405,7 +405,15 @@ const BRANCH = "main";
 
 async function loadGallery(){
   try{
-    const res = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER}?ref=${BRANCH}`);
+
+    const url = `https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER}?ref=${BRANCH}`;
+    const res = await fetch(url);
+
+    if(!res.ok){
+      console.error("Folder tidak ditemukan:", await res.text());
+      return;
+    }
+
     const files = await res.json();
     if(!Array.isArray(files)) return;
 
@@ -422,29 +430,33 @@ async function loadGallery(){
       return;
     }
 
-    // Urutkan terbaru dulu (berdasarkan nama timestamp)
+    // Urutkan terbaru
     images.sort((a,b)=> b.name.localeCompare(a.name));
 
-    // Ambil 3 foto terbaru
+    // Ambil 3 terbaru
     const latest3 = images.slice(0,3);
 
     for(const file of latest3){
 
-      // Ambil JSON (judul & keterangan)
-      const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,"").replace(/$/, ".json");
+      // ================= AMBIL JSON =================
+      const jsonUrl = file.download_url
+        .replace(/\.(jpg|jpeg|png|webp)$/i,".json") + "?t=" + Date.now();
 
       let judul = "Dokumentasi Lingkungan";
-      let ket = "";
+      let ket   = "";
 
       try{
-        const jsonRes = await fetch(jsonUrl + "?t=" + Date.now());
+        const jsonRes = await fetch(jsonUrl);
         if(jsonRes.ok){
           const data = await jsonRes.json();
           judul = data.judul || judul;
-          ket = data.keterangan || "";
+          ket   = data.keterangan || "";
         }
-      }catch(e){}
+      }catch(e){
+        console.warn("JSON tidak ditemukan:", jsonUrl);
+      }
 
+      // ================= TAMPILKAN =================
       const item = document.createElement("div");
       item.className = "gallery-item";
 
@@ -464,11 +476,12 @@ async function loadGallery(){
   }
 }
 
-// Load pertama
+// Load awal
 loadGallery();
 
-// Auto refresh tiap 5 detik → foto baru langsung muncul
+// Auto refresh
 setInterval(loadGallery, 5000);
+
 </script>
   
 </body>
