@@ -321,76 +321,87 @@ footer p {
 </footer>
   
 <<script>
-document.addEventListener("DOMContentLoaded", function(){
+const USER = "admin13uks";
+const REPO = "rw13-uks";
+const FOLDER = "uploads/kesehatan";
+const BRANCH = "main";
 
-  const galeri = document.getElementById("galeriKesehatan");
+let lastTopFile = ""; // anti kedip
 
-  /* ================= DATA DEFAULT (3 FOTO AWAL) ================= */
-  let galeriData = JSON.parse(localStorage.getItem("galeriKesehatanData")) || [
-    {
-      foto: "https://images.unsplash.com/photo-1584515933487-779824d29309",
-      judul: "Kegiatan Posyandu Balita",
-      ket: "Pemeriksaan kesehatan dan penimbangan balita rutin RW 013"
-    },
-    {
-      foto: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289",
-      judul: "Pemeriksaan Kesehatan Lansia",
-      ket: "Pemeriksaan tekanan darah dan konsultasi kesehatan warga lansia"
-    },
-    {
-      foto: "https://images.unsplash.com/photo-1580281657527-47c1b6bb3e9f",
-      judul: "Edukasi Hidup Sehat",
-      ket: "Sosialisasi PHBS kepada warga RW 013"
+async function loadGalleryKesehatan(){
+  try{
+
+    const url = `https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER}?ref=${BRANCH}`;
+    const res = await fetch(url);
+
+    if(!res.ok){
+      console.warn("Folder kesehatan belum ada / kosong");
+      return;
     }
-  ];
 
-  /* ================= CEK JIKA ADA FOTO BARU DARI FORM ================= */
-  const fotoBaru  = localStorage.getItem("fotoTerakhir");
-  const judulBaru = localStorage.getItem("judulTerakhir");
-  const ketBaru   = localStorage.getItem("ketTerakhir");
+    const files = await res.json();
+    if(!Array.isArray(files)) return;
 
-  if(fotoBaru){
-    // hapus foto paling lama (index terakhir)
-    galeriData.pop();
+    const images = files
+      .filter(f => f.type === "file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i))
+      .sort((a,b)=> b.name.localeCompare(a.name));
 
-    // masukkan foto baru ke paling depan
-    galeriData.unshift({
-      foto: fotoBaru,
-      judul: judulBaru,
-      ket: ketBaru
-    });
+    if(images.length === 0) return;
 
-    // simpan kembali ke localStorage
-    localStorage.setItem("galeriKesehatanData", JSON.stringify(galeriData));
+    // ================= CEK FOTO BARU (ANTI KEDIP) =================
+    if(images[0].name === lastTopFile) return;
+    lastTopFile = images[0].name;
 
-    // hapus data sementara dari form
-    localStorage.removeItem("fotoTerakhir");
-    localStorage.removeItem("judulTerakhir");
-    localStorage.removeItem("ketTerakhir");
+    const container = document.getElementById("galeriKesehatan");
+    container.innerHTML = "";
+
+    const latest3 = images.slice(0,3);
+
+    for(const file of latest3){
+
+      // ================= AMBIL JSON =================
+      const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,".json");
+
+      let judul = "Dokumentasi Kesehatan";
+      let ket   = "";
+
+      try{
+        const jsonRes = await fetch(jsonUrl);
+        if(jsonRes.ok){
+          const data = await jsonRes.json();
+          judul = data.judul || judul;
+          ket   = data.keterangan || "";
+        }
+      }catch(e){}
+
+      // ================= CARD =================
+      const card = document.createElement("div");
+      card.style.background = "#fff";
+      card.style.borderRadius = "15px";
+      card.style.overflow = "hidden";
+      card.style.boxShadow = "0 8px 20px rgba(0,0,0,.06)";
+
+      card.innerHTML = `
+        <img src="${file.download_url}" style="width:100%;height:220px;object-fit:cover">
+        <div style="padding:15px">
+          <h3 style="font-size:16px;font-weight:800;margin-bottom:6px">${judul}</h3>
+          <p style="font-size:13px;color:#666">${ket}</p>
+        </div>
+      `;
+
+      container.appendChild(card);
+    }
+
+  }catch(err){
+    console.error("Gagal load galeri kesehatan:", err);
   }
+}
 
-  /* ================= TAMPILKAN GALERI ================= */
-  galeri.innerHTML = "";
+// Load pertama
+loadGalleryKesehatan();
 
-  galeriData.forEach(item => {
-    const card = document.createElement("div");
-    card.style.background = "#fff";
-    card.style.borderRadius = "15px";
-    card.style.overflow = "hidden";
-    card.style.boxShadow = "0 8px 20px rgba(0,0,0,.06)";
-
-    card.innerHTML = `
-      <img src="${item.foto}" style="width:100%;height:220px;object-fit:cover">
-      <div style="padding:15px">
-        <h3 style="font-size:16px;font-weight:800;margin-bottom:6px">${item.judul}</h3>
-        <p style="font-size:13px;color:#666">${item.ket}</p>
-      </div>
-    `;
-
-    galeri.appendChild(card);
-  });
-
-});
+// Auto refresh tiap 10 detik (tanpa kedip)
+setInterval(loadGalleryKesehatan, 10000);
 </script>
 
   
