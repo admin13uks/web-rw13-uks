@@ -416,23 +416,27 @@ async function loadGallery(){
       f.type === "file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i)
     );
 
-    // Urutkan terbaru dulu (nama file pakai timestamp)
+    if(images.length === 0){
+      container.innerHTML = "<p style='text-align:center'>Belum ada foto kegiatan.</p>";
+      return;
+    }
+
+    // Urutkan terbaru dulu (file name timestamp)
     images.sort((a,b)=> b.name.localeCompare(a.name));
 
-    // 🔥 Ambil hanya 3 foto terbaru
+    // Ambil 3 foto terbaru
     const latest3 = images.slice(0,3);
 
     latest3.forEach((file, index)=>{
-
       const imgUrl = file.download_url + "?t=" + new Date().getTime();
 
       const item = document.createElement("div");
       item.className = "gallery-item";
 
       item.innerHTML = `
-        <img src="${imgUrl}">
+        <img src="${imgUrl}" alt="Foto Kegiatan">
         <div class="gallery-caption">
-          ${index === 0 ? "📸 Foto Terbaru" : "Dokumentasi Lingkungan"}
+          ${index === 0 ? "📸 Foto Terbaru Kegiatan RW" : "Dokumentasi Kegiatan Lingkungan"}
         </div>
       `;
 
@@ -444,10 +448,10 @@ async function loadGallery(){
   }
 }
 
-// Load pertama
+// Load pertama kali
 loadGallery();
 
-// 🔄 Auto refresh setiap 5 detik → supaya upload baru langsung muncul
+// Auto refresh tiap 5 detik → foto dari form langsung muncul
 setInterval(loadGallery, 5000);
 </script>
   
