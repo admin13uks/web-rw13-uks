@@ -431,7 +431,7 @@ async function loadGallery(){
     for(const file of latest3){
 
       // Ambil JSON (judul & keterangan)
-      const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,".json");
+      const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,"").replace(/$/, ".json");
 
       let judul = "Dokumentasi Lingkungan";
       let ket = "";
