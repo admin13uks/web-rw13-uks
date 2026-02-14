@@ -426,23 +426,35 @@ async function loadGallery(){
     images.sort((a,b)=> b.name.localeCompare(a.name));
 
     // Ambil 3 foto terbaru
-    const latest3 = images.slice(0,3);
+    for(const file of latest3){
 
-    latest3.forEach((file, index)=>{
-      const imgUrl = file.download_url + "?t=" + new Date().getTime();
+  const jsonUrl = file.download_url.replace(".jpg",".json");
 
-      const item = document.createElement("div");
-      item.className = "gallery-item";
+  let judul = "Dokumentasi Lingkungan";
+  let ket = "";
 
-      item.innerHTML = `
-        <img src="${imgUrl}" alt="Foto Kegiatan">
-        <div class="gallery-caption">
-          ${index === 0 ? "📸 Foto Terbaru Kegiatan RW" : "Dokumentasi Kegiatan Lingkungan"}
-        </div>
-      `;
+  try{
+    const jsonRes = await fetch(jsonUrl);
+    if(jsonRes.ok){
+      const data = await jsonRes.json();
+      judul = data.judul || judul;
+      ket = data.keterangan || "";
+    }
+  }catch(e){}
 
-      container.appendChild(item);
-    });
+  const item = document.createElement("div");
+  item.className = "gallery-item";
+
+  item.innerHTML = `
+    <img src="${file.download_url}?t=${Date.now()}">
+    <div class="gallery-caption">
+      <strong>${judul}</strong><br>
+      <small>${ket}</small>
+    </div>
+  `;
+
+  container.appendChild(item);
+}
 
   }catch(err){
     console.error("Gagal load galeri:", err);
