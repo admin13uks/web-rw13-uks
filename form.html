@@ -244,8 +244,10 @@ async function simpan(){
     // Resize → base64
     const base64 = await resizeImage(file);
 
-    const filename = Date.now() + ".jpg";
-    const path = `uploads/${kategori}/${filename}`;
+    const timestamp = Date.now();
+const filename = timestamp + ".jpg";
+const jsonName = timestamp + ".json";
+const jsonPath = `uploads/${kategori}/${jsonName}`;
 
     // Upload foto baru
     const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
