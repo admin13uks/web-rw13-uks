@@ -412,7 +412,7 @@ async function loadGallery(){
     const container = document.querySelector(".gallery-grid");
     container.innerHTML = "";
 
-    // Ambil hanya file gambar
+    // Ambil file gambar saja
     const images = files.filter(f =>
       f.type === "file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i)
     );
@@ -422,49 +422,52 @@ async function loadGallery(){
       return;
     }
 
-    // Urutkan terbaru dulu (file name timestamp)
+    // Urutkan terbaru dulu (berdasarkan nama timestamp)
     images.sort((a,b)=> b.name.localeCompare(a.name));
 
     // Ambil 3 foto terbaru
+    const latest3 = images.slice(0,3);
+
     for(const file of latest3){
 
-  const jsonUrl = file.download_url.replace(".jpg",".json");
+      // Ambil JSON (judul & keterangan)
+      const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,".json");
 
-  let judul = "Dokumentasi Lingkungan";
-  let ket = "";
+      let judul = "Dokumentasi Lingkungan";
+      let ket = "";
 
-  try{
-    const jsonRes = await fetch(jsonUrl);
-    if(jsonRes.ok){
-      const data = await jsonRes.json();
-      judul = data.judul || judul;
-      ket = data.keterangan || "";
+      try{
+        const jsonRes = await fetch(jsonUrl + "?t=" + Date.now());
+        if(jsonRes.ok){
+          const data = await jsonRes.json();
+          judul = data.judul || judul;
+          ket = data.keterangan || "";
+        }
+      }catch(e){}
+
+      const item = document.createElement("div");
+      item.className = "gallery-item";
+
+      item.innerHTML = `
+        <img src="${file.download_url}?t=${Date.now()}">
+        <div class="gallery-caption">
+          <strong>${judul}</strong><br>
+          <small>${ket}</small>
+        </div>
+      `;
+
+      container.appendChild(item);
     }
-  }catch(e){}
-
-  const item = document.createElement("div");
-  item.className = "gallery-item";
-
-  item.innerHTML = `
-    <img src="${file.download_url}?t=${Date.now()}">
-    <div class="gallery-caption">
-      <strong>${judul}</strong><br>
-      <small>${ket}</small>
-    </div>
-  `;
-
-  container.appendChild(item);
-}
 
   }catch(err){
     console.error("Gagal load galeri:", err);
   }
 }
 
-// Load pertama kali
+// Load pertama
 loadGallery();
 
-// Auto refresh tiap 5 detik → foto dari form langsung muncul
+// Auto refresh tiap 5 detik → foto baru langsung muncul
 setInterval(loadGallery, 5000);
 </script>
   
