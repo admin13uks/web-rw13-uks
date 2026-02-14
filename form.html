@@ -127,30 +127,38 @@ async function hapusFotoLama(folder){
     // Urutkan terbaru
     images.sort((a,b)=> b.name.localeCompare(a.name));
 
-    // Ambil foto lama (lebih dari 3)
-    const oldFiles = images.slice(3);
+   // Ambil foto lama (lebih dari 3)
+const oldFiles = images.slice(3);
 
-    for(const file of oldFiles){
+for(const file of oldFiles){
 
-      await fetch(`https://api.github.com/repos/${REPO}/contents/${file.path}`,{
-        method:"DELETE",
-        headers:{
-          "Authorization": "token " + GITHUB_TOKEN,
-          "Content-Type":"application/json"
-        },
-        body: JSON.stringify({
-          message: "Auto delete foto lama",
-          sha: file.sha,
-          branch: BRANCH
-        })
-      });
+  try{
 
-      console.log("Deleted:", file.name);
+    const del = await fetch(`https://api.github.com/repos/${REPO}/contents/${file.path}`,{
+      method:"DELETE",
+      headers:{
+        "Authorization": "token " + GITHUB_TOKEN,
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify({
+        message: "Auto delete foto lama",
+        sha: file.sha,
+        branch: BRANCH
+      })
+    });
+
+    const result = await del.json();
+
+    if(!del.ok){
+      console.warn("❌ Gagal hapus:", file.name, result.message);
+    }else{
+      console.log("🗑 Deleted:", file.name);
     }
 
   }catch(err){
-    console.error("Gagal hapus foto lama:", err);
+    console.error("⚠️ Error delete:", file.name, err);
   }
+
 }
 /* ================= PREVIEW ================= */
 function preview(input){
