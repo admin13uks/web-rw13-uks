@@ -407,6 +407,7 @@ async function loadGallery(){
   try{
     const res = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER}?ref=${BRANCH}`);
     const files = await res.json();
+    if(!Array.isArray(files)) return;
 
     const container = document.querySelector(".gallery-grid");
     container.innerHTML = "";
