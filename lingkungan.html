@@ -403,65 +403,51 @@ const REPO = "rw13-uks";
 const FOLDER = "uploads/lingkungan";
 const BRANCH = "main";
 
+let lastTopFile = "";
+
 async function loadGallery(){
   try{
-
     const url = `https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER}?ref=${BRANCH}`;
     const res = await fetch(url);
-
-    if(!res.ok){
-      console.error("Folder tidak ditemukan:", await res.text());
-      return;
-    }
-
     const files = await res.json();
     if(!Array.isArray(files)) return;
+
+    const images = files
+      .filter(f => f.type === "file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i))
+      .sort((a,b)=> b.name.localeCompare(a.name));
+
+    if(images.length === 0) return;
+
+    // CEK apakah ada foto baru
+    if(images[0].name === lastTopFile) return;
+    lastTopFile = images[0].name;
 
     const container = document.querySelector(".gallery-grid");
     container.innerHTML = "";
 
-    // Ambil file gambar saja
-    const images = files.filter(f =>
-      f.type === "file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i)
-    );
-
-    if(images.length === 0){
-      container.innerHTML = "<p style='text-align:center'>Belum ada foto kegiatan.</p>";
-      return;
-    }
-
-    // Urutkan terbaru
-    images.sort((a,b)=> b.name.localeCompare(a.name));
-
-    // Ambil 3 terbaru
     const latest3 = images.slice(0,3);
 
     for(const file of latest3){
 
-      // ================= AMBIL JSON =================
-      const jsonUrl = file.download_url
-        .replace(/\.(jpg|jpeg|png|webp)$/i,".json") + "?t=" + Date.now();
+      const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,".json");
 
       let judul = "Dokumentasi Lingkungan";
-      let ket   = "";
+      let ket = "";
 
       try{
         const jsonRes = await fetch(jsonUrl);
         if(jsonRes.ok){
           const data = await jsonRes.json();
           judul = data.judul || judul;
-          ket   = data.keterangan || "";
+          ket = data.keterangan || "";
         }
-      }catch(e){
-        console.warn("JSON tidak ditemukan:", jsonUrl);
-      }
+      }catch(e){}
 
-      // ================= TAMPILKAN =================
       const item = document.createElement("div");
       item.className = "gallery-item";
 
       item.innerHTML = `
-        <img src="${file.download_url}?t=${Date.now()}">
+        <img src="${file.download_url}">
         <div class="gallery-caption">
           <strong>${judul}</strong><br>
           <small>${ket}</small>
@@ -472,7 +458,7 @@ async function loadGallery(){
     }
 
   }catch(err){
-    console.error("Gagal load galeri:", err);
+    console.error(err);
   }
 }
 
