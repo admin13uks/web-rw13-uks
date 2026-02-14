@@ -263,6 +263,26 @@ async function simpan(){
 
     const data = await res.json();
     if(!res.ok) throw new Error(data.message);
+// ================= SIMPAN DATA JSON =================
+const jsonPath = `uploads/${kategori}/${filename}.json`;
+
+await fetch(`https://api.github.com/repos/${REPO}/contents/${jsonPath}`, {
+  method: "PUT",
+  headers: {
+    "Authorization": "token " + GITHUB_TOKEN,
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    message: "Upload data foto",
+    content: btoa(JSON.stringify({
+      judul: judul,
+      keterangan: keterangan,
+      file: filename,
+      tanggal: new Date().toISOString()
+    }, null, 2)),
+    branch: BRANCH
+  })
+});
 
     // 🔥 HAPUS FOTO LAMA (sisakan 3)
     await hapusFotoLama(kategori);
