@@ -103,7 +103,7 @@ button:hover{ opacity:.9; }
 
 <script>
 const GITHUB_TOKEN = "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";
-const REPO = "admin13uks/rw13-uks";
+const REPO = "admin13uks/rw13-uks";   // BENAR untuk upload
 const BRANCH = "main";
 
 /* ================= HAPUS FOTO LAMA ================= */
@@ -262,18 +262,22 @@ async function simpan(){
     const jsonPath = `uploads/${kategori}/${jsonName}`;
 
     // ================= UPLOAD FOTO =================
-    const uploadImg = await fetch(`https://api.github.com/repos/${REPO}/contents/${imgPath}`, {
-      method: "PUT",
-      headers: {
-        "Authorization": "token " + GITHUB_TOKEN,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: `Upload ${kategori} - ${judul}`,
-        content: base64,
-        branch: BRANCH
-      })
-    });
+  const uploadImg = await fetch(
+  `https://api.github.com/repos/${REPO}/contents/${imgPath}`,
+{
+  method: "PUT",
+  headers: {
+    "Authorization": "token " + GITHUB_TOKEN,
+    "Accept": "application/vnd.github+json",
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    message: `Upload ${kategori} - ${judul}`,
+    content: base64,
+    branch: BRANCH
+  })
+});
+
 
     const imgResult = await uploadImg.json();
     if(!uploadImg.ok) throw new Error(imgResult.message);
