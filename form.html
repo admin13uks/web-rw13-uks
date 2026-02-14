@@ -241,16 +241,18 @@ async function simpan(){
 
   try{
 
-    // Resize → base64
+    // ================= RESIZE FOTO =================
     const base64 = await resizeImage(file);
 
     const timestamp = Date.now();
-const filename = timestamp + ".jpg";
-const jsonName = timestamp + ".json";
-const jsonPath = `uploads/${kategori}/${jsonName}`;
+    const filename = timestamp + ".jpg";
+    const jsonName = timestamp + ".json";
 
-    // Upload foto baru
-    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    const imgPath = `uploads/${kategori}/${filename}`;
+    const jsonPath = `uploads/${kategori}/${jsonName}`;
+
+    // ================= UPLOAD FOTO =================
+    const uploadImg = await fetch(`https://api.github.com/repos/${REPO}/contents/${imgPath}`, {
       method: "PUT",
       headers: {
         "Authorization": "token " + GITHUB_TOKEN,
@@ -263,42 +265,48 @@ const jsonPath = `uploads/${kategori}/${jsonName}`;
       })
     });
 
-    const data = await res.json();
-    if(!res.ok) throw new Error(data.message);
-// ================= SIMPAN DATA JSON =================
-const jsonPath = `uploads/${kategori}/${filename}.json`;
+    const imgResult = await uploadImg.json();
+    if(!uploadImg.ok) throw new Error(imgResult.message);
 
-await fetch(`https://api.github.com/repos/${REPO}/contents/${jsonPath}`, {
-  method: "PUT",
-  headers: {
-    "Authorization": "token " + GITHUB_TOKEN,
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    message: "Upload data foto",
-    content: btoa(JSON.stringify({
+    // ================= UPLOAD JSON =================
+    const jsonContent = btoa(JSON.stringify({
       judul: judul,
       keterangan: keterangan,
       file: filename,
       tanggal: new Date().toISOString()
-    }, null, 2)),
-    branch: BRANCH
-  })
-});
+    }, null, 2));
 
-    // 🔥 HAPUS FOTO LAMA (sisakan 3)
+    const uploadJson = await fetch(`https://api.github.com/repos/${REPO}/contents/${jsonPath}`, {
+      method: "PUT",
+      headers: {
+        "Authorization": "token " + GITHUB_TOKEN,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: "Upload data foto",
+        content: jsonContent,
+        branch: BRANCH
+      })
+    });
+
+    const jsonResult = await uploadJson.json();
+    if(!uploadJson.ok) throw new Error(jsonResult.message);
+
+    // ================= HAPUS FOTO LAMA =================
     await hapusFotoLama(kategori);
 
-    alert("✅ Upload berhasil! Foto lama otomatis dihapus");
-
+    alert("✅ Upload berhasil!");
     window.location.href = kategori + ".html";
 
   }catch(err){
+    console.error(err);
     alert("❌ Upload gagal: " + err.message);
+
     btn.innerText = "Simpan";
     btn.disabled = false;
   }
 }
+
 </script>
 
 </body>
