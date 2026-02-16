@@ -421,19 +421,21 @@ async function loadGalleryKeamanan(){
 
 loadGalleryKeamanan();
 setInterval(loadGalleryKeamanan, 30000); // refresh tiap 30 detik
+</script>
 
- <!-- FOOTER -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-   <p>
-  &copy; <span id="tahun"></span> RW 013 Kelurahan Utan Kayu Selatan<br>
-  Bersama Mewujudkan Warga Sehat & Lingkungan Berkualitas
-</p>
-    document.getElementById("tahun").textContent = new Date().getFullYear();
+    <p>
+      &copy; <span id="tahun"></span> RW 013 Kelurahan Utan Kayu Selatan<br>
+      Bersama Mewujudkan Warga Sehat & Lingkungan Berkualitas
+    </p>
   </div>
 </footer>
-  
-</footer>
+
+<script>
+document.getElementById("tahun").textContent = new Date().getFullYear();
+</script>
   
 </body>
 </html>
