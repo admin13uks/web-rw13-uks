@@ -254,6 +254,30 @@ footer p {
 @media (max-width: 768px) {
   .hero h1 { font-size: 28px; }
 }
+
+  /* ===== FOOTER BOTTOM KHUSUS ===== */
+.footer-bottom {
+  background: linear-gradient(135deg,#16a34a,#22c55e);
+  color: #fff;
+  text-align: center;
+  padding: 50px 20px 40px;
+}
+
+.footer-bottom img {
+  width: 90px;
+  margin-bottom: 15px;
+}
+
+.footer-bottom h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.footer-bottom p {
+  opacity: .9;
+  font-size: 14px;
+}
 </style>
 </head>
 
@@ -360,14 +384,23 @@ footer p {
 </section>
 
 <!-- FOOTER -->
+<!-- FOOTER UTAMA -->
 <footer>
   <div class="footer-inner">
     <p>
-      &copy; 2024 RW 013 Kelurahan Utan Kayu Selatan<br>
+      &copy; <span id="tahun"></span> RW 013 Kelurahan Utan Kayu Selatan<br>
       Bersama Kita Kuat, Bersama Kita Peduli
     </p>
   </div>
 </footer>
+
+<!-- FOOTER PALING BAWAH (MONAS + TULISAN) -->
+<div class="footer-bottom">
+  <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/monas.png">
+  <h2>Satu Sinergi<br>Sejuta Kenyamanan</h2>
+  <p>Membangun kepedulian bersama demi kenyamanan warga</p>
+</div>
+  
    <script>
 const USER = "admin13uks";
 const REPO = "rw13-uks";
@@ -435,7 +468,8 @@ async function loadGallery(){
 }
 
 loadGallery();
-setInterval(loadGallery, 5000);
+setInterval(loadGallery, 60000);
+     document.getElementById("tahun").textContent = new Date().getFullYear();
 </script>
 
   
