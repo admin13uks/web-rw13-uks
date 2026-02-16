@@ -459,16 +459,15 @@ async function loadGallery(){
       const item = document.createElement("div");
       item.className = "gallery-item";
 
-      item.innerHTML = `
-        <img src="${file.download_url}">
-        <div class="gallery-caption">
-          <strong>${judul}</strong><br>
-          <small>${ket}</small>
-        </div>
-      `;
-
-      container.appendChild(item);
-    }
+   item.innerHTML = `
+  <div class="gallery-img">
+    <img src="${file.download_url}">
+  </div>
+  <div class="gallery-text">
+    <div class="gallery-title-text">${judul}</div>
+    <div class="gallery-desc">${ket}</div>
+  </div>
+`;
 
   }catch(err){
     console.error(err);
