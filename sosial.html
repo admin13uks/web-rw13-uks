@@ -445,5 +445,75 @@ footer p {
   </div>
 </footer>
 
+<script>
+const USER = "admin13uks";
+const REPO = "rw13-uks";
+const FOLDER = "uploads/sosial";
+const BRANCH = "main";
+
+let lastTopFile = "";
+
+async function loadGallery(){
+  try{
+    const url = `https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER}?ref=${BRANCH}`;
+    const res = await fetch(url);
+    const files = await res.json();
+    if(!Array.isArray(files)) return;
+
+    const images = files
+      .filter(f => f.type === "file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i))
+      .sort((a,b)=> b.name.localeCompare(a.name));
+
+    if(images.length === 0) return;
+
+    if(images[0].name === lastTopFile) return;
+    lastTopFile = images[0].name;
+
+    const container = document.querySelector(".gallery-grid");
+    container.innerHTML = "";
+
+    const latest3 = images.slice(0,3);
+
+    for(const file of latest3){
+
+      const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,".json");
+
+      let judul = "Dokumentasi Sosial";
+      let ket = "";
+
+      try{
+        const jsonRes = await fetch(jsonUrl);
+        if(jsonRes.ok){
+          const data = await jsonRes.json();
+          judul = data.judul || judul;
+          ket = data.keterangan || "";
+        }
+      }catch(e){}
+
+      const item = document.createElement("div");
+      item.className = "gallery-item";
+
+      item.innerHTML = `
+        <div class="gallery-img">
+          <img src="${file.download_url}" alt="${judul}">
+        </div>
+        <div class="gallery-text">
+          <div class="gallery-title-text">${judul}</div>
+          <div class="gallery-desc">${ket}</div>
+        </div>
+      `;
+
+      container.appendChild(item);
+    }
+
+  }catch(err){
+    console.error(err);
+  }
+}
+
+loadGallery();
+setInterval(loadGallery, 5000);
+</script>
+  
 </body>
 </html>
