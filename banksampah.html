@@ -3,207 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bank Sampah | RW 013 Utan Kayu Selatan</title>
+<title>Program Keagamaan | RW 013 Utan Kayu Selatan</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Plus Jakarta Sans',sans-serif;
-}
-
-body{
-  background:#f8fafc;
-  color:#333;
-  padding-top:90px;
-}
-
-/* ================= HEADER ================= */
-header{
-  position:fixed;
-  top:0;
-  width:100%;
-  background:#fff;
-  border-bottom:1px solid rgba(0,0,0,.08);
-  z-index:1000;
-}
-
-.header-inner{
-  max-width:1200px;
-  margin:auto;
-  padding:14px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  text-decoration:none;
-}
-
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Plus Jakarta Sans',sans-serif;}
+body {background:#f8fafc; color:#333; padding-top:90px;}
+header {position:fixed; top:0; width:100%; background:#fff; border-bottom:1px solid rgba(0,0,0,.08); z-index:1000;}
+.header-inner {max-width:1200px; margin:auto; padding:14px 20px; display:flex; justify-content:space-between; align-items:center;}
+.logo {display:flex; align-items:center; gap:12px; text-decoration:none;}
 .logo img{height:42px;}
-
-.logo-title{
-  font-weight:800;
-  color:#16a34a;
-  font-size:18px;
-}
-
-.logo-sub{
-  font-size:12px;
-  color:#6b7280;
-  font-weight:600;
-}
-
-/* ================= HERO ================= */
-.hero{
-  background:linear-gradient(135deg,#16a34a,#22c55e);
-  color:#fff;
-  padding:80px 20px;
-  text-align:center;
-}
-
-.hero h1{
-  font-size:36px;
-  font-weight:800;
-}
-
-.hero p{
-  max-width:760px;
-  margin:14px auto 0;
-  opacity:.95;
-  font-size:15px;
-}
-
-/* ================= SECTION ================= */
-.section{
-  max-width:1200px;
-  margin:80px auto;
-  padding:0 20px;
-}
-
-.section-title{
-  text-align:center;
-  font-size:30px;
-  font-weight:800;
-  color:#14532d;
-}
-
-.section-desc{
-  text-align:center;
-  max-width:780px;
-  margin:14px auto 50px;
-  color:#555;
-}
-
-/* ================= INFO GRID ================= */
-.info-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:30px;
-}
-
-.info-card{
-  background:#fff;
-  border-radius:20px;
-  padding:28px;
-  box-shadow:0 10px 25px rgba(0,0,0,.06);
-  transition:.3s;
-}
-
-.info-card:hover{
-  transform:translateY(-6px);
-}
-
-.info-icon{
-  width:50px;
-  height:50px;
-  background:#dcfce7;
-  color:#16a34a;
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-  margin-bottom:16px;
-}
-
-.info-card h3{
-  font-size:18px;
-  font-weight:800;
-  margin-bottom:6px;
-}
-
-.info-card p{
-  font-size:14px;
-  color:#666;
-  line-height:1.6;
-}
-
-/* ================= GALLERY ================= */
-.gallery{
-  margin-top:80px;
-}
-
-.gallery-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:24px;
-}
-
-.gallery-grid img{
-  width:100%;
-  height:200px;
-  object-fit:cover;
-  border-radius:18px;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
-  transition:.3s;
-}
-
-.gallery-grid img:hover{
-  transform:scale(1.03);
-}
-
-/* ================= NOTE ================= */
-.note{
-  background:#ecfdf5;
-  border-left:6px solid #22c55e;
-  padding:24px 28px;
-  border-radius:14px;
-  margin-top:70px;
-  color:#14532d;
-  font-weight:600;
-}
-
-/* ================= FOOTER ================= */
-footer{
-  background:#14532d;
-  color:#fff;
-  padding:60px 20px;
-  margin-top:100px;
-}
-
-.footer-inner{
-  max-width:1200px;
-  margin:auto;
-  text-align:center;
-}
-
-footer p{
-  opacity:.9;
-  font-size:14px;
-}
-
-@media(max-width:768px){
-  .hero h1{font-size:28px;}
-}
+.logo-title{font-weight:800; color:#16a34a; font-size:18px;}
+.logo-sub{font-size:12px; color:#6b7280; font-weight:600;}
+nav a {text-decoration:none; font-weight:700; font-size:14px; color:#374151;}
+nav a:hover {color:#16a34a;}
+.hero {background:linear-gradient(135deg,#16a34a,#22c55e); color:#fff; padding:80px 20px; text-align:center;}
+.hero h1 {font-size:36px; font-weight:800;}
+.hero p {max-width:760px; margin:14px auto 0; opacity:.95; font-size:15px;}
+.section {max-width:1200px; margin:80px auto; padding:0 20px;}
+.section-title{text-align:center; font-size:30px; font-weight:800; color:#14532d;}
+.section-desc{text-align:center; max-width:780px; margin:14px auto 50px; color:#555;}
+.info-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:30px;}
+.info-card{background:#fff; border-radius:20px; padding:28px; box-shadow:0 10px 25px rgba(0,0,0,.06); transition:.3s;}
+.info-card:hover{transform:translateY(-6px);}
+.info-icon{width:50px; height:50px; background:#dcfce7; color:#16a34a; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;}
+.info-card h3{font-size:18px; font-weight:800; margin-bottom:6px;}
+.info-card p{font-size:14px; color:#666; line-height:1.6;}
+.gallery{margin-top:80px;}
+.gallery-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:24px;}
+.gallery-item{background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,.06); transition:0.3s;}
+.gallery-item img{width:100%; height:220px; object-fit:cover; display:block;}
+.gallery-text{padding:14px 16px;}
+.gallery-title-text{font-size:16px; font-weight:700; color:#1f2937; margin-bottom:6px; line-height:1.3;}
+.gallery-desc{font-size:13px; color:#6b7280; line-height:1.5;}
+.gallery-item:hover{transform:translateY(-6px); box-shadow:0 12px 28px rgba(0,0,0,.12);}
+.note{background:#ecfdf5; border-left:6px solid #22c55e; padding:24px 28px; border-radius:14px; margin-top:70px; color:#14532d; font-weight:600;}
+footer{background:#14532d; color:#fff; padding:60px 20px; margin-top:100px;}
+.footer-inner{max-width:1200px; margin:auto; text-align:center;}
+footer p{opacity:.9; font-size:14px;}
+@media(max-width:768px){.hero h1{font-size:28px;}}
 </style>
 </head>
 
@@ -220,126 +60,138 @@ footer p{
       </div>
     </a>
     <nav>
-      <a href="index.html" style="text-decoration:none;font-weight:700;color:#374151;">Beranda</a>
+      <a href="index.html">Beranda</a>
     </nav>
   </div>
 </header>
 
-  <h2>Foto Terbaru</h2>
-
-<img id="fotoBaru" style="width:100%;border-radius:10px;margin-top:10px;">
-<h3 id="judulBaru"></h3>
-<p id="ketBaru"></p>
-
 <!-- HERO -->
 <section class="hero">
-  <h1>Bank Sampah RW 013</h1>
-  <p>
-    Mengelola sampah menjadi bernilai ekonomi
-    demi lingkungan yang bersih, sehat, dan berkelanjutan.
-  </p>
+  <h1>Program Keagamaan RW 013</h1>
+  <p>Meningkatkan kualitas iman dan ketakwaan melalui kegiatan keagamaan di lingkungan RW 013.</p>
 </section>
 
 <!-- CONTENT -->
 <section class="section">
-
-  <h2 class="section-title">Tentang Bank Sampah</h2>
-  <p class="section-desc">
-    Bank Sampah RW 013 merupakan program pemberdayaan warga
-    untuk memilah, menabung, dan mengelola sampah rumah tangga
-    secara bertanggung jawab.
-  </p>
+  <h2 class="section-title">Tentang Program Keagamaan</h2>
+  <p class="section-desc">Program Keagamaan RW 013 meliputi pengajian, doa bersama, serta kegiatan sosial keagamaan yang melibatkan seluruh warga.</p>
 
   <div class="info-grid">
-
     <div class="info-card">
-      <div class="info-icon"><i class="fa-solid fa-recycle"></i></div>
-      <h3>Pemilahan Sampah</h3>
-      <p>
-        Warga memilah sampah organik dan anorganik
-        sejak dari rumah untuk memudahkan pengelolaan.
-      </p>
+      <div class="info-icon"><i class="fa-solid fa-mosque"></i></div>
+      <h3>Pengajian Rutin</h3>
+      <p>Warga mengikuti pengajian dan tausiyah untuk menambah ilmu dan spiritualitas.</p>
     </div>
 
     <div class="info-card">
-      <div class="info-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-      <h3>Penimbangan</h3>
-      <p>
-        Sampah anorganik ditimbang dan dicatat
-        sebagai saldo tabungan bank sampah warga.
-      </p>
+      <div class="info-icon"><i class="fa-solid fa-pray"></i></div>
+      <h3>Doa Bersama</h3>
+      <p>Doa bersama rutin untuk keselamatan dan kebaikan warga RW 013.</p>
     </div>
 
     <div class="info-card">
-      <div class="info-icon"><i class="fa-solid fa-wallet"></i></div>
-      <h3>Tabungan Sampah</h3>
-      <p>
-        Nilai sampah dikonversi menjadi tabungan
-        yang dapat dicairkan sesuai ketentuan.
-      </p>
+      <div class="info-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+      <h3>Kegiatan Sosial</h3>
+      <p>Kegiatan amal dan sosial untuk mendukung warga yang membutuhkan.</p>
     </div>
 
     <div class="info-card">
-      <div class="info-icon"><i class="fa-solid fa-leaf"></i></div>
-      <h3>Lingkungan Bersih</h3>
-      <p>
-        Mengurangi sampah ke TPA dan menciptakan
-        lingkungan RW yang bersih dan sehat.
-      </p>
+      <div class="info-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+      <h3>Edukasi Keagamaan</h3>
+      <p>Pemberian materi dan pelatihan keagamaan bagi anak-anak dan dewasa.</p>
     </div>
-
   </div>
 
-  <!-- GALLERY -->
+  <!-- GALERI FOTO -->
   <div class="gallery">
-    <h2 class="section-title">Kegiatan Bank Sampah</h2>
-
-    <div class="gallery-grid">
-      <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952">
-      <img src="https://images.unsplash.com/photo-1604187351574-c75ca79f5807">
-      <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716">
-      <img src="https://images.unsplash.com/photo-1618477462146-33bcb49c1f0d">
-    </div>
+    <h2 class="section-title">Dokumentasi Kegiatan Keagamaan</h2>
+    <div class="gallery-grid"></div>
   </div>
 
   <div class="note">
-    💚 Warga diharapkan berpartisipasi aktif dalam kegiatan Bank Sampah
-    demi lingkungan RW 013 yang bersih, hijau, dan bernilai ekonomi.
+    💚 Warga diharapkan aktif berpartisipasi dalam kegiatan keagamaan demi RW 013 yang harmonis dan beriman.
   </div>
-
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <p>
-      &copy; 2024 RW 013 Kelurahan Utan Kayu Selatan<br>
-      Dari Sampah Menjadi Berkah
-    </p>
+    <p>&copy; <span id="tahun"></span> RW 013 Kelurahan Utan Kayu Selatan<br>Bersama Kita Peduli dan Beriman</p>
   </div>
 </footer>
 
+<!-- FOTO TERBARU -->
 <h2>Foto Terbaru</h2>
-
 <img id="fotoBaru" style="width:100%;border-radius:10px;margin-top:10px;">
 <h3 id="judulBaru"></h3>
 <p id="ketBaru"></p>
 
 <script>
-const foto = localStorage.getItem("fotoTerakhir");
-const judul = localStorage.getItem("judulTerakhir");
-const ket = localStorage.getItem("ketTerakhir");
+document.getElementById("tahun").textContent = new Date().getFullYear();
 
-if(foto){
-  document.getElementById("fotoBaru").src = foto;
-  document.getElementById("judulBaru").innerText = judul;
-  document.getElementById("ketBaru").innerText = ket;
+const USER = "admin13uks";
+const REPO = "rw13-uks";
+const FOLDER = "uploads/keagamaan";
+const BRANCH = "main";
+let lastTopFile = "";
 
-  localStorage.removeItem("fotoTerakhir");
-  localStorage.removeItem("judulTerakhir");
-  localStorage.removeItem("ketTerakhir");
+async function loadGallery(){
+  try{
+    const url = `https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER}?ref=${BRANCH}`;
+    const res = await fetch(url);
+    const files = await res.json();
+    if(!Array.isArray(files)) return;
+
+    const images = files
+      .filter(f => f.type==="file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i))
+      .sort((a,b)=> b.name.localeCompare(a.name));
+
+    if(images.length===0) return;
+    if(images[0].name===lastTopFile) return;
+    lastTopFile = images[0].name;
+
+    const container = document.querySelector(".gallery-grid");
+    container.innerHTML="";
+
+    const latest3 = images.slice(0,3);
+
+    for(const file of latest3){
+      const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,".json");
+      let judul="Dokumentasi Keagamaan";
+      let ket="";
+
+      try{
+        const jsonRes = await fetch(jsonUrl);
+        if(jsonRes.ok){
+          const data = await jsonRes.json();
+          judul = data.judul || judul;
+          ket = data.keterangan || "";
+        }
+      }catch(e){}
+
+      const item = document.createElement("div");
+      item.className="gallery-item";
+      item.innerHTML = `
+        <img src="${file.download_url}" alt="${judul}">
+        <div class="gallery-text">
+          <div class="gallery-title-text">${judul}</div>
+          <div class="gallery-desc">${ket}</div>
+        </div>
+      `;
+      container.appendChild(item);
+
+      if(file===latest3[0]){
+        document.getElementById("fotoBaru").src=file.download_url;
+        document.getElementById("judulBaru").innerText=judul;
+        document.getElementById("ketBaru").innerText=ket;
+      }
+    }
+
+  }catch(err){console.error(err);}
 }
 
-  
+loadGallery();
+setInterval(loadGallery, 5000);
+</script>
 </body>
 </html>
