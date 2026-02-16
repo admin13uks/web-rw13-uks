@@ -442,33 +442,35 @@ async function loadGallery(){
 
     for(const file of latest3){
 
-      const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,".json");
+  const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,".json");
 
-      let judul = "Dokumentasi Lingkungan";
-      let ket = "";
+  let judul = "Dokumentasi Lingkungan";
+  let ket = "";
 
-      try{
-        const jsonRes = await fetch(jsonUrl);
-        if(jsonRes.ok){
-          const data = await jsonRes.json();
-          judul = data.judul || judul;
-          ket = data.keterangan || "";
-        }
-      }catch(e){}
+  try{
+    const jsonRes = await fetch(jsonUrl);
+    if(jsonRes.ok){
+      const data = await jsonRes.json();
+      judul = data.judul || judul;
+      ket = data.keterangan || "";
+    }
+  }catch(e){}
 
-      const item = document.createElement("div");
-      item.className = "gallery-item";
+  const item = document.createElement("div");
+  item.className = "gallery-item";
 
-   item.innerHTML = `
-  <div class="gallery-img">
-    <img src="${file.download_url}">
-  </div>
-  <div class="gallery-text">
-    <div class="gallery-title-text">${judul}</div>
-    <div class="gallery-desc">${ket}</div>
-  </div>
-`;
+  item.innerHTML = `
+    <div class="gallery-img">
+      <img src="${file.download_url}" alt="${judul}">
+    </div>
+    <div class="gallery-text">
+      <div class="gallery-title-text">${judul}</div>
+      <div class="gallery-desc">${ket}</div>
+    </div>
+  `;
 
+  container.appendChild(item);   // ← INI YANG KURANG
+}
   }catch(err){
     console.error(err);
   }
