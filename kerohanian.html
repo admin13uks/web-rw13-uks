@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Program Keagamaan | RW 013 Utan Kayu Selatan</title>
+<title>Program Kerohanian | RW 013 Utan Kayu Selatan</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -68,14 +68,14 @@ footer p{opacity:.9; font-size:14px;}
 
 <!-- HERO -->
 <section class="hero">
-  <h1>Program Keagamaan RW 013</h1>
-  <p>Meningkatkan kualitas iman dan ketakwaan melalui kegiatan keagamaan di lingkungan RW 013.</p>
+  <h1>Program Kerohanian RW 013</h1>
+  <p>Meningkatkan kualitas iman dan ketakwaan melalui kegiatan kerohanian di lingkungan RW 013.</p>
 </section>
 
 <!-- CONTENT -->
 <section class="section">
-  <h2 class="section-title">Tentang Program Keagamaan</h2>
-  <p class="section-desc">Program Keagamaan RW 013 meliputi pengajian, doa bersama, serta kegiatan sosial keagamaan yang melibatkan seluruh warga.</p>
+  <h2 class="section-title">Tentang Program Kerohanian</h2>
+  <p class="section-desc">Program Kerohanian RW 013 meliputi pengajian, doa bersama, serta kegiatan sosial kerohanian yang melibatkan seluruh warga.</p>
 
   <div class="info-grid">
     <div class="info-card">
@@ -98,19 +98,19 @@ footer p{opacity:.9; font-size:14px;}
 
     <div class="info-card">
       <div class="info-icon"><i class="fa-solid fa-book-open-reader"></i></div>
-      <h3>Edukasi Keagamaan</h3>
-      <p>Pemberian materi dan pelatihan keagamaan bagi anak-anak dan dewasa.</p>
+      <h3>Edukasi Kerohanian</h3>
+      <p>Pemberian materi dan pelatihan kerohanian bagi anak-anak dan dewasa.</p>
     </div>
   </div>
 
   <!-- GALERI FOTO -->
   <div class="gallery">
-    <h2 class="section-title">Dokumentasi Kegiatan Keagamaan</h2>
+    <h2 class="section-title">Dokumentasi Kegiatan Kerohanian</h2>
     <div class="gallery-grid"></div>
   </div>
 
   <div class="note">
-    💚 Warga diharapkan aktif berpartisipasi dalam kegiatan keagamaan demi RW 013 yang harmonis dan beriman.
+    💚 Warga diharapkan aktif berpartisipasi dalam kegiatan kerohanian demi RW 013 yang harmonis dan beriman.
   </div>
 </section>
 
@@ -132,7 +132,7 @@ document.getElementById("tahun").textContent = new Date().getFullYear();
 
 const USER = "admin13uks";
 const REPO = "rw13-uks";
-const FOLDER = "uploads/keagamaan";
+const FOLDER = "uploads/kerohanian";
 const BRANCH = "main";
 let lastTopFile = "";
 
@@ -158,7 +158,7 @@ async function loadGallery(){
 
     for(const file of latest3){
       const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,".json");
-      let judul="Dokumentasi Keagamaan";
+      let judul="Dokumentasi Kerohanian";
       let ket="";
 
       try{
