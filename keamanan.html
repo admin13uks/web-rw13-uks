@@ -191,6 +191,66 @@ footer p{
 @media(max-width:768px){
   .hero h1{font-size:28px;}
 }
+
+/* ================= GALERI FOTO ================= */
+.gallery{
+  margin-top:70px;
+}
+
+.gallery-title{
+  text-align:center;
+  font-size:24px;
+  font-weight:800;
+  color:#991b1b;
+  margin-bottom:30px;
+}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+}
+
+.gallery-item{
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+  transition:.25s ease;
+}
+
+.gallery-item:hover{
+  transform:translateY(-5px);
+  box-shadow:0 16px 30px rgba(0,0,0,.12);
+}
+
+.gallery-img{
+  width:100%;
+  height:220px;
+  overflow:hidden;
+}
+
+.gallery-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.gallery-text{
+  padding:14px 16px;
+}
+
+.gallery-title-text{
+  font-weight:700;
+  font-size:15px;
+  margin-bottom:4px;
+}
+
+.gallery-desc{
+  font-size:13px;
+  color:#666;
+}
+  
 </style>
 </head>
 
@@ -298,29 +358,80 @@ footer p{
   Bersama Menjaga Lingkungan Bersih, Sehat, dan Lestari
 </p>
   </div>
+  
 </footer>
 
-<h2>Foto Terbaru</h2>
+<!-- ================= GALERI FOTO ================= -->
+<div class="gallery">
+  <h3 class="gallery-title">Dokumentasi Keamanan</h3>
 
-<img id="fotoBaru" style="width:100%;border-radius:10px;margin-top:10px;">
-<h3 id="judulBaru"></h3>
-<p id="ketBaru"></p>
+  <div class="gallery-grid" id="galleryKeamanan">
+    <!-- Foto otomatis muncul dari GitHub -->
+  </div>
+</div>
 
 <script>
-const foto = localStorage.getItem("fotoTerakhir");
-const judul = localStorage.getItem("judulTerakhir");
-const ket = localStorage.getItem("ketTerakhir");
+/* ================= LOAD GALERI DARI GITHUB ================= */
 
-if(foto){
-  document.getElementById("fotoBaru").src = foto;
-  document.getElementById("judulBaru").innerText = judul;
-  document.getElementById("ketBaru").innerText = ket;
+const USER = "admin13uks";
+const REPO = "rw13-uks";
+const FOLDER = "uploads/keamanan";   // ← folder foto keamanan
+const BRANCH = "main";
 
-  localStorage.removeItem("fotoTerakhir");
-  localStorage.removeItem("judulTerakhir");
-  localStorage.removeItem("ketTerakhir");
+async function loadGalleryKeamanan(){
+  try{
+    const url = `https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER}?ref=${BRANCH}`;
+    const res = await fetch(url);
+    const files = await res.json();
+    if(!Array.isArray(files)) return;
+
+    const images = files
+      .filter(f => f.type === "file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i))
+      .sort((a,b)=> b.name.localeCompare(a.name))
+      .slice(0,6);   // tampilkan 6 foto terbaru
+
+    const container = document.getElementById("galleryKeamanan");
+    container.innerHTML = "";
+
+    for(const file of images){
+
+      const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,".json");
+
+      let judul = "Dokumentasi Keamanan";
+      let ket = "";
+
+      try{
+        const jsonRes = await fetch(jsonUrl);
+        if(jsonRes.ok){
+          const data = await jsonRes.json();
+          judul = data.judul || judul;
+          ket = data.keterangan || "";
+        }
+      }catch(e){}
+
+      const item = document.createElement("div");
+      item.className = "gallery-item";
+
+      item.innerHTML = `
+        <div class="gallery-img">
+          <img src="${file.download_url}" alt="${judul}">
+        </div>
+        <div class="gallery-text">
+          <div class="gallery-title-text">${judul}</div>
+          <div class="gallery-desc">${ket}</div>
+        </div>
+      `;
+
+      container.appendChild(item);
+    }
+
+  }catch(err){
+    console.error(err);
+  }
 }
-document.getElementById("tahun").textContent = new Date().getFullYear();
+
+loadGalleryKeamanan();
+setInterval(loadGalleryKeamanan, 30000); // refresh tiap 30 detik
   
 </body>
 </html>
