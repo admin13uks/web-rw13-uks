@@ -422,14 +422,16 @@ async function loadGalleryKeamanan(){
 loadGalleryKeamanan();
 setInterval(loadGalleryKeamanan, 30000); // refresh tiap 30 detik
 
-  <!-- FOOTER -->
+ <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <p>
+   <p>
   &copy; <span id="tahun"></span> RW 013 Kelurahan Utan Kayu Selatan<br>
-  Bersama Menjaga Lingkungan Bersih, Sehat, dan Lestari
+  Bersama Mewujudkan Warga Sehat & Lingkungan Berkualitas
 </p>
+    document.getElementById("tahun").textContent = new Date().getFullYear();
   </div>
+</footer>
   
 </footer>
   
