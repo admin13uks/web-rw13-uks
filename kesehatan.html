@@ -159,16 +159,48 @@ nav a:hover { color: #16a34a; }
   line-height: 1.6;
 }
 
+  /* ================= GALERI HOVER EFFECT ================= */
+.gallery-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,.06);
+  transition: all .35s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(0,0,0,.12);
+}
+
+.gallery-card img {
+  transition: transform .4s ease;
+}
+
+.gallery-card:hover img {
+  transform: scale(1.08);
+}
+
+
 /* ================= INFO BAR ================= */
 .info-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   background: #ecfdf5;
   border-left: 6px solid #22c55e;
   padding: 22px 26px;
   border-radius: 14px;
-  margin-top: 60px;
+  margin-top: 80px;
   color: #065f46;
   font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0,0,0,.05);
 }
+
+.info-bar i {
+  font-size: 20px;
+}
+
 
 /* ================= FOOTER ================= */
 footer {
@@ -375,11 +407,9 @@ async function loadGalleryKesehatan(){
       }catch(e){}
 
       // ================= CARD =================
-      const card = document.createElement("div");
-      card.style.background = "#fff";
-      card.style.borderRadius = "15px";
-      card.style.overflow = "hidden";
-      card.style.boxShadow = "0 8px 20px rgba(0,0,0,.06)";
+   const card = document.createElement("div");
+card.className = "gallery-card";
+
 
       card.innerHTML = `
         <img src="${file.download_url}" style="width:100%;height:220px;object-fit:cover">
