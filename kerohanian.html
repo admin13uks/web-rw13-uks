@@ -130,48 +130,63 @@ footer p{opacity:.9; font-size:14px;}
 <script>
 document.getElementById("tahun").textContent = new Date().getFullYear();
 
-const USER = "admin13uks";
-const REPO = "rw13-uks";
+const USER   = "admin13uks";
+const REPO   = "rw13-uks";
 const FOLDER = "uploads/kerohanian";
 const BRANCH = "main";
-let lastTopFile = "";
 
-async function loadGallery(){
+let lastTopFile = ""; // anti reload kedip
+
+async function loadGalleryKerohanian(){
   try{
+
     const url = `https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER}?ref=${BRANCH}`;
     const res = await fetch(url);
+
+    if(!res.ok){
+      console.warn("Folder kerohanian kosong / belum ada");
+      return;
+    }
+
     const files = await res.json();
     if(!Array.isArray(files)) return;
 
     const images = files
-      .filter(f => f.type==="file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i))
+      .filter(f => f.type === "file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i))
       .sort((a,b)=> b.name.localeCompare(a.name));
 
-    if(images.length===0) return;
-    if(images[0].name===lastTopFile) return;
+    if(images.length === 0) return;
+
+    // ================= CEK FOTO BARU =================
+    if(images[0].name === lastTopFile) return;
     lastTopFile = images[0].name;
 
     const container = document.querySelector(".gallery-grid");
-    container.innerHTML="";
+    container.innerHTML = "";
 
     const latest3 = images.slice(0,3);
 
     for(const file of latest3){
+
+      // ================= AMBIL JSON =================
       const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,".json");
-      let judul="Dokumentasi Kerohanian";
-      let ket="";
+
+      let judul = "Dokumentasi Kerohanian";
+      let ket   = "";
 
       try{
         const jsonRes = await fetch(jsonUrl);
         if(jsonRes.ok){
           const data = await jsonRes.json();
           judul = data.judul || judul;
-          ket = data.keterangan || "";
+          ket   = data.keterangan || "";
         }
       }catch(e){}
 
+      // ================= CARD =================
       const item = document.createElement("div");
-      item.className="gallery-item";
+      item.className = "gallery-item";
+
       item.innerHTML = `
         <img src="${file.download_url}" alt="${judul}">
         <div class="gallery-text">
@@ -179,20 +194,41 @@ async function loadGallery(){
           <div class="gallery-desc">${ket}</div>
         </div>
       `;
-      container.appendChild(item);
 
-      if(file===latest3[0]){
-        document.getElementById("fotoBaru").src=file.download_url;
-        document.getElementById("judulBaru").innerText=judul;
-        document.getElementById("ketBaru").innerText=ket;
-      }
+      container.appendChild(item);
     }
 
-  }catch(err){console.error(err);}
+    // ================= FOTO TERBARU =================
+    const file = latest3[0];
+    const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,".json");
+
+    let judul = "Dokumentasi Kerohanian";
+    let ket   = "";
+
+    try{
+      const jsonRes = await fetch(jsonUrl);
+      if(jsonRes.ok){
+        const data = await jsonRes.json();
+        judul = data.judul || judul;
+        ket   = data.keterangan || "";
+      }
+    }catch(e){}
+
+    document.getElementById("fotoBaru").src = file.download_url;
+    document.getElementById("judulBaru").innerText = judul;
+    document.getElementById("ketBaru").innerText = ket;
+
+  }catch(err){
+    console.error("Gagal load galeri kerohanian:", err);
+  }
 }
 
-loadGallery();
-setInterval(loadGallery, 5000);
+// Load pertama
+loadGalleryKerohanian();
+
+// Auto refresh tiap 10 detik (stabil)
+setInterval(loadGalleryKerohanian, 10000);
 </script>
+
 </body>
 </html>
