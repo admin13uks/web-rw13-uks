@@ -176,11 +176,22 @@ nav a:hover { color: #2fa56a; }
 .tree li:first-child::after { border-radius: 5px 0 0 0; }
 .tree ul ul::before { content: ''; position: absolute; top: 0; left: 50%; border-left: 2px solid #ccc; width: 0; height: 20px; }
 
-.tree .card { 
-    background: white; border: 1px solid #ddd; padding: 12px; border-radius: 12px; 
-    display: inline-block; min-width: 150px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
-    position: relative; z-index: 10; transition: 0.3s;
+.tree .card {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 12px;
+    display: inline-block;
+
+    min-width: 170px;  /* sebelumnya 150px */
+    max-width: 220px;  /* agar tidak terlalu lebar */
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 10;
+    transition: 0.3s;
 }
+	
 .tree .card:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
 .tree .card.chairman { border: 2px solid #ff6b00; background: linear-gradient(to bottom, #fff, #fff9f5); }
 .tree .card.vice-chairman { border: 2px solid #ff9800; }
@@ -193,12 +204,11 @@ nav a:hover { color: #2fa56a; }
     font-weight: 700;
     color: #111;
 
-    /* TAMBAHAN */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;        /* boleh turun baris */
+    word-break: break-word;     /* kalau panjang tetap aman */
+    overflow: visible;
 }
-
+	
 /* Gaya Khusus untuk Teknis & Support */
 .tree .card.support-box {
     border: 2px dashed #2fa56a; 
@@ -374,16 +384,45 @@ body {
                                         <p class="role">Pelmas</p>
                                         <h3 class="name">Rudi Gunawan</h3>
                                     </div>
-                                    <ul>
-                                        <li><div class="card sie-box"><p class="role">Bid. Lingkungan Hidup</p><h3 class="name">Moh. Ferdiyansyah</h3></div></li>
-                                        <li><div class="card sie-box"><p class="role">Bid. Pemuda & Olahraga</p><h3 class="name">Adi Nugroho</h3></div></li>
-                                        <li><div class="card sie-box"><p class="role">Bid. Kerohanian</p><h3 class="name">H. Jarot Setiawan</h3>
-                                        <li><div class="card sie-box"><p class="role">Bid. Sosial Masyarakat</p><h3 class="name">Mukti Septiantoro</h3>
-                                         <li><div class="card sie-box"><p class="role">Bid. Umum</p><h3 class="name">1. Sukatno <br>2. Alvon</h3>  
-            
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                   <ul>
+    <li>
+        <div class="card sie-box">
+            <p class="role">Bid. Lingkungan Hidup</p>
+            <h3 class="name">Moh. Ferdiyansyah</h3>
+        </div>
+    </li>
+
+    <li>
+        <div class="card sie-box">
+            <p class="role">Bid. Pemuda & Olahraga</p>
+            <h3 class="name">Adi Nugroho</h3>
+        </div>
+    </li>
+
+    <li>
+        <div class="card sie-box">
+            <p class="role">Bid. Kerohanian</p>
+            <h3 class="name">H. Jarot Setiawan</h3>
+        </div>
+    </li>
+
+    <li>
+        <div class="card sie-box">
+            <p class="role">Bid. Sosial Masyarakat</p>
+            <h3 class="name">Mukti Septiantoro</h3>
+        </div>
+    </li>
+
+    <li>
+        <div class="card sie-box">
+            <p class="role">Bid. Umum</p>
+            <h3 class="name">
+                1. Sukatno <br>
+                2. Alvon
+            </h3>
+        </div>
+    </li>
+</ul>
                                 </li>
                             </ul>
                         </li>
