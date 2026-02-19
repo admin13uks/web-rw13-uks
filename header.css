@@ -346,3 +346,62 @@
 body {
   padding-top: 140px;
 }
+
+
+/* ================= HAMBURGER ================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #111;
+  border-radius: 3px;
+  transition: .3s ease;
+}
+
+/* animasi jadi X */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px,5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px,-5px);
+}
+
+@media (max-width:768px) {
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 140px;
+    right: -100%;
+    width: 100%;
+    height: calc(100vh - 140px);
+    background: #ffffff;
+    transition: .35s ease;
+    overflow-y: auto;
+    box-shadow: -10px 0 30px rgba(0,0,0,.1);
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+    padding: 25px;
+    gap: 20px;
+  }
+
+}
+
