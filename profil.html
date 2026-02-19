@@ -46,20 +46,38 @@ body { background: linear-gradient(135deg, #f0f4f8, #e2ece9); scroll-behavior: s
 }
 
 /* ================= HEADER & NAV ================= */
-header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; z-index: 1000; }
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+    z-index: 1000;
+}
+
 .header-inner {
-    width: 100%;          /* full lebar */
-    margin: 0;            /* jangan center */
-    padding: 12px 30px;   /* beri jarak kiri kanan */
+    max-width: 1300px;   /* batasi agar rapi */
+    margin: 0 auto;      /* center container */
+    padding: 12px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
 }
 .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
 .logo img { width: 42px; }
 
-nav ul { list-style: none; display: flex; gap: 22px; align-items: center; }
+	.logo-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #2fa56a;
+}
+
+.logo-subtitle {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+nav ul { list-style: none; display: flex; gap: 26px; align-items: center; }
 nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.3s; }
 nav a:hover { color: #2fa56a; }
 
