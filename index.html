@@ -675,7 +675,7 @@
 		  <div class="layanan-item"
             data-title="Lingkungan Hidup"
             data-desc="Pengelolaan kebersihan dan pelestarian lingkungan."
-            data-img="https://images.unsplash.com/photo-1598514982901-82a5c3b0f1ad">
+            data-folder="uploads/lingkungan"
             <h3>Lingkungan Hidup</h3>
             <p>Kebersihan dan Tata Lingkungan</p>
         </div>
@@ -684,7 +684,7 @@
         <div class="layanan-item"
             data-title="Keamanan dan Ketertiban"
             data-desc="Penanganan laporan gangguan keamanan dan pengamanan lingkungan."
-            data-img="https://images.unsplash.com/photo-1581092160607-ee22621dd758">
+            data-folder="uploads/keamanan"
             <h3>Keamanan dan Ketertiban</h3>
             <p>Pengamanan Lingkungan</p>
         </div>
@@ -707,7 +707,7 @@
         <div class="layanan-item"
             data-title="Sosial Kemasyarakatan"
             data-desc="Pendampingan dan bantuan sosial bagi warga yang membutuhkan."
-            data-img="https://images.unsplash.com/photo-1581092160607-ee22621dd758">
+            data-folder="uploads/sosial"
             <h3>Sosial Kemasyarakatan</h3>
             <p>Bantuan sosial dan Santunan</p>
         </div>
@@ -715,7 +715,7 @@
         <div class="layanan-item"
             data-title="Kesehatan Masyarakat"
             data-desc="Fasilitasi posyandu dan layanan kesehatan warga."
-            data-img="https://images.unsplash.com/photo-1580281657521-8c5a9b4a2c9a">
+            data-folder="uploads/kesehatan"
             <h3>Kesehatan</h3>
             <p>Posyandu dan Olahraga</p>
         </div>
@@ -879,31 +879,59 @@ document.addEventListener("click", () => {
     });
   }
 
-  /* ===============================
-     LAYANAN PREVIEW CARD
-  =============================== */
-  const layananItems = document.querySelectorAll(".layanan-item");
-  const title = document.getElementById("cardTitle");
-  const desc  = document.getElementById("cardDesc");
-  const card  = document.getElementById("previewCard");
+ /* ===============================
+   LAYANAN PREVIEW CARD (AUTO GITHUB IMAGE)
+=============================== */
 
-  layananItems.forEach(item => {
-    item.addEventListener("click", () => {
+const USER   = "admin13uks";
+const REPO   = "rw13-uks";
+const BRANCH = "main";
 
-      layananItems.forEach(i => i.classList.remove("active"));
-      item.classList.add("active");
+async function loadLatestImage(folder) {
+  try {
+    const url = `https://api.github.com/repos/${USER}/${REPO}/contents/${folder}?ref=${BRANCH}`;
+    const res = await fetch(url);
+    if (!res.ok) return null;
 
-      if (title) title.textContent = item.dataset.title || "";
-      if (desc)  desc.textContent  = item.dataset.desc || "";
+    const files = await res.json();
 
-      if (card && item.dataset.img) {
-        card.style.backgroundImage =
-          `linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.8)),
-           url('${item.dataset.img}')`;
-      }
-    });
+    const images = files
+      .filter(f => f.type === "file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i))
+      .sort((a,b)=> b.name.localeCompare(a.name));
+
+    if(images.length === 0) return null;
+
+    return images[0].download_url;
+
+  } catch(err) {
+    console.error("Gagal ambil gambar:", err);
+    return null;
+  }
+}
+
+const layananItems = document.querySelectorAll(".layanan-item");
+const title = document.getElementById("cardTitle");
+const desc  = document.getElementById("cardDesc");
+const card  = document.getElementById("previewCard");
+
+layananItems.forEach(item => {
+  item.addEventListener("click", async () => {
+
+    layananItems.forEach(i => i.classList.remove("active"));
+    item.classList.add("active");
+
+    if (title) title.textContent = item.dataset.title || "";
+    if (desc)  desc.textContent  = item.dataset.desc || "";
+
+    const folder = item.dataset.folder;
+    const latestImg = await loadLatestImage(folder);
+
+    if (card && latestImg) {
+      card.style.backgroundImage =
+        `linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.8)),
+         url('${latestImg}')`;
+    }
   });
-
 });
 </script>
 
