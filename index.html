@@ -909,31 +909,32 @@ async function loadLatestImage(folder) {
   }
 }
 
-const layananItems = document.querySelectorAll(".layanan-item");
-const title = document.getElementById("cardTitle");
-const desc  = document.getElementById("cardDesc");
-const card  = document.getElementById("previewCard");
+ /* ===============================
+     LAYANAN PREVIEW CARD
+  =============================== */
+  const layananItems = document.querySelectorAll(".layanan-item");
+  const title = document.getElementById("cardTitle");
+  const desc = document.getElementById("cardDesc");
+  const card = document.getElementById("previewCard");
 
-layananItems.forEach(item => {
-  item.addEventListener("click", async () => {
+  layananItems.forEach(item => {
+    item.addEventListener("click", () => {
 
-    layananItems.forEach(i => i.classList.remove("active"));
-    item.classList.add("active");
+      layananItems.forEach(i => i.classList.remove("active"));
+      item.classList.add("active");
 
-    if (title) title.textContent = item.dataset.title || "";
-    if (desc)  desc.textContent  = item.dataset.desc || "";
+      if (title) title.textContent = item.dataset.title || "";
+      if (desc)  desc.textContent  = item.dataset.desc || "";
 
-    const folder = item.dataset.folder;
-    const latestImg = await loadLatestImage(folder);
+      if (card && item.dataset.img) {
+        card.style.backgroundImage = `
+          linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.8)),
+          url('${item.dataset.img}')
+        `;
+      }
 
-    if (card && latestImg) {
-      card.style.backgroundImage =
-        `linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.8)),
-         url('${latestImg}')`;
-    }
+    });
   });
-});
-
 
 });
 	
