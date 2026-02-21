@@ -235,48 +235,48 @@ body{
 </section>
 
 <!-- ================= ISI ================= -->
-<div class="container">
-
-  <div class="kegiatan-card">
-    <div class="kegiatan-info">
-      <h2>Kerja Bakti Lingkungan</h2>
-      <div class="kegiatan-meta">
-        <i class="fa-solid fa-calendar-days"></i> Minggu, 12 Januari 2025
-      </div>
-      <p>
-        Kegiatan kerja bakti rutin warga RW 013 untuk menjaga kebersihan,
-        keindahan, dan kenyamanan lingkungan bersama.
-      </p>
-    </div>
-    <div class="kegiatan-gallery">
-      <img src="img/kegiatan/kerja-bakti-1.jpg">
-      <img src="img/kegiatan/kerja-bakti-2.jpg">
-      <img src="img/kegiatan/kerja-bakti-3.jpg">
-    </div>
-  </div>
-
-  <div class="kegiatan-card">
-    <div class="kegiatan-info">
-      <h2>Posyandu Balita & Lansia</h2>
-      <div class="kegiatan-meta">
-        <i class="fa-solid fa-calendar-days"></i> Sabtu, 20 Januari 2025
-      </div>
-      <p>
-        Pemeriksaan kesehatan, imunisasi, dan edukasi kesehatan bagi balita
-        serta lansia yang dilakukan bersama kader dan Puskesmas.
-      </p>
-    </div>
-    <div class="kegiatan-gallery">
-      <img src="img/kegiatan/posyandu-1.jpg">
-      <img src="img/kegiatan/posyandu-2.jpg">
-      <img src="img/kegiatan/posyandu-3.jpg">
-    </div>
-  </div>
-
-</div>
-
+<div class="container" id="listKegiatan"></div>
 <!-- ================= SCRIPT ================= -->
 <script>
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzJUotdPkAKJMerYDALEuFsMN7mnD79_7xzqpM5L9esoz0gxWDX0nYdp_vzgNgcsi2pDw/exec?kategori=kegiatan";
+
+async function loadKegiatan(){
+  try{
+    const res = await fetch(WEB_APP_URL);
+    const data = await res.json();
+
+    const container = document.getElementById("listKegiatan");
+    container.innerHTML = "";
+
+    if(data.length === 0){
+      container.innerHTML = "<p style='text-align:center'>Belum ada kegiatan</p>";
+      return;
+    }
+
+    data.forEach(item => {
+      container.innerHTML += `
+        <div class="kegiatan-card">
+          <div class="kegiatan-info">
+            <h2>${item.judul}</h2>
+            <div class="kegiatan-meta">
+              <i class="fa-solid fa-calendar-days"></i> ${item.tanggal}
+            </div>
+            <p>${item.keterangan}</p>
+          </div>
+          <div class="kegiatan-gallery">
+            <img src="${item.foto}">
+          </div>
+        </div>
+      `;
+    });
+
+  }catch(err){
+    console.error("Gagal load kegiatan:", err);
+  }
+}
+
+loadKegiatan();
+
 const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("navMenu");
 
