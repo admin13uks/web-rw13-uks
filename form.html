@@ -96,41 +96,13 @@ button:hover{ opacity:.9; }
   <input type="file" id="foto" accept="image/*" onchange="preview(this)">
   <img id="previewImg">
 
-  <button id="btnUpload" onclick="simpan()">Simpan</button>
-  <button class="btn-cancel" onclick="batal()">Batal</button>
-  <button class="btn-home" onclick="beranda()">⬅ Kembali ke Beranda</button>
+  <button onclick="simpan()">Simpan</button>
+  <button class="btn-cancel" onclick="location.reload()">Batal</button>
+  <button class="btn-home" onclick="window.location.href='index.html'">⬅ Kembali</button>
 </div>
 
 <script>
 
-      // ================= HAPUS JSON PASANGAN =================
-      const jsonPath = file.path.replace(".jpg",".json");
-
-      const jsonFile = files.find(f => f.path === jsonPath);
-      if(jsonFile){
-        await fetch(`https://api.github.com/repos/${REPO}/contents/${jsonFile.path}`,{
-          method:"DELETE",
-          headers:{
-            "Authorization": "token " + GITHUB_TOKEN,
-            "Content-Type":"application/json"
-          },
-          body: JSON.stringify({
-            message: "Auto delete json pair",
-            sha: jsonFile.sha,
-            branch: BRANCH
-          })
-        });
-      }
-
-      console.log("🗑 Deleted:", file.name);
-    }
-
-  }catch(err){
-    console.error("Gagal hapus foto lama:", err);
-  }
-}
-
-/* ================= PREVIEW ================= */
 function preview(input){
   const file = input.files[0];
   if(!file) return;
@@ -144,21 +116,10 @@ function preview(input){
   const reader = new FileReader();
   reader.onload = e => {
     document.getElementById("previewImg").src = e.target.result;
-  }
+  };
   reader.readAsDataURL(file);
 }
 
-/* ================= BATAL ================= */
-function batal(){
-  if(confirm("Batalkan upload?")) location.reload();
-}
-
-/* ================= BERANDA ================= */
-function beranda(){
-  window.location.href = "index.html";
-}
-
-/* ================= SIMPAN ================= */
 async function simpan(){
 
   const kategori = document.getElementById("kategori").value;
@@ -177,7 +138,7 @@ async function simpan(){
 
     try{
 
-      const res = await fetch("https://script.google.com/macros/s/AKfycbxq6mKbIY5eMhrnB_qyNGdvy9Njl66nLbZHl9lJDxK-2K8MZrE9irWTSCCzirHPqKdlkQ/exec", {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbwImCAGmcUiwbblGYt7CjAsVT3D6IsZ6eiEayzb8RZxUNH4XJtMea_fY_ta00uSxANDvw/exec", {
         method: "POST",
         body: JSON.stringify({
           kategori,
@@ -200,78 +161,9 @@ async function simpan(){
       alert("❌ Tidak bisa terhubung ke server");
       console.error(err);
     }
-  }
+  };
 
   reader.readAsDataURL(file);
-}
-    // ================= RESIZE FOTO =================
-    const base64 = await resizeImage(file);
-
-    const timestamp = Date.now();
-    const filename = timestamp + ".jpg";
-    const jsonName = timestamp + ".json";
-
-    const imgPath = `uploads/${kategori}/${filename}`;
-    const jsonPath = `uploads/${kategori}/${jsonName}`;
-
-    // ================= UPLOAD FOTO =================
-  const uploadImg = await fetch(
-  `https://api.github.com/repos/${REPO}/contents/${imgPath}`,
-{
-  method: "PUT",
-  headers: {
-    "Authorization": "token " + GITHUB_TOKEN,
-    "Accept": "application/vnd.github+json",
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    message: `Upload ${kategori} - ${judul}`,
-    content: base64,
-    branch: BRANCH
-  })
-});
-
-
-    const imgResult = await uploadImg.json();
-    if(!uploadImg.ok) throw new Error(imgResult.message);
-
-    // ================= UPLOAD JSON =================
-    const jsonContent = btoa(JSON.stringify({
-      judul: judul,
-      keterangan: keterangan,
-      file: filename,
-      tanggal: new Date().toISOString()
-    }, null, 2));
-
-    const uploadJson = await fetch(`https://api.github.com/repos/${REPO}/contents/${jsonPath}`, {
-      method: "PUT",
-      headers: {
-        "Authorization": "token " + GITHUB_TOKEN,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: "Upload data foto",
-        content: jsonContent,
-        branch: BRANCH
-      })
-    });
-
-    const jsonResult = await uploadJson.json();
-    if(!uploadJson.ok) throw new Error(jsonResult.message);
-
-    // ================= HAPUS FOTO LAMA =================
-    await hapusFotoLama(kategori);
-
-    alert("✅ Upload berhasil!");
-    window.location.href = kategori + ".html";
-
-  }catch(err){
-    console.error(err);
-    alert("❌ Upload gagal: " + err.message);
-
-    btn.innerText = "Simpan";
-    btn.disabled = false;
-  }
 }
 
 </script>
