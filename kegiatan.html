@@ -237,53 +237,70 @@ body{
 <!-- ================= ISI ================= -->
 <div class="container" id="listKegiatan"></div>
 <!-- ================= SCRIPT ================= -->
-<script>
-const WEB_APP_URL = "const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxjrUGEqDQF-aaSHxfpQOjhsqsIp9IvkpfnWDqslY4RRD1WKp0ivDqdluz0Y63m27kT/exec?kategori=kegiatan";";
 
-async function loadKegiatan(){
+  <script>
+const USER = "admin13uks";
+const REPO = "rw13-uks";
+const FOLDER = "uploads/kegiatan";
+const BRANCH = "main";
+
+async function loadGalleryKegiatan(){
   try{
-    const res = await fetch(WEB_APP_URL);
-    const data = await res.json();
+    const url = `https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER}?ref=${BRANCH}`;
+    const res = await fetch(url);
+    const files = await res.json();
+    if(!Array.isArray(files)) return;
+
+    const images = files
+      .filter(f => f.type === "file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i))
+      .sort((a,b)=> b.name.localeCompare(a.name))
+      .slice(0,5); // maksimal 5 kegiatan
 
     const container = document.getElementById("listKegiatan");
     container.innerHTML = "";
 
-    if(data.length === 0){
-      container.innerHTML = "<p style='text-align:center'>Belum ada kegiatan</p>";
-      return;
-    }
+    for(const file of images){
 
-    data.forEach(item => {
-      container.innerHTML += `
-        <div class="kegiatan-card">
-          <div class="kegiatan-info">
-            <h2>${item.judul}</h2>
-            <div class="kegiatan-meta">
-              <i class="fa-solid fa-calendar-days"></i> ${item.tanggal}
-            </div>
-            <p>${item.keterangan}</p>
-          </div>
-          <div class="kegiatan-gallery">
-            <img src="${item.foto}">
-          </div>
+      const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,".json");
+
+      let judul = "Kegiatan Warga";
+      let ket = "";
+      let tanggal = "";
+
+      try{
+        const jsonRes = await fetch(jsonUrl);
+        if(jsonRes.ok){
+          const data = await jsonRes.json();
+          judul = data.judul || judul;
+          ket = data.keterangan || "";
+          tanggal = data.tanggal || "";
+        }
+      }catch(e){}
+
+      const card = document.createElement("div");
+      card.className = "kegiatan-card";
+
+      card.innerHTML = `
+        <div class="kegiatan-gallery">
+          <img src="${file.download_url}" alt="${judul}">
+        </div>
+        <div class="kegiatan-info">
+          <h2>${judul}</h2>
+          <div class="kegiatan-meta">${tanggal}</div>
+          <p>${ket}</p>
         </div>
       `;
-    });
+
+      container.appendChild(card);
+    }
 
   }catch(err){
-    console.error("Gagal load kegiatan:", err);
+    console.error(err);
   }
 }
 
-loadKegiatan();
-
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("navMenu");
-
-hamburger.addEventListener("click", () => {
-  navMenu.classList.toggle("active");
-});
-
+loadGalleryKegiatan();
+setInterval(loadGalleryKegiatan, 30000);
 </script>
 
 </body>
