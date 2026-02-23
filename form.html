@@ -325,6 +325,32 @@ function filterData(){
   // Nanti bagian ini bisa kita hubungkan ke Google Script
 }
 
+  <script>
+
+const scriptURL = "1-GNR8B42O4DZ1hlAvZ0pN9sa23P71_AGX2F_Z_ll1cs";
+
+document.querySelector("form").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const data = {
+    jenis: document.getElementById("jenis").value,
+    keterangan: document.getElementById("keterangan").value,
+    jumlahrt: document.getElementById("jumlahrt").value,
+    rt: document.getElementById("rt").value,
+    tahun: document.getElementById("tahun").value
+  };
+
+  await fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(data)
+  });
+
+  alert("Data berhasil disimpan!");
+  this.reset();
+});
+
+</script>
+
 </script>
 
 </body>
