@@ -1006,6 +1006,50 @@ async function loadData(){
 
 loadData();
 
+	const scriptURL = "PASTE_URL_EXEC_DISINI";
+const tahunSekarang = new Date().getFullYear();
+
+async function loadData(){
+
+  const res = await fetch(scriptURL + "?tahun=" + tahunSekarang);
+  const data = await res.json();
+
+  let pengaspalanRT = [];
+  let lampuRT = [];
+  let saluranRT = [];
+
+  data.forEach(item => {
+
+    if(item.jenis === "Pengaspalan Jalan"){
+      pengaspalanRT.push(...item.rt.split(", "));
+    }
+
+    if(item.jenis === "Lampu Jalan"){
+      lampuRT.push(...item.rt.split(", "));
+    }
+
+    if(item.jenis === "Perbaikan Saluran"){
+      saluranRT.push(...item.rt.split(", "));
+    }
+
+  });
+
+  pengaspalanRT = [...new Set(pengaspalanRT)];
+  lampuRT = [...new Set(lampuRT)];
+  saluranRT = [...new Set(saluranRT)];
+
+  document.getElementById("pengaspalanTotal").innerHTML =
+    pengaspalanRT.length + " <span>RT</span>";
+
+  document.getElementById("lampuTotal").innerHTML =
+    lampuRT.length + " <span>RT</span>";
+
+  document.getElementById("saluranTotal").innerHTML =
+    saluranRT.length + " <span>RT</span>";
+}
+
+loadData();
+
 	
 </script>
 
