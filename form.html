@@ -93,6 +93,12 @@ img{
   margin-top:10px;
   border-radius:10px;
 }
+.data-bg{
+  background:#e0f2fe;
+  padding:20px;
+  border-radius:12px;
+}
+  
 </style>
 </head>
 
@@ -135,15 +141,18 @@ img{
 </div>
 
 <!-- ================= INPUT DATA ================= -->
-<div id="dataSection" class="hidden">
+<div id="dataSection" class="hidden data-bg">
 
 <label>Jenis Data</label>
-<select id="jenisData">
+<select id="jenisData" onchange="cekJenis()">
   <option value="">-- Pilih Jenis --</option>
-  <option value="pengaspalan">Pengaspalan Jalan</option>
-  <option value="lampu">Lampu Jalan</option>
-  <option value="saluran">Perbaikan Saluran</option>
+  <option value="Pengaspalan Jalan">Pengaspalan Jalan</option>
+  <option value="Lampu Jalan">Lampu Jalan</option>
+  <option value="Perbaikan Saluran">Perbaikan Saluran</option>
+  <option value="lainnya">Lainnya (Isi Manual)</option>
 </select>
+
+<input type="text" id="jenisManual" placeholder="Tulis jenis data disini..." class="hidden">
 
 <label>Keterangan</label>
 <textarea id="keteranganData"></textarea>
@@ -214,10 +223,28 @@ async function simpanUpload(){
   alert("Upload Dokumentasi tetap menggunakan sistem lama Anda");
 }
 
+function cekJenis(){
+  const jenis = document.getElementById("jenisData").value;
+  const manual = document.getElementById("jenisManual");
+
+  if(jenis === "lainnya"){
+    manual.classList.remove("hidden");
+  }else{
+    manual.classList.add("hidden");
+  }
+}
+  
 // ================= SIMPAN DATA =================
 async function simpanData(){
 
-  const jenis = document.getElementById("jenisData").value;
+  let jenis = document.getElementById("jenisData").value;
+  const manual = document.getElementById("jenisManual").value;
+
+  if(jenis === "lainnya"){
+    if(!manual) return alert("Isi jenis data terlebih dahulu");
+    jenis = manual;
+  }
+
   const keterangan = document.getElementById("keteranganData").value;
   const tahun = document.getElementById("tahun").value;
   const rtDipilih = [...document.querySelectorAll("#rtContainer input:checked")]
