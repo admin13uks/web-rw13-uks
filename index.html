@@ -953,47 +953,41 @@ async function loadData(){
     const res = await fetch(scriptURL + "?tahun=" + tahunSekarang);
     const data = await res.json();
 
-    let pengaspalanRT = [];
-    let lampuRT = [];
-    let saluranRT = [];
+    const container = document.querySelector(".info-grid");
+
+    // hapus semua card kecuali Total Wilayah
+    container.querySelectorAll(".stat-card.dynamic").forEach(e => e.remove());
+
+    const jenisMap = {};
 
     data.forEach(item => {
 
-      if(item.jenis === "Pengaspalan Jalan"){
-        pengaspalanRT.push(...item.rt.split(", "));
+      if(!jenisMap[item.jenis]){
+        jenisMap[item.jenis] = new Set();
       }
 
-      if(item.jenis === "Lampu Jalan"){
-        lampuRT.push(...item.rt.split(", "));
-      }
-
-      if(item.jenis === "Perbaikan Saluran"){
-        saluranRT.push(...item.rt.split(", "));
-      }
+      item.rt.split(", ").forEach(rt => {
+        jenisMap[item.jenis].add(rt);
+      });
 
     });
 
-    pengaspalanRT = [...new Set(pengaspalanRT)];
-    lampuRT = [...new Set(lampuRT)];
-    saluranRT = [...new Set(saluranRT)];
+    Object.keys(jenisMap).forEach(jenis => {
 
-    document.getElementById("pengaspalanTotal").innerHTML =
-      pengaspalanRT.length + " <span>RT</span>";
+      const rtArray = [...jenisMap[jenis]];
 
-    document.getElementById("lampuTotal").innerHTML =
-      lampuRT.length + " <span>RT</span>";
+      const card = document.createElement("div");
+      card.className = "stat-card orange dynamic";
 
-    document.getElementById("saluranTotal").innerHTML =
-      saluranRT.length + " <span>RT</span>";
+      card.innerHTML = `
+        <h4>${jenis}</h4>
+        <h2>${rtArray.length} <span>RT</span></h2>
+        <p>${rtArray.join(", ")}</p>
+      `;
 
-    document.getElementById("pengaspalanRT").innerText =
-      pengaspalanRT.join(", ");
+      container.insertBefore(card, container.lastElementChild);
 
-    document.getElementById("lampuRT").innerText =
-      lampuRT.join(", ");
-
-    document.getElementById("saluranRT").innerText =
-      saluranRT.join(", ");
+    });
 
   }catch(err){
     console.error("Gagal load data", err);
@@ -1001,7 +995,6 @@ async function loadData(){
 }
 
 loadData();
-
 	
 </script>
 
