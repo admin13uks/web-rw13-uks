@@ -325,27 +325,6 @@ function filterData(){
   // Nanti bagian ini bisa kita hubungkan ke Google Script
 }
 
-  <script>
-
-  const data = {
-    jenis: document.getElementById("jenis").value,
-    keterangan: document.getElementById("keterangan").value,
-    jumlahrt: document.getElementById("jumlahrt").value,
-    rt: document.getElementById("rt").value,
-    tahun: document.getElementById("tahun").value
-  };
-
-  await fetch(scriptURL, {
-    method: "POST",
-    body: JSON.stringify(data)
-  });
-
-  alert("Data berhasil disimpan!");
-  this.reset();
-});
-
-
-</script>
 
 </body>
 </html>
