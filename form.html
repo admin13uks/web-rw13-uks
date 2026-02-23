@@ -98,6 +98,9 @@ img{
   padding:20px;
   border-radius:12px;
 }
+
+  .btn-home{ background:#2563eb; }
+.btn-cancel{ background:#dc2626; }
   
 </style>
 </head>
@@ -136,10 +139,17 @@ img{
 <input type="file" id="foto" accept="image/*" onchange="preview(this)">
 <img id="previewImg">
 
-<button onclick="simpanUpload()">Simpan Dokumentasi</button>
+<button onclick="simpanUpload()">Simpan Dokumen</button>
+<button type="button" class="btn-cancel" onclick="resetUpload()">Batal</button>
+<button type="button" class="btn-home" onclick="window.location.href='index.html'">⬅ Kembali ke Beranda</button>
 
 </div>
 
+<label>Filter Data Berdasarkan Tahun</label>
+<select id="filterTahun" onchange="filterData()">
+  <option value="">-- Semua Tahun --</option>
+</select>
+  
 <!-- ================= INPUT DATA ================= -->
 <div id="dataSection" class="hidden data-bg">
 
@@ -233,6 +243,14 @@ function cekJenis(){
     manual.classList.add("hidden");
   }
 }
+
+  function resetUpload(){
+  document.getElementById("kategori").value="";
+  document.getElementById("judul").value="";
+  document.getElementById("keteranganUpload").value="";
+  document.getElementById("foto").value="";
+  document.getElementById("previewImg").src="";
+}
   
 // ================= SIMPAN DATA =================
 async function simpanData(){
@@ -278,6 +296,33 @@ async function simpanData(){
     alert("❌ Server tidak terhubung");
   }
 
+}
+
+  // ================= AUTO TAHUN INPUT =================
+const tahunSekarang = new Date().getFullYear();
+document.getElementById("tahun").value = tahunSekarang;
+
+// ================= ISI FILTER TAHUN =================
+const filterSelect = document.getElementById("filterTahun");
+
+for(let i = tahunSekarang; i >= tahunSekarang-5; i--){
+  const opt = document.createElement("option");
+  opt.value = i;
+  opt.textContent = i;
+  filterSelect.appendChild(opt);
+}
+
+// ================= FILTER FUNCTION =================
+function filterData(){
+  const tahunDipilih = document.getElementById("filterTahun").value;
+
+  if(!tahunDipilih){
+    alert("Menampilkan semua data");
+  }else{
+    alert("Filter data tahun " + tahunDipilih);
+  }
+
+  // Nanti bagian ini bisa kita hubungkan ke Google Script
 }
 
 </script>
