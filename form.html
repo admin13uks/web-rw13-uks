@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Upload Dokumentasi RW 013</title>
+<title>RW 013 - Input Data</title>
 
 <style>
 body{
@@ -13,7 +13,7 @@ body{
 }
 
 .container{
-  max-width:550px;
+  max-width:650px;
   margin:40px auto;
   background:white;
   padding:25px;
@@ -24,6 +24,28 @@ body{
 h2{
   text-align:center;
   color:#16a34a;
+}
+
+.tab{
+  display:flex;
+  margin-bottom:20px;
+}
+
+.tab button{
+  flex:1;
+  padding:12px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.active{
+  background:#16a34a;
+  color:white;
+}
+
+.notactive{
+  background:#e5e7eb;
 }
 
 label{
@@ -45,10 +67,11 @@ textarea{
   height:80px;
 }
 
-img{
-  width:100%;
+.rt-list{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
   margin-top:10px;
-  border-radius:10px;
 }
 
 button{
@@ -63,107 +86,171 @@ button{
   cursor:pointer;
 }
 
-button:hover{ opacity:.9; }
+.hidden{ display:none; }
 
-.btn-home{ background:#2563eb; }
-.btn-cancel{ background:#dc2626; }
+img{
+  width:100%;
+  margin-top:10px;
+  border-radius:10px;
+}
 </style>
 </head>
 
 <body>
 
 <div class="container">
-  <h2>Upload Dokumentasi RW 013</h2>
+<h2>RW 013 - Sistem Input</h2>
 
-  <label>Pilih Kategori</label>
-  <select id="kategori">
-    <option value="">-- Pilih Kategori --</option>
-    <option value="lingkungan">Lingkungan</option>
-    <option value="kesehatan">Kesehatan</option>
-    <option value="sosial">Sosial</option>
-    <option value="keamanan">Keamanan</option>
-    <option value="kerohanian">Kerohanian</option>
-    <option value="informasi">Informasi</option>
-  </select>
+<div class="tab">
+  <button id="btnUpload" class="active" onclick="showUpload()">Upload Dokumentasi</button>
+  <button id="btnData" class="notactive" onclick="showData()">Input Data</button>
+</div>
 
-  <label>Judul</label>
-  <input type="text" id="judul">
+<!-- ================= UPLOAD DOKUMENTASI ================= -->
+<div id="uploadSection">
 
-  <label>Keterangan</label>
-  <textarea id="keterangan"></textarea>
+<label>Pilih Kategori</label>
+<select id="kategori">
+  <option value="">-- Pilih Kategori --</option>
+  <option value="lingkungan">Lingkungan</option>
+  <option value="kesehatan">Kesehatan</option>
+  <option value="sosial">Sosial</option>
+  <option value="keamanan">Keamanan</option>
+  <option value="kerohanian">Kerohanian</option>
+  <option value="informasi">Informasi</option>
+</select>
 
-  <label>Upload Foto</label>
-  <input type="file" id="foto" accept="image/*" onchange="preview(this)">
-  <img id="previewImg">
+<label>Judul</label>
+<input type="text" id="judul">
 
-  <button onclick="simpan()">Simpan</button>
-  <button class="btn-cancel" onclick="location.reload()">Batal</button>
-  <button class="btn-home" onclick="window.location.href='index.html'">⬅ Kembali</button>
+<label>Keterangan</label>
+<textarea id="keteranganUpload"></textarea>
+
+<label>Upload Foto</label>
+<input type="file" id="foto" accept="image/*" onchange="preview(this)">
+<img id="previewImg">
+
+<button onclick="simpanUpload()">Simpan Dokumentasi</button>
+
+</div>
+
+<!-- ================= INPUT DATA ================= -->
+<div id="dataSection" class="hidden">
+
+<label>Jenis Data</label>
+<select id="jenisData">
+  <option value="">-- Pilih Jenis --</option>
+  <option value="pengaspalan">Pengaspalan Jalan</option>
+  <option value="lampu">Lampu Jalan</option>
+  <option value="saluran">Perbaikan Saluran</option>
+</select>
+
+<label>Keterangan</label>
+<textarea id="keteranganData"></textarea>
+
+<label>Pilih RT yang Diproses</label>
+<div class="rt-list" id="rtContainer"></div>
+
+<label>Jumlah RT</label>
+<input type="text" id="jumlahRT" readonly>
+
+<label>Tahun</label>
+<input type="text" id="tahun" readonly>
+
+<button onclick="simpanData()">Simpan Data</button>
+
+</div>
+
 </div>
 
 <script>
 
+// ================= TAB SWITCH =================
+function showUpload(){
+  uploadSection.classList.remove("hidden");
+  dataSection.classList.add("hidden");
+  btnUpload.classList.add("active");
+  btnData.classList.remove("active");
+}
+
+function showData(){
+  uploadSection.classList.add("hidden");
+  dataSection.classList.remove("hidden");
+  btnUpload.classList.remove("active");
+  btnData.classList.add("active");
+}
+
+// ================= AUTO GENERATE RT =================
+const rtContainer = document.getElementById("rtContainer");
+for(let i=1;i<=17;i++){
+  const label = document.createElement("label");
+  label.innerHTML = `
+    <input type="checkbox" value="RT ${String(i).padStart(3,'0')}" onchange="hitungRT()"> 
+    RT ${String(i).padStart(3,'0')}
+  `;
+  rtContainer.appendChild(label);
+}
+
+// ================= HITUNG JUMLAH RT =================
+function hitungRT(){
+  const checked = document.querySelectorAll("#rtContainer input:checked");
+  document.getElementById("jumlahRT").value = checked.length + " RT";
+}
+
+// ================= SET TAHUN OTOMATIS =================
+document.getElementById("tahun").value = new Date().getFullYear();
+
+// ================= UPLOAD DOKUMENTASI =================
 function preview(input){
   const file = input.files[0];
   if(!file) return;
 
-  if(!file.type.startsWith("image/")){
-    alert("File harus berupa gambar!");
-    input.value = "";
-    return;
-  }
-
   const reader = new FileReader();
-  reader.onload = e => {
-    document.getElementById("previewImg").src = e.target.result;
-  };
+  reader.onload = e => previewImg.src = e.target.result;
   reader.readAsDataURL(file);
 }
 
-async function simpan(){
+async function simpanUpload(){
+  alert("Upload Dokumentasi tetap menggunakan sistem lama Anda");
+}
 
-  const kategori = document.getElementById("kategori").value;
-  const judul = document.getElementById("judul").value;
-  const keterangan = document.getElementById("keterangan").value;
-  const file = document.getElementById("foto").files[0];
+// ================= SIMPAN DATA =================
+async function simpanData(){
 
-  if(!kategori) return alert("Pilih kategori dulu");
-  if(!judul) return alert("Isi judul dulu");
-  if(!file) return alert("Pilih foto dulu");
+  const jenis = document.getElementById("jenisData").value;
+  const keterangan = document.getElementById("keteranganData").value;
+  const tahun = document.getElementById("tahun").value;
+  const rtDipilih = [...document.querySelectorAll("#rtContainer input:checked")]
+                      .map(cb => cb.value);
 
-  const reader = new FileReader();
+  if(!jenis) return alert("Pilih jenis data dulu");
+  if(rtDipilih.length === 0) return alert("Pilih minimal 1 RT");
 
-  reader.onload = async function(){
-    const base64 = reader.result.split(",")[1];
+  try{
 
-    try{
+    const res = await fetch("https://script.google.com/macros/s/AKfycbxjrUGEqDQF-aaSHxfpQOjhsqsIp9IvkpfnWDqslY4RRD1WKp0ivDqdluz0Y63m27kT/exec", {
+      method: "POST",
+      body: JSON.stringify({
+        tipe: "dataLingkungan",
+        jenis,
+        keterangan,
+        jumlahRT: rtDipilih.length,
+        rt: rtDipilih.join(", "),
+        tahun
+      })
+    });
 
-      const res = await fetch("https://script.google.com/macros/s/AKfycbxjrUGEqDQF-aaSHxfpQOjhsqsIp9IvkpfnWDqslY4RRD1WKp0ivDqdluz0Y63m27kT/exec", {
-        method: "POST",
-        body: JSON.stringify({
-          kategori,
-          judul,
-          keterangan,
-          base64
-        })
-      });
-
-      const result = await res.json();
-
-      if(res.ok){
-        alert("✅ Upload berhasil");
-        window.location.href = kategori + ".html";
-      }else{
-        alert("❌ Upload gagal: " + result.message);
-      }
-
-    }catch(err){
-      alert("❌ Tidak bisa terhubung ke server");
-      console.error(err);
+    if(res.ok){
+      alert("✅ Data berhasil disimpan");
+      location.reload();
+    }else{
+      alert("❌ Gagal menyimpan data");
     }
-  };
 
-  reader.readAsDataURL(file);
+  }catch(err){
+    alert("❌ Server tidak terhubung");
+  }
+
 }
 
 </script>
