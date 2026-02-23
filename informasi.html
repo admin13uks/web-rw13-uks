@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kegiatan Warga | RW 013 Utan Kayu Selatan</title>
+<title>Informasi Warga | RW 013 Utan Kayu Selatan</title>
 
 <!-- GOOGLE FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -112,19 +112,19 @@ body{
 }
 
 /* ================= HERO ================= */
-.kegiatan-hero{
+.informasi-hero{
   background:linear-gradient(135deg,#16a34a,#22c55e);
   padding:120px 20px 80px;
   text-align:center;
   color:#fff;
 }
 
-.kegiatan-hero h1{
+.informasi-hero h1{
   font-size:40px;
   font-weight:800;
 }
 
-.kegiatan-hero p{
+.informasi-hero p{
   max-width:720px;
   margin:12px auto 0;
   font-size:16px;
@@ -139,7 +139,7 @@ body{
 }
 
 /* ================= CARD ================= */
-.kegiatan-card{
+.informasi-card{
   background:#fff;
   border-radius:24px;
   margin-bottom:60px;
@@ -148,41 +148,41 @@ body{
   transition:.3s ease;
 }
 
-.kegiatan-card:hover{
+.informasi-card:hover{
   transform:translateY(-6px);
 }
 
 /* ================= INFO ================= */
-.kegiatan-info{
+.informasi-info{
   padding:32px;
 }
 
-.kegiatan-info h2{
+.informasi-info h2{
   color:#16a34a;
   font-weight:800;
   margin-bottom:6px;
 }
 
-.kegiatan-meta{
+.informasi-meta{
   font-size:14px;
   color:#6b7280;
   margin-bottom:14px;
 }
 
-.kegiatan-info p{
+.informasi-info p{
   line-height:1.7;
   color:#374151;
 }
 
 /* ================= GALLERY ================= */
-.kegiatan-gallery{
+.informasi-gallery{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:16px;
   padding:0 32px 32px;
 }
 
-.kegiatan-gallery img{
+.informasi-gallery img{
   width:100%;
   height:220px;
   object-fit:cover;
@@ -191,11 +191,11 @@ body{
 
 /* ================= RESPONSIVE ================= */
 @media(max-width:768px){
-  .kegiatan-hero h1{
+  .informasi-hero h1{
     font-size:28px;
   }
 
-  .kegiatan-gallery{
+  .informasi-gallery{
     grid-template-columns:1fr;
   }
 }
@@ -224,8 +224,8 @@ body{
 </header>
 
 <!-- ================= HERO ================= -->
-<section class="kegiatan-hero">
-  <h1>Kegiatan Warga RW 013</h1>
+<section class="informasi-hero">
+  <h1>informasi Warga RW 013</h1>
   <p>
     Berbagai aktivitas sosial, kesehatan, dan kebersamaan warga
     sebagai wujud kepedulian dan gotong royong di lingkungan RW 013.
@@ -233,16 +233,16 @@ body{
 </section>
 
 <!-- ================= ISI ================= -->
-<div class="container" id="listKegiatan"></div>
+<div class="container" id="listInformasi"></div>
 <!-- ================= SCRIPT ================= -->
 
   <script>
 const USER = "admin13uks";
 const REPO = "rw13-uks";
-const FOLDER = "uploads/kegiatan";
+const FOLDER = "uploads/informasi";
 const BRANCH = "main";
 
-async function loadGalleryKegiatan(){
+async function loadGalleryInformasi(){
   try{
     const url = `https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER}?ref=${BRANCH}`;
     const res = await fetch(url);
@@ -252,16 +252,16 @@ async function loadGalleryKegiatan(){
     const images = files
       .filter(f => f.type === "file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i))
       .sort((a,b)=> b.name.localeCompare(a.name))
-      .slice(0,5); // maksimal 5 kegiatan
+      .slice(0,5); // maksimal 5 informasi
 
-    const container = document.getElementById("listKegiatan");
+    const container = document.getElementById("listInformasi");
     container.innerHTML = "";
 
     for(const file of images){
 
       const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,".json");
 
-      let judul = "Kegiatan Warga";
+      let judul = "informasi Warga";
       let ket = "";
       let tanggal = "";
 
@@ -276,15 +276,15 @@ async function loadGalleryKegiatan(){
       }catch(e){}
 
       const card = document.createElement("div");
-      card.className = "kegiatan-card";
+      card.className = "informasi-card";
 
       card.innerHTML = `
-        <div class="kegiatan-gallery">
+        <div class="informasi-gallery">
           <img src="${file.download_url}" alt="${judul}">
         </div>
-        <div class="kegiatan-info">
+        <div class="informasi-info">
           <h2>${judul}</h2>
-          <div class="kegiatan-meta">${tanggal}</div>
+          <div class="informasi-meta">${tanggal}</div>
           <p>${ket}</p>
         </div>
       `;
@@ -297,8 +297,8 @@ async function loadGalleryKegiatan(){
   }
 }
 
-loadGalleryKegiatan();
-setInterval(loadGalleryKegiatan, 30000);
+loadGalleryinformasi();
+setInterval(loadGalleryinformasi, 30000);
 </script>
 
 </body>
