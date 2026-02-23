@@ -740,18 +740,18 @@
         <div class="info-grid">
             <div class="stat-card orange">
                 <h4>Pengaspalan Jalan</h4>
-                <span class="big-num">9 <small style="font-size:18px;">RT</small></span>
-                <div class="loc">RT 007, 009, 010, 011, 012, 014, 015, 016, 017</div>
+               <h2 id="pengaspalanTotal">0 <span>RT</span></h2>
+				<p id="pengaspalanRT"></p>
             </div>
             <div class="stat-card yellow">
                 <h4>Lampu Jalan</h4>
-                <span class="big-num">4 <small style="font-size:18px;">RT</small></span>
-                <div class="loc">RT 009, 012, 016, 017</div>
+				<h2 id="lampuTotal">0 <span>RT</span></h2>
+				<p id="lampuRT"></p>
             </div>
             <div class="stat-card green">
                 <h4>Perbaikan Saluran</h4>
-                <span class="big-num">8 <small style="font-size:18px;">RT</small></span>
-                <div class="loc">RT 001, 004, 005, 007, 013, 014, 017</div>
+                <h2 id="saluranTotal">0 <span>RT</span></h2>
+				<p id="saluranRT"></p>
             </div>
             <div class="stat-card blue">
                 <h4>Total Wilayah</h4>
@@ -945,7 +945,67 @@ if (tahunEl) {
 
 });
 
-	
+	const scriptURL = "https://script.google.com/macros/s/AKfycbxjrUGEqDQF-aaSHxfpQOjhsqsIp9IvkpfnWDqslY4RRD1WKp0ivDqdluz0Y63m27kT/exec";
+const tahunSekarang = new Date().getFullYear();
+
+async function loadData(){
+
+  try{
+
+    const res = await fetch(scriptURL + "?tahun=" + tahunSekarang);
+    const data = await res.json();
+
+    let pengaspalanRT = [];
+    let lampuRT = [];
+    let saluranRT = [];
+
+    data.forEach(item => {
+
+      if(item.jenis === "Pengaspalan Jalan"){
+        pengaspalanRT.push(...item.rt.split(", "));
+      }
+
+      if(item.jenis === "Lampu Jalan"){
+        lampuRT.push(...item.rt.split(", "));
+      }
+
+      if(item.jenis === "Perbaikan Saluran"){
+        saluranRT.push(...item.rt.split(", "));
+      }
+
+    });
+
+    // Hapus duplikat
+    pengaspalanRT = [...new Set(pengaspalanRT)];
+    lampuRT = [...new Set(lampuRT)];
+    saluranRT = [...new Set(saluranRT)];
+
+    document.getElementById("pengaspalanTotal").innerHTML =
+      pengaspalanRT.length + " <span>RT</span>";
+
+    document.getElementById("lampuTotal").innerHTML =
+      lampuRT.length + " <span>RT</span>";
+
+    document.getElementById("saluranTotal").innerHTML =
+      saluranRT.length + " <span>RT</span>";
+
+    document.getElementById("pengaspalanRT").innerText =
+      pengaspalanRT.join(", ");
+
+    document.getElementById("lampuRT").innerText =
+      lampuRT.join(", ");
+
+    document.getElementById("saluranRT").innerText =
+      saluranRT.join(", ");
+
+  }catch(err){
+    console.error("Gagal load data", err);
+  }
+
+}
+
+loadData();
+
 	
 </script>
 
