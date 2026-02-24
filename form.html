@@ -230,9 +230,50 @@ function preview(input){
 }
 
 async function simpanUpload(){
-  alert("Upload Dokumentasi tetap menggunakan sistem lama Anda");
-}
 
+  const kategori = document.getElementById("kategori").value;
+  const judul = document.getElementById("judul").value;
+  const keterangan = document.getElementById("keteranganUpload").value;
+  const file = document.getElementById("foto").files[0];
+
+  if(!kategori) return alert("Pilih kategori dulu");
+  if(!judul) return alert("Isi judul dulu");
+  if(!file) return alert("Upload foto dulu");
+
+  const reader = new FileReader();
+
+  reader.onload = async function(e){
+
+    const base64 = e.target.result.split(",")[1];
+
+    try{
+      const res = await fetch("https://script.google.com/macros/s/AKfycbwcGFQ82ChqOyYdhjxobjqgdVQwfuAQHI6y9ajGU9dE8PY-gQMRIiKysZI1fosKiNe4/exec",{
+        method:"POST",
+        body: JSON.stringify({
+          tipe: "uploadDokumentasi",
+          kategori: kategori,
+          judul: judul,
+          keterangan: keterangan,
+          fileName: file.name,
+          mimeType: file.type,
+          fileData: base64
+        })
+      });
+
+      const result = await res.text();
+
+      alert("✅ Upload berhasil");
+      resetUpload();
+
+    }catch(err){
+      alert("❌ Upload gagal");
+    }
+
+  };
+
+  reader.readAsDataURL(file);
+}
+  
 function cekJenis(){
   const jenis = document.getElementById("jenisData").value;
   const manual = document.getElementById("jenisManual");
