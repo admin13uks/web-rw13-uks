@@ -247,16 +247,17 @@ async function simpanUpload(){
     const base64 = e.target.result.split(",")[1];
 
     try{
+
       const res = await fetch("https://script.google.com/macros/s/AKfycbxJz4NvNYK111g51V8BO9aJmvr4J2fLnfUBUoUYnVqX417HkIToU1WsG5u3vMGGD1cV/exec",{
         method:"POST",
         headers:{
-    "Content-Type":"application/json"
-  },
+          "Content-Type":"application/json"
+        },
         body: JSON.stringify({
           tipe: "uploadDokumentasi",
-          kategori: kategori,
-          judul: judul,
-          keterangan: keterangan,
+          kategori,
+          judul,
+          keterangan,
           fileName: file.name,
           mimeType: file.type,
           fileData: base64
@@ -264,11 +265,16 @@ async function simpanUpload(){
       });
 
       if(res.ok){
-  alert("✅ Upload berhasil");
-  resetUpload();
-}else{
-  alert("❌ Upload gagal");
-}
+        alert("✅ Upload berhasil");
+        resetUpload();
+      }else{
+        alert("❌ Upload gagal");
+      }
+
+    } catch(err){
+      alert("❌ Server tidak terhubung");
+      console.error(err);
+    }
 
   };
 
@@ -316,7 +322,7 @@ async function simpanData(){
   try{
 
     const res = await fetch("https://script.google.com/macros/s/AKfycbxJz4NvNYK111g51V8BO9aJmvr4J2fLnfUBUoUYnVqX417HkIToU1WsG5u3vMGGD1cV/exec", {
-      method: "POST", method:"POST",
+      method: "POST",
   headers:{
     "Content-Type":"application/json"
   }, 
