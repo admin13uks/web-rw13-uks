@@ -267,7 +267,7 @@ footer p {
   </div>
 </footer>
   
-  <script>
+ <script>
 const USER = "admin13uks";
 const REPO = "rw13-uks";
 const FOLDER = "uploads/informasi";
@@ -283,19 +283,16 @@ async function loadGalleryInformasi(){
     const images = files
       .filter(f => f.type === "file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i))
       .sort((a,b)=> b.name.localeCompare(a.name))
-      .slice(0,5); // maksimal 5 informasi
+      .slice(0,5);
 
-   document.addEventListener("DOMContentLoaded", () => {
-  loadGalleryInformasi();
-  setInterval(loadGalleryInformasi, 30000);
-  document.getElementById("tahun").textContent = new Date().getFullYear();
-});
+    const container = document.getElementById("listInformasi");
+    container.innerHTML = "";
 
     for(const file of images){
 
       const jsonUrl = file.download_url.replace(/\.(jpg|jpeg|png|webp)$/i,".json");
 
-      let judul = "informasi Warga";
+      let judul = "Informasi Warga";
       let ket = "";
       let tanggal = "";
 
@@ -330,13 +327,12 @@ async function loadGalleryInformasi(){
     console.error(err);
   }
 }
-    
-  document.addEventListener("DOMContentLoaded", () => {
+
+document.addEventListener("DOMContentLoaded", () => {
   loadGalleryInformasi();
   setInterval(loadGalleryInformasi, 30000);
+  document.getElementById("tahun").textContent = new Date().getFullYear();
 });
-
-    
 </script>
 
 </body>
