@@ -298,10 +298,11 @@ async function loadGalleryInformasi(){
   }
 }
 
-    document.addEventListener("DOMContentLoaded", loadGalleryInformasi);
+  document.addEventListener("DOMContentLoaded", () => {
+  loadGalleryInformasi();
+  setInterval(loadGalleryInformasi, 30000);
+});
     
-loadGalleryInformasi();
-setInterval(loadGalleryInformasi, 30000);
 </script>
 
 </body>
