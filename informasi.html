@@ -252,7 +252,12 @@ footer p {
   </p>
 </section>
 
-    <!-- FOOTER -->
+  
+<!-- ================= ISI ================= -->
+<div class="container" id="listInformasi"></div>
+<!-- ================= SCRIPT ================= -->
+
+  <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <p>
@@ -261,12 +266,7 @@ footer p {
     </p>
   </div>
 </footer>
-
   
-<!-- ================= ISI ================= -->
-<div class="container" id="listInformasi"></div>
-<!-- ================= SCRIPT ================= -->
-
   <script>
 const USER = "admin13uks";
 const REPO = "rw13-uks";
@@ -285,8 +285,11 @@ async function loadGalleryInformasi(){
       .sort((a,b)=> b.name.localeCompare(a.name))
       .slice(0,5); // maksimal 5 informasi
 
-    const container = document.getElementById("listInformasi");
-    container.innerHTML = "";
+   document.addEventListener("DOMContentLoaded", () => {
+  loadGalleryInformasi();
+  setInterval(loadGalleryInformasi, 30000);
+  document.getElementById("tahun").textContent = new Date().getFullYear();
+});
 
     for(const file of images){
 
