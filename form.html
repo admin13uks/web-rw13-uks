@@ -144,12 +144,14 @@ async function simpan(){
       const res = await fetch("https://script.google.com/macros/s/AKfycbxjrUGEqDQF-aaSHxfpQOjhsqsIp9IvkpfnWDqslY4RRD1WKp0ivDqdluz0Y63m27kT/exec", {
         method: "POST",
         body: JSON.stringify({
-          kategori,
-          judul,
-          keterangan,
-          base64
-        })
-      });
+  tipe: "uploadDokumentasi",
+  kategori: kategori,
+  judul: judul,
+  keterangan: keterangan,
+  fileData: base64,
+  fileName: file.name,
+  mimeType: file.type
+})
 
       const result = await res.json();
 
