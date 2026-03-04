@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -85,7 +83,6 @@ button:hover{ opacity:.9; }
     <option value="sosial">Sosial</option>
     <option value="keamanan">Keamanan</option>
     <option value="kerohanian">Kerohanian</option>
-    <option value="kegiatan">Kegiatan</option>
     <option value="informasi">Informasi</option>
   </select>
 
@@ -144,15 +141,13 @@ async function simpan(){
       const res = await fetch("https://script.google.com/macros/s/AKfycbxjrUGEqDQF-aaSHxfpQOjhsqsIp9IvkpfnWDqslY4RRD1WKp0ivDqdluz0Y63m27kT/exec", {
         method: "POST",
         body: JSON.stringify({
-  tipe: "uploadDokumentasi",
-  kategori: kategori,
-  judul: judul,
-  keterangan: keterangan,
-  fileData: base64,
-  fileName: file.name,
-  mimeType: file.type
-})
-});
+          kategori,
+          judul,
+          keterangan,
+          base64
+        })
+      });
+
       const result = await res.json();
 
       if(res.ok){
