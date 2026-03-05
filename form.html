@@ -249,9 +249,9 @@ const res = await fetch("https://script.google.com/macros/s/AKfycbxJz4NvNYK111g5
     tahun: tahun
   })
 });
-    const result = await res.text();
+   const result = await res.json();
 
-    if(res.ok){
+if(result.status === "success"){
       alert("✅ Data berhasil disimpan");
       location.reload();
     }else{
