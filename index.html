@@ -995,6 +995,28 @@ async function loadData(){
 }
 
 loadData();
+
+/* ===============================
+   LOAD DATA LINGKUNGAN DARI GOOGLE SHEETS
+=============================== */
+
+const API_URL = "https://script.google.com/u/0/home/projects/177zVqob8woFOKknEz7EhUixTPA3QUe_OZJCumijWYYdmaT_4Zj00IrE5/edit"; // ganti dengan URL deploy apps script
+
+fetch(API_URL)
+  .then(res => res.json())
+  .then(data => {
+
+    const pengaspalan = data["Pengaspalan Jalan"] || 0;
+    const lampu = data["Lampu Jalan"] || 0;
+    const saluran = data["Perbaikan Saluran"] || 0;
+
+    document.getElementById("pengaspalanTotal").innerHTML = pengaspalan + " <span>RT</span>";
+    document.getElementById("lampuTotal").innerHTML = lampu + " <span>RT</span>";
+    document.getElementById("saluranTotal").innerHTML = saluran + " <span>RT</span>";
+
+  })
+  .catch(err => console.error("Gagal ambil data:", err));
+
 	
 </script>
 
