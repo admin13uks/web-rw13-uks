@@ -72,6 +72,24 @@ button:hover{ opacity:.9; }
 
 <body>
 
+<hr style="margin:40px 0">
+
+<h2>Input Data Penataan Lingkungan</h2>
+
+<label>Jenis Kegiatan</label>
+<input type="text" id="jenis" placeholder="Contoh: Paving Block">
+
+<label>Keterangan</label>
+<textarea id="ketLingkungan"></textarea>
+
+<label>RT</label>
+<input type="text" id="rt">
+
+<label>Tahun</label>
+<input type="number" id="tahunLingkungan" value="2026">
+
+<button onclick="simpanLingkungan()">Simpan Data Lingkungan</button>
+  
 <div class="container">
   <h2>Upload Dokumentasi RW 013</h2>
 
@@ -164,6 +182,45 @@ async function simpan(){
   };
 
   reader.readAsDataURL(file);
+}
+
+  async function simpanLingkungan(){
+
+  const jenis = document.getElementById("jenis").value.trim();
+  const keterangan = document.getElementById("ketLingkungan").value;
+  const rt = document.getElementById("rt").value.trim();
+  const tahun = document.getElementById("tahunLingkungan").value;
+
+  if(!jenis) return alert("Isi jenis kegiatan dulu");
+  if(!rt) return alert("Isi RT dulu");
+
+  try{
+
+    const res = await fetch("https://script.google.com/macros/s/AKfycbz2-rGqzJ56I43gwCplKoqJXhlxLbIusbC92E_PqGunARQTJJpbjtXwMUlZNkuhIo4_/exec", {
+      method: "POST",
+      body: JSON.stringify({
+        tipe: "dataLingkungan",
+        jenis: jenis,
+        keterangan: keterangan,
+        rt: rt,
+        tahun: tahun
+      })
+    });
+
+    const result = await res.text();
+
+    if(res.ok){
+      alert("✅ Data berhasil disimpan");
+      location.reload();
+    }else{
+      alert("❌ Gagal: " + result);
+    }
+
+  }catch(err){
+    alert("❌ Tidak bisa terhubung ke server");
+    console.error(err);
+  }
+
 }
 
 </script>
