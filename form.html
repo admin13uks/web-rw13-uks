@@ -63,6 +63,27 @@ button{
   cursor:pointer;
 }
 
+  .tabs{
+  display:flex;
+  margin-bottom:20px;
+  gap:5px;
+}
+
+.tab-btn{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background:#e5e7eb;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.tab-btn.active{
+  background:#16a34a;
+  color:white;
+}
+
 button:hover{ opacity:.9; }
 
 .btn-home{ background:#2563eb; }
@@ -72,53 +93,70 @@ button:hover{ opacity:.9; }
 
 <body>
 
-<hr style="margin:40px 0">
-
-<h2>Input Data Penataan Lingkungan</h2>
-
-<label>Jenis Kegiatan</label>
-<input type="text" id="jenis" placeholder="Contoh: Paving Block">
-
-<label>Keterangan</label>
-<textarea id="ketLingkungan"></textarea>
-
-<label>RT</label>
-<input type="text" id="rt">
-
-<label>Tahun</label>
-<input type="number" id="tahunLingkungan" value="2026">
-
-<button onclick="simpanLingkungan()">Simpan Data Lingkungan</button>
-  
 <div class="container">
-  <h2>Upload Dokumentasi RW 013</h2>
 
-  <label>Pilih Kategori</label>
-  <select id="kategori">
-    <option value="">-- Pilih Kategori --</option>
-    <option value="lingkungan">Lingkungan</option>
-    <option value="kesehatan">Kesehatan</option>
-    <option value="sosial">Sosial</option>
-    <option value="keamanan">Keamanan</option>
-    <option value="kerohanian">Kerohanian</option>
-    <option value="informasi">Informasi</option>
-  </select>
+  <h2>Form RW 013</h2>
 
-  <label>Judul</label>
-  <input type="text" id="judul">
+  <!-- MENU TAB -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('lingkungan')">Input Data Lingkungan</button>
+    <button class="tab-btn" onclick="showTab('upload')">Upload Dokumentasi</button>
+  </div>
 
-  <label>Keterangan</label>
-  <textarea id="keterangan"></textarea>
+  <!-- ========================= -->
+  <!-- FORM DATA LINGKUNGAN -->
+  <!-- ========================= -->
+  <div id="lingkungan" class="tab-content">
 
-  <label>Upload Foto</label>
-  <input type="file" id="foto" accept="image/*" onchange="preview(this)">
-  <img id="previewImg">
+    <label>Jenis Kegiatan</label>
+    <input type="text" id="jenis" placeholder="Contoh: Paving Block">
 
-  <button onclick="simpan()">Simpan</button>
-  <button class="btn-cancel" onclick="location.reload()">Batal</button>
-  <button class="btn-home" onclick="window.location.href='index.html'">⬅ Kembali</button>
+    <label>Keterangan</label>
+    <textarea id="ketLingkungan"></textarea>
+
+    <label>RT</label>
+    <input type="text" id="rt">
+
+    <label>Tahun</label>
+    <input type="number" id="tahunLingkungan" value="2026">
+
+    <button onclick="simpanLingkungan()">Simpan Data Lingkungan</button>
+
+  </div>
+
+  <!-- ========================= -->
+  <!-- FORM UPLOAD -->
+  <!-- ========================= -->
+  <div id="upload" class="tab-content" style="display:none;">
+
+    <label>Pilih Kategori</label>
+    <select id="kategori">
+      <option value="">-- Pilih Kategori --</option>
+      <option value="lingkungan">Lingkungan</option>
+      <option value="kesehatan">Kesehatan</option>
+      <option value="sosial">Sosial</option>
+      <option value="keamanan">Keamanan</option>
+      <option value="kerohanian">Kerohanian</option>
+      <option value="informasi">Informasi</option>
+    </select>
+
+    <label>Judul</label>
+    <input type="text" id="judul">
+
+    <label>Keterangan</label>
+    <textarea id="keterangan"></textarea>
+
+    <label>Upload Foto</label>
+    <input type="file" id="foto" accept="image/*" onchange="preview(this)">
+    <img id="previewImg">
+
+    <button onclick="simpan()">Simpan</button>
+    <button class="btn-cancel" onclick="location.reload()">Batal</button>
+    <button class="btn-home" onclick="window.location.href='index.html'">⬅ Kembali</button>
+
+  </div>
+
 </div>
-
 <script>
 
 function preview(input){
@@ -221,6 +259,19 @@ async function simpan(){
     console.error(err);
   }
 
+}
+
+  function showTab(tabId){
+
+  document.getElementById("lingkungan").style.display = "none";
+  document.getElementById("upload").style.display = "none";
+
+  document.getElementById(tabId).style.display = "block";
+
+  const buttons = document.querySelectorAll(".tab-btn");
+  buttons.forEach(btn => btn.classList.remove("active"));
+
+  event.target.classList.add("active");
 }
 
 </script>
