@@ -236,19 +236,34 @@ async function simpan(){
 
   try{
 
-const res = await fetch("https://script.google.com/macros/s/AKfycbxJz4NvNYK111g51V8BO9aJmvr4J2fLnfUBUoUYnVqX417HkIToU1WsG5u3vMGGD1cV/exec", {
-  method: "POST",
-  headers:{
-    "Content-Type":"application/json"
-  },
-  body: JSON.stringify({
-    tipe: "dataLingkungan",
-    jenis: jenis,
-    keterangan: keterangan,
-    rt: rt,
-    tahun: tahun
-  })
-});
+    const formData = new FormData();
+
+    formData.append("tipe","dataLingkungan");
+    formData.append("jenis",jenis);
+    formData.append("keterangan",keterangan);
+    formData.append("rt",rt);
+    formData.append("tahun",tahun);
+
+    const res = await fetch("https://script.google.com/macros/s/AKfycbxJz4NvNYK111g51V8BO9aJmvr4J2fLnfUBUoUYnVqX417HkIToU1WsG5u3vMGGD1cV/exec",{
+      method:"POST",
+      body:formData
+    });
+
+    const result = await res.json();
+
+    if(result.status === "success"){
+      alert("✅ Data berhasil disimpan");
+      location.reload();
+    }else{
+      alert("❌ Gagal menyimpan data");
+    }
+
+  }catch(err){
+    alert("❌ Tidak bisa terhubung ke server");
+    console.error(err);
+  }
+
+}
    const result = await res.json();
 
 if(result.status === "success"){
