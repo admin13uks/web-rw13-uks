@@ -206,8 +206,9 @@ async function simpan(){
         })
       });
 
-      const result = await res.json();
-
+      const text = await res.text();
+      const result = JSON.parse(text);
+      
       if(res.ok){
         alert("✅ Upload berhasil");
         window.location.href = kategori + ".html";
@@ -248,7 +249,8 @@ async function simpanLingkungan(){
       body:data
     });
 
-    const result = await res.json();
+    const text = await res.text();
+    const result = JSON.parse(text);
 
     if(result.status === "success"){
       alert("✅ Data berhasil disimpan");
