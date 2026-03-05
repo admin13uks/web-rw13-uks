@@ -212,7 +212,7 @@ async function simpan(){
         alert("✅ Upload berhasil");
         window.location.href = kategori + ".html";
       }else{
-        alert("❌ Upload gagal: " + result.message);
+        alert("❌ Upload gagal");
       }
 
     }catch(err){
@@ -224,7 +224,7 @@ async function simpan(){
   reader.readAsDataURL(file);
 }
 
-  async function simpanLingkungan(){
+async function simpanLingkungan(){
 
   const jenis = document.getElementById("jenis").value.trim();
   const keterangan = document.getElementById("ketLingkungan").value;
@@ -262,25 +262,9 @@ async function simpan(){
     alert("❌ Tidak bisa terhubung ke server");
     console.error(err);
   }
-
-}
-   const result = await res.json();
-
-if(result.status === "success"){
-      alert("✅ Data berhasil disimpan");
-      location.reload();
-    }else{
-      alert("❌ Gagal: " + result);
-    }
-
-  }catch(err){
-    alert("❌ Tidak bisa terhubung ke server");
-    console.error(err);
-  }
-
 }
 
- function showTab(tabId){
+function showTab(tabId){
 
   document.getElementById("lingkungan").style.display = "none";
   document.getElementById("upload").style.display = "none";
@@ -296,7 +280,7 @@ if(result.status === "success"){
 function goHome(){
   window.location.href = "index.html";
 }
-
+  
 </script>
 
 </body>
