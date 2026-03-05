@@ -206,8 +206,9 @@ async function simpan(){
         })
       });
 
-      const text = await res.text();
-      const result = JSON.parse(text);
+const text = await res.text();
+console.log(text);
+alert("✅ Data berhasil disimpan");
       
       if(res.ok){
         alert("✅ Upload berhasil");
