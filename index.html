@@ -1000,7 +1000,7 @@ loadData();
    LOAD DATA LINGKUNGAN DARI GOOGLE SHEETS
 =============================== */
 
-const API_URL = "https://script.google.com/macros/s/AKfycbxJz4NvNYK111g51V8BO9aJmvr4J2fLnfUBUoUYnVqX417HkIToU1WsG5u3vMGGD1cV/exec"; // ganti dengan URL deploy apps script
+const API_URL = "https://script.google.com/macros/s/AKfycbxJz4NvNYK111g51V8BO9aJmvr4J2fLnfUBUoUYnVqX417HkIToU1WsG5u3vMGGD1cV/exec";
 
 fetch(API_URL)
   .then(res => res.json())
@@ -1016,7 +1016,6 @@ fetch(API_URL)
 
   })
   .catch(err => console.error("Gagal ambil data:", err));
-
 	
 </script>
 
