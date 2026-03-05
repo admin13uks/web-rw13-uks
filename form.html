@@ -263,7 +263,7 @@ async function simpan(){
 
 }
 
-  function showTab(tabId){
+ function showTab(tabId){
 
   document.getElementById("lingkungan").style.display = "none";
   document.getElementById("upload").style.display = "none";
@@ -276,9 +276,9 @@ async function simpan(){
   event.target.classList.add("active");
 }
 
- <a href="index.html">
-  <button class="btn-home">⬅ Kembali ke Beranda</button>
-</a>
+function goHome(){
+  window.location.href = "index.html";
+}
 
 </script>
 
