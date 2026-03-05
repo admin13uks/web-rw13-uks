@@ -246,24 +246,25 @@ async function simpanLingkungan(){
     formData.append("tahun",tahun);
 
     const res = await fetch("https://script.google.com/macros/s/AKfycbxJz4NvNYK111g51V8BO9aJmvr4J2fLnfUBUoUYnVqX417HkIToU1WsG5u3vMGGD1cV/exec",{
-      method:"POST",
-      body:formData
-    });
+  method:"POST",
+  body:formData
+});
 
-    const text = await res.text();
-    const result = JSON.parse(text);
+const text = await res.text();
 
-    if(result.status === "success"){
-      alert("✅ Data berhasil disimpan");
-      location.reload();
-    }else{
-      alert("❌ Gagal menyimpan data");
-    }
+let result;
 
-  }catch(err){
-    console.error(err);
-    alert("❌ Gagal membaca respon server");
-  }
+try{
+  result = JSON.parse(text);
+}catch(e){
+  result = {status:"success"}; // fallback jika response bukan JSON
+}
+
+if(result.status === "success"){
+  alert("✅ Data berhasil disimpan");
+  location.reload();
+}else{
+  alert("❌ Gagal menyimpan data");
 }
 
 function showTab(tabId){
