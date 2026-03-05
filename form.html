@@ -236,17 +236,16 @@ async function simpanLingkungan(){
 
   try{
 
-    const formData = new FormData();
-
-    formData.append("tipe","dataLingkungan");
-    formData.append("jenis",jenis);
-    formData.append("keterangan",keterangan);
-    formData.append("rt",rt);
-    formData.append("tahun",tahun);
+    const data = new URLSearchParams();
+    data.append("tipe","dataLingkungan");
+    data.append("jenis",jenis);
+    data.append("keterangan",keterangan);
+    data.append("rt",rt);
+    data.append("tahun",tahun);
 
     const res = await fetch("https://script.google.com/macros/s/AKfycbxJz4NvNYK111g51V8BO9aJmvr4J2fLnfUBUoUYnVqX417HkIToU1WsG5u3vMGGD1cV/exec",{
       method:"POST",
-      body:formData
+      body:data
     });
 
     const result = await res.json();
