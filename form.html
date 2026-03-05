@@ -236,17 +236,19 @@ async function simpan(){
 
   try{
 
-    const res = await fetch("https://script.google.com/macros/s/AKfycbxJz4NvNYK111g51V8BO9aJmvr4J2fLnfUBUoUYnVqX417HkIToU1WsG5u3vMGGD1cV/exec", {
-      method: "POST",
-      body: JSON.stringify({
-        tipe: "dataLingkungan",
-        jenis: jenis,
-        keterangan: keterangan,
-        rt: rt,
-        tahun: tahun
-      })
-    });
-
+const res = await fetch("https://script.google.com/macros/s/AKfycbxJz4NvNYK111g51V8BO9aJmvr4J2fLnfUBUoUYnVqX417HkIToU1WsG5u3vMGGD1cV/exec", {
+  method: "POST",
+  headers:{
+    "Content-Type":"application/json"
+  },
+  body: JSON.stringify({
+    tipe: "dataLingkungan",
+    jenis: jenis,
+    keterangan: keterangan,
+    rt: rt,
+    tahun: tahun
+  })
+});
     const result = await res.text();
 
     if(res.ok){
