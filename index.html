@@ -1025,60 +1025,51 @@ loadData();
 
 const API_URL = "https://script.google.com/macros/s/AKfycbz2-rGqzJ56I43gwCplKoqJXhlxLbIusbC92E_PqGunARQTJJpbjtXwMUlZNkuhIo4_/exec";
 
-document.addEventListener("DOMContentLoaded", function(){
-
 fetch(API_URL)
 .then(res => res.json())
-.then(rows => {
-
-let dataJenis = {};
-
-rows.forEach(r => {
-
-   if(!r.jenis || !r.rt) return;
-
-   let jenis = r.jenis.trim();
-   let rt = r.rt.trim();
-
-   if(!dataJenis[jenis]){
-      dataJenis[jenis] = new Set();
-   }
-
-   dataJenis[jenis].add(rt);
-
-});
+.then(data => {
 
 const container = document.getElementById("lingkunganContainer");
-
-if(!container) return;
-
 container.innerHTML = "";
 
-/* urut berdasarkan jumlah RT terbanyak */
-const sorted = Object.entries(dataJenis)
-.sort((a,b)=> b[1].size - a[1].size);
+let mapData = {};
 
-sorted.forEach(([jenis, rtSet]) => {
+data.forEach(item => {
 
-   const daftarRT = [...rtSet].sort();
-   const jumlah = daftarRT.length;
+   const keterangan = item.keterangan;
+   const rt = item.rt;
+
+   if(!mapData[keterangan]){
+      mapData[keterangan] = {
+         total:0,
+         rt:[]
+      };
+   }
+
+   mapData[keterangan].total += 1;
+
+   if(!mapData[keterangan].rt.includes(rt)){
+      mapData[keterangan].rt.push(rt);
+   }
+
+});
+
+for(const ket in mapData){
 
    const card = `
-      <div class="card-lingkungan">
-         <h3>${jenis}</h3>
-         <p>${jumlah} <span>RT</span></p>
-         <small>${daftarRT.join(" • ")}</small>
-      </div>
+   <div class="card-lingkungan">
+      <h3>${ket}</h3>
+      <h2>${mapData[ket].rt.length} RT</h2>
+      <p>RT ${mapData[ket].rt.join(", ")}</p>
+   </div>
    `;
 
-   container.insertAdjacentHTML("beforeend", card);
+   container.innerHTML += card;
 
-});
+}
 
 })
-.catch(err => console.error("Gagal mengambil data:", err));
-
-});
+.catch(err => console.log(err));
 	
 </script>
 
