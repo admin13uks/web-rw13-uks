@@ -1070,6 +1070,38 @@ for(const ket in mapData){
 
 })
 .catch(err => console.log(err));
+
+	/* ===============================
+   DATA PENATAAN LINGKUNGAN
+=============================== */
+
+const API_URL = "https://script.google.com/macros/s/AKfycbz2-rGqzJ56I43gwCplKoqJXhlxLbIusbC92E_PqGunARQTJJpbjtXwMUlZNkuhIo4_/exec";
+
+fetch(API_URL)
+.then(res => res.json())
+.then(data => {
+
+  const container = document.getElementById("lingkunganContainer");
+  container.innerHTML = "";
+
+  for (const jenis in data) {
+
+    const jumlah = data[jenis];
+
+    const card = `
+      <div class="card-lingkungan">
+        <h3>${jenis}</h3>
+        <p>${jumlah} RT</p>
+      </div>
+    `;
+
+    container.innerHTML += card;
+  }
+
+})
+.catch(err => {
+  console.error("Gagal mengambil data lingkungan:", err);
+});
 	
 </script>
 
