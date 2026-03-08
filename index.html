@@ -504,12 +504,28 @@ display:none;
         .layanan-item p { font-size: 13px; color: #666; }
 
         .preview-card {
-            width: 380px; height: 440px;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1604187351574-c75ca79f5807?auto=format&fit=crop&w=800&q=80');
-            background-size: cover; background-position: center; border-radius: 20px;
-            display: flex; align-items: flex-end; padding: 30px; color: white; text-align: left;
-            transition: 0.5s ease;
-        }
+    width: 380px;
+    height: 440px;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1604187351574-c75ca79f5807?auto=format&fit=crop&w=800&q=80');
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    display: flex;
+    align-items: flex-end;
+    padding: 30px;
+    color: white;
+    text-align: left;
+
+    transition: background-image .8s ease-in-out;
+}
+
+.preview-card.show{
+    opacity:1;
+}
+
+.preview-card.fade{
+    opacity:0;
+}
         .preview-card h2 { font-size: 24px; margin: 10px 0; }
         .preview-card .badge { background: #f39c12; padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: 700; }
 
@@ -885,10 +901,10 @@ footer p{
 
     <!-- KOLOM KIRI -->
     <div class="layanan-list">
-        <div class="layanan-item active"
-            data-title="Layanan Administrasi"
-            data-desc="Pelayanan surat pengantar dan administrasi warga sebagai persyaratan pengurusan dokumen resmi."
-            data-folder="uploads/administrasi"
+<div class="layanan-item active"
+    data-title="Layanan Administrasi"
+    data-desc="Pelayanan surat pengantar dan administrasi warga sebagai persyaratan pengurusan dokumen resmi."
+    data-folder="uploads/administrasi">
             <h3>Administrasi Warga</h3>
             <p>Surat Menyurat dan Administrasi Warga</p>
         </div>
@@ -1170,6 +1186,7 @@ function startSlider(images){
   const card = document.getElementById("previewCard");
 
   layananItems.forEach(item => {
+	  loadSlider("uploads/administrasi");
 
   item.addEventListener("click", async () => {
 
