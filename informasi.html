@@ -27,30 +27,50 @@ body{
 }
 
 /* ================= HEADER ================= */
-.site-header{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  background:#fff;
-  border-bottom:1px solid #e5e7eb;
-  z-index:9999;
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.98);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  z-index: 10000;
 }
 
-.header-inner{
-  max-width:1200px;
-  margin:auto;
-  padding:14px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+.header-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.logo{
-  font-weight:800;
-  font-size:18px;
-  color:#16a34a;
-  text-decoration:none;
+/* ================= LOGO ================= */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo img { height: 45px; }
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  font-weight: 800;
+  color: #16a34a;
+  font-size: 18px;
+}
+
+.logo-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 600;
 }
 
 .nav-menu ul{
