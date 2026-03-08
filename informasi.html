@@ -27,26 +27,24 @@ body{
 }
 
 /* ================= HEADER ================= */
-.site-header {
+header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(255,255,255,0.98);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-  z-index: 10000;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  z-index: 1000;
 }
 
 .header-inner {
   max-width: 1200px;
   margin: auto;
-  padding: 12px 20px;
+  padding: 14px 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
-/* ================= LOGO ================= */
 .logo {
   display: flex;
   align-items: center;
@@ -54,11 +52,8 @@ body{
   text-decoration: none;
 }
 
-.logo img { height: 45px; }
-
-.logo-text {
-  display: flex;
-  flex-direction: column;
+.logo img {
+  height: 42px;
 }
 
 .logo-title {
@@ -67,28 +62,21 @@ body{
   font-size: 18px;
 }
 
-.logo-subtitle {
+.logo-sub {
   font-size: 12px;
   color: #6b7280;
   font-weight: 600;
 }
 
-.nav-menu ul{
-  display:flex;
-  list-style:none;
-  gap:24px;
+nav a {
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  color: #374151;
 }
 
-.nav-menu a{
-  text-decoration:none;
-  font-weight:700;
-  font-size:14px;
-  color:#374151;
-}
-
-.nav-menu a.active,
-.nav-menu a:hover{
-  color:#16a34a;
+nav a:hover {
+  color: #16a34a;
 }
 
 /* ================= HAMBURGER ================= */
@@ -245,21 +233,19 @@ footer p {
 <body>
 
 <!-- ================= HEADER ================= -->
-<header class="site-header">
+<header>
   <div class="header-inner">
 
     <a href="index.html" class="logo">
       <img src="https://raw.githubusercontent.com/admin13uks/web-rw13-uks/main/logo-13.png">
-      <div class="logo-text">
+      <div>
         <div class="logo-title">RW 013 UKS</div>
-        <div class="logo-subtitle">Utan Kayu Selatan</div>
+        <div class="logo-sub">Utan Kayu Selatan</div>
       </div>
     </a>
 
-    <nav class="nav-menu">
-      <ul>
-        <li><a href="index.html">Beranda</a></li>
-      </ul>
+    <nav>
+      <a href="index.html">Beranda</a>
     </nav>
 
   </div>
