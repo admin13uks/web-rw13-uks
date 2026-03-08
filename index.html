@@ -420,11 +420,25 @@ box-shadow:0 10px 25px rgba(0,0,0,.15);
   }
 
   .mega-wrapper {
-    grid-template-columns: 1fr;
-    padding: 10px 0;
-  }
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 12px;
+  padding: 10px 0;
 }
 
+	.mega-icon{
+width:42px;
+height:42px;
+font-size:16px;
+}
+
+.mega-title{
+font-size:13px;
+}
+
+.mega-desc{
+display:none;
+}
         /* ================= HERO SECTION ================= */
         .hero {
             padding: 100px 20px 60px;
