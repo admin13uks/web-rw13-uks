@@ -684,6 +684,18 @@ body{
   font-size:9px;
 }
 
+	transition: background-image .8s ease-in-out;
+}
+
+.preview-card.fade{
+opacity:0;
+transition:opacity .5s;
+}
+
+.preview-card.show{
+opacity:1;
+}
+
 /* DATA LINGKUNGAN */
 .lingkungan-grid{
   grid-template-columns:1fr;
@@ -876,7 +888,7 @@ footer p{
         <div class="layanan-item active"
             data-title="Layanan Administrasi"
             data-desc="Pelayanan surat pengantar dan administrasi warga sebagai persyaratan pengurusan dokumen resmi."
-            data-img="https://images.unsplash.com/photo-1604187351574-c75ca79f5807">
+            data-folder="uploads/administrasi"
             <h3>Administrasi Warga</h3>
             <p>Surat Menyurat dan Administrasi Warga</p>
         </div>
@@ -1083,35 +1095,72 @@ document.addEventListener("click", () => {
   }
 
  /* ===============================
-   LAYANAN PREVIEW CARD (AUTO GITHUB IMAGE)
+   GITHUB IMAGE SLIDER
 =============================== */
 
-const USER   = "admin13uks";
-const REPO   = "rw13-uks";
+const USER = "admin13uks";
+const REPO = "rw13-uks";
 const BRANCH = "main";
 
-async function loadLatestImage(folder) {
-  try {
-    const url = `https://api.github.com/repos/${USER}/${REPO}/contents/${folder}?ref=${BRANCH}`;
-    const res = await fetch(url);
-    if (!res.ok) return null;
+let sliderTimer = null;
 
+async function loadSlider(folder){
+
+  const url = `https://api.github.com/repos/${USER}/${REPO}/contents/${folder}?ref=${BRANCH}`;
+
+  try{
+
+    const res = await fetch(url);
     const files = await res.json();
 
     const images = files
-      .filter(f => f.type === "file" && f.name.match(/\.(jpg|jpeg|png|webp)$/i))
-      .sort((a,b)=> b.name.localeCompare(a.name));
+      .filter(f => f.name.match(/\.(jpg|jpeg|png|webp)$/i))
+      .sort((a,b)=> b.name.localeCompare(a.name))
+      .slice(0,5) // 🔥 hanya 5 foto terbaru
+      .map(f => f.download_url);
 
-    if(images.length === 0) return null;
+    startSlider(images);
 
-    return images[0].download_url;
-
-  } catch(err) {
-    console.error("Gagal ambil gambar:", err);
-    return null;
+  }catch(err){
+    console.error("Slider gagal:",err);
   }
 }
 
+function startSlider(images){
+
+  if(!images || images.length===0) return;
+
+  const card = document.getElementById("previewCard");
+
+  let index = 0;
+
+  clearInterval(sliderTimer);
+
+  function showImage(){
+
+    card.classList.remove("show");
+
+    setTimeout(()=>{
+
+      card.style.backgroundImage =
+      `linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.8)), url('${images[index]}')`;
+
+      card.classList.add("show");
+
+      index++;
+      if(index>=images.length){
+        index=0;
+      }
+
+    },200);
+
+  }
+
+  showImage();
+
+  sliderTimer = setInterval(showImage,4000);
+
+}
  /* ===============================
      LAYANAN PREVIEW CARD
   =============================== */
@@ -1121,23 +1170,27 @@ async function loadLatestImage(folder) {
   const card = document.getElementById("previewCard");
 
   layananItems.forEach(item => {
-    item.addEventListener("click", () => {
 
-      layananItems.forEach(i => i.classList.remove("active"));
-      item.classList.add("active");
+  item.addEventListener("click", async () => {
 
-      if (title) title.textContent = item.dataset.title || "";
-      if (desc)  desc.textContent  = item.dataset.desc || "";
+    layananItems.forEach(i => i.classList.remove("active"));
+    item.classList.add("active");
 
-      if (card && item.dataset.img) {
-        card.style.backgroundImage = `
-          linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.8)),
-          url('${item.dataset.img}')
-        `;
-      }
+    title.textContent = item.dataset.title || "";
+    desc.textContent  = item.dataset.desc || "";
 
-    });
+    if(item.dataset.folder){
+      loadSlider(item.dataset.folder);
+    }
+
+    if(item.dataset.img){
+      card.style.backgroundImage =
+      `linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.8)), url('${item.dataset.img}')`;
+    }
+
   });
+
+});
 
 	// ===============================
 // AUTO YEAR FOOTER
