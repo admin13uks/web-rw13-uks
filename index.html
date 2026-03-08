@@ -557,10 +557,11 @@ display:none;
         }
 
         @media (max-width: 992px) {
-            .layanan-content { flex-direction: column; }
-            .preview-card { width: 100%; height: 320px; order: -1; }
-            .hero h1 { font-size: 32px; }
-            .footer-inner { grid-template-columns: 1fr; text-align: center; }
+
+    .layanan-content { flex-direction: column; }
+    .preview-card { width: 100%; height: 320px; order: -1; }
+    .hero h1 { font-size: 32px; }
+    .footer-inner { grid-template-columns: 1fr; text-align: center; }
 
 			 /* ================= FOOTER MOBILE RAPİ ================= */
   @media (max-width: 768px) {
@@ -698,18 +699,6 @@ body{
 
 .preview-card .badge{
   font-size:9px;
-}
-
-	transition: background-image .8s ease-in-out;
-}
-
-.preview-card.fade{
-opacity:0;
-transition:opacity .5s;
-}
-
-.preview-card.show{
-opacity:1;
 }
 
 /* DATA LINGKUNGAN */
@@ -1185,11 +1174,11 @@ function startSlider(images){
   const desc = document.getElementById("cardDesc");
   const card = document.getElementById("previewCard");
 
-  layananItems.forEach(item => {
-	  loadSlider("uploads/administrasi");
+  loadSlider("uploads/administrasi");
+
+layananItems.forEach(item => {
 
   item.addEventListener("click", async () => {
-
     layananItems.forEach(i => i.classList.remove("active"));
     item.classList.add("active");
 
