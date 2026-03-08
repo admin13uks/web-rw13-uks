@@ -503,29 +503,36 @@ display:none;
         .layanan-item h3 { font-size: 18px; margin-bottom: 5px; }
         .layanan-item p { font-size: 13px; color: #666; }
 
-        .preview-card {
-    width: 380px;
-    height: 440px;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1604187351574-c75ca79f5807?auto=format&fit=crop&w=800&q=80');
-    background-size: cover;
-    background-position: center;
-    border-radius: 20px;
-    display: flex;
-    align-items: flex-end;
-    padding: 30px;
-    color: white;
-    text-align: left;
+      .preview-card {
+width:380px;
+height:440px;
 
-    transition: background-image .8s ease-in-out;
-}
+background:
+linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.8)),
+url('https://images.unsplash.com/photo-1604187351574-c75ca79f5807?auto=format&fit=crop&w=800&q=80');
 
-.preview-card.show{
-    opacity:1;
+background-size:cover;
+background-position:center;
+
+border-radius:20px;
+display:flex;
+align-items:flex-end;
+padding:30px;
+color:white;
+text-align:left;
+
+opacity:1;
+transition:opacity .5s, background-image .8s ease-in-out;
 }
 
 .preview-card.fade{
-    opacity:0;
+opacity:0;
 }
+
+.preview-card.show{
+opacity:1;
+}
+
         .preview-card h2 { font-size: 24px; margin: 10px 0; }
         .preview-card .badge { background: #f39c12; padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: 700; }
 
@@ -1174,7 +1181,7 @@ function startSlider(images){
   const desc = document.getElementById("cardDesc");
   const card = document.getElementById("previewCard");
 
-  loadSlider("uploads/administrasi");
+loadSlider("uploads/administrasi");
 
 layananItems.forEach(item => {
 
