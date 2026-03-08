@@ -1020,58 +1020,6 @@ async function loadData(){
 loadData();
 
 /* ===============================
-   LOAD DATA LINGKUNGAN DARI GOOGLE SHEETS
-=============================== */
-
-const API_URL = "https://script.google.com/macros/s/AKfycbxJz4NvNYK111g51V8BO9aJmvr4J2fLnfUBUoUYnVqX417HkIToU1WsG5u3vMGGD1cV/exec";
-
-fetch(API_URL)
-.then(res => res.json())
-.then(data => {
-
-const container = document.getElementById("lingkunganContainer");
-container.innerHTML = "";
-
-let mapData = {};
-
-data.forEach(item => {
-
-   const keterangan = item.keterangan;
-   const rt = item.rt;
-
-   if(!mapData[keterangan]){
-      mapData[keterangan] = {
-         total:0,
-         rt:[]
-      };
-   }
-
-   mapData[keterangan].total += 1;
-
-   if(!mapData[keterangan].rt.includes(rt)){
-      mapData[keterangan].rt.push(rt);
-   }
-
-});
-
-for(const ket in mapData){
-
-   const card = `
-   <div class="card-lingkungan">
-      <h3>${ket}</h3>
-      <h2>${mapData[ket].rt.length} RT</h2>
-      <p>RT ${mapData[ket].rt.join(", ")}</p>
-   </div>
-   `;
-
-   container.innerHTML += card;
-
-}
-
-})
-.catch(err => console.log(err));
-
-	/* ===============================
    DATA PENATAAN LINGKUNGAN
 =============================== */
 
@@ -1084,18 +1032,35 @@ fetch(API_URL)
   const container = document.getElementById("lingkunganContainer");
   container.innerHTML = "";
 
-  for (const jenis in data) {
+  let mapData = {};
 
-    const jumlah = data[jenis];
+  data.forEach(item => {
+
+    const jenis = item.jenis;
+    const rt = item.rt;
+
+    if(!mapData[jenis]){
+      mapData[jenis] = new Set();
+    }
+
+    mapData[jenis].add(rt);
+
+  });
+
+  for(const jenis in mapData){
+
+    const rtArray = [...mapData[jenis]];
 
     const card = `
       <div class="card-lingkungan">
         <h3>${jenis}</h3>
-        <p>${jumlah} RT</p>
+        <p>${rtArray.length} RT</p>
+        <small>RT ${rtArray.join(", ")}</small>
       </div>
     `;
 
     container.innerHTML += card;
+
   }
 
 })
