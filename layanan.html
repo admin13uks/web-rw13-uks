@@ -278,6 +278,7 @@ body {
 display:flex;
 }
 
+/* NAV MENU */
 .nav-menu{
 display:none;
 position:absolute;
@@ -297,59 +298,41 @@ flex-direction:column;
 align-items:flex-start;
 }
 
-/* PERBAIKAN MEGA MENU MOBILE */
+/* PERBAIKAN MEGA MENU */
 .dropdown-menu.mega-center{
-position:static;
-transform:none;
-width:100%;
-max-width:100%;
-padding:15px;
-box-shadow:none;
-border-radius:10px;
-}
-
-	/* FIX MEGA MENU MOBILE */
-.dropdown-menu.mega-center.show{
-display:block;
 position:relative;
 top:auto;
 left:auto;
 transform:none;
-max-height:none;
-overflow:visible;
+width:100%;
+max-width:100%;
+padding:20px;
+box-shadow:none;
+border-radius:10px;
 }
 
-/* supaya semua item turun ke bawah */
-.mega-wrapper{
-grid-template-columns:1fr;
-gap:20px;
+/* tampilkan ketika klik */
+.dropdown-menu.mega-center.show{
+display:block;
 }
 
 /* GRID MOBILE */
 .mega-wrapper{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
+display:flex;
+flex-direction:column;
+gap:20px;
+align-items:center;
 }
 
 /* ITEM */
 .mega-item{
+width:100%;
+max-width:220px;
 text-align:center;
-padding:10px;
-}
-
-.mega-icon{
-width:42px;
-height:42px;
-font-size:16px;
-}
-
-.mega-title{
-font-size:13px;
 }
 
 .mega-desc{
-display:none;
+display:block;
 }
 
 }
